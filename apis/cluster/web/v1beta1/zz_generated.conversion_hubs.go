@@ -13,6 +13,15 @@ func (tr *AppActiveSlot) Hub() {}
 func (tr *AppHybridConnection) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *AppServiceCertificateBinding) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *AppServiceCustomHostNameBinding) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *AppServiceManagedCertificate) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *FunctionAppActiveSlot) Hub() {}
 
 // Hub marks this type as a conversion hub.

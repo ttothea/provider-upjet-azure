@@ -11,6 +11,9 @@ import (
 
 	appactiveslot "github.com/upbound/provider-azure/v2/internal/controller/cluster/web/appactiveslot"
 	apphybridconnection "github.com/upbound/provider-azure/v2/internal/controller/cluster/web/apphybridconnection"
+	appservicecertificatebinding "github.com/upbound/provider-azure/v2/internal/controller/cluster/web/appservicecertificatebinding"
+	appservicecustomhostnamebinding "github.com/upbound/provider-azure/v2/internal/controller/cluster/web/appservicecustomhostnamebinding"
+	appservicemanagedcertificate "github.com/upbound/provider-azure/v2/internal/controller/cluster/web/appservicemanagedcertificate"
 	appserviceplan "github.com/upbound/provider-azure/v2/internal/controller/cluster/web/appserviceplan"
 	functionapp "github.com/upbound/provider-azure/v2/internal/controller/cluster/web/functionapp"
 	functionappactiveslot "github.com/upbound/provider-azure/v2/internal/controller/cluster/web/functionappactiveslot"
@@ -37,6 +40,9 @@ func Setup_web(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		appactiveslot.Setup,
 		apphybridconnection.Setup,
+		appservicecertificatebinding.Setup,
+		appservicecustomhostnamebinding.Setup,
+		appservicemanagedcertificate.Setup,
 		appserviceplan.Setup,
 		functionapp.Setup,
 		functionappactiveslot.Setup,
@@ -69,6 +75,9 @@ func SetupGated_web(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		appactiveslot.SetupGated,
 		apphybridconnection.SetupGated,
+		appservicecertificatebinding.SetupGated,
+		appservicecustomhostnamebinding.SetupGated,
+		appservicemanagedcertificate.SetupGated,
 		appserviceplan.SetupGated,
 		functionapp.SetupGated,
 		functionappactiveslot.SetupGated,
