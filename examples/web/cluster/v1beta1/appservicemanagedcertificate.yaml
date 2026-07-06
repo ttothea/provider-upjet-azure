@@ -108,9 +108,9 @@ metadata:
 spec:
   forProvider:
     record: appsvcmngcertv1beta1.azurewebsites.net
-    resourceGroupName: e2e-public-dns
+    resourceGroupName: ${data.azurerm_dns_zone.public.resource_group_name}
     ttl: 300
-    zoneName: azuree2e.upbound.io
+    zoneName: ${data.azurerm_dns_zone.public.name}
 
 ---
 
