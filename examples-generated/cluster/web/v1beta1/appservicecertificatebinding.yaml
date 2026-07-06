@@ -1,0 +1,131 @@
+# SPDX-FileCopyrightText: 2025 The Crossplane Authors <https://crossplane.io>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+apiVersion: web.azure.upbound.io/v1beta1
+kind: AppServiceCertificateBinding
+metadata:
+  annotations:
+    meta.upbound.io/example-id: web/v1beta1/appservicecertificatebinding
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    certificateIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    hostnameBindingIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    sslState: SniEnabled
+
+---
+
+apiVersion: web.azure.upbound.io/v1beta1
+kind: AppServiceCustomHostNameBinding
+metadata:
+  annotations:
+    meta.upbound.io/example-id: web/v1beta1/appservicecertificatebinding
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    appServiceName: mywebapp
+    resourceGroupNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+
+apiVersion: web.azure.upbound.io/v1beta1
+kind: AppServiceManagedCertificate
+metadata:
+  annotations:
+    meta.upbound.io/example-id: web/v1beta1/appservicecertificatebinding
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    customHostnameBindingIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+
+apiVersion: web.azure.upbound.io/v1beta2
+kind: AppServicePlan
+metadata:
+  annotations:
+    meta.upbound.io/example-id: web/v1beta1/appservicecertificatebinding
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    location: West Europe
+    resourceGroupNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    sku:
+      size: P1
+      tier: Premium
+
+---
+
+apiVersion: network.azure.upbound.io/v1beta1
+kind: DNSCNAMERecord
+metadata:
+  annotations:
+    meta.upbound.io/example-id: web/v1beta1/appservicecertificatebinding
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    record: ${azurerm_app_service.example.default_site_hostname}
+    resourceGroupNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: azurerm_dns_zone
+    ttl: 300
+    zoneNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: azurerm_dns_zone
+
+---
+
+apiVersion: network.azure.upbound.io/v1beta1
+kind: DNSTXTRecord
+metadata:
+  annotations:
+    meta.upbound.io/example-id: web/v1beta1/appservicecertificatebinding
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    record:
+    - value: ${azurerm_app_service.example.custom_domain_verification_id}
+    resourceGroupNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: azurerm_dns_zone
+    ttl: 300
+    zoneNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: azurerm_dns_zone
+
+---
+
+apiVersion: azure.upbound.io/v1beta1
+kind: ResourceGroup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: web/v1beta1/appservicecertificatebinding
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    location: West Europe

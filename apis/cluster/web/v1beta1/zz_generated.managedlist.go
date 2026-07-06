@@ -25,6 +25,33 @@ func (l *AppHybridConnectionList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this AppServiceCertificateBindingList.
+func (l *AppServiceCertificateBindingList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this AppServiceCustomHostNameBindingList.
+func (l *AppServiceCustomHostNameBindingList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this AppServiceManagedCertificateList.
+func (l *AppServiceManagedCertificateList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this AppServicePlanList.
 func (l *AppServicePlanList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))

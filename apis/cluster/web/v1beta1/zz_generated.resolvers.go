@@ -161,6 +161,182 @@ func (mg *AppHybridConnection) ResolveReferences(ctx context.Context, c client.R
 	return nil
 }
 
+// ResolveReferences of this AppServiceCertificateBinding.
+func (mg *AppServiceCertificateBinding) ResolveReferences(ctx context.Context, c client.Reader) error {
+	var m xpresource.Managed
+	var l xpresource.ManagedList
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+	{
+		m, l, err = apisresolver.GetManagedResource("web.azure.upbound.io", "v1beta1", "AppServiceManagedCertificate", "AppServiceManagedCertificateList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.CertificateID),
+			Extract:      resource.ExtractResourceID(),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.ForProvider.CertificateIDRef,
+			Selector:     mg.Spec.ForProvider.CertificateIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.CertificateID")
+	}
+	mg.Spec.ForProvider.CertificateID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.CertificateIDRef = rsp.ResolvedReference
+	{
+		m, l, err = apisresolver.GetManagedResource("web.azure.upbound.io", "v1beta1", "AppServiceCustomHostNameBinding", "AppServiceCustomHostNameBindingList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.HostNameBindingID),
+			Extract:      resource.ExtractResourceID(),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.ForProvider.HostNameBindingIDRef,
+			Selector:     mg.Spec.ForProvider.HostNameBindingIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.HostNameBindingID")
+	}
+	mg.Spec.ForProvider.HostNameBindingID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.HostNameBindingIDRef = rsp.ResolvedReference
+	{
+		m, l, err = apisresolver.GetManagedResource("web.azure.upbound.io", "v1beta1", "AppServiceManagedCertificate", "AppServiceManagedCertificateList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.CertificateID),
+			Extract:      resource.ExtractResourceID(),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.InitProvider.CertificateIDRef,
+			Selector:     mg.Spec.InitProvider.CertificateIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.CertificateID")
+	}
+	mg.Spec.InitProvider.CertificateID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.CertificateIDRef = rsp.ResolvedReference
+	{
+		m, l, err = apisresolver.GetManagedResource("web.azure.upbound.io", "v1beta1", "AppServiceCustomHostNameBinding", "AppServiceCustomHostNameBindingList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.HostNameBindingID),
+			Extract:      resource.ExtractResourceID(),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.InitProvider.HostNameBindingIDRef,
+			Selector:     mg.Spec.InitProvider.HostNameBindingIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.HostNameBindingID")
+	}
+	mg.Spec.InitProvider.HostNameBindingID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.HostNameBindingIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
+// ResolveReferences of this AppServiceCustomHostNameBinding.
+func (mg *AppServiceCustomHostNameBinding) ResolveReferences(ctx context.Context, c client.Reader) error {
+	var m xpresource.Managed
+	var l xpresource.ManagedList
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+	{
+		m, l, err = apisresolver.GetManagedResource("azure.upbound.io", "v1beta1", "ResourceGroup", "ResourceGroupList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ResourceGroupName),
+			Extract:      reference.ExternalName(),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.ForProvider.ResourceGroupNameRef,
+			Selector:     mg.Spec.ForProvider.ResourceGroupNameSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.ResourceGroupName")
+	}
+	mg.Spec.ForProvider.ResourceGroupName = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.ResourceGroupNameRef = rsp.ResolvedReference
+
+	return nil
+}
+
+// ResolveReferences of this AppServiceManagedCertificate.
+func (mg *AppServiceManagedCertificate) ResolveReferences(ctx context.Context, c client.Reader) error {
+	var m xpresource.Managed
+	var l xpresource.ManagedList
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+	{
+		m, l, err = apisresolver.GetManagedResource("web.azure.upbound.io", "v1beta1", "AppServiceCustomHostNameBinding", "AppServiceCustomHostNameBindingList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.CustomHostNameBindingID),
+			Extract:      resource.ExtractResourceID(),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.ForProvider.CustomHostNameBindingIDRef,
+			Selector:     mg.Spec.ForProvider.CustomHostNameBindingIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.CustomHostNameBindingID")
+	}
+	mg.Spec.ForProvider.CustomHostNameBindingID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.CustomHostNameBindingIDRef = rsp.ResolvedReference
+	{
+		m, l, err = apisresolver.GetManagedResource("web.azure.upbound.io", "v1beta1", "AppServiceCustomHostNameBinding", "AppServiceCustomHostNameBindingList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.CustomHostNameBindingID),
+			Extract:      resource.ExtractResourceID(),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.InitProvider.CustomHostNameBindingIDRef,
+			Selector:     mg.Spec.InitProvider.CustomHostNameBindingIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.CustomHostNameBindingID")
+	}
+	mg.Spec.InitProvider.CustomHostNameBindingID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.CustomHostNameBindingIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
 // ResolveReferences of this AppServicePlan.
 func (mg *AppServicePlan) ResolveReferences(ctx context.Context, c client.Reader) error {
 	var m xpresource.Managed
