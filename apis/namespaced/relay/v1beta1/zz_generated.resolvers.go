@@ -208,26 +208,6 @@ func (mg *HybridConnectionAuthorizationRule) ResolveReferences(ctx context.Conte
 	}
 	mg.Spec.ForProvider.ResourceGroupName = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.ResourceGroupNameRef = rsp.ResolvedReference
-	{
-		m, l, err = apisresolver.GetManagedResource("relay.azure.m.upbound.io", "v1beta1", "EventRelayNamespace", "EventRelayNamespaceList")
-		if err != nil {
-			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
-		}
-
-		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
-			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.NamespaceName),
-			Extract:      reference.ExternalName(),
-			Namespace:    mg.GetNamespace(),
-			Reference:    mg.Spec.InitProvider.NamespaceNameRef,
-			Selector:     mg.Spec.InitProvider.NamespaceNameSelector,
-			To:           reference.To{List: l, Managed: m},
-		})
-	}
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.InitProvider.NamespaceName")
-	}
-	mg.Spec.InitProvider.NamespaceName = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.InitProvider.NamespaceNameRef = rsp.ResolvedReference
 
 	return nil
 }

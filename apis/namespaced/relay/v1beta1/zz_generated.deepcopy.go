@@ -327,21 +327,6 @@ func (in *HybridConnectionAuthorizationRuleInitParameters) DeepCopyInto(out *Hyb
 		*out = new(bool)
 		**out = **in
 	}
-	if in.NamespaceName != nil {
-		in, out := &in.NamespaceName, &out.NamespaceName
-		*out = new(string)
-		**out = **in
-	}
-	if in.NamespaceNameRef != nil {
-		in, out := &in.NamespaceNameRef, &out.NamespaceNameRef
-		*out = new(v1.NamespacedReference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.NamespaceNameSelector != nil {
-		in, out := &in.NamespaceNameSelector, &out.NamespaceNameSelector
-		*out = new(v1.NamespacedSelector)
-		(*in).DeepCopyInto(*out)
-	}
 	if in.Send != nil {
 		in, out := &in.Send, &out.Send
 		*out = new(bool)
