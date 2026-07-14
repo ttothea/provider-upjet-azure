@@ -142,6 +142,13 @@ func (in *ApplicationGatewayInitParameters) DeepCopyInto(out *ApplicationGateway
 		*out = new(AutoscaleConfigurationInitParameters)
 		(*in).DeepCopyInto(*out)
 	}
+	if in.Backend != nil {
+		in, out := &in.Backend, &out.Backend
+		*out = make([]BackendInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.BackendAddressPool != nil {
 		in, out := &in.BackendAddressPool, &out.BackendAddressPool
 		*out = make([]BackendAddressPoolInitParameters, len(*in))
@@ -216,10 +223,22 @@ func (in *ApplicationGatewayInitParameters) DeepCopyInto(out *ApplicationGateway
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.Http2Enabled != nil {
+		in, out := &in.Http2Enabled, &out.Http2Enabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Identity != nil {
 		in, out := &in.Identity, &out.Identity
 		*out = new(IdentityInitParameters)
 		(*in).DeepCopyInto(*out)
+	}
+	if in.Listener != nil {
+		in, out := &in.Listener, &out.Listener
+		*out = make([]ListenerInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
 	}
 	if in.Location != nil {
 		in, out := &in.Location, &out.Location
@@ -257,6 +276,13 @@ func (in *ApplicationGatewayInitParameters) DeepCopyInto(out *ApplicationGateway
 	if in.RewriteRuleSet != nil {
 		in, out := &in.RewriteRuleSet, &out.RewriteRuleSet
 		*out = make([]RewriteRuleSetInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.RoutingRule != nil {
+		in, out := &in.RoutingRule, &out.RoutingRule
+		*out = make([]RoutingRuleInitParameters, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -397,6 +423,13 @@ func (in *ApplicationGatewayObservation) DeepCopyInto(out *ApplicationGatewayObs
 		*out = new(AutoscaleConfigurationObservation)
 		(*in).DeepCopyInto(*out)
 	}
+	if in.Backend != nil {
+		in, out := &in.Backend, &out.Backend
+		*out = make([]BackendObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.BackendAddressPool != nil {
 		in, out := &in.BackendAddressPool, &out.BackendAddressPool
 		*out = make([]BackendAddressPoolObservation, len(*in))
@@ -471,6 +504,11 @@ func (in *ApplicationGatewayObservation) DeepCopyInto(out *ApplicationGatewayObs
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.Http2Enabled != nil {
+		in, out := &in.Http2Enabled, &out.Http2Enabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
 		*out = new(string)
@@ -480,6 +518,13 @@ func (in *ApplicationGatewayObservation) DeepCopyInto(out *ApplicationGatewayObs
 		in, out := &in.Identity, &out.Identity
 		*out = new(IdentityObservation)
 		(*in).DeepCopyInto(*out)
+	}
+	if in.Listener != nil {
+		in, out := &in.Listener, &out.Listener
+		*out = make([]ListenerObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
 	}
 	if in.Location != nil {
 		in, out := &in.Location, &out.Location
@@ -529,6 +574,13 @@ func (in *ApplicationGatewayObservation) DeepCopyInto(out *ApplicationGatewayObs
 	if in.RewriteRuleSet != nil {
 		in, out := &in.RewriteRuleSet, &out.RewriteRuleSet
 		*out = make([]RewriteRuleSetObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.RoutingRule != nil {
+		in, out := &in.RoutingRule, &out.RoutingRule
+		*out = make([]RoutingRuleObservation, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -637,6 +689,13 @@ func (in *ApplicationGatewayParameters) DeepCopyInto(out *ApplicationGatewayPara
 		*out = new(AutoscaleConfigurationParameters)
 		(*in).DeepCopyInto(*out)
 	}
+	if in.Backend != nil {
+		in, out := &in.Backend, &out.Backend
+		*out = make([]BackendParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.BackendAddressPool != nil {
 		in, out := &in.BackendAddressPool, &out.BackendAddressPool
 		*out = make([]BackendAddressPoolParameters, len(*in))
@@ -711,10 +770,22 @@ func (in *ApplicationGatewayParameters) DeepCopyInto(out *ApplicationGatewayPara
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.Http2Enabled != nil {
+		in, out := &in.Http2Enabled, &out.Http2Enabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Identity != nil {
 		in, out := &in.Identity, &out.Identity
 		*out = new(IdentityParameters)
 		(*in).DeepCopyInto(*out)
+	}
+	if in.Listener != nil {
+		in, out := &in.Listener, &out.Listener
+		*out = make([]ListenerParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
 	}
 	if in.Location != nil {
 		in, out := &in.Location, &out.Location
@@ -767,6 +838,13 @@ func (in *ApplicationGatewayParameters) DeepCopyInto(out *ApplicationGatewayPara
 	if in.RewriteRuleSet != nil {
 		in, out := &in.RewriteRuleSet, &out.RewriteRuleSet
 		*out = make([]RewriteRuleSetParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.RoutingRule != nil {
+		in, out := &in.RoutingRule, &out.RoutingRule
+		*out = make([]RoutingRuleParameters, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -2204,6 +2282,11 @@ func (in *BackendHTTPSettingsInitParameters) DeepCopyInto(out *BackendHTTPSettin
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.CertificateChainValidationEnabled != nil {
+		in, out := &in.CertificateChainValidationEnabled, &out.CertificateChainValidationEnabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.ConnectionDraining != nil {
 		in, out := &in.ConnectionDraining, &out.ConnectionDraining
 		*out = new(ConnectionDrainingInitParameters)
@@ -2259,6 +2342,16 @@ func (in *BackendHTTPSettingsInitParameters) DeepCopyInto(out *BackendHTTPSettin
 		*out = new(float64)
 		**out = **in
 	}
+	if in.SniName != nil {
+		in, out := &in.SniName, &out.SniName
+		*out = new(string)
+		**out = **in
+	}
+	if in.SniValidationEnabled != nil {
+		in, out := &in.SniValidationEnabled, &out.SniValidationEnabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.TrustedRootCertificateNames != nil {
 		in, out := &in.TrustedRootCertificateNames, &out.TrustedRootCertificateNames
 		*out = make([]*string, len(*in))
@@ -2296,6 +2389,11 @@ func (in *BackendHTTPSettingsObservation) DeepCopyInto(out *BackendHTTPSettingsO
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
+	}
+	if in.CertificateChainValidationEnabled != nil {
+		in, out := &in.CertificateChainValidationEnabled, &out.CertificateChainValidationEnabled
+		*out = new(bool)
+		**out = **in
 	}
 	if in.ConnectionDraining != nil {
 		in, out := &in.ConnectionDraining, &out.ConnectionDraining
@@ -2362,6 +2460,16 @@ func (in *BackendHTTPSettingsObservation) DeepCopyInto(out *BackendHTTPSettingsO
 		*out = new(float64)
 		**out = **in
 	}
+	if in.SniName != nil {
+		in, out := &in.SniName, &out.SniName
+		*out = new(string)
+		**out = **in
+	}
+	if in.SniValidationEnabled != nil {
+		in, out := &in.SniValidationEnabled, &out.SniValidationEnabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.TrustedRootCertificateNames != nil {
 		in, out := &in.TrustedRootCertificateNames, &out.TrustedRootCertificateNames
 		*out = make([]*string, len(*in))
@@ -2399,6 +2507,11 @@ func (in *BackendHTTPSettingsParameters) DeepCopyInto(out *BackendHTTPSettingsPa
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
+	}
+	if in.CertificateChainValidationEnabled != nil {
+		in, out := &in.CertificateChainValidationEnabled, &out.CertificateChainValidationEnabled
+		*out = new(bool)
+		**out = **in
 	}
 	if in.ConnectionDraining != nil {
 		in, out := &in.ConnectionDraining, &out.ConnectionDraining
@@ -2455,6 +2568,16 @@ func (in *BackendHTTPSettingsParameters) DeepCopyInto(out *BackendHTTPSettingsPa
 		*out = new(float64)
 		**out = **in
 	}
+	if in.SniName != nil {
+		in, out := &in.SniName, &out.SniName
+		*out = new(string)
+		**out = **in
+	}
+	if in.SniValidationEnabled != nil {
+		in, out := &in.SniValidationEnabled, &out.SniValidationEnabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.TrustedRootCertificateNames != nil {
 		in, out := &in.TrustedRootCertificateNames, &out.TrustedRootCertificateNames
 		*out = make([]*string, len(*in))
@@ -2481,40 +2604,51 @@ func (in *BackendHTTPSettingsParameters) DeepCopy() *BackendHTTPSettingsParamete
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *BackendInitParameters) DeepCopyInto(out *BackendInitParameters) {
 	*out = *in
-	if in.Address != nil {
-		in, out := &in.Address, &out.Address
-		*out = new(string)
-		**out = **in
-	}
-	if in.Enabled != nil {
-		in, out := &in.Enabled, &out.Enabled
+	if in.ClientIPPreservationEnabled != nil {
+		in, out := &in.ClientIPPreservationEnabled, &out.ClientIPPreservationEnabled
 		*out = new(bool)
 		**out = **in
 	}
-	if in.HTTPPort != nil {
-		in, out := &in.HTTPPort, &out.HTTPPort
-		*out = new(float64)
-		**out = **in
-	}
-	if in.HTTPSPort != nil {
-		in, out := &in.HTTPSPort, &out.HTTPSPort
-		*out = new(float64)
-		**out = **in
-	}
-	if in.HostHeader != nil {
-		in, out := &in.HostHeader, &out.HostHeader
+	if in.HostName != nil {
+		in, out := &in.HostName, &out.HostName
 		*out = new(string)
 		**out = **in
 	}
-	if in.Priority != nil {
-		in, out := &in.Priority, &out.Priority
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
+	if in.Port != nil {
+		in, out := &in.Port, &out.Port
 		*out = new(float64)
 		**out = **in
 	}
-	if in.Weight != nil {
-		in, out := &in.Weight, &out.Weight
+	if in.ProbeName != nil {
+		in, out := &in.ProbeName, &out.ProbeName
+		*out = new(string)
+		**out = **in
+	}
+	if in.Protocol != nil {
+		in, out := &in.Protocol, &out.Protocol
+		*out = new(string)
+		**out = **in
+	}
+	if in.TimeoutInSeconds != nil {
+		in, out := &in.TimeoutInSeconds, &out.TimeoutInSeconds
 		*out = new(float64)
 		**out = **in
+	}
+	if in.TrustedRootCertificateNames != nil {
+		in, out := &in.TrustedRootCertificateNames, &out.TrustedRootCertificateNames
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
 	}
 }
 
@@ -2531,40 +2665,61 @@ func (in *BackendInitParameters) DeepCopy() *BackendInitParameters {
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *BackendObservation) DeepCopyInto(out *BackendObservation) {
 	*out = *in
-	if in.Address != nil {
-		in, out := &in.Address, &out.Address
-		*out = new(string)
-		**out = **in
-	}
-	if in.Enabled != nil {
-		in, out := &in.Enabled, &out.Enabled
+	if in.ClientIPPreservationEnabled != nil {
+		in, out := &in.ClientIPPreservationEnabled, &out.ClientIPPreservationEnabled
 		*out = new(bool)
 		**out = **in
 	}
-	if in.HTTPPort != nil {
-		in, out := &in.HTTPPort, &out.HTTPPort
-		*out = new(float64)
-		**out = **in
-	}
-	if in.HTTPSPort != nil {
-		in, out := &in.HTTPSPort, &out.HTTPSPort
-		*out = new(float64)
-		**out = **in
-	}
-	if in.HostHeader != nil {
-		in, out := &in.HostHeader, &out.HostHeader
+	if in.HostName != nil {
+		in, out := &in.HostName, &out.HostName
 		*out = new(string)
 		**out = **in
 	}
-	if in.Priority != nil {
-		in, out := &in.Priority, &out.Priority
+	if in.ID != nil {
+		in, out := &in.ID, &out.ID
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
+	if in.Port != nil {
+		in, out := &in.Port, &out.Port
 		*out = new(float64)
 		**out = **in
 	}
-	if in.Weight != nil {
-		in, out := &in.Weight, &out.Weight
+	if in.ProbeID != nil {
+		in, out := &in.ProbeID, &out.ProbeID
+		*out = new(string)
+		**out = **in
+	}
+	if in.ProbeName != nil {
+		in, out := &in.ProbeName, &out.ProbeName
+		*out = new(string)
+		**out = **in
+	}
+	if in.Protocol != nil {
+		in, out := &in.Protocol, &out.Protocol
+		*out = new(string)
+		**out = **in
+	}
+	if in.TimeoutInSeconds != nil {
+		in, out := &in.TimeoutInSeconds, &out.TimeoutInSeconds
 		*out = new(float64)
 		**out = **in
+	}
+	if in.TrustedRootCertificateNames != nil {
+		in, out := &in.TrustedRootCertificateNames, &out.TrustedRootCertificateNames
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
 	}
 }
 
@@ -2580,6 +2735,67 @@ func (in *BackendObservation) DeepCopy() *BackendObservation {
 
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *BackendParameters) DeepCopyInto(out *BackendParameters) {
+	*out = *in
+	if in.ClientIPPreservationEnabled != nil {
+		in, out := &in.ClientIPPreservationEnabled, &out.ClientIPPreservationEnabled
+		*out = new(bool)
+		**out = **in
+	}
+	if in.HostName != nil {
+		in, out := &in.HostName, &out.HostName
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
+	if in.Port != nil {
+		in, out := &in.Port, &out.Port
+		*out = new(float64)
+		**out = **in
+	}
+	if in.ProbeName != nil {
+		in, out := &in.ProbeName, &out.ProbeName
+		*out = new(string)
+		**out = **in
+	}
+	if in.Protocol != nil {
+		in, out := &in.Protocol, &out.Protocol
+		*out = new(string)
+		**out = **in
+	}
+	if in.TimeoutInSeconds != nil {
+		in, out := &in.TimeoutInSeconds, &out.TimeoutInSeconds
+		*out = new(float64)
+		**out = **in
+	}
+	if in.TrustedRootCertificateNames != nil {
+		in, out := &in.TrustedRootCertificateNames, &out.TrustedRootCertificateNames
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new BackendParameters.
+func (in *BackendParameters) DeepCopy() *BackendParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(BackendParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *BackendPoolBackendInitParameters) DeepCopyInto(out *BackendPoolBackendInitParameters) {
 	*out = *in
 	if in.Address != nil {
 		in, out := &in.Address, &out.Address
@@ -2618,12 +2834,112 @@ func (in *BackendParameters) DeepCopyInto(out *BackendParameters) {
 	}
 }
 
-// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new BackendParameters.
-func (in *BackendParameters) DeepCopy() *BackendParameters {
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new BackendPoolBackendInitParameters.
+func (in *BackendPoolBackendInitParameters) DeepCopy() *BackendPoolBackendInitParameters {
 	if in == nil {
 		return nil
 	}
-	out := new(BackendParameters)
+	out := new(BackendPoolBackendInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *BackendPoolBackendObservation) DeepCopyInto(out *BackendPoolBackendObservation) {
+	*out = *in
+	if in.Address != nil {
+		in, out := &in.Address, &out.Address
+		*out = new(string)
+		**out = **in
+	}
+	if in.Enabled != nil {
+		in, out := &in.Enabled, &out.Enabled
+		*out = new(bool)
+		**out = **in
+	}
+	if in.HTTPPort != nil {
+		in, out := &in.HTTPPort, &out.HTTPPort
+		*out = new(float64)
+		**out = **in
+	}
+	if in.HTTPSPort != nil {
+		in, out := &in.HTTPSPort, &out.HTTPSPort
+		*out = new(float64)
+		**out = **in
+	}
+	if in.HostHeader != nil {
+		in, out := &in.HostHeader, &out.HostHeader
+		*out = new(string)
+		**out = **in
+	}
+	if in.Priority != nil {
+		in, out := &in.Priority, &out.Priority
+		*out = new(float64)
+		**out = **in
+	}
+	if in.Weight != nil {
+		in, out := &in.Weight, &out.Weight
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new BackendPoolBackendObservation.
+func (in *BackendPoolBackendObservation) DeepCopy() *BackendPoolBackendObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(BackendPoolBackendObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *BackendPoolBackendParameters) DeepCopyInto(out *BackendPoolBackendParameters) {
+	*out = *in
+	if in.Address != nil {
+		in, out := &in.Address, &out.Address
+		*out = new(string)
+		**out = **in
+	}
+	if in.Enabled != nil {
+		in, out := &in.Enabled, &out.Enabled
+		*out = new(bool)
+		**out = **in
+	}
+	if in.HTTPPort != nil {
+		in, out := &in.HTTPPort, &out.HTTPPort
+		*out = new(float64)
+		**out = **in
+	}
+	if in.HTTPSPort != nil {
+		in, out := &in.HTTPSPort, &out.HTTPSPort
+		*out = new(float64)
+		**out = **in
+	}
+	if in.HostHeader != nil {
+		in, out := &in.HostHeader, &out.HostHeader
+		*out = new(string)
+		**out = **in
+	}
+	if in.Priority != nil {
+		in, out := &in.Priority, &out.Priority
+		*out = new(float64)
+		**out = **in
+	}
+	if in.Weight != nil {
+		in, out := &in.Weight, &out.Weight
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new BackendPoolBackendParameters.
+func (in *BackendPoolBackendParameters) DeepCopy() *BackendPoolBackendParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(BackendPoolBackendParameters)
 	in.DeepCopyInto(out)
 	return out
 }
@@ -2773,7 +3089,7 @@ func (in *BackendPoolInitParameters) DeepCopyInto(out *BackendPoolInitParameters
 	*out = *in
 	if in.Backend != nil {
 		in, out := &in.Backend, &out.Backend
-		*out = make([]BackendInitParameters, len(*in))
+		*out = make([]BackendPoolBackendInitParameters, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -2920,7 +3236,7 @@ func (in *BackendPoolObservation) DeepCopyInto(out *BackendPoolObservation) {
 	*out = *in
 	if in.Backend != nil {
 		in, out := &in.Backend, &out.Backend
-		*out = make([]BackendObservation, len(*in))
+		*out = make([]BackendPoolBackendObservation, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -2962,7 +3278,7 @@ func (in *BackendPoolParameters) DeepCopyInto(out *BackendPoolParameters) {
 	*out = *in
 	if in.Backend != nil {
 		in, out := &in.Backend, &out.Backend
-		*out = make([]BackendParameters, len(*in))
+		*out = make([]BackendPoolBackendParameters, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -3401,6 +3717,11 @@ func (in *BastionHostObservation) DeepCopyInto(out *BastionHostObservation) {
 	if in.Location != nil {
 		in, out := &in.Location, &out.Location
 		*out = new(string)
+		**out = **in
+	}
+	if in.PrivateOnlyEnabled != nil {
+		in, out := &in.PrivateOnlyEnabled, &out.PrivateOnlyEnabled
+		*out = new(bool)
 		**out = **in
 	}
 	if in.ResourceGroupName != nil {
@@ -11505,6 +11826,11 @@ func (in *ExpressRouteConnectionInitParameters) DeepCopyInto(out *ExpressRouteCo
 		*out = new(bool)
 		**out = **in
 	}
+	if in.InternetSecurityEnabled != nil {
+		in, out := &in.InternetSecurityEnabled, &out.InternetSecurityEnabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.PrivateLinkFastPathEnabled != nil {
 		in, out := &in.PrivateLinkFastPathEnabled, &out.PrivateLinkFastPathEnabled
 		*out = new(bool)
@@ -11597,6 +11923,11 @@ func (in *ExpressRouteConnectionObservation) DeepCopyInto(out *ExpressRouteConne
 		*out = new(string)
 		**out = **in
 	}
+	if in.InternetSecurityEnabled != nil {
+		in, out := &in.InternetSecurityEnabled, &out.InternetSecurityEnabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.PrivateLinkFastPathEnabled != nil {
 		in, out := &in.PrivateLinkFastPathEnabled, &out.PrivateLinkFastPathEnabled
 		*out = new(bool)
@@ -11671,6 +12002,11 @@ func (in *ExpressRouteConnectionParameters) DeepCopyInto(out *ExpressRouteConnec
 		in, out := &in.ExpressRouteGatewayIDSelector, &out.ExpressRouteGatewayIDSelector
 		*out = new(v1.NamespacedSelector)
 		(*in).DeepCopyInto(*out)
+	}
+	if in.InternetSecurityEnabled != nil {
+		in, out := &in.InternetSecurityEnabled, &out.InternetSecurityEnabled
+		*out = new(bool)
+		**out = **in
 	}
 	if in.PrivateLinkFastPathEnabled != nil {
 		in, out := &in.PrivateLinkFastPathEnabled, &out.PrivateLinkFastPathEnabled
@@ -15527,7 +15863,7 @@ func (in *FrontDoorInitParameters) DeepCopyInto(out *FrontDoorInitParameters) {
 	}
 	if in.RoutingRule != nil {
 		in, out := &in.RoutingRule, &out.RoutingRule
-		*out = make([]RoutingRuleInitParameters, len(*in))
+		*out = make([]FrontDoorRoutingRuleInitParameters, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -15733,7 +16069,7 @@ func (in *FrontDoorObservation) DeepCopyInto(out *FrontDoorObservation) {
 	}
 	if in.RoutingRule != nil {
 		in, out := &in.RoutingRule, &out.RoutingRule
-		*out = make([]RoutingRuleObservation, len(*in))
+		*out = make([]FrontDoorRoutingRuleObservation, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -15847,7 +16183,7 @@ func (in *FrontDoorParameters) DeepCopyInto(out *FrontDoorParameters) {
 	}
 	if in.RoutingRule != nil {
 		in, out := &in.RoutingRule, &out.RoutingRule
-		*out = make([]RoutingRuleParameters, len(*in))
+		*out = make([]FrontDoorRoutingRuleParameters, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -15876,6 +16212,215 @@ func (in *FrontDoorParameters) DeepCopy() *FrontDoorParameters {
 		return nil
 	}
 	out := new(FrontDoorParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *FrontDoorRoutingRuleInitParameters) DeepCopyInto(out *FrontDoorRoutingRuleInitParameters) {
+	*out = *in
+	if in.AcceptedProtocols != nil {
+		in, out := &in.AcceptedProtocols, &out.AcceptedProtocols
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+	if in.Enabled != nil {
+		in, out := &in.Enabled, &out.Enabled
+		*out = new(bool)
+		**out = **in
+	}
+	if in.ForwardingConfiguration != nil {
+		in, out := &in.ForwardingConfiguration, &out.ForwardingConfiguration
+		*out = new(ForwardingConfigurationInitParameters)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.FrontendEndpoints != nil {
+		in, out := &in.FrontendEndpoints, &out.FrontendEndpoints
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
+	if in.PatternsToMatch != nil {
+		in, out := &in.PatternsToMatch, &out.PatternsToMatch
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+	if in.RedirectConfiguration != nil {
+		in, out := &in.RedirectConfiguration, &out.RedirectConfiguration
+		*out = new(RoutingRuleRedirectConfigurationInitParameters)
+		(*in).DeepCopyInto(*out)
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new FrontDoorRoutingRuleInitParameters.
+func (in *FrontDoorRoutingRuleInitParameters) DeepCopy() *FrontDoorRoutingRuleInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(FrontDoorRoutingRuleInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *FrontDoorRoutingRuleObservation) DeepCopyInto(out *FrontDoorRoutingRuleObservation) {
+	*out = *in
+	if in.AcceptedProtocols != nil {
+		in, out := &in.AcceptedProtocols, &out.AcceptedProtocols
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+	if in.Enabled != nil {
+		in, out := &in.Enabled, &out.Enabled
+		*out = new(bool)
+		**out = **in
+	}
+	if in.ForwardingConfiguration != nil {
+		in, out := &in.ForwardingConfiguration, &out.ForwardingConfiguration
+		*out = new(ForwardingConfigurationObservation)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.FrontendEndpoints != nil {
+		in, out := &in.FrontendEndpoints, &out.FrontendEndpoints
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+	if in.ID != nil {
+		in, out := &in.ID, &out.ID
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
+	if in.PatternsToMatch != nil {
+		in, out := &in.PatternsToMatch, &out.PatternsToMatch
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+	if in.RedirectConfiguration != nil {
+		in, out := &in.RedirectConfiguration, &out.RedirectConfiguration
+		*out = new(RoutingRuleRedirectConfigurationObservation)
+		(*in).DeepCopyInto(*out)
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new FrontDoorRoutingRuleObservation.
+func (in *FrontDoorRoutingRuleObservation) DeepCopy() *FrontDoorRoutingRuleObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(FrontDoorRoutingRuleObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *FrontDoorRoutingRuleParameters) DeepCopyInto(out *FrontDoorRoutingRuleParameters) {
+	*out = *in
+	if in.AcceptedProtocols != nil {
+		in, out := &in.AcceptedProtocols, &out.AcceptedProtocols
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+	if in.Enabled != nil {
+		in, out := &in.Enabled, &out.Enabled
+		*out = new(bool)
+		**out = **in
+	}
+	if in.ForwardingConfiguration != nil {
+		in, out := &in.ForwardingConfiguration, &out.ForwardingConfiguration
+		*out = new(ForwardingConfigurationParameters)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.FrontendEndpoints != nil {
+		in, out := &in.FrontendEndpoints, &out.FrontendEndpoints
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
+	if in.PatternsToMatch != nil {
+		in, out := &in.PatternsToMatch, &out.PatternsToMatch
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+	if in.RedirectConfiguration != nil {
+		in, out := &in.RedirectConfiguration, &out.RedirectConfiguration
+		*out = new(RoutingRuleRedirectConfigurationParameters)
+		(*in).DeepCopyInto(*out)
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new FrontDoorRoutingRuleParameters.
+func (in *FrontDoorRoutingRuleParameters) DeepCopy() *FrontDoorRoutingRuleParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(FrontDoorRoutingRuleParameters)
 	in.DeepCopyInto(out)
 	return out
 }
@@ -20121,6 +20666,199 @@ func (in *LinkParameters) DeepCopy() *LinkParameters {
 		return nil
 	}
 	out := new(LinkParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *ListenerInitParameters) DeepCopyInto(out *ListenerInitParameters) {
+	*out = *in
+	if in.FrontendIPConfigurationName != nil {
+		in, out := &in.FrontendIPConfigurationName, &out.FrontendIPConfigurationName
+		*out = new(string)
+		**out = **in
+	}
+	if in.FrontendPortName != nil {
+		in, out := &in.FrontendPortName, &out.FrontendPortName
+		*out = new(string)
+		**out = **in
+	}
+	if in.HostNames != nil {
+		in, out := &in.HostNames, &out.HostNames
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
+	if in.Protocol != nil {
+		in, out := &in.Protocol, &out.Protocol
+		*out = new(string)
+		**out = **in
+	}
+	if in.SSLCertificateName != nil {
+		in, out := &in.SSLCertificateName, &out.SSLCertificateName
+		*out = new(string)
+		**out = **in
+	}
+	if in.SSLProfileName != nil {
+		in, out := &in.SSLProfileName, &out.SSLProfileName
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ListenerInitParameters.
+func (in *ListenerInitParameters) DeepCopy() *ListenerInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(ListenerInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *ListenerObservation) DeepCopyInto(out *ListenerObservation) {
+	*out = *in
+	if in.FrontendIPConfigurationID != nil {
+		in, out := &in.FrontendIPConfigurationID, &out.FrontendIPConfigurationID
+		*out = new(string)
+		**out = **in
+	}
+	if in.FrontendIPConfigurationName != nil {
+		in, out := &in.FrontendIPConfigurationName, &out.FrontendIPConfigurationName
+		*out = new(string)
+		**out = **in
+	}
+	if in.FrontendPortID != nil {
+		in, out := &in.FrontendPortID, &out.FrontendPortID
+		*out = new(string)
+		**out = **in
+	}
+	if in.FrontendPortName != nil {
+		in, out := &in.FrontendPortName, &out.FrontendPortName
+		*out = new(string)
+		**out = **in
+	}
+	if in.HostNames != nil {
+		in, out := &in.HostNames, &out.HostNames
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+	if in.ID != nil {
+		in, out := &in.ID, &out.ID
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
+	if in.Protocol != nil {
+		in, out := &in.Protocol, &out.Protocol
+		*out = new(string)
+		**out = **in
+	}
+	if in.SSLCertificateID != nil {
+		in, out := &in.SSLCertificateID, &out.SSLCertificateID
+		*out = new(string)
+		**out = **in
+	}
+	if in.SSLCertificateName != nil {
+		in, out := &in.SSLCertificateName, &out.SSLCertificateName
+		*out = new(string)
+		**out = **in
+	}
+	if in.SSLProfileID != nil {
+		in, out := &in.SSLProfileID, &out.SSLProfileID
+		*out = new(string)
+		**out = **in
+	}
+	if in.SSLProfileName != nil {
+		in, out := &in.SSLProfileName, &out.SSLProfileName
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ListenerObservation.
+func (in *ListenerObservation) DeepCopy() *ListenerObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(ListenerObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *ListenerParameters) DeepCopyInto(out *ListenerParameters) {
+	*out = *in
+	if in.FrontendIPConfigurationName != nil {
+		in, out := &in.FrontendIPConfigurationName, &out.FrontendIPConfigurationName
+		*out = new(string)
+		**out = **in
+	}
+	if in.FrontendPortName != nil {
+		in, out := &in.FrontendPortName, &out.FrontendPortName
+		*out = new(string)
+		**out = **in
+	}
+	if in.HostNames != nil {
+		in, out := &in.HostNames, &out.HostNames
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
+	if in.Protocol != nil {
+		in, out := &in.Protocol, &out.Protocol
+		*out = new(string)
+		**out = **in
+	}
+	if in.SSLCertificateName != nil {
+		in, out := &in.SSLCertificateName, &out.SSLCertificateName
+		*out = new(string)
+		**out = **in
+	}
+	if in.SSLProfileName != nil {
+		in, out := &in.SSLProfileName, &out.SSLProfileName
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ListenerParameters.
+func (in *ListenerParameters) DeepCopy() *ListenerParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(ListenerParameters)
 	in.DeepCopyInto(out)
 	return out
 }
@@ -24866,6 +25604,11 @@ func (in *ManagerNetworkGroupInitParameters) DeepCopyInto(out *ManagerNetworkGro
 		*out = new(string)
 		**out = **in
 	}
+	if in.MemberType != nil {
+		in, out := &in.MemberType, &out.MemberType
+		*out = new(string)
+		**out = **in
+	}
 }
 
 // DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ManagerNetworkGroupInitParameters.
@@ -24923,6 +25666,11 @@ func (in *ManagerNetworkGroupObservation) DeepCopyInto(out *ManagerNetworkGroupO
 		*out = new(string)
 		**out = **in
 	}
+	if in.MemberType != nil {
+		in, out := &in.MemberType, &out.MemberType
+		*out = new(string)
+		**out = **in
+	}
 	if in.NetworkManagerID != nil {
 		in, out := &in.NetworkManagerID, &out.NetworkManagerID
 		*out = new(string)
@@ -24945,6 +25693,11 @@ func (in *ManagerNetworkGroupParameters) DeepCopyInto(out *ManagerNetworkGroupPa
 	*out = *in
 	if in.Description != nil {
 		in, out := &in.Description, &out.Description
+		*out = new(string)
+		**out = **in
+	}
+	if in.MemberType != nil {
+		in, out := &in.MemberType, &out.MemberType
 		*out = new(string)
 		**out = **in
 	}
@@ -25191,6 +25944,11 @@ func (in *ManagerRoutingConfigurationInitParameters) DeepCopyInto(out *ManagerRo
 		*out = new(string)
 		**out = **in
 	}
+	if in.RouteTableUsageMode != nil {
+		in, out := &in.RouteTableUsageMode, &out.RouteTableUsageMode
+		*out = new(string)
+		**out = **in
+	}
 }
 
 // DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ManagerRoutingConfigurationInitParameters.
@@ -25253,6 +26011,11 @@ func (in *ManagerRoutingConfigurationObservation) DeepCopyInto(out *ManagerRouti
 		*out = new(string)
 		**out = **in
 	}
+	if in.RouteTableUsageMode != nil {
+		in, out := &in.RouteTableUsageMode, &out.RouteTableUsageMode
+		*out = new(string)
+		**out = **in
+	}
 }
 
 // DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ManagerRoutingConfigurationObservation.
@@ -25287,6 +26050,11 @@ func (in *ManagerRoutingConfigurationParameters) DeepCopyInto(out *ManagerRoutin
 		in, out := &in.NetworkManagerIDSelector, &out.NetworkManagerIDSelector
 		*out = new(v1.NamespacedSelector)
 		(*in).DeepCopyInto(*out)
+	}
+	if in.RouteTableUsageMode != nil {
+		in, out := &in.RouteTableUsageMode, &out.RouteTableUsageMode
+		*out = new(string)
+		**out = **in
 	}
 }
 
@@ -38101,6 +38869,11 @@ func (in *PrivateLinkServiceInitParameters) DeepCopyInto(out *PrivateLinkService
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.ProxyProtocolEnabled != nil {
+		in, out := &in.ProxyProtocolEnabled, &out.ProxyProtocolEnabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
 		*out = make(map[string]*string, len(*in))
@@ -38240,6 +39013,11 @@ func (in *PrivateLinkServiceObservation) DeepCopyInto(out *PrivateLinkServiceObs
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.ProxyProtocolEnabled != nil {
+		in, out := &in.ProxyProtocolEnabled, &out.ProxyProtocolEnabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.ResourceGroupName != nil {
 		in, out := &in.ResourceGroupName, &out.ResourceGroupName
 		*out = new(string)
@@ -38341,6 +39119,11 @@ func (in *PrivateLinkServiceParameters) DeepCopyInto(out *PrivateLinkServicePara
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
+	}
+	if in.ProxyProtocolEnabled != nil {
+		in, out := &in.ProxyProtocolEnabled, &out.ProxyProtocolEnabled
+		*out = new(bool)
+		**out = **in
 	}
 	if in.ResourceGroupName != nil {
 		in, out := &in.ResourceGroupName, &out.ResourceGroupName
@@ -38637,6 +39420,11 @@ func (in *ProbeInitParameters) DeepCopyInto(out *ProbeInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ProxyProtocolHeaderEnabled != nil {
+		in, out := &in.ProxyProtocolHeaderEnabled, &out.ProxyProtocolHeaderEnabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Timeout != nil {
 		in, out := &in.Timeout, &out.Timeout
 		*out = new(float64)
@@ -38712,6 +39500,11 @@ func (in *ProbeObservation) DeepCopyInto(out *ProbeObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ProxyProtocolHeaderEnabled != nil {
+		in, out := &in.ProxyProtocolHeaderEnabled, &out.ProxyProtocolHeaderEnabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Timeout != nil {
 		in, out := &in.Timeout, &out.Timeout
 		*out = new(float64)
@@ -38780,6 +39573,11 @@ func (in *ProbeParameters) DeepCopyInto(out *ProbeParameters) {
 	if in.Protocol != nil {
 		in, out := &in.Protocol, &out.Protocol
 		*out = new(string)
+		**out = **in
+	}
+	if in.ProxyProtocolHeaderEnabled != nil {
+		in, out := &in.ProxyProtocolHeaderEnabled, &out.ProxyProtocolHeaderEnabled
+		*out = new(bool)
 		**out = **in
 	}
 	if in.Timeout != nil {
@@ -44131,58 +44929,30 @@ func (in *RoutingPropagatedRouteTableParameters) DeepCopy() *RoutingPropagatedRo
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *RoutingRuleInitParameters) DeepCopyInto(out *RoutingRuleInitParameters) {
 	*out = *in
-	if in.AcceptedProtocols != nil {
-		in, out := &in.AcceptedProtocols, &out.AcceptedProtocols
-		*out = make([]*string, len(*in))
-		for i := range *in {
-			if (*in)[i] != nil {
-				in, out := &(*in)[i], &(*out)[i]
-				*out = new(string)
-				**out = **in
-			}
-		}
-	}
-	if in.Enabled != nil {
-		in, out := &in.Enabled, &out.Enabled
-		*out = new(bool)
+	if in.BackendAddressPoolName != nil {
+		in, out := &in.BackendAddressPoolName, &out.BackendAddressPoolName
+		*out = new(string)
 		**out = **in
 	}
-	if in.ForwardingConfiguration != nil {
-		in, out := &in.ForwardingConfiguration, &out.ForwardingConfiguration
-		*out = new(ForwardingConfigurationInitParameters)
-		(*in).DeepCopyInto(*out)
+	if in.BackendName != nil {
+		in, out := &in.BackendName, &out.BackendName
+		*out = new(string)
+		**out = **in
 	}
-	if in.FrontendEndpoints != nil {
-		in, out := &in.FrontendEndpoints, &out.FrontendEndpoints
-		*out = make([]*string, len(*in))
-		for i := range *in {
-			if (*in)[i] != nil {
-				in, out := &(*in)[i], &(*out)[i]
-				*out = new(string)
-				**out = **in
-			}
-		}
+	if in.ListenerName != nil {
+		in, out := &in.ListenerName, &out.ListenerName
+		*out = new(string)
+		**out = **in
 	}
 	if in.Name != nil {
 		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}
-	if in.PatternsToMatch != nil {
-		in, out := &in.PatternsToMatch, &out.PatternsToMatch
-		*out = make([]*string, len(*in))
-		for i := range *in {
-			if (*in)[i] != nil {
-				in, out := &(*in)[i], &(*out)[i]
-				*out = new(string)
-				**out = **in
-			}
-		}
-	}
-	if in.RedirectConfiguration != nil {
-		in, out := &in.RedirectConfiguration, &out.RedirectConfiguration
-		*out = new(RoutingRuleRedirectConfigurationInitParameters)
-		(*in).DeepCopyInto(*out)
+	if in.Priority != nil {
+		in, out := &in.Priority, &out.Priority
+		*out = new(float64)
+		**out = **in
 	}
 }
 
@@ -44199,40 +44969,38 @@ func (in *RoutingRuleInitParameters) DeepCopy() *RoutingRuleInitParameters {
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *RoutingRuleObservation) DeepCopyInto(out *RoutingRuleObservation) {
 	*out = *in
-	if in.AcceptedProtocols != nil {
-		in, out := &in.AcceptedProtocols, &out.AcceptedProtocols
-		*out = make([]*string, len(*in))
-		for i := range *in {
-			if (*in)[i] != nil {
-				in, out := &(*in)[i], &(*out)[i]
-				*out = new(string)
-				**out = **in
-			}
-		}
-	}
-	if in.Enabled != nil {
-		in, out := &in.Enabled, &out.Enabled
-		*out = new(bool)
+	if in.BackendAddressPoolID != nil {
+		in, out := &in.BackendAddressPoolID, &out.BackendAddressPoolID
+		*out = new(string)
 		**out = **in
 	}
-	if in.ForwardingConfiguration != nil {
-		in, out := &in.ForwardingConfiguration, &out.ForwardingConfiguration
-		*out = new(ForwardingConfigurationObservation)
-		(*in).DeepCopyInto(*out)
+	if in.BackendAddressPoolName != nil {
+		in, out := &in.BackendAddressPoolName, &out.BackendAddressPoolName
+		*out = new(string)
+		**out = **in
 	}
-	if in.FrontendEndpoints != nil {
-		in, out := &in.FrontendEndpoints, &out.FrontendEndpoints
-		*out = make([]*string, len(*in))
-		for i := range *in {
-			if (*in)[i] != nil {
-				in, out := &(*in)[i], &(*out)[i]
-				*out = new(string)
-				**out = **in
-			}
-		}
+	if in.BackendID != nil {
+		in, out := &in.BackendID, &out.BackendID
+		*out = new(string)
+		**out = **in
+	}
+	if in.BackendName != nil {
+		in, out := &in.BackendName, &out.BackendName
+		*out = new(string)
+		**out = **in
 	}
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
+		*out = new(string)
+		**out = **in
+	}
+	if in.ListenerID != nil {
+		in, out := &in.ListenerID, &out.ListenerID
+		*out = new(string)
+		**out = **in
+	}
+	if in.ListenerName != nil {
+		in, out := &in.ListenerName, &out.ListenerName
 		*out = new(string)
 		**out = **in
 	}
@@ -44241,21 +45009,10 @@ func (in *RoutingRuleObservation) DeepCopyInto(out *RoutingRuleObservation) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.PatternsToMatch != nil {
-		in, out := &in.PatternsToMatch, &out.PatternsToMatch
-		*out = make([]*string, len(*in))
-		for i := range *in {
-			if (*in)[i] != nil {
-				in, out := &(*in)[i], &(*out)[i]
-				*out = new(string)
-				**out = **in
-			}
-		}
-	}
-	if in.RedirectConfiguration != nil {
-		in, out := &in.RedirectConfiguration, &out.RedirectConfiguration
-		*out = new(RoutingRuleRedirectConfigurationObservation)
-		(*in).DeepCopyInto(*out)
+	if in.Priority != nil {
+		in, out := &in.Priority, &out.Priority
+		*out = new(float64)
+		**out = **in
 	}
 }
 
@@ -44272,58 +45029,30 @@ func (in *RoutingRuleObservation) DeepCopy() *RoutingRuleObservation {
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *RoutingRuleParameters) DeepCopyInto(out *RoutingRuleParameters) {
 	*out = *in
-	if in.AcceptedProtocols != nil {
-		in, out := &in.AcceptedProtocols, &out.AcceptedProtocols
-		*out = make([]*string, len(*in))
-		for i := range *in {
-			if (*in)[i] != nil {
-				in, out := &(*in)[i], &(*out)[i]
-				*out = new(string)
-				**out = **in
-			}
-		}
-	}
-	if in.Enabled != nil {
-		in, out := &in.Enabled, &out.Enabled
-		*out = new(bool)
+	if in.BackendAddressPoolName != nil {
+		in, out := &in.BackendAddressPoolName, &out.BackendAddressPoolName
+		*out = new(string)
 		**out = **in
 	}
-	if in.ForwardingConfiguration != nil {
-		in, out := &in.ForwardingConfiguration, &out.ForwardingConfiguration
-		*out = new(ForwardingConfigurationParameters)
-		(*in).DeepCopyInto(*out)
+	if in.BackendName != nil {
+		in, out := &in.BackendName, &out.BackendName
+		*out = new(string)
+		**out = **in
 	}
-	if in.FrontendEndpoints != nil {
-		in, out := &in.FrontendEndpoints, &out.FrontendEndpoints
-		*out = make([]*string, len(*in))
-		for i := range *in {
-			if (*in)[i] != nil {
-				in, out := &(*in)[i], &(*out)[i]
-				*out = new(string)
-				**out = **in
-			}
-		}
+	if in.ListenerName != nil {
+		in, out := &in.ListenerName, &out.ListenerName
+		*out = new(string)
+		**out = **in
 	}
 	if in.Name != nil {
 		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}
-	if in.PatternsToMatch != nil {
-		in, out := &in.PatternsToMatch, &out.PatternsToMatch
-		*out = make([]*string, len(*in))
-		for i := range *in {
-			if (*in)[i] != nil {
-				in, out := &(*in)[i], &(*out)[i]
-				*out = new(string)
-				**out = **in
-			}
-		}
-	}
-	if in.RedirectConfiguration != nil {
-		in, out := &in.RedirectConfiguration, &out.RedirectConfiguration
-		*out = new(RoutingRuleRedirectConfigurationParameters)
-		(*in).DeepCopyInto(*out)
+	if in.Priority != nil {
+		in, out := &in.Priority, &out.Priority
+		*out = new(float64)
+		**out = **in
 	}
 }
 
@@ -45596,6 +46325,11 @@ func (in *SSLProfileInitParameters) DeepCopyInto(out *SSLProfileInitParameters) 
 		*out = new(bool)
 		**out = **in
 	}
+	if in.VerifyClientCertificateIssuerDn != nil {
+		in, out := &in.VerifyClientCertificateIssuerDn, &out.VerifyClientCertificateIssuerDn
+		*out = new(bool)
+		**out = **in
+	}
 	if in.VerifyClientCertificateRevocation != nil {
 		in, out := &in.VerifyClientCertificateRevocation, &out.VerifyClientCertificateRevocation
 		*out = new(string)
@@ -45647,6 +46381,11 @@ func (in *SSLProfileObservation) DeepCopyInto(out *SSLProfileObservation) {
 		*out = new(bool)
 		**out = **in
 	}
+	if in.VerifyClientCertificateIssuerDn != nil {
+		in, out := &in.VerifyClientCertificateIssuerDn, &out.VerifyClientCertificateIssuerDn
+		*out = new(bool)
+		**out = **in
+	}
 	if in.VerifyClientCertificateRevocation != nil {
 		in, out := &in.VerifyClientCertificateRevocation, &out.VerifyClientCertificateRevocation
 		*out = new(string)
@@ -45690,6 +46429,11 @@ func (in *SSLProfileParameters) DeepCopyInto(out *SSLProfileParameters) {
 	}
 	if in.VerifyClientCertIssuerDn != nil {
 		in, out := &in.VerifyClientCertIssuerDn, &out.VerifyClientCertIssuerDn
+		*out = new(bool)
+		**out = **in
+	}
+	if in.VerifyClientCertificateIssuerDn != nil {
+		in, out := &in.VerifyClientCertificateIssuerDn, &out.VerifyClientCertificateIssuerDn
 		*out = new(bool)
 		**out = **in
 	}
@@ -53092,9 +53836,9 @@ func (in *VPNClientConfigurationInitParameters) DeepCopyInto(out *VPNClientConfi
 		*out = new(string)
 		**out = **in
 	}
-	if in.RadiusServerSecret != nil {
-		in, out := &in.RadiusServerSecret, &out.RadiusServerSecret
-		*out = new(string)
+	if in.RadiusServerSecretSecretRef != nil {
+		in, out := &in.RadiusServerSecretSecretRef, &out.RadiusServerSecretSecretRef
+		*out = new(v1.LocalSecretKeySelector)
 		**out = **in
 	}
 	if in.RevokedCertificate != nil {
@@ -53195,11 +53939,6 @@ func (in *VPNClientConfigurationObservation) DeepCopyInto(out *VPNClientConfigur
 	}
 	if in.RadiusServerAddress != nil {
 		in, out := &in.RadiusServerAddress, &out.RadiusServerAddress
-		*out = new(string)
-		**out = **in
-	}
-	if in.RadiusServerSecret != nil {
-		in, out := &in.RadiusServerSecret, &out.RadiusServerSecret
 		*out = new(string)
 		**out = **in
 	}
@@ -53304,9 +54043,9 @@ func (in *VPNClientConfigurationParameters) DeepCopyInto(out *VPNClientConfigura
 		*out = new(string)
 		**out = **in
 	}
-	if in.RadiusServerSecret != nil {
-		in, out := &in.RadiusServerSecret, &out.RadiusServerSecret
-		*out = new(string)
+	if in.RadiusServerSecretSecretRef != nil {
+		in, out := &in.RadiusServerSecretSecretRef, &out.RadiusServerSecretSecretRef
+		*out = new(v1.LocalSecretKeySelector)
 		**out = **in
 	}
 	if in.RevokedCertificate != nil {
@@ -58941,6 +59680,11 @@ func (in *VirtualNetworkGatewayConnectionInitParameters) DeepCopyInto(out *Virtu
 		*out = new(v1.LocalSecretKeySelector)
 		**out = **in
 	}
+	if in.BGPEnabled != nil {
+		in, out := &in.BGPEnabled, &out.BGPEnabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.ConnectionMode != nil {
 		in, out := &in.ConnectionMode, &out.ConnectionMode
 		*out = new(string)
@@ -59318,6 +60062,11 @@ func (in *VirtualNetworkGatewayConnectionList) DeepCopyObject() runtime.Object {
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *VirtualNetworkGatewayConnectionObservation) DeepCopyInto(out *VirtualNetworkGatewayConnectionObservation) {
 	*out = *in
+	if in.BGPEnabled != nil {
+		in, out := &in.BGPEnabled, &out.BGPEnabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.ConnectionMode != nil {
 		in, out := &in.ConnectionMode, &out.ConnectionMode
 		*out = new(string)
@@ -59476,6 +60225,11 @@ func (in *VirtualNetworkGatewayConnectionParameters) DeepCopyInto(out *VirtualNe
 	if in.AuthorizationKeySecretRef != nil {
 		in, out := &in.AuthorizationKeySecretRef, &out.AuthorizationKeySecretRef
 		*out = new(v1.LocalSecretKeySelector)
+		**out = **in
+	}
+	if in.BGPEnabled != nil {
+		in, out := &in.BGPEnabled, &out.BGPEnabled
+		*out = new(bool)
 		**out = **in
 	}
 	if in.ConnectionMode != nil {
@@ -59858,6 +60612,11 @@ func (in *VirtualNetworkGatewayInitParameters) DeepCopyInto(out *VirtualNetworkG
 		*out = new(bool)
 		**out = **in
 	}
+	if in.BGPEnabled != nil {
+		in, out := &in.BGPEnabled, &out.BGPEnabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.BGPRouteTranslationForNATEnabled != nil {
 		in, out := &in.BGPRouteTranslationForNATEnabled, &out.BGPRouteTranslationForNATEnabled
 		*out = new(bool)
@@ -59913,6 +60672,16 @@ func (in *VirtualNetworkGatewayInitParameters) DeepCopyInto(out *VirtualNetworkG
 	if in.Location != nil {
 		in, out := &in.Location, &out.Location
 		*out = new(string)
+		**out = **in
+	}
+	if in.MaximumScaleUnit != nil {
+		in, out := &in.MaximumScaleUnit, &out.MaximumScaleUnit
+		*out = new(float64)
+		**out = **in
+	}
+	if in.MinimumScaleUnit != nil {
+		in, out := &in.MinimumScaleUnit, &out.MinimumScaleUnit
+		*out = new(float64)
 		**out = **in
 	}
 	if in.PolicyGroup != nil {
@@ -60025,6 +60794,11 @@ func (in *VirtualNetworkGatewayObservation) DeepCopyInto(out *VirtualNetworkGate
 		*out = new(bool)
 		**out = **in
 	}
+	if in.BGPEnabled != nil {
+		in, out := &in.BGPEnabled, &out.BGPEnabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.BGPRouteTranslationForNATEnabled != nil {
 		in, out := &in.BGPRouteTranslationForNATEnabled, &out.BGPRouteTranslationForNATEnabled
 		*out = new(bool)
@@ -60085,6 +60859,16 @@ func (in *VirtualNetworkGatewayObservation) DeepCopyInto(out *VirtualNetworkGate
 	if in.Location != nil {
 		in, out := &in.Location, &out.Location
 		*out = new(string)
+		**out = **in
+	}
+	if in.MaximumScaleUnit != nil {
+		in, out := &in.MaximumScaleUnit, &out.MaximumScaleUnit
+		*out = new(float64)
+		**out = **in
+	}
+	if in.MinimumScaleUnit != nil {
+		in, out := &in.MinimumScaleUnit, &out.MinimumScaleUnit
+		*out = new(float64)
 		**out = **in
 	}
 	if in.PolicyGroup != nil {
@@ -60170,6 +60954,11 @@ func (in *VirtualNetworkGatewayParameters) DeepCopyInto(out *VirtualNetworkGatew
 		*out = new(bool)
 		**out = **in
 	}
+	if in.BGPEnabled != nil {
+		in, out := &in.BGPEnabled, &out.BGPEnabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.BGPRouteTranslationForNATEnabled != nil {
 		in, out := &in.BGPRouteTranslationForNATEnabled, &out.BGPRouteTranslationForNATEnabled
 		*out = new(bool)
@@ -60225,6 +61014,16 @@ func (in *VirtualNetworkGatewayParameters) DeepCopyInto(out *VirtualNetworkGatew
 	if in.Location != nil {
 		in, out := &in.Location, &out.Location
 		*out = new(string)
+		**out = **in
+	}
+	if in.MaximumScaleUnit != nil {
+		in, out := &in.MaximumScaleUnit, &out.MaximumScaleUnit
+		*out = new(float64)
+		**out = **in
+	}
+	if in.MinimumScaleUnit != nil {
+		in, out := &in.MinimumScaleUnit, &out.MinimumScaleUnit
+		*out = new(float64)
 		**out = **in
 	}
 	if in.PolicyGroup != nil {

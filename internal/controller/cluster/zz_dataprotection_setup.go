@@ -70,3 +70,26 @@ func SetupGated_dataprotection(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_dataprotection registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_dataprotection(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		backupinstanceblobstorage.SetupWebhookWithManager,
+		backupinstancedisk.SetupWebhookWithManager,
+		backupinstancekubernetescluster.SetupWebhookWithManager,
+		backupinstancepostgresql.SetupWebhookWithManager,
+		backupinstancepostgresqlflexibleserver.SetupWebhookWithManager,
+		backuppolicyblobstorage.SetupWebhookWithManager,
+		backuppolicydisk.SetupWebhookWithManager,
+		backuppolicykubernetescluster.SetupWebhookWithManager,
+		backuppolicypostgresql.SetupWebhookWithManager,
+		backuppolicypostgresqlflexibleserver.SetupWebhookWithManager,
+		backupvault.SetupWebhookWithManager,
+		resourceguard.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

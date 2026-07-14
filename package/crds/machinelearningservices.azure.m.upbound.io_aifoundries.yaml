@@ -34,8 +34,8 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: AIFoundry is the Schema for the AIFoundrys API. Manages an AI
-          Foundry Hub.
+        description: AIFoundry is the Schema for the AIFoundrys API. Manages a Microsoft
+          Foundry Hub (classic) resource.
         properties:
           apiVersion:
             description: |-

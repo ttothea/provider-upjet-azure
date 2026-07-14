@@ -49,3 +49,19 @@ func SetupGated_cognitiveservices(mgr ctrl.Manager, o controller.Options) error 
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_cognitiveservices registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_cognitiveservices(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		account.SetupWebhookWithManager,
+		accountraiblocklist.SetupWebhookWithManager,
+		accountraipolicy.SetupWebhookWithManager,
+		aiservices.SetupWebhookWithManager,
+		deployment.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

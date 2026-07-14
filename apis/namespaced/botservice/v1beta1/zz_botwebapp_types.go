@@ -43,6 +43,15 @@ type BotWebAppInitParameters struct {
 	// The Microsoft Application ID for the Web App Bot. Changing this forces a new resource to be created.
 	MicrosoftAppID *string `json:"microsoftAppId,omitempty" tf:"microsoft_app_id,omitempty"`
 
+	// The Microsoft Application Tenant ID for the Bot Channels Registration. Changing this forces a new resource to be created.
+	MicrosoftAppTenantID *string `json:"microsoftAppTenantId,omitempty" tf:"microsoft_app_tenant_id,omitempty"`
+
+	// The Microsoft Application Type for the Bot Channels Registration. Possible values are MultiTenant, SingleTenant and UserAssignedMSI. Defaults to MultiTenant. Changing this forces a new resource to be created.
+	MicrosoftAppType *string `json:"microsoftAppType,omitempty" tf:"microsoft_app_type,omitempty"`
+
+	// The ID of Microsoft Application User Assigned Identity for the Bot Channels Registration. Changing this forces a new resource to be created.
+	MicrosoftAppUserAssignedIdentityID *string `json:"microsoftAppUserAssignedIdentityId,omitempty" tf:"microsoft_app_user_assigned_identity_id,omitempty"`
+
 	// The SKU of the Web App Bot. Valid values include F0 or S1. Changing this forces a new resource to be created.
 	Sku *string `json:"sku,omitempty" tf:"sku,omitempty"`
 
@@ -76,6 +85,15 @@ type BotWebAppObservation struct {
 
 	// The Microsoft Application ID for the Web App Bot. Changing this forces a new resource to be created.
 	MicrosoftAppID *string `json:"microsoftAppId,omitempty" tf:"microsoft_app_id,omitempty"`
+
+	// The Microsoft Application Tenant ID for the Bot Channels Registration. Changing this forces a new resource to be created.
+	MicrosoftAppTenantID *string `json:"microsoftAppTenantId,omitempty" tf:"microsoft_app_tenant_id,omitempty"`
+
+	// The Microsoft Application Type for the Bot Channels Registration. Possible values are MultiTenant, SingleTenant and UserAssignedMSI. Defaults to MultiTenant. Changing this forces a new resource to be created.
+	MicrosoftAppType *string `json:"microsoftAppType,omitempty" tf:"microsoft_app_type,omitempty"`
+
+	// The ID of Microsoft Application User Assigned Identity for the Bot Channels Registration. Changing this forces a new resource to be created.
+	MicrosoftAppUserAssignedIdentityID *string `json:"microsoftAppUserAssignedIdentityId,omitempty" tf:"microsoft_app_user_assigned_identity_id,omitempty"`
 
 	// The name of the resource group in which to create the Web App Bot. Changing this forces a new resource to be created.
 	ResourceGroupName *string `json:"resourceGroupName,omitempty" tf:"resource_group_name,omitempty"`
@@ -125,6 +143,18 @@ type BotWebAppParameters struct {
 	// The Microsoft Application ID for the Web App Bot. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
 	MicrosoftAppID *string `json:"microsoftAppId,omitempty" tf:"microsoft_app_id,omitempty"`
+
+	// The Microsoft Application Tenant ID for the Bot Channels Registration. Changing this forces a new resource to be created.
+	// +kubebuilder:validation:Optional
+	MicrosoftAppTenantID *string `json:"microsoftAppTenantId,omitempty" tf:"microsoft_app_tenant_id,omitempty"`
+
+	// The Microsoft Application Type for the Bot Channels Registration. Possible values are MultiTenant, SingleTenant and UserAssignedMSI. Defaults to MultiTenant. Changing this forces a new resource to be created.
+	// +kubebuilder:validation:Optional
+	MicrosoftAppType *string `json:"microsoftAppType,omitempty" tf:"microsoft_app_type,omitempty"`
+
+	// The ID of Microsoft Application User Assigned Identity for the Bot Channels Registration. Changing this forces a new resource to be created.
+	// +kubebuilder:validation:Optional
+	MicrosoftAppUserAssignedIdentityID *string `json:"microsoftAppUserAssignedIdentityId,omitempty" tf:"microsoft_app_user_assigned_identity_id,omitempty"`
 
 	// The name of the resource group in which to create the Web App Bot. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/azure/v1beta1.ResourceGroup

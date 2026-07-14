@@ -21,7 +21,7 @@ func (mg *ComputeCluster) GetTerraformResourceType() string {
 
 // GetConnectionDetailsMapping for this ComputeCluster
 func (tr *ComputeCluster) GetConnectionDetailsMapping() map[string]string {
-	return nil
+	return map[string]string{"ssh[*].admin_password": "ssh.adminPasswordSecretRef"}
 }
 
 // GetObservation of this ComputeCluster

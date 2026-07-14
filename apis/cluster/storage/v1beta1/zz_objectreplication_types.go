@@ -28,6 +28,9 @@ type ObjectReplicationInitParameters struct {
 	// +kubebuilder:validation:Optional
 	DestinationStorageAccountIDSelector *v1.Selector `json:"destinationStorageAccountIdSelector,omitempty" tf:"-"`
 
+	// Whether metrics are enabled for this object replication. Defaults to false.
+	MetricsEnabled *bool `json:"metricsEnabled,omitempty" tf:"metrics_enabled,omitempty"`
+
 	// One or more rules blocks as defined below.
 	Rules []ObjectReplicationRulesInitParameters `json:"rules,omitempty" tf:"rules,omitempty"`
 
@@ -56,6 +59,9 @@ type ObjectReplicationObservation struct {
 	// The ID of the Storage Object Replication in the destination storage account. It's composed as format source_object_replication_id;destination_object_replication_id.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Whether metrics are enabled for this object replication. Defaults to false.
+	MetricsEnabled *bool `json:"metricsEnabled,omitempty" tf:"metrics_enabled,omitempty"`
+
 	// One or more rules blocks as defined below.
 	Rules []ObjectReplicationRulesObservation `json:"rules,omitempty" tf:"rules,omitempty"`
 
@@ -81,6 +87,10 @@ type ObjectReplicationParameters struct {
 	// Selector for a Account in storage to populate destinationStorageAccountId.
 	// +kubebuilder:validation:Optional
 	DestinationStorageAccountIDSelector *v1.Selector `json:"destinationStorageAccountIdSelector,omitempty" tf:"-"`
+
+	// Whether metrics are enabled for this object replication. Defaults to false.
+	// +kubebuilder:validation:Optional
+	MetricsEnabled *bool `json:"metricsEnabled,omitempty" tf:"metrics_enabled,omitempty"`
 
 	// One or more rules blocks as defined below.
 	// +kubebuilder:validation:Optional

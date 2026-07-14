@@ -73,6 +73,10 @@ spec:
                 type: string
               forProvider:
                 properties:
+                  isolationScope:
+                    description: The isolation scope for the User Assigned Identity.
+                      The only possible value is Regional.
+                    type: string
                   location:
                     description: The Azure Region where the User Assigned Identity
                       should exist. Changing this forces a new User Assigned Identity
@@ -184,6 +188,10 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
+                  isolationScope:
+                    description: The isolation scope for the User Assigned Identity.
+                      The only possible value is Regional.
+                    type: string
                   location:
                     description: The Azure Region where the User Assigned Identity
                       should exist. Changing this forces a new User Assigned Identity
@@ -388,6 +396,10 @@ spec:
                     type: string
                   id:
                     description: The ID of the User Assigned Identity.
+                    type: string
+                  isolationScope:
+                    description: The isolation scope for the User Assigned Identity.
+                      The only possible value is Regional.
                     type: string
                   location:
                     description: The Azure Region where the User Assigned Identity

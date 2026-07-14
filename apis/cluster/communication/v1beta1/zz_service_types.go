@@ -15,7 +15,7 @@ import (
 
 type ServiceInitParameters struct {
 
-	// The location where the Communication service stores its data at rest. Possible values are Africa, Asia Pacific, Australia, Brazil, Canada, Europe, France, Germany, India, Japan, Korea, Norway, Switzerland, UAE, UK, usgov and United States. Defaults to United States. Changing this forces a new Communication Service to be created.
+	// The location where the Communication service stores its data at rest. Possible values are Africa, Asia Pacific, Australia, Brazil, Canada, Europe, France, Germany, India, Japan, Korea, Norway, Switzerland, UAE, UK, usgov and United States. Changing this forces a new Communication Service to be created.
 	DataLocation *string `json:"dataLocation,omitempty" tf:"data_location,omitempty"`
 
 	// A mapping of tags which should be assigned to the Communication Service.
@@ -25,7 +25,7 @@ type ServiceInitParameters struct {
 
 type ServiceObservation struct {
 
-	// The location where the Communication service stores its data at rest. Possible values are Africa, Asia Pacific, Australia, Brazil, Canada, Europe, France, Germany, India, Japan, Korea, Norway, Switzerland, UAE, UK, usgov and United States. Defaults to United States. Changing this forces a new Communication Service to be created.
+	// The location where the Communication service stores its data at rest. Possible values are Africa, Asia Pacific, Australia, Brazil, Canada, Europe, France, Germany, India, Japan, Korea, Norway, Switzerland, UAE, UK, usgov and United States. Changing this forces a new Communication Service to be created.
 	DataLocation *string `json:"dataLocation,omitempty" tf:"data_location,omitempty"`
 
 	// The hostname of the Communication Service
@@ -44,7 +44,7 @@ type ServiceObservation struct {
 
 type ServiceParameters struct {
 
-	// The location where the Communication service stores its data at rest. Possible values are Africa, Asia Pacific, Australia, Brazil, Canada, Europe, France, Germany, India, Japan, Korea, Norway, Switzerland, UAE, UK, usgov and United States. Defaults to United States. Changing this forces a new Communication Service to be created.
+	// The location where the Communication service stores its data at rest. Possible values are Africa, Asia Pacific, Australia, Brazil, Canada, Europe, France, Germany, India, Japan, Korea, Norway, Switzerland, UAE, UK, usgov and United States. Changing this forces a new Communication Service to be created.
 	// +kubebuilder:validation:Optional
 	DataLocation *string `json:"dataLocation,omitempty" tf:"data_location,omitempty"`
 

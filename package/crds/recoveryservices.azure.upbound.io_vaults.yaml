@@ -142,15 +142,27 @@ spec:
                     description: A monitoring block as defined below.
                     items:
                       properties:
+                        alertsForAllFailoverIssuesEnabled:
+                          description: Enabling/Disabling built-in Azure Monitor alerts
+                            for all failover issues. Defaults to true.
+                          type: boolean
                         alertsForAllJobFailuresEnabled:
                           description: Enabling/Disabling built-in Azure Monitor alerts
                             for security scenarios and job failure scenarios. Defaults
                             to true.
                           type: boolean
+                        alertsForAllReplicationIssuesEnabled:
+                          description: Enabling/Disabling built-in Azure Monitor alerts
+                            for all replication issues. Defaults to true.
+                          type: boolean
                         alertsForCriticalOperationFailuresEnabled:
                           description: Enabling/Disabling alerts from the older (classic
                             alerts) solution. Defaults to true. More details could
                             be found here.
+                          type: boolean
+                        emailNotificationsForSiteRecoveryEnabled:
+                          description: Enabling/Disabling email notifications for
+                            site recovery (classic alerts) solution. Defaults to true.
                           type: boolean
                       type: object
                     type: array
@@ -338,15 +350,27 @@ spec:
                     description: A monitoring block as defined below.
                     items:
                       properties:
+                        alertsForAllFailoverIssuesEnabled:
+                          description: Enabling/Disabling built-in Azure Monitor alerts
+                            for all failover issues. Defaults to true.
+                          type: boolean
                         alertsForAllJobFailuresEnabled:
                           description: Enabling/Disabling built-in Azure Monitor alerts
                             for security scenarios and job failure scenarios. Defaults
                             to true.
                           type: boolean
+                        alertsForAllReplicationIssuesEnabled:
+                          description: Enabling/Disabling built-in Azure Monitor alerts
+                            for all replication issues. Defaults to true.
+                          type: boolean
                         alertsForCriticalOperationFailuresEnabled:
                           description: Enabling/Disabling alerts from the older (classic
                             alerts) solution. Defaults to true. More details could
                             be found here.
+                          type: boolean
+                        emailNotificationsForSiteRecoveryEnabled:
+                          description: Enabling/Disabling email notifications for
+                            site recovery (classic alerts) solution. Defaults to true.
                           type: boolean
                       type: object
                     type: array
@@ -551,15 +575,27 @@ spec:
                     description: A monitoring block as defined below.
                     items:
                       properties:
+                        alertsForAllFailoverIssuesEnabled:
+                          description: Enabling/Disabling built-in Azure Monitor alerts
+                            for all failover issues. Defaults to true.
+                          type: boolean
                         alertsForAllJobFailuresEnabled:
                           description: Enabling/Disabling built-in Azure Monitor alerts
                             for security scenarios and job failure scenarios. Defaults
                             to true.
                           type: boolean
+                        alertsForAllReplicationIssuesEnabled:
+                          description: Enabling/Disabling built-in Azure Monitor alerts
+                            for all replication issues. Defaults to true.
+                          type: boolean
                         alertsForCriticalOperationFailuresEnabled:
                           description: Enabling/Disabling alerts from the older (classic
                             alerts) solution. Defaults to true. More details could
                             be found here.
+                          type: boolean
+                        emailNotificationsForSiteRecoveryEnabled:
+                          description: Enabling/Disabling email notifications for
+                            site recovery (classic alerts) solution. Defaults to true.
                           type: boolean
                       type: object
                     type: array
@@ -769,15 +805,27 @@ spec:
                   monitoring:
                     description: A monitoring block as defined below.
                     properties:
+                      alertsForAllFailoverIssuesEnabled:
+                        description: Enabling/Disabling built-in Azure Monitor alerts
+                          for all failover issues. Defaults to true.
+                        type: boolean
                       alertsForAllJobFailuresEnabled:
                         description: Enabling/Disabling built-in Azure Monitor alerts
                           for security scenarios and job failure scenarios. Defaults
                           to true.
                         type: boolean
+                      alertsForAllReplicationIssuesEnabled:
+                        description: Enabling/Disabling built-in Azure Monitor alerts
+                          for all replication issues. Defaults to true.
+                        type: boolean
                       alertsForCriticalOperationFailuresEnabled:
                         description: Enabling/Disabling alerts from the older (classic
                           alerts) solution. Defaults to true. More details could be
                           found here.
+                        type: boolean
+                      emailNotificationsForSiteRecoveryEnabled:
+                        description: Enabling/Disabling email notifications for site
+                          recovery (classic alerts) solution. Defaults to true.
                         type: boolean
                     type: object
                   publicNetworkAccessEnabled:
@@ -870,8 +918,6 @@ spec:
                       Standard, RS0.'
                     type: string
                   softDeleteEnabled:
-                    description: Is soft delete enable for this Vault? Defaults to
-                      true.
                     type: boolean
                   storageModeType:
                     description: The storage type of the Recovery Services Vault.
@@ -959,15 +1005,27 @@ spec:
                   monitoring:
                     description: A monitoring block as defined below.
                     properties:
+                      alertsForAllFailoverIssuesEnabled:
+                        description: Enabling/Disabling built-in Azure Monitor alerts
+                          for all failover issues. Defaults to true.
+                        type: boolean
                       alertsForAllJobFailuresEnabled:
                         description: Enabling/Disabling built-in Azure Monitor alerts
                           for security scenarios and job failure scenarios. Defaults
                           to true.
                         type: boolean
+                      alertsForAllReplicationIssuesEnabled:
+                        description: Enabling/Disabling built-in Azure Monitor alerts
+                          for all replication issues. Defaults to true.
+                        type: boolean
                       alertsForCriticalOperationFailuresEnabled:
                         description: Enabling/Disabling alerts from the older (classic
                           alerts) solution. Defaults to true. More details could be
                           found here.
+                        type: boolean
+                      emailNotificationsForSiteRecoveryEnabled:
+                        description: Enabling/Disabling email notifications for site
+                          recovery (classic alerts) solution. Defaults to true.
                         type: boolean
                     type: object
                   publicNetworkAccessEnabled:
@@ -979,8 +1037,6 @@ spec:
                       Standard, RS0.'
                     type: string
                   softDeleteEnabled:
-                    description: Is soft delete enable for this Vault? Defaults to
-                      true.
                     type: boolean
                   storageModeType:
                     description: The storage type of the Recovery Services Vault.
@@ -1166,15 +1222,27 @@ spec:
                   monitoring:
                     description: A monitoring block as defined below.
                     properties:
+                      alertsForAllFailoverIssuesEnabled:
+                        description: Enabling/Disabling built-in Azure Monitor alerts
+                          for all failover issues. Defaults to true.
+                        type: boolean
                       alertsForAllJobFailuresEnabled:
                         description: Enabling/Disabling built-in Azure Monitor alerts
                           for security scenarios and job failure scenarios. Defaults
                           to true.
                         type: boolean
+                      alertsForAllReplicationIssuesEnabled:
+                        description: Enabling/Disabling built-in Azure Monitor alerts
+                          for all replication issues. Defaults to true.
+                        type: boolean
                       alertsForCriticalOperationFailuresEnabled:
                         description: Enabling/Disabling alerts from the older (classic
                           alerts) solution. Defaults to true. More details could be
                           found here.
+                        type: boolean
+                      emailNotificationsForSiteRecoveryEnabled:
+                        description: Enabling/Disabling email notifications for site
+                          recovery (classic alerts) solution. Defaults to true.
                         type: boolean
                     type: object
                   publicNetworkAccessEnabled:
@@ -1191,8 +1259,6 @@ spec:
                       Standard, RS0.'
                     type: string
                   softDeleteEnabled:
-                    description: Is soft delete enable for this Vault? Defaults to
-                      true.
                     type: boolean
                   storageModeType:
                     description: The storage type of the Recovery Services Vault.

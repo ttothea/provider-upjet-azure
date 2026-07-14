@@ -141,6 +141,9 @@ type MSSQLManagedInstanceInitParameters struct {
 	// Specifies the internal format of the SQL Managed Instance databases specific to the SQL engine version. Possible values are AlwaysUpToDate and SQLServer2022. Defaults to SQLServer2022.
 	DatabaseFormat *string `json:"databaseFormat,omitempty" tf:"database_format,omitempty"`
 
+	// Specifies whether the SQL Managed Instance should use the Next-gen General Purpose service tier. Defaults to false.
+	GeneralPurposeV2Enabled *bool `json:"generalPurposeV2Enabled,omitempty" tf:"general_purpose_v2_enabled,omitempty"`
+
 	// Specifies the hybrid secondary usage for disaster recovery of the SQL Managed Instance. Possible values are Active and Passive. Defaults to Active.
 	HybridSecondaryUsage *string `json:"hybridSecondaryUsage,omitempty" tf:"hybrid_secondary_usage,omitempty"`
 
@@ -153,7 +156,7 @@ type MSSQLManagedInstanceInitParameters struct {
 	// Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// The name of the Public Maintenance Configuration window to apply to the SQL Managed Instance. Possible values are SQL_Default or an Azure Location in the format SQL_{Location}_MI_{Size}(for example SQL_EastUS_MI_1). Defaults to SQL_Default.
+	// The name of the Public Maintenance Configuration window to apply to the SQL Managed Instance. Valid values include SQL_Default or an Azure Location in the format SQL_{Location}_MI_{Size}(for example SQL_EastUS_MI_1). Defaults to SQL_Default.
 	MaintenanceConfigurationName *string `json:"maintenanceConfigurationName,omitempty" tf:"maintenance_configuration_name,omitempty"`
 
 	// The Minimum TLS Version. Default value is 1.2 Valid values include 1.0, 1.1, 1.2.
@@ -173,6 +176,9 @@ type MSSQLManagedInstanceInitParameters struct {
 
 	// Specifies the storage account type used to store backups for this database. Possible values are GRS, GZRS, LRS, and ZRS. Defaults to GRS.
 	StorageAccountType *string `json:"storageAccountType,omitempty" tf:"storage_account_type,omitempty"`
+
+	// The storage IOPS for the SQL Managed Instance. Possible values are between 300 and 80000. This can only be specified when general_purpose_v2_enabled is true.
+	StorageIops *float64 `json:"storageIops,omitempty" tf:"storage_iops,omitempty"`
 
 	// Maximum storage space for the SQL Managed instance. This should be a multiple of 32 (GB).
 	StorageSizeInGb *float64 `json:"storageSizeInGb,omitempty" tf:"storage_size_in_gb,omitempty"`
@@ -227,6 +233,9 @@ type MSSQLManagedInstanceObservation struct {
 	// The fully qualified domain name of the Azure Managed SQL Instance
 	Fqdn *string `json:"fqdn,omitempty" tf:"fqdn,omitempty"`
 
+	// Specifies whether the SQL Managed Instance should use the Next-gen General Purpose service tier. Defaults to false.
+	GeneralPurposeV2Enabled *bool `json:"generalPurposeV2Enabled,omitempty" tf:"general_purpose_v2_enabled,omitempty"`
+
 	// Specifies the hybrid secondary usage for disaster recovery of the SQL Managed Instance. Possible values are Active and Passive. Defaults to Active.
 	HybridSecondaryUsage *string `json:"hybridSecondaryUsage,omitempty" tf:"hybrid_secondary_usage,omitempty"`
 
@@ -242,7 +251,7 @@ type MSSQLManagedInstanceObservation struct {
 	// Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// The name of the Public Maintenance Configuration window to apply to the SQL Managed Instance. Possible values are SQL_Default or an Azure Location in the format SQL_{Location}_MI_{Size}(for example SQL_EastUS_MI_1). Defaults to SQL_Default.
+	// The name of the Public Maintenance Configuration window to apply to the SQL Managed Instance. Valid values include SQL_Default or an Azure Location in the format SQL_{Location}_MI_{Size}(for example SQL_EastUS_MI_1). Defaults to SQL_Default.
 	MaintenanceConfigurationName *string `json:"maintenanceConfigurationName,omitempty" tf:"maintenance_configuration_name,omitempty"`
 
 	// The Minimum TLS Version. Default value is 1.2 Valid values include 1.0, 1.1, 1.2.
@@ -265,6 +274,9 @@ type MSSQLManagedInstanceObservation struct {
 
 	// Specifies the storage account type used to store backups for this database. Possible values are GRS, GZRS, LRS, and ZRS. Defaults to GRS.
 	StorageAccountType *string `json:"storageAccountType,omitempty" tf:"storage_account_type,omitempty"`
+
+	// The storage IOPS for the SQL Managed Instance. Possible values are between 300 and 80000. This can only be specified when general_purpose_v2_enabled is true.
+	StorageIops *float64 `json:"storageIops,omitempty" tf:"storage_iops,omitempty"`
 
 	// Maximum storage space for the SQL Managed instance. This should be a multiple of 32 (GB).
 	StorageSizeInGb *float64 `json:"storageSizeInGb,omitempty" tf:"storage_size_in_gb,omitempty"`
@@ -322,6 +334,10 @@ type MSSQLManagedInstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	DatabaseFormat *string `json:"databaseFormat,omitempty" tf:"database_format,omitempty"`
 
+	// Specifies whether the SQL Managed Instance should use the Next-gen General Purpose service tier. Defaults to false.
+	// +kubebuilder:validation:Optional
+	GeneralPurposeV2Enabled *bool `json:"generalPurposeV2Enabled,omitempty" tf:"general_purpose_v2_enabled,omitempty"`
+
 	// Specifies the hybrid secondary usage for disaster recovery of the SQL Managed Instance. Possible values are Active and Passive. Defaults to Active.
 	// +kubebuilder:validation:Optional
 	HybridSecondaryUsage *string `json:"hybridSecondaryUsage,omitempty" tf:"hybrid_secondary_usage,omitempty"`
@@ -338,7 +354,7 @@ type MSSQLManagedInstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// The name of the Public Maintenance Configuration window to apply to the SQL Managed Instance. Possible values are SQL_Default or an Azure Location in the format SQL_{Location}_MI_{Size}(for example SQL_EastUS_MI_1). Defaults to SQL_Default.
+	// The name of the Public Maintenance Configuration window to apply to the SQL Managed Instance. Valid values include SQL_Default or an Azure Location in the format SQL_{Location}_MI_{Size}(for example SQL_EastUS_MI_1). Defaults to SQL_Default.
 	// +kubebuilder:validation:Optional
 	MaintenanceConfigurationName *string `json:"maintenanceConfigurationName,omitempty" tf:"maintenance_configuration_name,omitempty"`
 
@@ -378,6 +394,10 @@ type MSSQLManagedInstanceParameters struct {
 	// Specifies the storage account type used to store backups for this database. Possible values are GRS, GZRS, LRS, and ZRS. Defaults to GRS.
 	// +kubebuilder:validation:Optional
 	StorageAccountType *string `json:"storageAccountType,omitempty" tf:"storage_account_type,omitempty"`
+
+	// The storage IOPS for the SQL Managed Instance. Possible values are between 300 and 80000. This can only be specified when general_purpose_v2_enabled is true.
+	// +kubebuilder:validation:Optional
+	StorageIops *float64 `json:"storageIops,omitempty" tf:"storage_iops,omitempty"`
 
 	// Maximum storage space for the SQL Managed instance. This should be a multiple of 32 (GB).
 	// +kubebuilder:validation:Optional

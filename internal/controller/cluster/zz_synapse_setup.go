@@ -91,3 +91,33 @@ func SetupGated_synapse(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_synapse registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_synapse(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		firewallrule.SetupWebhookWithManager,
+		integrationruntimeazure.SetupWebhookWithManager,
+		integrationruntimeselfhosted.SetupWebhookWithManager,
+		linkedservice.SetupWebhookWithManager,
+		managedprivateendpoint.SetupWebhookWithManager,
+		privatelinkhub.SetupWebhookWithManager,
+		roleassignment.SetupWebhookWithManager,
+		sparkpool.SetupWebhookWithManager,
+		sqlpool.SetupWebhookWithManager,
+		sqlpoolextendedauditingpolicy.SetupWebhookWithManager,
+		sqlpoolsecurityalertpolicy.SetupWebhookWithManager,
+		sqlpoolworkloadclassifier.SetupWebhookWithManager,
+		sqlpoolworkloadgroup.SetupWebhookWithManager,
+		workspace.SetupWebhookWithManager,
+		workspaceaadadmin.SetupWebhookWithManager,
+		workspaceextendedauditingpolicy.SetupWebhookWithManager,
+		workspacesecurityalertpolicy.SetupWebhookWithManager,
+		workspacesqlaadadmin.SetupWebhookWithManager,
+		workspacevulnerabilityassessment.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

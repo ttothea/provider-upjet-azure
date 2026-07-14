@@ -61,3 +61,23 @@ func SetupGated_servicebus(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_servicebus registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_servicebus(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		namespaceauthorizationrule.SetupWebhookWithManager,
+		namespacedisasterrecoveryconfig.SetupWebhookWithManager,
+		queue.SetupWebhookWithManager,
+		queueauthorizationrule.SetupWebhookWithManager,
+		servicebusnamespace.SetupWebhookWithManager,
+		subscription.SetupWebhookWithManager,
+		subscriptionrule.SetupWebhookWithManager,
+		topic.SetupWebhookWithManager,
+		topicauthorizationrule.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

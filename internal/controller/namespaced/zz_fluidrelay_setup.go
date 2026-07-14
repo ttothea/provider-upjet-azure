@@ -37,3 +37,15 @@ func SetupGated_fluidrelay(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_fluidrelay registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_fluidrelay(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		server.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

@@ -46,7 +46,9 @@ spec:
     dnsZoneIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example
-    hostName: contoso.fabrikam.com
+    hostNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: '", ["contoso", azurerm_dns_zone'
     tls:
       certificateType: ManagedCertificate
       minimumTlsVersion: TLS12

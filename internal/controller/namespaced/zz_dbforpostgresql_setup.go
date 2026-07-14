@@ -76,3 +76,28 @@ func SetupGated_dbforpostgresql(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_dbforpostgresql registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_dbforpostgresql(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		activedirectoryadministrator.SetupWebhookWithManager,
+		configuration.SetupWebhookWithManager,
+		database.SetupWebhookWithManager,
+		firewallrule.SetupWebhookWithManager,
+		flexibleserver.SetupWebhookWithManager,
+		flexibleserveractivedirectoryadministrator.SetupWebhookWithManager,
+		flexibleserverbackup.SetupWebhookWithManager,
+		flexibleserverconfiguration.SetupWebhookWithManager,
+		flexibleserverdatabase.SetupWebhookWithManager,
+		flexibleserverfirewallrule.SetupWebhookWithManager,
+		flexibleservervirtualendpoint.SetupWebhookWithManager,
+		server.SetupWebhookWithManager,
+		serverkey.SetupWebhookWithManager,
+		virtualnetworkrule.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

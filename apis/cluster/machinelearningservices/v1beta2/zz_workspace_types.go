@@ -373,6 +373,9 @@ type WorkspaceInitParameters struct {
 	// SKU/edition of the Machine Learning Workspace, possible values are Free, Basic, Standard and Premium. Defaults to Basic.
 	SkuName *string `json:"skuName,omitempty" tf:"sku_name,omitempty"`
 
+	// The access type for the system storage account. Possible values are AccessKey and Identity. Defaults to AccessKey.
+	StorageAccountAccessType *string `json:"storageAccountAccessType,omitempty" tf:"storage_account_access_type,omitempty"`
+
 	// The ID of the Storage Account associated with this Machine Learning Workspace. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/cluster/storage/v1beta2.Account
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
@@ -458,6 +461,9 @@ type WorkspaceObservation struct {
 
 	// SKU/edition of the Machine Learning Workspace, possible values are Free, Basic, Standard and Premium. Defaults to Basic.
 	SkuName *string `json:"skuName,omitempty" tf:"sku_name,omitempty"`
+
+	// The access type for the system storage account. Possible values are AccessKey and Identity. Defaults to AccessKey.
+	StorageAccountAccessType *string `json:"storageAccountAccessType,omitempty" tf:"storage_account_access_type,omitempty"`
 
 	// The ID of the Storage Account associated with this Machine Learning Workspace. Changing this forces a new resource to be created.
 	StorageAccountID *string `json:"storageAccountId,omitempty" tf:"storage_account_id,omitempty"`
@@ -589,6 +595,10 @@ type WorkspaceParameters struct {
 	// SKU/edition of the Machine Learning Workspace, possible values are Free, Basic, Standard and Premium. Defaults to Basic.
 	// +kubebuilder:validation:Optional
 	SkuName *string `json:"skuName,omitempty" tf:"sku_name,omitempty"`
+
+	// The access type for the system storage account. Possible values are AccessKey and Identity. Defaults to AccessKey.
+	// +kubebuilder:validation:Optional
+	StorageAccountAccessType *string `json:"storageAccountAccessType,omitempty" tf:"storage_account_access_type,omitempty"`
 
 	// The ID of the Storage Account associated with this Machine Learning Workspace. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/cluster/storage/v1beta2.Account

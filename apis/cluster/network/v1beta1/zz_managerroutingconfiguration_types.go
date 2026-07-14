@@ -17,6 +17,9 @@ type ManagerRoutingConfigurationInitParameters struct {
 
 	// The description of the Network Manager Routing Configuration.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// The route table usage mode for the Network Manager Routing Configuration. Possible values are ManagedOnly and UseExisting. Defaults to ManagedOnly.
+	RouteTableUsageMode *string `json:"routeTableUsageMode,omitempty" tf:"route_table_usage_mode,omitempty"`
 }
 
 type ManagerRoutingConfigurationObservation struct {
@@ -29,6 +32,9 @@ type ManagerRoutingConfigurationObservation struct {
 
 	// The ID of the Network Manager. Changing this forces a new Network Manager Routing Configuration to be created.
 	NetworkManagerID *string `json:"networkManagerId,omitempty" tf:"network_manager_id,omitempty"`
+
+	// The route table usage mode for the Network Manager Routing Configuration. Possible values are ManagedOnly and UseExisting. Defaults to ManagedOnly.
+	RouteTableUsageMode *string `json:"routeTableUsageMode,omitempty" tf:"route_table_usage_mode,omitempty"`
 }
 
 type ManagerRoutingConfigurationParameters struct {
@@ -50,6 +56,10 @@ type ManagerRoutingConfigurationParameters struct {
 	// Selector for a Manager in network to populate networkManagerId.
 	// +kubebuilder:validation:Optional
 	NetworkManagerIDSelector *v1.Selector `json:"networkManagerIdSelector,omitempty" tf:"-"`
+
+	// The route table usage mode for the Network Manager Routing Configuration. Possible values are ManagedOnly and UseExisting. Defaults to ManagedOnly.
+	// +kubebuilder:validation:Optional
+	RouteTableUsageMode *string `json:"routeTableUsageMode,omitempty" tf:"route_table_usage_mode,omitempty"`
 }
 
 // ManagerRoutingConfigurationSpec defines the desired state of ManagerRoutingConfiguration

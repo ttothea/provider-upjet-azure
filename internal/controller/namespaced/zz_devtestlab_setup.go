@@ -55,3 +55,21 @@ func SetupGated_devtestlab(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_devtestlab registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_devtestlab(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		globalvmshutdownschedule.SetupWebhookWithManager,
+		lab.SetupWebhookWithManager,
+		linuxvirtualmachine.SetupWebhookWithManager,
+		policy.SetupWebhookWithManager,
+		schedule.SetupWebhookWithManager,
+		virtualnetwork.SetupWebhookWithManager,
+		windowsvirtualmachine.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

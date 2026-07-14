@@ -96,7 +96,7 @@ type DefaultDatabaseInitParameters struct {
 	// Specifies the Redis eviction policy. Possible values are AllKeysLFU, AllKeysLRU, AllKeysRandom, VolatileLRU, VolatileLFU, VolatileTTL, VolatileRandom and NoEviction. Defaults to VolatileLRU.
 	EvictionPolicy *string `json:"evictionPolicy,omitempty" tf:"eviction_policy,omitempty"`
 
-	// The name of the geo-replication group. If provided, a geo-replication group will be created for this database with itself as the only member. Use azurerm_managed_redis_database_geo_replication resource to manage group membership, linking and unlinking. All databases to be linked have to have the same group name. Refer to the Managed Redis geo-replication documentation for more information.
+	// The name of the geo-replication group. If provided, a geo-replication group will be created for this database with itself as the only member. Use azurerm_managed_redis_geo_replication resource to manage group membership, linking and unlinking. All databases to be linked have to have the same group name. Refer to the Managed Redis geo-replication documentation for more information.
 	GeoReplicationGroupName *string `json:"geoReplicationGroupName,omitempty" tf:"geo_replication_group_name,omitempty"`
 
 	// A module block as defined below. Refer to the modules documentation to learn more.
@@ -123,7 +123,7 @@ type DefaultDatabaseObservation struct {
 	// Specifies the Redis eviction policy. Possible values are AllKeysLFU, AllKeysLRU, AllKeysRandom, VolatileLRU, VolatileLFU, VolatileTTL, VolatileRandom and NoEviction. Defaults to VolatileLRU.
 	EvictionPolicy *string `json:"evictionPolicy,omitempty" tf:"eviction_policy,omitempty"`
 
-	// The name of the geo-replication group. If provided, a geo-replication group will be created for this database with itself as the only member. Use azurerm_managed_redis_database_geo_replication resource to manage group membership, linking and unlinking. All databases to be linked have to have the same group name. Refer to the Managed Redis geo-replication documentation for more information.
+	// The name of the geo-replication group. If provided, a geo-replication group will be created for this database with itself as the only member. Use azurerm_managed_redis_geo_replication resource to manage group membership, linking and unlinking. All databases to be linked have to have the same group name. Refer to the Managed Redis geo-replication documentation for more information.
 	GeoReplicationGroupName *string `json:"geoReplicationGroupName,omitempty" tf:"geo_replication_group_name,omitempty"`
 
 	// The ID of the Managed Redis Database Instance.
@@ -160,7 +160,7 @@ type DefaultDatabaseParameters struct {
 	// +kubebuilder:validation:Optional
 	EvictionPolicy *string `json:"evictionPolicy,omitempty" tf:"eviction_policy,omitempty"`
 
-	// The name of the geo-replication group. If provided, a geo-replication group will be created for this database with itself as the only member. Use azurerm_managed_redis_database_geo_replication resource to manage group membership, linking and unlinking. All databases to be linked have to have the same group name. Refer to the Managed Redis geo-replication documentation for more information.
+	// The name of the geo-replication group. If provided, a geo-replication group will be created for this database with itself as the only member. Use azurerm_managed_redis_geo_replication resource to manage group membership, linking and unlinking. All databases to be linked have to have the same group name. Refer to the Managed Redis geo-replication documentation for more information.
 	// +kubebuilder:validation:Optional
 	GeoReplicationGroupName *string `json:"geoReplicationGroupName,omitempty" tf:"geo_replication_group_name,omitempty"`
 
@@ -240,7 +240,7 @@ type ManagedRedisInitParameters struct {
 	// A customer_managed_key block as defined below.
 	CustomerManagedKey *CustomerManagedKeyInitParameters `json:"customerManagedKey,omitempty" tf:"customer_managed_key,omitempty"`
 
-	// A default_database block as defined below. A Managed Redis instance will not be functional without a database. This block is intentionally optional to allow removal and re-creation of the database for troubleshooting purposes. A default database can be created or deleted in-place, however most properties will trigger an entire cluster replacement if changed.
+	// A default_database block as defined below.
 	DefaultDatabase *DefaultDatabaseInitParameters `json:"defaultDatabase,omitempty" tf:"default_database,omitempty"`
 
 	// Whether to enable high availability for the Managed Redis instance. Defaults to true. Changing this forces a new Managed Redis instance to be created.
@@ -255,7 +255,7 @@ type ManagedRedisInitParameters struct {
 	// The public network access setting for the Managed Redis instance. Possible values are Enabled and Disabled. Defaults to Enabled.
 	PublicNetworkAccess *string `json:"publicNetworkAccess,omitempty" tf:"public_network_access,omitempty"`
 
-	// The features and specification of the Managed Redis instance to deploy. Possible values are Balanced_B0, Balanced_B1, Balanced_B10, Balanced_B100, Balanced_B1000, Balanced_B150, Balanced_B20, Balanced_B250, Balanced_B3, Balanced_B350, Balanced_B5, Balanced_B50, Balanced_B500, Balanced_B700, ComputeOptimized_X10, ComputeOptimized_X100, ComputeOptimized_X150, ComputeOptimized_X20, ComputeOptimized_X250, ComputeOptimized_X3, ComputeOptimized_X350, ComputeOptimized_X5, ComputeOptimized_X50, ComputeOptimized_X500, ComputeOptimized_X700, FlashOptimized_A1000, FlashOptimized_A1500, FlashOptimized_A2000, FlashOptimized_A250, FlashOptimized_A4500, FlashOptimized_A500, FlashOptimized_A700, MemoryOptimized_M10, MemoryOptimized_M100, MemoryOptimized_M1000, MemoryOptimized_M150, MemoryOptimized_M1500, MemoryOptimized_M20, MemoryOptimized_M2000, MemoryOptimized_M250, MemoryOptimized_M350, MemoryOptimized_M50, MemoryOptimized_M500 and MemoryOptimized_M700. Balanced_B3 SKU or higher is required for geo-replication. Changing this forces a new Managed Redis instance to be created.
+	// The features and specification of the Managed Redis instance to deploy. Possible values are Balanced_B0, Balanced_B1, Balanced_B10, Balanced_B100, Balanced_B1000, Balanced_B150, Balanced_B20, Balanced_B250, Balanced_B3, Balanced_B350, Balanced_B5, Balanced_B50, Balanced_B500, Balanced_B700, ComputeOptimized_X10, ComputeOptimized_X100, ComputeOptimized_X150, ComputeOptimized_X20, ComputeOptimized_X250, ComputeOptimized_X3, ComputeOptimized_X350, ComputeOptimized_X5, ComputeOptimized_X50, ComputeOptimized_X500, ComputeOptimized_X700, FlashOptimized_A1000, FlashOptimized_A1500, FlashOptimized_A2000, FlashOptimized_A250, FlashOptimized_A4500, FlashOptimized_A500, FlashOptimized_A700, MemoryOptimized_M10, MemoryOptimized_M100, MemoryOptimized_M1000, MemoryOptimized_M150, MemoryOptimized_M1500, MemoryOptimized_M20, MemoryOptimized_M2000, MemoryOptimized_M250, MemoryOptimized_M350, MemoryOptimized_M50, MemoryOptimized_M500 and MemoryOptimized_M700. Balanced_B3 SKU or higher is required for geo-replication.
 	SkuName *string `json:"skuName,omitempty" tf:"sku_name,omitempty"`
 
 	// A mapping of tags which should be assigned to the Managed Redis instance.
@@ -268,7 +268,7 @@ type ManagedRedisObservation struct {
 	// A customer_managed_key block as defined below.
 	CustomerManagedKey *CustomerManagedKeyObservation `json:"customerManagedKey,omitempty" tf:"customer_managed_key,omitempty"`
 
-	// A default_database block as defined below. A Managed Redis instance will not be functional without a database. This block is intentionally optional to allow removal and re-creation of the database for troubleshooting purposes. A default database can be created or deleted in-place, however most properties will trigger an entire cluster replacement if changed.
+	// A default_database block as defined below.
 	DefaultDatabase *DefaultDatabaseObservation `json:"defaultDatabase,omitempty" tf:"default_database,omitempty"`
 
 	// Whether to enable high availability for the Managed Redis instance. Defaults to true. Changing this forces a new Managed Redis instance to be created.
@@ -292,7 +292,7 @@ type ManagedRedisObservation struct {
 	// The name of the Resource Group where the Managed Redis instance should exist. Changing this forces a new Managed Redis instance to be created.
 	ResourceGroupName *string `json:"resourceGroupName,omitempty" tf:"resource_group_name,omitempty"`
 
-	// The features and specification of the Managed Redis instance to deploy. Possible values are Balanced_B0, Balanced_B1, Balanced_B10, Balanced_B100, Balanced_B1000, Balanced_B150, Balanced_B20, Balanced_B250, Balanced_B3, Balanced_B350, Balanced_B5, Balanced_B50, Balanced_B500, Balanced_B700, ComputeOptimized_X10, ComputeOptimized_X100, ComputeOptimized_X150, ComputeOptimized_X20, ComputeOptimized_X250, ComputeOptimized_X3, ComputeOptimized_X350, ComputeOptimized_X5, ComputeOptimized_X50, ComputeOptimized_X500, ComputeOptimized_X700, FlashOptimized_A1000, FlashOptimized_A1500, FlashOptimized_A2000, FlashOptimized_A250, FlashOptimized_A4500, FlashOptimized_A500, FlashOptimized_A700, MemoryOptimized_M10, MemoryOptimized_M100, MemoryOptimized_M1000, MemoryOptimized_M150, MemoryOptimized_M1500, MemoryOptimized_M20, MemoryOptimized_M2000, MemoryOptimized_M250, MemoryOptimized_M350, MemoryOptimized_M50, MemoryOptimized_M500 and MemoryOptimized_M700. Balanced_B3 SKU or higher is required for geo-replication. Changing this forces a new Managed Redis instance to be created.
+	// The features and specification of the Managed Redis instance to deploy. Possible values are Balanced_B0, Balanced_B1, Balanced_B10, Balanced_B100, Balanced_B1000, Balanced_B150, Balanced_B20, Balanced_B250, Balanced_B3, Balanced_B350, Balanced_B5, Balanced_B50, Balanced_B500, Balanced_B700, ComputeOptimized_X10, ComputeOptimized_X100, ComputeOptimized_X150, ComputeOptimized_X20, ComputeOptimized_X250, ComputeOptimized_X3, ComputeOptimized_X350, ComputeOptimized_X5, ComputeOptimized_X50, ComputeOptimized_X500, ComputeOptimized_X700, FlashOptimized_A1000, FlashOptimized_A1500, FlashOptimized_A2000, FlashOptimized_A250, FlashOptimized_A4500, FlashOptimized_A500, FlashOptimized_A700, MemoryOptimized_M10, MemoryOptimized_M100, MemoryOptimized_M1000, MemoryOptimized_M150, MemoryOptimized_M1500, MemoryOptimized_M20, MemoryOptimized_M2000, MemoryOptimized_M250, MemoryOptimized_M350, MemoryOptimized_M50, MemoryOptimized_M500 and MemoryOptimized_M700. Balanced_B3 SKU or higher is required for geo-replication.
 	SkuName *string `json:"skuName,omitempty" tf:"sku_name,omitempty"`
 
 	// A mapping of tags which should be assigned to the Managed Redis instance.
@@ -306,7 +306,7 @@ type ManagedRedisParameters struct {
 	// +kubebuilder:validation:Optional
 	CustomerManagedKey *CustomerManagedKeyParameters `json:"customerManagedKey,omitempty" tf:"customer_managed_key,omitempty"`
 
-	// A default_database block as defined below. A Managed Redis instance will not be functional without a database. This block is intentionally optional to allow removal and re-creation of the database for troubleshooting purposes. A default database can be created or deleted in-place, however most properties will trigger an entire cluster replacement if changed.
+	// A default_database block as defined below.
 	// +kubebuilder:validation:Optional
 	DefaultDatabase *DefaultDatabaseParameters `json:"defaultDatabase,omitempty" tf:"default_database,omitempty"`
 
@@ -339,7 +339,7 @@ type ManagedRedisParameters struct {
 	// +kubebuilder:validation:Optional
 	ResourceGroupNameSelector *v1.Selector `json:"resourceGroupNameSelector,omitempty" tf:"-"`
 
-	// The features and specification of the Managed Redis instance to deploy. Possible values are Balanced_B0, Balanced_B1, Balanced_B10, Balanced_B100, Balanced_B1000, Balanced_B150, Balanced_B20, Balanced_B250, Balanced_B3, Balanced_B350, Balanced_B5, Balanced_B50, Balanced_B500, Balanced_B700, ComputeOptimized_X10, ComputeOptimized_X100, ComputeOptimized_X150, ComputeOptimized_X20, ComputeOptimized_X250, ComputeOptimized_X3, ComputeOptimized_X350, ComputeOptimized_X5, ComputeOptimized_X50, ComputeOptimized_X500, ComputeOptimized_X700, FlashOptimized_A1000, FlashOptimized_A1500, FlashOptimized_A2000, FlashOptimized_A250, FlashOptimized_A4500, FlashOptimized_A500, FlashOptimized_A700, MemoryOptimized_M10, MemoryOptimized_M100, MemoryOptimized_M1000, MemoryOptimized_M150, MemoryOptimized_M1500, MemoryOptimized_M20, MemoryOptimized_M2000, MemoryOptimized_M250, MemoryOptimized_M350, MemoryOptimized_M50, MemoryOptimized_M500 and MemoryOptimized_M700. Balanced_B3 SKU or higher is required for geo-replication. Changing this forces a new Managed Redis instance to be created.
+	// The features and specification of the Managed Redis instance to deploy. Possible values are Balanced_B0, Balanced_B1, Balanced_B10, Balanced_B100, Balanced_B1000, Balanced_B150, Balanced_B20, Balanced_B250, Balanced_B3, Balanced_B350, Balanced_B5, Balanced_B50, Balanced_B500, Balanced_B700, ComputeOptimized_X10, ComputeOptimized_X100, ComputeOptimized_X150, ComputeOptimized_X20, ComputeOptimized_X250, ComputeOptimized_X3, ComputeOptimized_X350, ComputeOptimized_X5, ComputeOptimized_X50, ComputeOptimized_X500, ComputeOptimized_X700, FlashOptimized_A1000, FlashOptimized_A1500, FlashOptimized_A2000, FlashOptimized_A250, FlashOptimized_A4500, FlashOptimized_A500, FlashOptimized_A700, MemoryOptimized_M10, MemoryOptimized_M100, MemoryOptimized_M1000, MemoryOptimized_M150, MemoryOptimized_M1500, MemoryOptimized_M20, MemoryOptimized_M2000, MemoryOptimized_M250, MemoryOptimized_M350, MemoryOptimized_M50, MemoryOptimized_M500 and MemoryOptimized_M700. Balanced_B3 SKU or higher is required for geo-replication.
 	// +kubebuilder:validation:Optional
 	SkuName *string `json:"skuName,omitempty" tf:"sku_name,omitempty"`
 

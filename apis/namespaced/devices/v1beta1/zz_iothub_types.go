@@ -298,7 +298,7 @@ type IOTHubInitParameters struct {
 	// Specifies the supported Azure location where the resource has to be created. Changing this forces a new resource to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// Specifies the minimum TLS version to support for this hub. The only valid value is 1.2. Changing this forces a new resource to be created.
+	// Specifies the minimum TLS version to support for this hub. The only valid value is 1.2. Defaults to 1.2. Changing this forces a new resource to be created.
 	MinTLSVersion *string `json:"minTlsVersion,omitempty" tf:"min_tls_version,omitempty"`
 
 	// A network_rule_set block as defined below.
@@ -368,7 +368,7 @@ type IOTHubObservation struct {
 	// Specifies the supported Azure location where the resource has to be created. Changing this forces a new resource to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// Specifies the minimum TLS version to support for this hub. The only valid value is 1.2. Changing this forces a new resource to be created.
+	// Specifies the minimum TLS version to support for this hub. The only valid value is 1.2. Defaults to 1.2. Changing this forces a new resource to be created.
 	MinTLSVersion *string `json:"minTlsVersion,omitempty" tf:"min_tls_version,omitempty"`
 
 	// A network_rule_set block as defined below.
@@ -427,7 +427,7 @@ type IOTHubParameters struct {
 	// +kubebuilder:validation:Optional
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// Specifies the minimum TLS version to support for this hub. The only valid value is 1.2. Changing this forces a new resource to be created.
+	// Specifies the minimum TLS version to support for this hub. The only valid value is 1.2. Defaults to 1.2. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
 	MinTLSVersion *string `json:"minTlsVersion,omitempty" tf:"min_tls_version,omitempty"`
 

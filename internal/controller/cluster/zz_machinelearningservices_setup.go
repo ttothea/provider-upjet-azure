@@ -61,3 +61,23 @@ func SetupGated_machinelearningservices(mgr ctrl.Manager, o controller.Options) 
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_machinelearningservices registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_machinelearningservices(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		aifoundry.SetupWebhookWithManager,
+		aifoundryproject.SetupWebhookWithManager,
+		computecluster.SetupWebhookWithManager,
+		computeinstance.SetupWebhookWithManager,
+		synapsespark.SetupWebhookWithManager,
+		workspace.SetupWebhookWithManager,
+		workspaceoutboundrulefqdn.SetupWebhookWithManager,
+		workspaceoutboundruleprivateendpoint.SetupWebhookWithManager,
+		workspaceoutboundruleservicetag.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

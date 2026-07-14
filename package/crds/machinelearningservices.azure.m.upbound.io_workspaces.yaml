@@ -931,6 +931,10 @@ spec:
                     description: SKU/edition of the Machine Learning Workspace, possible
                       values are Free, Basic, Standard and Premium. Defaults to Basic.
                     type: string
+                  storageAccountAccessType:
+                    description: The access type for the system storage account. Possible
+                      values are AccessKey and Identity. Defaults to AccessKey.
+                    type: string
                   storageAccountId:
                     description: The ID of the Storage Account associated with this
                       Machine Learning Workspace. Changing this forces a new resource
@@ -1826,6 +1830,10 @@ spec:
                     description: SKU/edition of the Machine Learning Workspace, possible
                       values are Free, Basic, Standard and Premium. Defaults to Basic.
                     type: string
+                  storageAccountAccessType:
+                    description: The access type for the system storage account. Possible
+                      values are AccessKey and Identity. Defaults to AccessKey.
+                    type: string
                   storageAccountId:
                     description: The ID of the Storage Account associated with this
                       Machine Learning Workspace. Changing this forces a new resource
@@ -2144,6 +2152,10 @@ spec:
                   skuName:
                     description: SKU/edition of the Machine Learning Workspace, possible
                       values are Free, Basic, Standard and Premium. Defaults to Basic.
+                    type: string
+                  storageAccountAccessType:
+                    description: The access type for the system storage account. Possible
+                      values are AccessKey and Identity. Defaults to AccessKey.
                     type: string
                   storageAccountId:
                     description: The ID of the Storage Account associated with this

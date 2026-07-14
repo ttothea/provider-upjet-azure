@@ -86,6 +86,9 @@ type ContainerObservation struct {
 
 	// The name of the Storage Account where the Container should be created. This property is deprecated in favour of storage_account_id.
 	StorageAccountName *string `json:"storageAccountName,omitempty" tf:"storage_account_name,omitempty"`
+
+	// The data plane URL of the Storage Container in the format of <storage blob endpoint>/<container name>. E.g. https://example.blob.core.windows.net/mycontainer.
+	URL *string `json:"url,omitempty" tf:"url,omitempty"`
 }
 
 type ContainerParameters struct {

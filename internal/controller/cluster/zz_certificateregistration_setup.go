@@ -37,3 +37,15 @@ func SetupGated_certificateregistration(mgr ctrl.Manager, o controller.Options) 
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_certificateregistration registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_certificateregistration(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		appservicecertificateorder.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

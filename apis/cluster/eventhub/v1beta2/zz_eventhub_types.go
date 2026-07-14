@@ -95,6 +95,12 @@ type DestinationInitParameters struct {
 
 	// The ID of the Blob Storage Account where messages should be archived.
 	StorageAccountID *string `json:"storageAccountId,omitempty" tf:"storage_account_id,omitempty"`
+
+	// The id of the User Assigned Identity that is used to authenticate the Blob Storage Account where messages should be archived.
+	StorageAuthenticationID *string `json:"storageAuthenticationId,omitempty" tf:"storage_authentication_id,omitempty"`
+
+	// The identity used to authenticate the Blob Storage Account where messages should be archived. Possible values are StorageSAS, SystemAssigned or UserAssigned. Defaults to StorageSAS.
+	StorageAuthenticationType *string `json:"storageAuthenticationType,omitempty" tf:"storage_authentication_type,omitempty"`
 }
 
 type DestinationObservation struct {
@@ -110,6 +116,12 @@ type DestinationObservation struct {
 
 	// The ID of the Blob Storage Account where messages should be archived.
 	StorageAccountID *string `json:"storageAccountId,omitempty" tf:"storage_account_id,omitempty"`
+
+	// The id of the User Assigned Identity that is used to authenticate the Blob Storage Account where messages should be archived.
+	StorageAuthenticationID *string `json:"storageAuthenticationId,omitempty" tf:"storage_authentication_id,omitempty"`
+
+	// The identity used to authenticate the Blob Storage Account where messages should be archived. Possible values are StorageSAS, SystemAssigned or UserAssigned. Defaults to StorageSAS.
+	StorageAuthenticationType *string `json:"storageAuthenticationType,omitempty" tf:"storage_authentication_type,omitempty"`
 }
 
 type DestinationParameters struct {
@@ -129,6 +141,14 @@ type DestinationParameters struct {
 	// The ID of the Blob Storage Account where messages should be archived.
 	// +kubebuilder:validation:Optional
 	StorageAccountID *string `json:"storageAccountId" tf:"storage_account_id,omitempty"`
+
+	// The id of the User Assigned Identity that is used to authenticate the Blob Storage Account where messages should be archived.
+	// +kubebuilder:validation:Optional
+	StorageAuthenticationID *string `json:"storageAuthenticationId,omitempty" tf:"storage_authentication_id,omitempty"`
+
+	// The identity used to authenticate the Blob Storage Account where messages should be archived. Possible values are StorageSAS, SystemAssigned or UserAssigned. Defaults to StorageSAS.
+	// +kubebuilder:validation:Optional
+	StorageAuthenticationType *string `json:"storageAuthenticationType,omitempty" tf:"storage_authentication_type,omitempty"`
 }
 
 type EventHubInitParameters struct {

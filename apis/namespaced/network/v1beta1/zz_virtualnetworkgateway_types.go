@@ -367,7 +367,7 @@ type VPNClientConfigurationInitParameters struct {
 	RadiusServerAddress *string `json:"radiusServerAddress,omitempty" tf:"radius_server_address,omitempty"`
 
 	// The secret used by the Radius server.
-	RadiusServerSecret *string `json:"radiusServerSecret,omitempty" tf:"radius_server_secret,omitempty"`
+	RadiusServerSecretSecretRef *v1.LocalSecretKeySelector `json:"radiusServerSecretSecretRef,omitempty" tf:"-"`
 
 	// One or more revoked_certificate blocks which are defined below.
 	RevokedCertificate []RevokedCertificateInitParameters `json:"revokedCertificate,omitempty" tf:"revoked_certificate,omitempty"`
@@ -414,9 +414,6 @@ type VPNClientConfigurationObservation struct {
 
 	// The address of the Radius server.
 	RadiusServerAddress *string `json:"radiusServerAddress,omitempty" tf:"radius_server_address,omitempty"`
-
-	// The secret used by the Radius server.
-	RadiusServerSecret *string `json:"radiusServerSecret,omitempty" tf:"radius_server_secret,omitempty"`
 
 	// One or more revoked_certificate blocks which are defined below.
 	RevokedCertificate []RevokedCertificateObservation `json:"revokedCertificate,omitempty" tf:"revoked_certificate,omitempty"`
@@ -473,7 +470,7 @@ type VPNClientConfigurationParameters struct {
 
 	// The secret used by the Radius server.
 	// +kubebuilder:validation:Optional
-	RadiusServerSecret *string `json:"radiusServerSecret,omitempty" tf:"radius_server_secret,omitempty"`
+	RadiusServerSecretSecretRef *v1.LocalSecretKeySelector `json:"radiusServerSecretSecretRef,omitempty" tf:"-"`
 
 	// One or more revoked_certificate blocks which are defined below.
 	// +kubebuilder:validation:Optional
@@ -674,6 +671,9 @@ type VirtualNetworkGatewayInitParameters struct {
 	// If true, an active-active Virtual Network Gateway will be created. An active-active gateway requires a HighPerformance or an UltraPerformance SKU. If false, an active-standby gateway will be created. Defaults to false.
 	ActiveActive *bool `json:"activeActive,omitempty" tf:"active_active,omitempty"`
 
+	// If true, BGP (Border Gateway Protocol) will be enabled for this Virtual Network Gateway. Defaults to false.
+	BGPEnabled *bool `json:"bgpEnabled,omitempty" tf:"bgp_enabled,omitempty"`
+
 	// Is BGP Route Translation for NAT enabled? Defaults to false.
 	BGPRouteTranslationForNATEnabled *bool `json:"bgpRouteTranslationForNatEnabled,omitempty" tf:"bgp_route_translation_for_nat_enabled,omitempty"`
 
@@ -692,7 +692,6 @@ type VirtualNetworkGatewayInitParameters struct {
 	// Specifies the Edge Zone within the Azure Region where this Virtual Network Gateway should exist. Changing this forces a new Virtual Network Gateway to be created.
 	EdgeZone *string `json:"edgeZone,omitempty" tf:"edge_zone,omitempty"`
 
-	// If true, BGP (Border Gateway Protocol) will be enabled for this Virtual Network Gateway. Defaults to false.
 	EnableBGP *bool `json:"enableBgp,omitempty" tf:"enable_bgp,omitempty"`
 
 	// The Generation of the Virtual Network gateway. Possible values include Generation1, Generation2 or None. Changing this forces a new resource to be created.
@@ -707,6 +706,12 @@ type VirtualNetworkGatewayInitParameters struct {
 	// The location/region where the Virtual Network Gateway is located. Changing this forces a new resource to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
+	// The maximum scale unit for the Virtual Network Gateway, possible values are 1 through 40.
+	MaximumScaleUnit *float64 `json:"maximumScaleUnit,omitempty" tf:"maximum_scale_unit,omitempty"`
+
+	// The minimum scale unit for the Virtual Network Gateway, possible values are 1 through 40.
+	MinimumScaleUnit *float64 `json:"minimumScaleUnit,omitempty" tf:"minimum_scale_unit,omitempty"`
+
 	// One or more policy_group blocks as defined below.
 	PolicyGroup []PolicyGroupInitParameters `json:"policyGroup,omitempty" tf:"policy_group,omitempty"`
 
@@ -716,7 +721,7 @@ type VirtualNetworkGatewayInitParameters struct {
 	// Is remote vnet traffic that is used to configure this gateway to accept traffic from other Azure Virtual Networks enabled? Defaults to false.
 	RemoteVnetTrafficEnabled *bool `json:"remoteVnetTrafficEnabled,omitempty" tf:"remote_vnet_traffic_enabled,omitempty"`
 
-	// Configuration of the size and capacity of the virtual network gateway. Valid options are Basic, Standard, HighPerformance, UltraPerformance, ErGw1AZ, ErGw2AZ, ErGw3AZ, VpnGw1, VpnGw2, VpnGw3, VpnGw4,VpnGw5, VpnGw1AZ, VpnGw2AZ, VpnGw3AZ,VpnGw4AZ and VpnGw5AZ and depend on the type, vpn_type and generation arguments. A PolicyBased gateway only supports the Basic SKU. Further, the UltraPerformance SKU is only supported by an ExpressRoute gateway.
+	// Configuration of the size and capacity of the virtual network gateway. Valid options are Basic, Standard, HighPerformance, UltraPerformance, ErGwScale, ErGw1AZ, ErGw2AZ, ErGw3AZ, VpnGw1, VpnGw2, VpnGw3, VpnGw4,VpnGw5, VpnGw1AZ, VpnGw2AZ, VpnGw3AZ,VpnGw4AZ and VpnGw5AZ and depend on the type, vpn_type and generation arguments. A PolicyBased gateway only supports the Basic SKU. Further, the UltraPerformance and ErGwScale SKU is only supported by an ExpressRoute gateway.
 	Sku *string `json:"sku,omitempty" tf:"sku,omitempty"`
 
 	// A mapping of tags to assign to the resource.
@@ -741,6 +746,9 @@ type VirtualNetworkGatewayObservation struct {
 	// If true, an active-active Virtual Network Gateway will be created. An active-active gateway requires a HighPerformance or an UltraPerformance SKU. If false, an active-standby gateway will be created. Defaults to false.
 	ActiveActive *bool `json:"activeActive,omitempty" tf:"active_active,omitempty"`
 
+	// If true, BGP (Border Gateway Protocol) will be enabled for this Virtual Network Gateway. Defaults to false.
+	BGPEnabled *bool `json:"bgpEnabled,omitempty" tf:"bgp_enabled,omitempty"`
+
 	// Is BGP Route Translation for NAT enabled? Defaults to false.
 	BGPRouteTranslationForNATEnabled *bool `json:"bgpRouteTranslationForNatEnabled,omitempty" tf:"bgp_route_translation_for_nat_enabled,omitempty"`
 
@@ -759,7 +767,6 @@ type VirtualNetworkGatewayObservation struct {
 	// Specifies the Edge Zone within the Azure Region where this Virtual Network Gateway should exist. Changing this forces a new Virtual Network Gateway to be created.
 	EdgeZone *string `json:"edgeZone,omitempty" tf:"edge_zone,omitempty"`
 
-	// If true, BGP (Border Gateway Protocol) will be enabled for this Virtual Network Gateway. Defaults to false.
 	EnableBGP *bool `json:"enableBgp,omitempty" tf:"enable_bgp,omitempty"`
 
 	// The Generation of the Virtual Network gateway. Possible values include Generation1, Generation2 or None. Changing this forces a new resource to be created.
@@ -777,6 +784,12 @@ type VirtualNetworkGatewayObservation struct {
 	// The location/region where the Virtual Network Gateway is located. Changing this forces a new resource to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
+	// The maximum scale unit for the Virtual Network Gateway, possible values are 1 through 40.
+	MaximumScaleUnit *float64 `json:"maximumScaleUnit,omitempty" tf:"maximum_scale_unit,omitempty"`
+
+	// The minimum scale unit for the Virtual Network Gateway, possible values are 1 through 40.
+	MinimumScaleUnit *float64 `json:"minimumScaleUnit,omitempty" tf:"minimum_scale_unit,omitempty"`
+
 	// One or more policy_group blocks as defined below.
 	PolicyGroup []PolicyGroupObservation `json:"policyGroup,omitempty" tf:"policy_group,omitempty"`
 
@@ -789,7 +802,7 @@ type VirtualNetworkGatewayObservation struct {
 	// The name of the resource group in which to create the Virtual Network Gateway. Changing this forces a new resource to be created.
 	ResourceGroupName *string `json:"resourceGroupName,omitempty" tf:"resource_group_name,omitempty"`
 
-	// Configuration of the size and capacity of the virtual network gateway. Valid options are Basic, Standard, HighPerformance, UltraPerformance, ErGw1AZ, ErGw2AZ, ErGw3AZ, VpnGw1, VpnGw2, VpnGw3, VpnGw4,VpnGw5, VpnGw1AZ, VpnGw2AZ, VpnGw3AZ,VpnGw4AZ and VpnGw5AZ and depend on the type, vpn_type and generation arguments. A PolicyBased gateway only supports the Basic SKU. Further, the UltraPerformance SKU is only supported by an ExpressRoute gateway.
+	// Configuration of the size and capacity of the virtual network gateway. Valid options are Basic, Standard, HighPerformance, UltraPerformance, ErGwScale, ErGw1AZ, ErGw2AZ, ErGw3AZ, VpnGw1, VpnGw2, VpnGw3, VpnGw4,VpnGw5, VpnGw1AZ, VpnGw2AZ, VpnGw3AZ,VpnGw4AZ and VpnGw5AZ and depend on the type, vpn_type and generation arguments. A PolicyBased gateway only supports the Basic SKU. Further, the UltraPerformance and ErGwScale SKU is only supported by an ExpressRoute gateway.
 	Sku *string `json:"sku,omitempty" tf:"sku,omitempty"`
 
 	// A mapping of tags to assign to the resource.
@@ -815,6 +828,10 @@ type VirtualNetworkGatewayParameters struct {
 	// +kubebuilder:validation:Optional
 	ActiveActive *bool `json:"activeActive,omitempty" tf:"active_active,omitempty"`
 
+	// If true, BGP (Border Gateway Protocol) will be enabled for this Virtual Network Gateway. Defaults to false.
+	// +kubebuilder:validation:Optional
+	BGPEnabled *bool `json:"bgpEnabled,omitempty" tf:"bgp_enabled,omitempty"`
+
 	// Is BGP Route Translation for NAT enabled? Defaults to false.
 	// +kubebuilder:validation:Optional
 	BGPRouteTranslationForNATEnabled *bool `json:"bgpRouteTranslationForNatEnabled,omitempty" tf:"bgp_route_translation_for_nat_enabled,omitempty"`
@@ -839,7 +856,6 @@ type VirtualNetworkGatewayParameters struct {
 	// +kubebuilder:validation:Optional
 	EdgeZone *string `json:"edgeZone,omitempty" tf:"edge_zone,omitempty"`
 
-	// If true, BGP (Border Gateway Protocol) will be enabled for this Virtual Network Gateway. Defaults to false.
 	// +kubebuilder:validation:Optional
 	EnableBGP *bool `json:"enableBgp,omitempty" tf:"enable_bgp,omitempty"`
 
@@ -858,6 +874,14 @@ type VirtualNetworkGatewayParameters struct {
 	// The location/region where the Virtual Network Gateway is located. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
+
+	// The maximum scale unit for the Virtual Network Gateway, possible values are 1 through 40.
+	// +kubebuilder:validation:Optional
+	MaximumScaleUnit *float64 `json:"maximumScaleUnit,omitempty" tf:"maximum_scale_unit,omitempty"`
+
+	// The minimum scale unit for the Virtual Network Gateway, possible values are 1 through 40.
+	// +kubebuilder:validation:Optional
+	MinimumScaleUnit *float64 `json:"minimumScaleUnit,omitempty" tf:"minimum_scale_unit,omitempty"`
 
 	// One or more policy_group blocks as defined below.
 	// +kubebuilder:validation:Optional
@@ -884,7 +908,7 @@ type VirtualNetworkGatewayParameters struct {
 	// +kubebuilder:validation:Optional
 	ResourceGroupNameSelector *v1.NamespacedSelector `json:"resourceGroupNameSelector,omitempty" tf:"-"`
 
-	// Configuration of the size and capacity of the virtual network gateway. Valid options are Basic, Standard, HighPerformance, UltraPerformance, ErGw1AZ, ErGw2AZ, ErGw3AZ, VpnGw1, VpnGw2, VpnGw3, VpnGw4,VpnGw5, VpnGw1AZ, VpnGw2AZ, VpnGw3AZ,VpnGw4AZ and VpnGw5AZ and depend on the type, vpn_type and generation arguments. A PolicyBased gateway only supports the Basic SKU. Further, the UltraPerformance SKU is only supported by an ExpressRoute gateway.
+	// Configuration of the size and capacity of the virtual network gateway. Valid options are Basic, Standard, HighPerformance, UltraPerformance, ErGwScale, ErGw1AZ, ErGw2AZ, ErGw3AZ, VpnGw1, VpnGw2, VpnGw3, VpnGw4,VpnGw5, VpnGw1AZ, VpnGw2AZ, VpnGw3AZ,VpnGw4AZ and VpnGw5AZ and depend on the type, vpn_type and generation arguments. A PolicyBased gateway only supports the Basic SKU. Further, the UltraPerformance and ErGwScale SKU is only supported by an ExpressRoute gateway.
 	// +kubebuilder:validation:Optional
 	Sku *string `json:"sku,omitempty" tf:"sku,omitempty"`
 

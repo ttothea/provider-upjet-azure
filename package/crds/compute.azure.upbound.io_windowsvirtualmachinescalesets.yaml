@@ -1014,7 +1014,7 @@ spec:
                     type: boolean
                   sku:
                     description: The Virtual Machine SKU for the Scale Set, such as
-                      Standard_F2.
+                      Standard_D4_v5.
                     type: string
                   sourceImageId:
                     description: The ID of an Image which each Virtual Machine in
@@ -2013,7 +2013,7 @@ spec:
                     type: boolean
                   sku:
                     description: The Virtual Machine SKU for the Scale Set, such as
-                      Standard_F2.
+                      Standard_D4_v5.
                     type: string
                   sourceImageId:
                     description: The ID of an Image which each Virtual Machine in
@@ -2985,7 +2985,7 @@ spec:
                     type: boolean
                   sku:
                     description: The Virtual Machine SKU for the Scale Set, such as
-                      Standard_F2.
+                      Standard_D4_v5.
                     type: string
                   sourceImageId:
                     description: The ID of an Image which each Virtual Machine in
@@ -4144,7 +4144,7 @@ spec:
                     type: boolean
                   sku:
                     description: The Virtual Machine SKU for the Scale Set, such as
-                      Standard_F2.
+                      Standard_D4_v5.
                     type: string
                   sourceImageId:
                     description: The ID of an Image which each Virtual Machine in
@@ -5109,7 +5109,7 @@ spec:
                     type: boolean
                   sku:
                     description: The Virtual Machine SKU for the Scale Set, such as
-                      Standard_F2.
+                      Standard_D4_v5.
                     type: string
                   sourceImageId:
                     description: The ID of an Image which each Virtual Machine in
@@ -6047,7 +6047,7 @@ spec:
                     type: boolean
                   sku:
                     description: The Virtual Machine SKU for the Scale Set, such as
-                      Standard_F2.
+                      Standard_D4_v5.
                     type: string
                   sourceImageId:
                     description: The ID of an Image which each Virtual Machine in

@@ -150,7 +150,7 @@ type FrontdoorFirewallPolicyInitParameters struct {
 	// If a custom_rule block's action type is block, this is the response body. The body must be specified in base64 encoding.
 	CustomBlockResponseBody *string `json:"customBlockResponseBody,omitempty" tf:"custom_block_response_body,omitempty"`
 
-	// If a custom_rule block's action type is block, this is the response status code. Possible values are 200, 403, 405, 406, or 429.
+	// If a custom_rule block's action type is block, this is the response status code. Possible values are 200, 403, 405, 406, 429, 990, 991, 992, 993, 994, 995, 996, 997, 998, or 999.
 	CustomBlockResponseStatusCode *float64 `json:"customBlockResponseStatusCode,omitempty" tf:"custom_block_response_status_code,omitempty"`
 
 	// One or more custom_rule blocks as defined below.
@@ -203,7 +203,7 @@ type FrontdoorFirewallPolicyObservation struct {
 	// If a custom_rule block's action type is block, this is the response body. The body must be specified in base64 encoding.
 	CustomBlockResponseBody *string `json:"customBlockResponseBody,omitempty" tf:"custom_block_response_body,omitempty"`
 
-	// If a custom_rule block's action type is block, this is the response status code. Possible values are 200, 403, 405, 406, or 429.
+	// If a custom_rule block's action type is block, this is the response status code. Possible values are 200, 403, 405, 406, 429, 990, 991, 992, 993, 994, 995, 996, 997, 998, or 999.
 	CustomBlockResponseStatusCode *float64 `json:"customBlockResponseStatusCode,omitempty" tf:"custom_block_response_status_code,omitempty"`
 
 	// One or more custom_rule blocks as defined below.
@@ -257,7 +257,7 @@ type FrontdoorFirewallPolicyParameters struct {
 	// +kubebuilder:validation:Optional
 	CustomBlockResponseBody *string `json:"customBlockResponseBody,omitempty" tf:"custom_block_response_body,omitempty"`
 
-	// If a custom_rule block's action type is block, this is the response status code. Possible values are 200, 403, 405, 406, or 429.
+	// If a custom_rule block's action type is block, this is the response status code. Possible values are 200, 403, 405, 406, 429, 990, 991, 992, 993, 994, 995, 996, 997, 998, or 999.
 	// +kubebuilder:validation:Optional
 	CustomBlockResponseStatusCode *float64 `json:"customBlockResponseStatusCode,omitempty" tf:"custom_block_response_status_code,omitempty"`
 

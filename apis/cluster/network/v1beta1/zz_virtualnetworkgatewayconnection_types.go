@@ -76,6 +76,9 @@ type VirtualNetworkGatewayConnectionInitParameters struct {
 	// The authorization key associated with the Express Route Circuit. This field is required only if the type is an ExpressRoute connection.
 	AuthorizationKeySecretRef *v1.SecretKeySelector `json:"authorizationKeySecretRef,omitempty" tf:"-"`
 
+	// If true, BGP (Border Gateway Protocol) is enabled for this connection. Defaults to false.
+	BGPEnabled *bool `json:"bgpEnabled,omitempty" tf:"bgp_enabled,omitempty"`
+
 	// Connection mode to use. Possible values are Default, InitiatorOnly and ResponderOnly. Defaults to Default. Changing this value will force a resource to be created.
 	ConnectionMode *string `json:"connectionMode,omitempty" tf:"connection_mode,omitempty"`
 
@@ -280,6 +283,9 @@ type VirtualNetworkGatewayConnectionIpsecPolicyParameters struct {
 
 type VirtualNetworkGatewayConnectionObservation struct {
 
+	// If true, BGP (Border Gateway Protocol) is enabled for this connection. Defaults to false.
+	BGPEnabled *bool `json:"bgpEnabled,omitempty" tf:"bgp_enabled,omitempty"`
+
 	// Connection mode to use. Possible values are Default, InitiatorOnly and ResponderOnly. Defaults to Default. Changing this value will force a resource to be created.
 	ConnectionMode *string `json:"connectionMode,omitempty" tf:"connection_mode,omitempty"`
 
@@ -365,6 +371,10 @@ type VirtualNetworkGatewayConnectionParameters struct {
 	// The authorization key associated with the Express Route Circuit. This field is required only if the type is an ExpressRoute connection.
 	// +kubebuilder:validation:Optional
 	AuthorizationKeySecretRef *v1.SecretKeySelector `json:"authorizationKeySecretRef,omitempty" tf:"-"`
+
+	// If true, BGP (Border Gateway Protocol) is enabled for this connection. Defaults to false.
+	// +kubebuilder:validation:Optional
+	BGPEnabled *bool `json:"bgpEnabled,omitempty" tf:"bgp_enabled,omitempty"`
 
 	// Connection mode to use. Possible values are Default, InitiatorOnly and ResponderOnly. Defaults to Default. Changing this value will force a resource to be created.
 	// +kubebuilder:validation:Optional

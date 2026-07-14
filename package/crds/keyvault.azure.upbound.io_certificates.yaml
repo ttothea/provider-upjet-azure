@@ -176,7 +176,7 @@ spec:
                                   properties:
                                     actionType:
                                       description: The Type of action to be performed
-                                        when the lifetime trigger is triggerec. Possible
+                                        when the lifetime trigger is triggered. Possible
                                         values include AutoRenew and EmailContacts.
                                       type: string
                                   type: object
@@ -471,7 +471,7 @@ spec:
                                   properties:
                                     actionType:
                                       description: The Type of action to be performed
-                                        when the lifetime trigger is triggerec. Possible
+                                        when the lifetime trigger is triggered. Possible
                                         values include AutoRenew and EmailContacts.
                                       type: string
                                   type: object
@@ -882,7 +882,7 @@ spec:
                                   properties:
                                     actionType:
                                       description: The Type of action to be performed
-                                        when the lifetime trigger is triggerec. Possible
+                                        when the lifetime trigger is triggered. Possible
                                         values include AutoRenew and EmailContacts.
                                       type: string
                                   type: object
@@ -1227,7 +1227,7 @@ spec:
                               properties:
                                 actionType:
                                   description: The Type of action to be performed
-                                    when the lifetime trigger is triggerec. Possible
+                                    when the lifetime trigger is triggered. Possible
                                     values include AutoRenew and EmailContacts.
                                   type: string
                               type: object
@@ -1502,7 +1502,7 @@ spec:
                               properties:
                                 actionType:
                                   description: The Type of action to be performed
-                                    when the lifetime trigger is triggerec. Possible
+                                    when the lifetime trigger is triggered. Possible
                                     values include AutoRenew and EmailContacts.
                                   type: string
                               type: object
@@ -1891,7 +1891,7 @@ spec:
                               properties:
                                 actionType:
                                   description: The Type of action to be performed
-                                    when the lifetime trigger is triggerec. Possible
+                                    when the lifetime trigger is triggered. Possible
                                     values include AutoRenew and EmailContacts.
                                   type: string
                               type: object

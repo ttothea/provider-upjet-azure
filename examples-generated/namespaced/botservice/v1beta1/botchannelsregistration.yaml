@@ -15,6 +15,8 @@ spec:
   forProvider:
     location: global
     microsoftAppId: ${data.azurerm_client_config.current.client_id}
+    microsoftAppTenantId: ${data.azurerm_client_config.current.tenant_id}
+    microsoftAppType: SingleTenant
     name: example
     resourceGroupNameSelector:
       matchLabels:

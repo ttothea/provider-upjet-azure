@@ -27,7 +27,7 @@ type KeyVaultSASTokenInitParameters struct {
 	// +kubebuilder:validation:Optional
 	LinkedServiceNameSelector *v1.Selector `json:"linkedServiceNameSelector,omitempty" tf:"-"`
 
-	// Specifies the secret name in Azure Key Vault that stores the SAS token.
+	// Specifies the secret name in Azure Key Vault that stores the Service Principal key.
 	SecretName *string `json:"secretName,omitempty" tf:"secret_name,omitempty"`
 }
 
@@ -36,7 +36,7 @@ type KeyVaultSASTokenObservation struct {
 	// Specifies the name of an existing Key Vault Data Factory Linked Service.
 	LinkedServiceName *string `json:"linkedServiceName,omitempty" tf:"linked_service_name,omitempty"`
 
-	// Specifies the secret name in Azure Key Vault that stores the SAS token.
+	// Specifies the secret name in Azure Key Vault that stores the Service Principal key.
 	SecretName *string `json:"secretName,omitempty" tf:"secret_name,omitempty"`
 }
 
@@ -55,7 +55,7 @@ type KeyVaultSASTokenParameters struct {
 	// +kubebuilder:validation:Optional
 	LinkedServiceNameSelector *v1.Selector `json:"linkedServiceNameSelector,omitempty" tf:"-"`
 
-	// Specifies the secret name in Azure Key Vault that stores the SAS token.
+	// Specifies the secret name in Azure Key Vault that stores the Service Principal key.
 	// +kubebuilder:validation:Optional
 	SecretName *string `json:"secretName" tf:"secret_name,omitempty"`
 }
@@ -81,12 +81,14 @@ type LinkedServiceAzureBlobStorageInitParameters struct {
 	// The integration runtime reference to associate with the Data Factory Linked Service.
 	IntegrationRuntimeName *string `json:"integrationRuntimeName,omitempty" tf:"integration_runtime_name,omitempty"`
 
-	// A key_vault_sas_token block as defined below. Use this argument to store SAS Token in an existing Key Vault. It needs an existing Key Vault Data Factory Linked Service. A sas_uri is required.
 	KeyVaultSASToken *KeyVaultSASTokenInitParameters `json:"keyVaultSasToken,omitempty" tf:"key_vault_sas_token,omitempty"`
 
 	// A map of parameters to associate with the Data Factory Linked Service.
 	// +mapType=granular
 	Parameters map[string]*string `json:"parameters,omitempty" tf:"parameters,omitempty"`
+
+	// A sas_token_linked_key_vault_key block as defined below. Use this argument to store SAS Token in an existing Key Vault. It needs an existing Key Vault Data Factory Linked Service. A sas_uri is required.
+	SASTokenLinkedKeyVaultKey *SASTokenLinkedKeyVaultKeyInitParameters `json:"sasTokenLinkedKeyVaultKey,omitempty" tf:"sas_token_linked_key_vault_key,omitempty"`
 
 	// The SAS URI. Conflicts with connection_string_insecure, connection_string and service_endpoint.
 	SASURISecretRef *v1.SecretKeySelector `json:"sasuriSecretRef,omitempty" tf:"-"`
@@ -137,12 +139,14 @@ type LinkedServiceAzureBlobStorageObservation struct {
 	// The integration runtime reference to associate with the Data Factory Linked Service.
 	IntegrationRuntimeName *string `json:"integrationRuntimeName,omitempty" tf:"integration_runtime_name,omitempty"`
 
-	// A key_vault_sas_token block as defined below. Use this argument to store SAS Token in an existing Key Vault. It needs an existing Key Vault Data Factory Linked Service. A sas_uri is required.
 	KeyVaultSASToken *KeyVaultSASTokenObservation `json:"keyVaultSasToken,omitempty" tf:"key_vault_sas_token,omitempty"`
 
 	// A map of parameters to associate with the Data Factory Linked Service.
 	// +mapType=granular
 	Parameters map[string]*string `json:"parameters,omitempty" tf:"parameters,omitempty"`
+
+	// A sas_token_linked_key_vault_key block as defined below. Use this argument to store SAS Token in an existing Key Vault. It needs an existing Key Vault Data Factory Linked Service. A sas_uri is required.
+	SASTokenLinkedKeyVaultKey *SASTokenLinkedKeyVaultKeyObservation `json:"sasTokenLinkedKeyVaultKey,omitempty" tf:"sas_token_linked_key_vault_key,omitempty"`
 
 	// The service principal id in which to authenticate against the Azure Blob Storage account.
 	ServicePrincipalID *string `json:"servicePrincipalId,omitempty" tf:"service_principal_id,omitempty"`
@@ -204,7 +208,6 @@ type LinkedServiceAzureBlobStorageParameters struct {
 	// +kubebuilder:validation:Optional
 	IntegrationRuntimeName *string `json:"integrationRuntimeName,omitempty" tf:"integration_runtime_name,omitempty"`
 
-	// A key_vault_sas_token block as defined below. Use this argument to store SAS Token in an existing Key Vault. It needs an existing Key Vault Data Factory Linked Service. A sas_uri is required.
 	// +kubebuilder:validation:Optional
 	KeyVaultSASToken *KeyVaultSASTokenParameters `json:"keyVaultSasToken,omitempty" tf:"key_vault_sas_token,omitempty"`
 
@@ -212,6 +215,10 @@ type LinkedServiceAzureBlobStorageParameters struct {
 	// +kubebuilder:validation:Optional
 	// +mapType=granular
 	Parameters map[string]*string `json:"parameters,omitempty" tf:"parameters,omitempty"`
+
+	// A sas_token_linked_key_vault_key block as defined below. Use this argument to store SAS Token in an existing Key Vault. It needs an existing Key Vault Data Factory Linked Service. A sas_uri is required.
+	// +kubebuilder:validation:Optional
+	SASTokenLinkedKeyVaultKey *SASTokenLinkedKeyVaultKeyParameters `json:"sasTokenLinkedKeyVaultKey,omitempty" tf:"sas_token_linked_key_vault_key,omitempty"`
 
 	// The SAS URI. Conflicts with connection_string_insecure, connection_string and service_endpoint.
 	// +kubebuilder:validation:Optional
@@ -244,6 +251,35 @@ type LinkedServiceAzureBlobStorageParameters struct {
 	// Whether to use the Data Factory's managed identity to authenticate against the Azure Blob Storage account. Incompatible with service_principal_id and service_principal_key.
 	// +kubebuilder:validation:Optional
 	UseManagedIdentity *bool `json:"useManagedIdentity,omitempty" tf:"use_managed_identity,omitempty"`
+}
+
+type SASTokenLinkedKeyVaultKeyInitParameters struct {
+
+	// Specifies the name of an existing Key Vault Data Factory Linked Service.
+	LinkedServiceName *string `json:"linkedServiceName,omitempty" tf:"linked_service_name,omitempty"`
+
+	// Specifies the secret name in Azure Key Vault that stores the SAS token.
+	SecretName *string `json:"secretName,omitempty" tf:"secret_name,omitempty"`
+}
+
+type SASTokenLinkedKeyVaultKeyObservation struct {
+
+	// Specifies the name of an existing Key Vault Data Factory Linked Service.
+	LinkedServiceName *string `json:"linkedServiceName,omitempty" tf:"linked_service_name,omitempty"`
+
+	// Specifies the secret name in Azure Key Vault that stores the SAS token.
+	SecretName *string `json:"secretName,omitempty" tf:"secret_name,omitempty"`
+}
+
+type SASTokenLinkedKeyVaultKeyParameters struct {
+
+	// Specifies the name of an existing Key Vault Data Factory Linked Service.
+	// +kubebuilder:validation:Optional
+	LinkedServiceName *string `json:"linkedServiceName" tf:"linked_service_name,omitempty"`
+
+	// Specifies the secret name in Azure Key Vault that stores the SAS token.
+	// +kubebuilder:validation:Optional
+	SecretName *string `json:"secretName" tf:"secret_name,omitempty"`
 }
 
 type ServicePrincipalLinkedKeyVaultKeyInitParameters struct {

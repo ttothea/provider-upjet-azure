@@ -18,7 +18,6 @@ spec:
       matchLabels:
         testing.upbound.io/example-name: example
     sku: Standard
-    softDeleteEnabled: true
 
 ---
 

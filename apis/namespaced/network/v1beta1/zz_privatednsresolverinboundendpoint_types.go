@@ -16,13 +16,13 @@ import (
 
 type IPConfigurationsInitParameters struct {
 
-	// Private IP address of the IP configuration.
+	// Private IP address of the IP configuration. Changing this forces a new resource to be created.
 	PrivateIPAddress *string `json:"privateIpAddress,omitempty" tf:"private_ip_address,omitempty"`
 
-	// Private IP address allocation method. Allowed value is Dynamic and Static. Defaults to Dynamic.
+	// Private IP address allocation method. Possible values are Dynamic and Static. Defaults to Dynamic. Changing this forces a new resource to be created.
 	PrivateIPAllocationMethod *string `json:"privateIpAllocationMethod,omitempty" tf:"private_ip_allocation_method,omitempty"`
 
-	// The subnet ID of the IP configuration.
+	// The subnet ID of the IP configuration. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/network/v1beta1.Subnet
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
@@ -38,27 +38,27 @@ type IPConfigurationsInitParameters struct {
 
 type IPConfigurationsObservation struct {
 
-	// Private IP address of the IP configuration.
+	// Private IP address of the IP configuration. Changing this forces a new resource to be created.
 	PrivateIPAddress *string `json:"privateIpAddress,omitempty" tf:"private_ip_address,omitempty"`
 
-	// Private IP address allocation method. Allowed value is Dynamic and Static. Defaults to Dynamic.
+	// Private IP address allocation method. Possible values are Dynamic and Static. Defaults to Dynamic. Changing this forces a new resource to be created.
 	PrivateIPAllocationMethod *string `json:"privateIpAllocationMethod,omitempty" tf:"private_ip_allocation_method,omitempty"`
 
-	// The subnet ID of the IP configuration.
+	// The subnet ID of the IP configuration. Changing this forces a new resource to be created.
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 }
 
 type IPConfigurationsParameters struct {
 
-	// Private IP address of the IP configuration.
+	// Private IP address of the IP configuration. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
 	PrivateIPAddress *string `json:"privateIpAddress,omitempty" tf:"private_ip_address,omitempty"`
 
-	// Private IP address allocation method. Allowed value is Dynamic and Static. Defaults to Dynamic.
+	// Private IP address allocation method. Possible values are Dynamic and Static. Defaults to Dynamic. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
 	PrivateIPAllocationMethod *string `json:"privateIpAllocationMethod,omitempty" tf:"private_ip_allocation_method,omitempty"`
 
-	// The subnet ID of the IP configuration.
+	// The subnet ID of the IP configuration. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/network/v1beta1.Subnet
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
@@ -75,10 +75,10 @@ type IPConfigurationsParameters struct {
 
 type PrivateDNSResolverInboundEndpointInitParameters struct {
 
-	// One ip_configurations block as defined below. Changing this forces a new Private DNS Resolver Inbound Endpoint to be created.
+	// One ip_configurations block as defined below. Changing this forces a new resource to be created.
 	IPConfigurations *IPConfigurationsInitParameters `json:"ipConfigurations,omitempty" tf:"ip_configurations,omitempty"`
 
-	// Specifies the Azure Region where the Private DNS Resolver Inbound Endpoint should exist. Changing this forces a new Private DNS Resolver Inbound Endpoint to be created.
+	// Specifies the Azure Region where the Private DNS Resolver Inbound Endpoint should exist. Changing this forces a new resource to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// A mapping of tags which should be assigned to the Private DNS Resolver Inbound Endpoint.
@@ -91,13 +91,13 @@ type PrivateDNSResolverInboundEndpointObservation struct {
 	// The ID of the Private DNS Resolver Inbound Endpoint.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// One ip_configurations block as defined below. Changing this forces a new Private DNS Resolver Inbound Endpoint to be created.
+	// One ip_configurations block as defined below. Changing this forces a new resource to be created.
 	IPConfigurations *IPConfigurationsObservation `json:"ipConfigurations,omitempty" tf:"ip_configurations,omitempty"`
 
-	// Specifies the Azure Region where the Private DNS Resolver Inbound Endpoint should exist. Changing this forces a new Private DNS Resolver Inbound Endpoint to be created.
+	// Specifies the Azure Region where the Private DNS Resolver Inbound Endpoint should exist. Changing this forces a new resource to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// Specifies the ID of the Private DNS Resolver Inbound Endpoint. Changing this forces a new Private DNS Resolver Inbound Endpoint to be created.
+	// Specifies the ID of the Private DNS Resolver Inbound Endpoint. Changing this forces a new resource to be created.
 	PrivateDNSResolverID *string `json:"privateDnsResolverId,omitempty" tf:"private_dns_resolver_id,omitempty"`
 
 	// A mapping of tags which should be assigned to the Private DNS Resolver Inbound Endpoint.
@@ -107,15 +107,15 @@ type PrivateDNSResolverInboundEndpointObservation struct {
 
 type PrivateDNSResolverInboundEndpointParameters struct {
 
-	// One ip_configurations block as defined below. Changing this forces a new Private DNS Resolver Inbound Endpoint to be created.
+	// One ip_configurations block as defined below. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
 	IPConfigurations *IPConfigurationsParameters `json:"ipConfigurations,omitempty" tf:"ip_configurations,omitempty"`
 
-	// Specifies the Azure Region where the Private DNS Resolver Inbound Endpoint should exist. Changing this forces a new Private DNS Resolver Inbound Endpoint to be created.
+	// Specifies the Azure Region where the Private DNS Resolver Inbound Endpoint should exist. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// Specifies the ID of the Private DNS Resolver Inbound Endpoint. Changing this forces a new Private DNS Resolver Inbound Endpoint to be created.
+	// Specifies the ID of the Private DNS Resolver Inbound Endpoint. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/network/v1beta1.PrivateDNSResolver
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional

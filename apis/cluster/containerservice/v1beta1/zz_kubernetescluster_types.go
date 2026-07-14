@@ -120,7 +120,7 @@ type AdvancedNetworkingInitParameters struct {
 	// Is observability enabled? Defaults to false.
 	ObservabilityEnabled *bool `json:"observabilityEnabled,omitempty" tf:"observability_enabled,omitempty"`
 
-	// Is security enabled? Defaults to false.
+	// Is security enabled? Defaults to false. This can only be enabled (set to true) when network_plugin is set to azure and network_data_plane is set to cilium.
 	SecurityEnabled *bool `json:"securityEnabled,omitempty" tf:"security_enabled,omitempty"`
 }
 
@@ -129,7 +129,7 @@ type AdvancedNetworkingObservation struct {
 	// Is observability enabled? Defaults to false.
 	ObservabilityEnabled *bool `json:"observabilityEnabled,omitempty" tf:"observability_enabled,omitempty"`
 
-	// Is security enabled? Defaults to false.
+	// Is security enabled? Defaults to false. This can only be enabled (set to true) when network_plugin is set to azure and network_data_plane is set to cilium.
 	SecurityEnabled *bool `json:"securityEnabled,omitempty" tf:"security_enabled,omitempty"`
 }
 
@@ -139,7 +139,7 @@ type AdvancedNetworkingParameters struct {
 	// +kubebuilder:validation:Optional
 	ObservabilityEnabled *bool `json:"observabilityEnabled,omitempty" tf:"observability_enabled,omitempty"`
 
-	// Is security enabled? Defaults to false.
+	// Is security enabled? Defaults to false. This can only be enabled (set to true) when network_plugin is set to azure and network_data_plane is set to cilium.
 	// +kubebuilder:validation:Optional
 	SecurityEnabled *bool `json:"securityEnabled,omitempty" tf:"security_enabled,omitempty"`
 }
@@ -188,7 +188,7 @@ type AllowedInitParameters struct {
 	// A day in a week. Possible values are Sunday, Monday, Tuesday, Wednesday, Thursday, Friday and Saturday.
 	Day *string `json:"day,omitempty" tf:"day,omitempty"`
 
-	// An array of hour slots in a day. For example, specifying 1 will allow maintenance from 1:00am to 2:00am. Specifying 1, 2 will allow maintenance from 1:00am to 3:00m. Possible values are between 0 and 23.
+	// An array of hour slots in a day. For example, specifying 1 will allow maintenance from 1:00am to 2:00am. Specifying 1, 2 will allow maintenance from 1:00am to 3:00am. Possible values are between 0 and 23.
 	// +listType=set
 	Hours []*float64 `json:"hours,omitempty" tf:"hours,omitempty"`
 }
@@ -198,7 +198,7 @@ type AllowedObservation struct {
 	// A day in a week. Possible values are Sunday, Monday, Tuesday, Wednesday, Thursday, Friday and Saturday.
 	Day *string `json:"day,omitempty" tf:"day,omitempty"`
 
-	// An array of hour slots in a day. For example, specifying 1 will allow maintenance from 1:00am to 2:00am. Specifying 1, 2 will allow maintenance from 1:00am to 3:00m. Possible values are between 0 and 23.
+	// An array of hour slots in a day. For example, specifying 1 will allow maintenance from 1:00am to 2:00am. Specifying 1, 2 will allow maintenance from 1:00am to 3:00am. Possible values are between 0 and 23.
 	// +listType=set
 	Hours []*float64 `json:"hours,omitempty" tf:"hours,omitempty"`
 }
@@ -209,7 +209,7 @@ type AllowedParameters struct {
 	// +kubebuilder:validation:Optional
 	Day *string `json:"day" tf:"day,omitempty"`
 
-	// An array of hour slots in a day. For example, specifying 1 will allow maintenance from 1:00am to 2:00am. Specifying 1, 2 will allow maintenance from 1:00am to 3:00m. Possible values are between 0 and 23.
+	// An array of hour slots in a day. For example, specifying 1 will allow maintenance from 1:00am to 2:00am. Specifying 1, 2 will allow maintenance from 1:00am to 3:00am. Possible values are between 0 and 23.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Hours []*float64 `json:"hours" tf:"hours,omitempty"`
@@ -660,7 +660,7 @@ type DefaultNodePoolInitParameters struct {
 	// The type of disk which should be used for the Operating System. Possible values are Ephemeral and Managed. Defaults to Managed. temporary_name_for_rotation must be specified when attempting a change.
 	OsDiskType *string `json:"osDiskType,omitempty" tf:"os_disk_type,omitempty"`
 
-	// Specifies the OS SKU used by the agent pool. Possible values are AzureLinux, AzureLinux3, Ubuntu, Ubuntu2204, Windows2019 and Windows2022. If not specified, the default is Ubuntu if OSType=Linux or Windows2019 if OSType=Windows. And the default Windows OSSKU will be changed to Windows2022 after Windows2019 is deprecated. Changing this from AzureLinux or Ubuntu to AzureLinux or Ubuntu will not replace the resource, otherwise temporary_name_for_rotation must be specified when attempting a change.
+	// Specifies the OS SKU used by the agent pool. Possible values are AzureLinux, AzureLinux3, Ubuntu, Ubuntu2204, Ubuntu2404, Windows2019 and Windows2022. If not specified, the default is Ubuntu when os_type=Linux or Windows2019 if os_type=Windows (Windows2022 Kubernetes ≥1.33). Changing between AzureLinux and Ubuntu does not replace the resource; otherwise temporary_name_for_rotation must be specified when attempting a change.
 	OsSku *string `json:"osSku,omitempty" tf:"os_sku,omitempty"`
 
 	// The ID of the Subnet where the pods in the default Node Pool should exist.
@@ -717,7 +717,7 @@ type DefaultNodePoolInitParameters struct {
 	// +kubebuilder:validation:Optional
 	VnetSubnetIDSelector *v1.Selector `json:"vnetSubnetIdSelector,omitempty" tf:"-"`
 
-	// Specifies the workload runtime used by the node pool. Possible value is OCIContainer.
+	// Specifies the workload runtime used by the node pool. Possible values are KataVmIsolation and OCIContainer.
 	WorkloadRuntime *string `json:"workloadRuntime,omitempty" tf:"workload_runtime,omitempty"`
 
 	// Specifies a list of Availability Zones in which this Kubernetes Cluster should be located. temporary_name_for_rotation must be specified when changing this property.
@@ -797,7 +797,7 @@ type DefaultNodePoolObservation struct {
 	// The type of disk which should be used for the Operating System. Possible values are Ephemeral and Managed. Defaults to Managed. temporary_name_for_rotation must be specified when attempting a change.
 	OsDiskType *string `json:"osDiskType,omitempty" tf:"os_disk_type,omitempty"`
 
-	// Specifies the OS SKU used by the agent pool. Possible values are AzureLinux, AzureLinux3, Ubuntu, Ubuntu2204, Windows2019 and Windows2022. If not specified, the default is Ubuntu if OSType=Linux or Windows2019 if OSType=Windows. And the default Windows OSSKU will be changed to Windows2022 after Windows2019 is deprecated. Changing this from AzureLinux or Ubuntu to AzureLinux or Ubuntu will not replace the resource, otherwise temporary_name_for_rotation must be specified when attempting a change.
+	// Specifies the OS SKU used by the agent pool. Possible values are AzureLinux, AzureLinux3, Ubuntu, Ubuntu2204, Ubuntu2404, Windows2019 and Windows2022. If not specified, the default is Ubuntu when os_type=Linux or Windows2019 if os_type=Windows (Windows2022 Kubernetes ≥1.33). Changing between AzureLinux and Ubuntu does not replace the resource; otherwise temporary_name_for_rotation must be specified when attempting a change.
 	OsSku *string `json:"osSku,omitempty" tf:"os_sku,omitempty"`
 
 	// The ID of the Subnet where the pods in the default Node Pool should exist.
@@ -834,7 +834,7 @@ type DefaultNodePoolObservation struct {
 	// The ID of a Subnet where the Kubernetes Node Pool should exist.
 	VnetSubnetID *string `json:"vnetSubnetId,omitempty" tf:"vnet_subnet_id,omitempty"`
 
-	// Specifies the workload runtime used by the node pool. Possible value is OCIContainer.
+	// Specifies the workload runtime used by the node pool. Possible values are KataVmIsolation and OCIContainer.
 	WorkloadRuntime *string `json:"workloadRuntime,omitempty" tf:"workload_runtime,omitempty"`
 
 	// Specifies a list of Availability Zones in which this Kubernetes Cluster should be located. temporary_name_for_rotation must be specified when changing this property.
@@ -937,7 +937,7 @@ type DefaultNodePoolParameters struct {
 	// +kubebuilder:validation:Optional
 	OsDiskType *string `json:"osDiskType,omitempty" tf:"os_disk_type,omitempty"`
 
-	// Specifies the OS SKU used by the agent pool. Possible values are AzureLinux, AzureLinux3, Ubuntu, Ubuntu2204, Windows2019 and Windows2022. If not specified, the default is Ubuntu if OSType=Linux or Windows2019 if OSType=Windows. And the default Windows OSSKU will be changed to Windows2022 after Windows2019 is deprecated. Changing this from AzureLinux or Ubuntu to AzureLinux or Ubuntu will not replace the resource, otherwise temporary_name_for_rotation must be specified when attempting a change.
+	// Specifies the OS SKU used by the agent pool. Possible values are AzureLinux, AzureLinux3, Ubuntu, Ubuntu2204, Ubuntu2404, Windows2019 and Windows2022. If not specified, the default is Ubuntu when os_type=Linux or Windows2019 if os_type=Windows (Windows2022 Kubernetes ≥1.33). Changing between AzureLinux and Ubuntu does not replace the resource; otherwise temporary_name_for_rotation must be specified when attempting a change.
 	// +kubebuilder:validation:Optional
 	OsSku *string `json:"osSku,omitempty" tf:"os_sku,omitempty"`
 
@@ -1006,7 +1006,7 @@ type DefaultNodePoolParameters struct {
 	// +kubebuilder:validation:Optional
 	VnetSubnetIDSelector *v1.Selector `json:"vnetSubnetIdSelector,omitempty" tf:"-"`
 
-	// Specifies the workload runtime used by the node pool. Possible value is OCIContainer.
+	// Specifies the workload runtime used by the node pool. Possible values are KataVmIsolation and OCIContainer.
 	// +kubebuilder:validation:Optional
 	WorkloadRuntime *string `json:"workloadRuntime,omitempty" tf:"workload_runtime,omitempty"`
 
@@ -1351,6 +1351,9 @@ type KubeletConfigInitParameters struct {
 	// Specifies the CPU Manager policy to use. Possible values are none and static,.
 	CPUManagerPolicy *string `json:"cpuManagerPolicy,omitempty" tf:"cpu_manager_policy,omitempty"`
 
+	// Specifies the maximum number of container log files that can be present for a container. Must be at least 2.
+	ContainerLogMaxFiles *float64 `json:"containerLogMaxFiles,omitempty" tf:"container_log_max_files,omitempty"`
+
 	// Specifies the maximum number of container log files that can be present for a container. must be at least 2.
 	ContainerLogMaxLine *float64 `json:"containerLogMaxLine,omitempty" tf:"container_log_max_line,omitempty"`
 
@@ -1384,6 +1387,9 @@ type KubeletConfigObservation struct {
 
 	// Specifies the CPU Manager policy to use. Possible values are none and static,.
 	CPUManagerPolicy *string `json:"cpuManagerPolicy,omitempty" tf:"cpu_manager_policy,omitempty"`
+
+	// Specifies the maximum number of container log files that can be present for a container. Must be at least 2.
+	ContainerLogMaxFiles *float64 `json:"containerLogMaxFiles,omitempty" tf:"container_log_max_files,omitempty"`
 
 	// Specifies the maximum number of container log files that can be present for a container. must be at least 2.
 	ContainerLogMaxLine *float64 `json:"containerLogMaxLine,omitempty" tf:"container_log_max_line,omitempty"`
@@ -1422,6 +1428,10 @@ type KubeletConfigParameters struct {
 	// Specifies the CPU Manager policy to use. Possible values are none and static,.
 	// +kubebuilder:validation:Optional
 	CPUManagerPolicy *string `json:"cpuManagerPolicy,omitempty" tf:"cpu_manager_policy,omitempty"`
+
+	// Specifies the maximum number of container log files that can be present for a container. Must be at least 2.
+	// +kubebuilder:validation:Optional
+	ContainerLogMaxFiles *float64 `json:"containerLogMaxFiles,omitempty" tf:"container_log_max_files,omitempty"`
 
 	// Specifies the maximum number of container log files that can be present for a container. must be at least 2.
 	// +kubebuilder:validation:Optional
@@ -1597,10 +1607,13 @@ type KubernetesClusterInitParameters struct {
 	// The upgrade channel for this Kubernetes Cluster Nodes' OS Image. Possible values are Unmanaged, SecurityPatch, NodeImage and None. Defaults to NodeImage.
 	NodeOsUpgradeChannel *string `json:"nodeOsUpgradeChannel,omitempty" tf:"node_os_upgrade_channel,omitempty"`
 
+	// A node_provisioning_profile block as defined below.
+	NodeProvisioningProfile []NodeProvisioningProfileInitParameters `json:"nodeProvisioningProfile,omitempty" tf:"node_provisioning_profile,omitempty"`
+
 	// The auto-generated Resource Group which contains the resources for this Managed Kubernetes Cluster.
 	NodeResourceGroup *string `json:"nodeResourceGroup,omitempty" tf:"node_resource_group,omitempty"`
 
-	// Enable or Disable the OIDC issuer URL
+	// Whether to enable the OIDC issuer feature.
 	OidcIssuerEnabled *bool `json:"oidcIssuerEnabled,omitempty" tf:"oidc_issuer_enabled,omitempty"`
 
 	// An oms_agent block as defined below.
@@ -1791,13 +1804,16 @@ type KubernetesClusterObservation struct {
 	// The upgrade channel for this Kubernetes Cluster Nodes' OS Image. Possible values are Unmanaged, SecurityPatch, NodeImage and None. Defaults to NodeImage.
 	NodeOsUpgradeChannel *string `json:"nodeOsUpgradeChannel,omitempty" tf:"node_os_upgrade_channel,omitempty"`
 
+	// A node_provisioning_profile block as defined below.
+	NodeProvisioningProfile []NodeProvisioningProfileObservation `json:"nodeProvisioningProfile,omitempty" tf:"node_provisioning_profile,omitempty"`
+
 	// The auto-generated Resource Group which contains the resources for this Managed Kubernetes Cluster.
 	NodeResourceGroup *string `json:"nodeResourceGroup,omitempty" tf:"node_resource_group,omitempty"`
 
 	// The ID of the Resource Group containing the resources for this Managed Kubernetes Cluster.
 	NodeResourceGroupID *string `json:"nodeResourceGroupId,omitempty" tf:"node_resource_group_id,omitempty"`
 
-	// Enable or Disable the OIDC issuer URL
+	// Whether to enable the OIDC issuer feature.
 	OidcIssuerEnabled *bool `json:"oidcIssuerEnabled,omitempty" tf:"oidc_issuer_enabled,omitempty"`
 
 	// The OIDC issuer URL that is associated with the cluster.
@@ -2014,11 +2030,15 @@ type KubernetesClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	NodeOsUpgradeChannel *string `json:"nodeOsUpgradeChannel,omitempty" tf:"node_os_upgrade_channel,omitempty"`
 
+	// A node_provisioning_profile block as defined below.
+	// +kubebuilder:validation:Optional
+	NodeProvisioningProfile []NodeProvisioningProfileParameters `json:"nodeProvisioningProfile,omitempty" tf:"node_provisioning_profile,omitempty"`
+
 	// The auto-generated Resource Group which contains the resources for this Managed Kubernetes Cluster.
 	// +kubebuilder:validation:Optional
 	NodeResourceGroup *string `json:"nodeResourceGroup,omitempty" tf:"node_resource_group,omitempty"`
 
-	// Enable or Disable the OIDC issuer URL
+	// Whether to enable the OIDC issuer feature.
 	// +kubebuilder:validation:Optional
 	OidcIssuerEnabled *bool `json:"oidcIssuerEnabled,omitempty" tf:"oidc_issuer_enabled,omitempty"`
 
@@ -2180,7 +2200,7 @@ type LinuxProfileInitParameters struct {
 	// The Admin Username for the Cluster. Changing this forces a new resource to be created.
 	AdminUsername *string `json:"adminUsername,omitempty" tf:"admin_username,omitempty"`
 
-	// An ssh_key block as defined below. Only one is currently allowed. Changing this will update the key on all node pools. More information can be found in the documentation.
+	// An ssh_key block as defined below.
 	SSHKey []SSHKeyInitParameters `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
 }
 
@@ -2189,7 +2209,7 @@ type LinuxProfileObservation struct {
 	// The Admin Username for the Cluster. Changing this forces a new resource to be created.
 	AdminUsername *string `json:"adminUsername,omitempty" tf:"admin_username,omitempty"`
 
-	// An ssh_key block as defined below. Only one is currently allowed. Changing this will update the key on all node pools. More information can be found in the documentation.
+	// An ssh_key block as defined below.
 	SSHKey []SSHKeyObservation `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
 }
 
@@ -2199,7 +2219,7 @@ type LinuxProfileParameters struct {
 	// +kubebuilder:validation:Optional
 	AdminUsername *string `json:"adminUsername" tf:"admin_username,omitempty"`
 
-	// An ssh_key block as defined below. Only one is currently allowed. Changing this will update the key on all node pools. More information can be found in the documentation.
+	// An ssh_key block as defined below.
 	// +kubebuilder:validation:Optional
 	SSHKey []SSHKeyParameters `json:"sshKey" tf:"ssh_key,omitempty"`
 }
@@ -2684,7 +2704,7 @@ type NATGatewayProfileParameters struct {
 
 type NetworkProfileInitParameters struct {
 
-	// An advanced_networking block as defined below. This can only be specified when network_plugin is set to azure and network_data_plane is set to cilium.
+	// An advanced_networking block as defined below.
 	AdvancedNetworking []AdvancedNetworkingInitParameters `json:"advancedNetworking,omitempty" tf:"advanced_networking,omitempty"`
 
 	// IP address within the Kubernetes service address range that will be used by cluster service discovery (kube-dns). Changing this forces a new resource to be created.
@@ -2708,7 +2728,7 @@ type NetworkProfileInitParameters struct {
 	// Network mode to be used with Azure CNI. Possible values are bridge and transparent. Changing this forces a new resource to be created.
 	NetworkMode *string `json:"networkMode,omitempty" tf:"network_mode,omitempty"`
 
-	// Network plugin to use for networking. Currently supported values are azure, kubenet and none. Changing this forces a new resource to be created.
+	// Network plugin to use for networking. Currently supported values are azure, kubenet and none
 	NetworkPlugin *string `json:"networkPlugin,omitempty" tf:"network_plugin,omitempty"`
 
 	// Specifies the network plugin mode used for building the Kubernetes network. Possible value is overlay.
@@ -2720,10 +2740,10 @@ type NetworkProfileInitParameters struct {
 	// The outbound (egress) routing method which should be used for this Kubernetes Cluster. Possible values are loadBalancer, userDefinedRouting, managedNATGateway, userAssignedNATGateway and none. Defaults to loadBalancer.
 	OutboundType *string `json:"outboundType,omitempty" tf:"outbound_type,omitempty"`
 
-	// The CIDR to use for pod IP addresses. This field can only be set when network_plugin is set to kubenet or network_plugin_mode is set to overlay. Changing this forces a new resource to be created.
+	// The CIDR to use for pod IP addresses. This field can only be set when network_plugin is set to kubenet or network_plugin_mode is set to overlay.
 	PodCidr *string `json:"podCidr,omitempty" tf:"pod_cidr,omitempty"`
 
-	// A list of CIDRs to use for pod IP addresses. For single-stack networking a single IPv4 CIDR is expected. For dual-stack networking an IPv4 and IPv6 CIDR are expected. Changing this forces a new resource to be created.
+	// A list of CIDRs to use for pod IP addresses. For single-stack networking a single IPv4 CIDR is expected. For dual-stack networking an IPv4 and IPv6 CIDR are expected.
 	PodCidrs []*string `json:"podCidrs,omitempty" tf:"pod_cidrs,omitempty"`
 
 	// The Network Range used by the Kubernetes service. Changing this forces a new resource to be created.
@@ -2735,7 +2755,7 @@ type NetworkProfileInitParameters struct {
 
 type NetworkProfileObservation struct {
 
-	// An advanced_networking block as defined below. This can only be specified when network_plugin is set to azure and network_data_plane is set to cilium.
+	// An advanced_networking block as defined below.
 	AdvancedNetworking []AdvancedNetworkingObservation `json:"advancedNetworking,omitempty" tf:"advanced_networking,omitempty"`
 
 	// IP address within the Kubernetes service address range that will be used by cluster service discovery (kube-dns). Changing this forces a new resource to be created.
@@ -2759,7 +2779,7 @@ type NetworkProfileObservation struct {
 	// Network mode to be used with Azure CNI. Possible values are bridge and transparent. Changing this forces a new resource to be created.
 	NetworkMode *string `json:"networkMode,omitempty" tf:"network_mode,omitempty"`
 
-	// Network plugin to use for networking. Currently supported values are azure, kubenet and none. Changing this forces a new resource to be created.
+	// Network plugin to use for networking. Currently supported values are azure, kubenet and none
 	NetworkPlugin *string `json:"networkPlugin,omitempty" tf:"network_plugin,omitempty"`
 
 	// Specifies the network plugin mode used for building the Kubernetes network. Possible value is overlay.
@@ -2771,10 +2791,10 @@ type NetworkProfileObservation struct {
 	// The outbound (egress) routing method which should be used for this Kubernetes Cluster. Possible values are loadBalancer, userDefinedRouting, managedNATGateway, userAssignedNATGateway and none. Defaults to loadBalancer.
 	OutboundType *string `json:"outboundType,omitempty" tf:"outbound_type,omitempty"`
 
-	// The CIDR to use for pod IP addresses. This field can only be set when network_plugin is set to kubenet or network_plugin_mode is set to overlay. Changing this forces a new resource to be created.
+	// The CIDR to use for pod IP addresses. This field can only be set when network_plugin is set to kubenet or network_plugin_mode is set to overlay.
 	PodCidr *string `json:"podCidr,omitempty" tf:"pod_cidr,omitempty"`
 
-	// A list of CIDRs to use for pod IP addresses. For single-stack networking a single IPv4 CIDR is expected. For dual-stack networking an IPv4 and IPv6 CIDR are expected. Changing this forces a new resource to be created.
+	// A list of CIDRs to use for pod IP addresses. For single-stack networking a single IPv4 CIDR is expected. For dual-stack networking an IPv4 and IPv6 CIDR are expected.
 	PodCidrs []*string `json:"podCidrs,omitempty" tf:"pod_cidrs,omitempty"`
 
 	// The Network Range used by the Kubernetes service. Changing this forces a new resource to be created.
@@ -2786,7 +2806,7 @@ type NetworkProfileObservation struct {
 
 type NetworkProfileParameters struct {
 
-	// An advanced_networking block as defined below. This can only be specified when network_plugin is set to azure and network_data_plane is set to cilium.
+	// An advanced_networking block as defined below.
 	// +kubebuilder:validation:Optional
 	AdvancedNetworking []AdvancedNetworkingParameters `json:"advancedNetworking,omitempty" tf:"advanced_networking,omitempty"`
 
@@ -2818,7 +2838,7 @@ type NetworkProfileParameters struct {
 	// +kubebuilder:validation:Optional
 	NetworkMode *string `json:"networkMode,omitempty" tf:"network_mode,omitempty"`
 
-	// Network plugin to use for networking. Currently supported values are azure, kubenet and none. Changing this forces a new resource to be created.
+	// Network plugin to use for networking. Currently supported values are azure, kubenet and none
 	// +kubebuilder:validation:Optional
 	NetworkPlugin *string `json:"networkPlugin" tf:"network_plugin,omitempty"`
 
@@ -2834,11 +2854,11 @@ type NetworkProfileParameters struct {
 	// +kubebuilder:validation:Optional
 	OutboundType *string `json:"outboundType,omitempty" tf:"outbound_type,omitempty"`
 
-	// The CIDR to use for pod IP addresses. This field can only be set when network_plugin is set to kubenet or network_plugin_mode is set to overlay. Changing this forces a new resource to be created.
+	// The CIDR to use for pod IP addresses. This field can only be set when network_plugin is set to kubenet or network_plugin_mode is set to overlay.
 	// +kubebuilder:validation:Optional
 	PodCidr *string `json:"podCidr,omitempty" tf:"pod_cidr,omitempty"`
 
-	// A list of CIDRs to use for pod IP addresses. For single-stack networking a single IPv4 CIDR is expected. For dual-stack networking an IPv4 and IPv6 CIDR are expected. Changing this forces a new resource to be created.
+	// A list of CIDRs to use for pod IP addresses. For single-stack networking a single IPv4 CIDR is expected. For dual-stack networking an IPv4 and IPv6 CIDR are expected.
 	// +kubebuilder:validation:Optional
 	PodCidrs []*string `json:"podCidrs,omitempty" tf:"pod_cidrs,omitempty"`
 
@@ -2891,6 +2911,35 @@ type NodeNetworkProfileParameters struct {
 	// +kubebuilder:validation:Optional
 	// +mapType=granular
 	NodePublicIPTags map[string]*string `json:"nodePublicIpTags,omitempty" tf:"node_public_ip_tags,omitempty"`
+}
+
+type NodeProvisioningProfileInitParameters struct {
+
+	// Specifies whether default node pools should be provisioned automatically. Possible values are Auto and None. Defaults to Auto. At least one of mode or default_node_pools must be specified.
+	DefaultNodePools *string `json:"defaultNodePools,omitempty" tf:"default_node_pools,omitempty"`
+
+	// Specifies the provisioning mode for node pools created in this cluster. Possible values are Auto and Manual. Defaults to Manual. At least one of mode or default_node_pools must be specified.
+	Mode *string `json:"mode,omitempty" tf:"mode,omitempty"`
+}
+
+type NodeProvisioningProfileObservation struct {
+
+	// Specifies whether default node pools should be provisioned automatically. Possible values are Auto and None. Defaults to Auto. At least one of mode or default_node_pools must be specified.
+	DefaultNodePools *string `json:"defaultNodePools,omitempty" tf:"default_node_pools,omitempty"`
+
+	// Specifies the provisioning mode for node pools created in this cluster. Possible values are Auto and Manual. Defaults to Manual. At least one of mode or default_node_pools must be specified.
+	Mode *string `json:"mode,omitempty" tf:"mode,omitempty"`
+}
+
+type NodeProvisioningProfileParameters struct {
+
+	// Specifies whether default node pools should be provisioned automatically. Possible values are Auto and None. Defaults to Auto. At least one of mode or default_node_pools must be specified.
+	// +kubebuilder:validation:Optional
+	DefaultNodePools *string `json:"defaultNodePools,omitempty" tf:"default_node_pools,omitempty"`
+
+	// Specifies the provisioning mode for node pools created in this cluster. Possible values are Auto and Manual. Defaults to Manual. At least one of mode or default_node_pools must be specified.
+	// +kubebuilder:validation:Optional
+	Mode *string `json:"mode,omitempty" tf:"mode,omitempty"`
 }
 
 type NotAllowedInitParameters struct {
@@ -3023,7 +3072,7 @@ type ServiceMeshProfileInitParameters struct {
 	// The mode of the service mesh. Possible value is Istio.
 	Mode *string `json:"mode,omitempty" tf:"mode,omitempty"`
 
-	// Specify 1 or 2 Istio control plane revisions for managing minor upgrades using the canary upgrade process. For example, create the resource with revisions set to ["asm-1-25"], or leave it empty (the revisions will only be known after apply). To start the canary upgrade, change revisions to ["asm-1-25", "asm-1-26"]. To roll back the canary upgrade, revert to ["asm-1-25"]. To confirm the upgrade, change to ["asm-1-26"].
+	// Specify 1 or 2 Istio control plane revisions for managing minor upgrades using the canary upgrade process. For example, create the resource with revisions set to ["asm-1-27"], or leave it empty (the revisions will only be known after apply). To start the canary upgrade, change revisions to ["asm-1-27", "asm-1-28"]. To roll back the canary upgrade, revert to ["asm-1-27"]. To confirm the upgrade, change to ["asm-1-28"].
 	Revisions []*string `json:"revisions,omitempty" tf:"revisions,omitempty"`
 }
 
@@ -3041,7 +3090,7 @@ type ServiceMeshProfileObservation struct {
 	// The mode of the service mesh. Possible value is Istio.
 	Mode *string `json:"mode,omitempty" tf:"mode,omitempty"`
 
-	// Specify 1 or 2 Istio control plane revisions for managing minor upgrades using the canary upgrade process. For example, create the resource with revisions set to ["asm-1-25"], or leave it empty (the revisions will only be known after apply). To start the canary upgrade, change revisions to ["asm-1-25", "asm-1-26"]. To roll back the canary upgrade, revert to ["asm-1-25"]. To confirm the upgrade, change to ["asm-1-26"].
+	// Specify 1 or 2 Istio control plane revisions for managing minor upgrades using the canary upgrade process. For example, create the resource with revisions set to ["asm-1-27"], or leave it empty (the revisions will only be known after apply). To start the canary upgrade, change revisions to ["asm-1-27", "asm-1-28"]. To roll back the canary upgrade, revert to ["asm-1-27"]. To confirm the upgrade, change to ["asm-1-28"].
 	Revisions []*string `json:"revisions,omitempty" tf:"revisions,omitempty"`
 }
 
@@ -3063,7 +3112,7 @@ type ServiceMeshProfileParameters struct {
 	// +kubebuilder:validation:Optional
 	Mode *string `json:"mode" tf:"mode,omitempty"`
 
-	// Specify 1 or 2 Istio control plane revisions for managing minor upgrades using the canary upgrade process. For example, create the resource with revisions set to ["asm-1-25"], or leave it empty (the revisions will only be known after apply). To start the canary upgrade, change revisions to ["asm-1-25", "asm-1-26"]. To roll back the canary upgrade, revert to ["asm-1-25"]. To confirm the upgrade, change to ["asm-1-26"].
+	// Specify 1 or 2 Istio control plane revisions for managing minor upgrades using the canary upgrade process. For example, create the resource with revisions set to ["asm-1-27"], or leave it empty (the revisions will only be known after apply). To start the canary upgrade, change revisions to ["asm-1-27", "asm-1-28"]. To roll back the canary upgrade, revert to ["asm-1-27"]. To confirm the upgrade, change to ["asm-1-28"].
 	// +kubebuilder:validation:Optional
 	Revisions []*string `json:"revisions" tf:"revisions,omitempty"`
 }

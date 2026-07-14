@@ -64,3 +64,24 @@ func SetupGated_botservice(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_botservice registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_botservice(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		botchannelalexa.SetupWebhookWithManager,
+		botchanneldirectline.SetupWebhookWithManager,
+		botchannelline.SetupWebhookWithManager,
+		botchannelmsteams.SetupWebhookWithManager,
+		botchannelslack.SetupWebhookWithManager,
+		botchannelsms.SetupWebhookWithManager,
+		botchannelsregistration.SetupWebhookWithManager,
+		botchannelwebchat.SetupWebhookWithManager,
+		botconnection.SetupWebhookWithManager,
+		botwebapp.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

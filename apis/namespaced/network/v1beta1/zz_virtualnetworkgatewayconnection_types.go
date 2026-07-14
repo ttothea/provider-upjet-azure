@@ -77,6 +77,9 @@ type VirtualNetworkGatewayConnectionInitParameters struct {
 	// The authorization key associated with the Express Route Circuit. This field is required only if the type is an ExpressRoute connection.
 	AuthorizationKeySecretRef *v1.LocalSecretKeySelector `json:"authorizationKeySecretRef,omitempty" tf:"-"`
 
+	// If true, BGP (Border Gateway Protocol) is enabled for this connection. Defaults to false.
+	BGPEnabled *bool `json:"bgpEnabled,omitempty" tf:"bgp_enabled,omitempty"`
+
 	// Connection mode to use. Possible values are Default, InitiatorOnly and ResponderOnly. Defaults to Default. Changing this value will force a resource to be created.
 	ConnectionMode *string `json:"connectionMode,omitempty" tf:"connection_mode,omitempty"`
 
@@ -96,7 +99,6 @@ type VirtualNetworkGatewayConnectionInitParameters struct {
 	// +listType=set
 	EgressNATRuleIds []*string `json:"egressNatRuleIds,omitempty" tf:"egress_nat_rule_ids,omitempty"`
 
-	// If true, BGP (Border Gateway Protocol) is enabled for this connection. Defaults to false.
 	EnableBGP *bool `json:"enableBgp,omitempty" tf:"enable_bgp,omitempty"`
 
 	// The ID of the Express Route Circuit when creating an ExpressRoute connection (i.e. when type is ExpressRoute). The Express Route Circuit can be in the same or in a different subscription. Changing this forces a new resource to be created.
@@ -281,6 +283,9 @@ type VirtualNetworkGatewayConnectionIpsecPolicyParameters struct {
 
 type VirtualNetworkGatewayConnectionObservation struct {
 
+	// If true, BGP (Border Gateway Protocol) is enabled for this connection. Defaults to false.
+	BGPEnabled *bool `json:"bgpEnabled,omitempty" tf:"bgp_enabled,omitempty"`
+
 	// Connection mode to use. Possible values are Default, InitiatorOnly and ResponderOnly. Defaults to Default. Changing this value will force a resource to be created.
 	ConnectionMode *string `json:"connectionMode,omitempty" tf:"connection_mode,omitempty"`
 
@@ -300,7 +305,6 @@ type VirtualNetworkGatewayConnectionObservation struct {
 	// +listType=set
 	EgressNATRuleIds []*string `json:"egressNatRuleIds,omitempty" tf:"egress_nat_rule_ids,omitempty"`
 
-	// If true, BGP (Border Gateway Protocol) is enabled for this connection. Defaults to false.
 	EnableBGP *bool `json:"enableBgp,omitempty" tf:"enable_bgp,omitempty"`
 
 	// The ID of the Express Route Circuit when creating an ExpressRoute connection (i.e. when type is ExpressRoute). The Express Route Circuit can be in the same or in a different subscription. Changing this forces a new resource to be created.
@@ -367,6 +371,10 @@ type VirtualNetworkGatewayConnectionParameters struct {
 	// +kubebuilder:validation:Optional
 	AuthorizationKeySecretRef *v1.LocalSecretKeySelector `json:"authorizationKeySecretRef,omitempty" tf:"-"`
 
+	// If true, BGP (Border Gateway Protocol) is enabled for this connection. Defaults to false.
+	// +kubebuilder:validation:Optional
+	BGPEnabled *bool `json:"bgpEnabled,omitempty" tf:"bgp_enabled,omitempty"`
+
 	// Connection mode to use. Possible values are Default, InitiatorOnly and ResponderOnly. Defaults to Default. Changing this value will force a resource to be created.
 	// +kubebuilder:validation:Optional
 	ConnectionMode *string `json:"connectionMode,omitempty" tf:"connection_mode,omitempty"`
@@ -391,7 +399,6 @@ type VirtualNetworkGatewayConnectionParameters struct {
 	// +listType=set
 	EgressNATRuleIds []*string `json:"egressNatRuleIds,omitempty" tf:"egress_nat_rule_ids,omitempty"`
 
-	// If true, BGP (Border Gateway Protocol) is enabled for this connection. Defaults to false.
 	// +kubebuilder:validation:Optional
 	EnableBGP *bool `json:"enableBgp,omitempty" tf:"enable_bgp,omitempty"`
 

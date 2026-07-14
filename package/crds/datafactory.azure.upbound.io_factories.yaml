@@ -83,8 +83,10 @@ spec:
                     type: string
                   customerManagedKeyIdentityId:
                     description: Specifies the ID of the user assigned identity associated
-                      with the Customer Managed Key. Must be supplied if customer_managed_key_id
-                      is set.
+                      with the Customer Managed Key. Must be supplied at factory creation
+                      if customer_managed_key_id is set. Can be left empty once factory
+                      is created to use the system assigned identity. See the Microsoft
+                      documentation for more information.
                     type: string
                   githubConfiguration:
                     description: A github_configuration block as defined below.
@@ -304,8 +306,10 @@ spec:
                     type: string
                   customerManagedKeyIdentityId:
                     description: Specifies the ID of the user assigned identity associated
-                      with the Customer Managed Key. Must be supplied if customer_managed_key_id
-                      is set.
+                      with the Customer Managed Key. Must be supplied at factory creation
+                      if customer_managed_key_id is set. Can be left empty once factory
+                      is created to use the system assigned identity. See the Microsoft
+                      documentation for more information.
                     type: string
                   githubConfiguration:
                     description: A github_configuration block as defined below.
@@ -527,8 +531,10 @@ spec:
                     type: string
                   customerManagedKeyIdentityId:
                     description: Specifies the ID of the user assigned identity associated
-                      with the Customer Managed Key. Must be supplied if customer_managed_key_id
-                      is set.
+                      with the Customer Managed Key. Must be supplied at factory creation
+                      if customer_managed_key_id is set. Can be left empty once factory
+                      is created to use the system assigned identity. See the Microsoft
+                      documentation for more information.
                     type: string
                   githubConfiguration:
                     description: A github_configuration block as defined below.
@@ -786,8 +792,10 @@ spec:
                     type: string
                   customerManagedKeyIdentityId:
                     description: Specifies the ID of the user assigned identity associated
-                      with the Customer Managed Key. Must be supplied if customer_managed_key_id
-                      is set.
+                      with the Customer Managed Key. Must be supplied at factory creation
+                      if customer_managed_key_id is set. Can be left empty once factory
+                      is created to use the system assigned identity. See the Microsoft
+                      documentation for more information.
                     type: string
                   githubConfiguration:
                     description: A github_configuration block as defined below.
@@ -1001,8 +1009,10 @@ spec:
                     type: string
                   customerManagedKeyIdentityId:
                     description: Specifies the ID of the user assigned identity associated
-                      with the Customer Managed Key. Must be supplied if customer_managed_key_id
-                      is set.
+                      with the Customer Managed Key. Must be supplied at factory creation
+                      if customer_managed_key_id is set. Can be left empty once factory
+                      is created to use the system assigned identity. See the Microsoft
+                      documentation for more information.
                     type: string
                   githubConfiguration:
                     description: A github_configuration block as defined below.
@@ -1218,8 +1228,10 @@ spec:
                     type: string
                   customerManagedKeyIdentityId:
                     description: Specifies the ID of the user assigned identity associated
-                      with the Customer Managed Key. Must be supplied if customer_managed_key_id
-                      is set.
+                      with the Customer Managed Key. Must be supplied at factory creation
+                      if customer_managed_key_id is set. Can be left empty once factory
+                      is created to use the system assigned identity. See the Microsoft
+                      documentation for more information.
                     type: string
                   githubConfiguration:
                     description: A github_configuration block as defined below.

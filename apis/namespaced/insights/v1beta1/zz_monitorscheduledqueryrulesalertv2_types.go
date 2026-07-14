@@ -100,6 +100,9 @@ type MonitorScheduledQueryRulesAlertV2ActionInitParameters struct {
 	// Specifies the properties of an alert payload.
 	// +mapType=granular
 	CustomProperties map[string]*string `json:"customProperties,omitempty" tf:"custom_properties,omitempty"`
+
+	// Custom subject override for all email ids in Azure action group.
+	EmailSubject *string `json:"emailSubject,omitempty" tf:"email_subject,omitempty"`
 }
 
 type MonitorScheduledQueryRulesAlertV2ActionObservation struct {
@@ -110,6 +113,9 @@ type MonitorScheduledQueryRulesAlertV2ActionObservation struct {
 	// Specifies the properties of an alert payload.
 	// +mapType=granular
 	CustomProperties map[string]*string `json:"customProperties,omitempty" tf:"custom_properties,omitempty"`
+
+	// Custom subject override for all email ids in Azure action group.
+	EmailSubject *string `json:"emailSubject,omitempty" tf:"email_subject,omitempty"`
 }
 
 type MonitorScheduledQueryRulesAlertV2ActionParameters struct {
@@ -132,6 +138,10 @@ type MonitorScheduledQueryRulesAlertV2ActionParameters struct {
 	// +kubebuilder:validation:Optional
 	// +mapType=granular
 	CustomProperties map[string]*string `json:"customProperties,omitempty" tf:"custom_properties,omitempty"`
+
+	// Custom subject override for all email ids in Azure action group.
+	// +kubebuilder:validation:Optional
+	EmailSubject *string `json:"emailSubject,omitempty" tf:"email_subject,omitempty"`
 }
 
 type MonitorScheduledQueryRulesAlertV2CriteriaInitParameters struct {

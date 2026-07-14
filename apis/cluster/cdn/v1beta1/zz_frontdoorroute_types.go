@@ -94,7 +94,7 @@ type FrontdoorRouteInitParameters struct {
 	// +kubebuilder:validation:Optional
 	CdnFrontdoorOriginGroupIDSelector *v1.Selector `json:"cdnFrontdoorOriginGroupIdSelector,omitempty" tf:"-"`
 
-	// One or more Front Door Origin resource IDs that this Front Door Route will link to.
+	// One or more Front Door Origin resource IDs for this Front Door Route.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/cluster/cdn/v1beta1.FrontdoorOrigin
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
 	CdnFrontdoorOriginIds []*string `json:"cdnFrontdoorOriginIds,omitempty" tf:"cdn_frontdoor_origin_ids,omitempty"`
@@ -159,7 +159,7 @@ type FrontdoorRouteObservation struct {
 	// The resource ID of the Front Door Origin Group where this Front Door Route should be created.
 	CdnFrontdoorOriginGroupID *string `json:"cdnFrontdoorOriginGroupId,omitempty" tf:"cdn_frontdoor_origin_group_id,omitempty"`
 
-	// One or more Front Door Origin resource IDs that this Front Door Route will link to.
+	// One or more Front Door Origin resource IDs for this Front Door Route.
 	CdnFrontdoorOriginIds []*string `json:"cdnFrontdoorOriginIds,omitempty" tf:"cdn_frontdoor_origin_ids,omitempty"`
 
 	// A directory path on the Front Door Origin that can be used to retrieve content (e.g. contoso.cloudapp.net/originpath).
@@ -241,7 +241,7 @@ type FrontdoorRouteParameters struct {
 	// +kubebuilder:validation:Optional
 	CdnFrontdoorOriginGroupIDSelector *v1.Selector `json:"cdnFrontdoorOriginGroupIdSelector,omitempty" tf:"-"`
 
-	// One or more Front Door Origin resource IDs that this Front Door Route will link to.
+	// One or more Front Door Origin resource IDs for this Front Door Route.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/cluster/cdn/v1beta1.FrontdoorOrigin
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional

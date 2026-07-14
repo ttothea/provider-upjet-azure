@@ -486,6 +486,10 @@ spec:
                   quota:
                     description: The maximum size of the share, in gigabytes.
                     type: number
+                  rbacScopeId:
+                    description: The ID that is supposed to be used as the scope of
+                      an azurerm_role_assignmet for this File Share.
+                    type: string
                   resourceManagerId:
                     description: The Resource Manager ID of this File Share.
                     type: string

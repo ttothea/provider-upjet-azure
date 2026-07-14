@@ -76,6 +76,10 @@ spec:
                   description:
                     description: A description of the Network Manager Network Group.
                     type: string
+                  memberType:
+                    description: The member type for the network group. Possible values
+                      are Subnet and VirtualNetwork. Defaults to VirtualNetwork.
+                    type: string
                   networkManagerId:
                     description: Specifies the ID of the Network Manager. Changing
                       this forces a new Network Manager Network Group to be created.
@@ -170,6 +174,10 @@ spec:
                 properties:
                   description:
                     description: A description of the Network Manager Network Group.
+                    type: string
+                  memberType:
+                    description: The member type for the network group. Possible values
+                      are Subnet and VirtualNetwork. Defaults to VirtualNetwork.
                     type: string
                 type: object
               managementPolicies:
@@ -268,6 +276,10 @@ spec:
                     type: string
                   id:
                     description: The ID of the Network Manager Network Group.
+                    type: string
+                  memberType:
+                    description: The member type for the network group. Possible values
+                      are Subnet and VirtualNetwork. Defaults to VirtualNetwork.
                     type: string
                   networkManagerId:
                     description: Specifies the ID of the Network Manager. Changing

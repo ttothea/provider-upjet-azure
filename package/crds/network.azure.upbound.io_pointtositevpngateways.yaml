@@ -82,8 +82,7 @@ spec:
                       properties:
                         internetSecurityEnabled:
                           description: Should Internet Security be enabled to secure
-                            internet traffic? Changing this forces a new resource
-                            to be created. Defaults to false.
+                            internet traffic? Defaults to false.
                           type: boolean
                         name:
                           description: The Name which should be used for this Connection
@@ -435,8 +434,7 @@ spec:
                       properties:
                         internetSecurityEnabled:
                           description: Should Internet Security be enabled to secure
-                            internet traffic? Changing this forces a new resource
-                            to be created. Defaults to false.
+                            internet traffic? Defaults to false.
                           type: boolean
                         name:
                           description: The Name which should be used for this Connection
@@ -799,8 +797,7 @@ spec:
                       properties:
                         internetSecurityEnabled:
                           description: Should Internet Security be enabled to secure
-                            internet traffic? Changing this forces a new resource
-                            to be created. Defaults to false.
+                            internet traffic? Defaults to false.
                           type: boolean
                         name:
                           description: The Name which should be used for this Connection
@@ -1030,8 +1027,7 @@ spec:
                       properties:
                         internetSecurityEnabled:
                           description: Should Internet Security be enabled to secure
-                            internet traffic? Changing this forces a new resource
-                            to be created. Defaults to false.
+                            internet traffic? Defaults to false.
                           type: boolean
                         name:
                           description: The Name which should be used for this Connection
@@ -1377,8 +1373,7 @@ spec:
                       properties:
                         internetSecurityEnabled:
                           description: Should Internet Security be enabled to secure
-                            internet traffic? Changing this forces a new resource
-                            to be created. Defaults to false.
+                            internet traffic? Defaults to false.
                           type: boolean
                         name:
                           description: The Name which should be used for this Connection
@@ -1735,8 +1730,7 @@ spec:
                       properties:
                         internetSecurityEnabled:
                           description: Should Internet Security be enabled to secure
-                            internet traffic? Changing this forces a new resource
-                            to be created. Defaults to false.
+                            internet traffic? Defaults to false.
                           type: boolean
                         name:
                           description: The Name which should be used for this Connection

@@ -28,7 +28,7 @@ type NATGatewayPublicIPAssociationInitParameters struct {
 	// +kubebuilder:validation:Optional
 	NATGatewayIDSelector *v1.Selector `json:"natGatewayIdSelector,omitempty" tf:"-"`
 
-	// The ID of the Public IP which this NAT Gateway which should be connected to. Changing this forces a new resource to be created.
+	// The ID of the Public IP Address which this NAT Gateway should be connected to. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/cluster/network/v1beta1.PublicIP
 	// +crossplane:generate:reference:extractor=github.com/upbound/provider-azure/v2/apis/cluster/rconfig.ExtractResourceID()
 	PublicIPAddressID *string `json:"publicIpAddressId,omitempty" tf:"public_ip_address_id,omitempty"`
@@ -48,7 +48,7 @@ type NATGatewayPublicIPAssociationObservation struct {
 	// The ID of the NAT Gateway. Changing this forces a new resource to be created.
 	NATGatewayID *string `json:"natGatewayId,omitempty" tf:"nat_gateway_id,omitempty"`
 
-	// The ID of the Public IP which this NAT Gateway which should be connected to. Changing this forces a new resource to be created.
+	// The ID of the Public IP Address which this NAT Gateway should be connected to. Changing this forces a new resource to be created.
 	PublicIPAddressID *string `json:"publicIpAddressId,omitempty" tf:"public_ip_address_id,omitempty"`
 }
 
@@ -68,7 +68,7 @@ type NATGatewayPublicIPAssociationParameters struct {
 	// +kubebuilder:validation:Optional
 	NATGatewayIDSelector *v1.Selector `json:"natGatewayIdSelector,omitempty" tf:"-"`
 
-	// The ID of the Public IP which this NAT Gateway which should be connected to. Changing this forces a new resource to be created.
+	// The ID of the Public IP Address which this NAT Gateway should be connected to. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/cluster/network/v1beta1.PublicIP
 	// +crossplane:generate:reference:extractor=github.com/upbound/provider-azure/v2/apis/cluster/rconfig.ExtractResourceID()
 	// +kubebuilder:validation:Optional
@@ -110,7 +110,7 @@ type NATGatewayPublicIPAssociationStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// NATGatewayPublicIPAssociation is the Schema for the NATGatewayPublicIPAssociations API. Manages the association between a NAT Gateway and a Public IP.
+// NATGatewayPublicIPAssociation is the Schema for the NATGatewayPublicIPAssociations API. Manages a NAT Gateway Public IP Address association.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

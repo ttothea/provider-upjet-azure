@@ -158,7 +158,7 @@ type FlexibleServerInitParameters struct {
 	// +mapType=granular
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// The version of the MySQL Flexible Server to use. Possible values are 5.7, and 8.0.21.
+	// The version of the MySQL Flexible Server to use. Possible values are 5.7, 8.0.21 and 8.4.
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
 
 	// Specifies the Availability Zone in which this MySQL Flexible Server should be located. Possible values are 1, 2 and 3.
@@ -242,7 +242,7 @@ type FlexibleServerObservation struct {
 	// +mapType=granular
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// The version of the MySQL Flexible Server to use. Possible values are 5.7, and 8.0.21.
+	// The version of the MySQL Flexible Server to use. Possible values are 5.7, 8.0.21 and 8.4.
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
 
 	// Specifies the Availability Zone in which this MySQL Flexible Server should be located. Possible values are 1, 2 and 3.
@@ -369,7 +369,7 @@ type FlexibleServerParameters struct {
 	// +mapType=granular
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// The version of the MySQL Flexible Server to use. Possible values are 5.7, and 8.0.21.
+	// The version of the MySQL Flexible Server to use. Possible values are 5.7, 8.0.21 and 8.4.
 	// +kubebuilder:validation:Optional
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
 

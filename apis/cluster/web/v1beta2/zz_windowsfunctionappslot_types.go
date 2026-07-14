@@ -2242,15 +2242,15 @@ type WindowsFunctionAppSlotSiteConfigApplicationStackInitParameters struct {
 	DotnetVersion *string `json:"dotnetVersion,omitempty" tf:"dotnet_version,omitempty"`
 
 	// The version of Java to use. Possible values are 1.8, 11, 17 and 21.
-	// The version of Java to use. Possible values are `1.8`, `11`, `17`, and `21`
+	// The version of Java to use. Possible values are `1.8`, `11`, `17`, `21` and `25`
 	JavaVersion *string `json:"javaVersion,omitempty" tf:"java_version,omitempty"`
 
-	// The version of Node to use. Possible values are ~12, ~14, ~16, ~18, ~20, and ~22.
+	// The version of Node to use. Possible values are ~12, ~14, ~16, ~18, ~20, ~22 and ~24.
 	// The version of Node to use. Possible values include `~12`, `~14`, `~16`, `~18`, `~20` and `~22`
 	NodeVersion *string `json:"nodeVersion,omitempty" tf:"node_version,omitempty"`
 
-	// The PowerShell Core version to use. Possible values are 7, 7.2, and 7.4.
-	// The PowerShell Core version to use. Possible values are `7`, `7.2`, and `7.4`
+	// The PowerShell Core version to use. Possible values are 7, 7.2, 7.4, and 7.6.
+	// The PowerShell Core version to use. Possible values are `7`, `7.2`, `7.4`, and `7.6`
 	PowershellCoreVersion *string `json:"powershellCoreVersion,omitempty" tf:"powershell_core_version,omitempty"`
 
 	// Does the Function App use a custom Application Stack?
@@ -2269,15 +2269,15 @@ type WindowsFunctionAppSlotSiteConfigApplicationStackObservation struct {
 	DotnetVersion *string `json:"dotnetVersion,omitempty" tf:"dotnet_version,omitempty"`
 
 	// The version of Java to use. Possible values are 1.8, 11, 17 and 21.
-	// The version of Java to use. Possible values are `1.8`, `11`, `17`, and `21`
+	// The version of Java to use. Possible values are `1.8`, `11`, `17`, `21` and `25`
 	JavaVersion *string `json:"javaVersion,omitempty" tf:"java_version,omitempty"`
 
-	// The version of Node to use. Possible values are ~12, ~14, ~16, ~18, ~20, and ~22.
+	// The version of Node to use. Possible values are ~12, ~14, ~16, ~18, ~20, ~22 and ~24.
 	// The version of Node to use. Possible values include `~12`, `~14`, `~16`, `~18`, `~20` and `~22`
 	NodeVersion *string `json:"nodeVersion,omitempty" tf:"node_version,omitempty"`
 
-	// The PowerShell Core version to use. Possible values are 7, 7.2, and 7.4.
-	// The PowerShell Core version to use. Possible values are `7`, `7.2`, and `7.4`
+	// The PowerShell Core version to use. Possible values are 7, 7.2, 7.4, and 7.6.
+	// The PowerShell Core version to use. Possible values are `7`, `7.2`, `7.4`, and `7.6`
 	PowershellCoreVersion *string `json:"powershellCoreVersion,omitempty" tf:"powershell_core_version,omitempty"`
 
 	// Does the Function App use a custom Application Stack?
@@ -2297,17 +2297,17 @@ type WindowsFunctionAppSlotSiteConfigApplicationStackParameters struct {
 	DotnetVersion *string `json:"dotnetVersion,omitempty" tf:"dotnet_version,omitempty"`
 
 	// The version of Java to use. Possible values are 1.8, 11, 17 and 21.
-	// The version of Java to use. Possible values are `1.8`, `11`, `17`, and `21`
+	// The version of Java to use. Possible values are `1.8`, `11`, `17`, `21` and `25`
 	// +kubebuilder:validation:Optional
 	JavaVersion *string `json:"javaVersion,omitempty" tf:"java_version,omitempty"`
 
-	// The version of Node to use. Possible values are ~12, ~14, ~16, ~18, ~20, and ~22.
+	// The version of Node to use. Possible values are ~12, ~14, ~16, ~18, ~20, ~22 and ~24.
 	// The version of Node to use. Possible values include `~12`, `~14`, `~16`, `~18`, `~20` and `~22`
 	// +kubebuilder:validation:Optional
 	NodeVersion *string `json:"nodeVersion,omitempty" tf:"node_version,omitempty"`
 
-	// The PowerShell Core version to use. Possible values are 7, 7.2, and 7.4.
-	// The PowerShell Core version to use. Possible values are `7`, `7.2`, and `7.4`
+	// The PowerShell Core version to use. Possible values are 7, 7.2, 7.4, and 7.6.
+	// The PowerShell Core version to use. Possible values are `7`, `7.2`, `7.4`, and `7.6`
 	// +kubebuilder:validation:Optional
 	PowershellCoreVersion *string `json:"powershellCoreVersion,omitempty" tf:"powershell_core_version,omitempty"`
 
@@ -2619,6 +2619,10 @@ type WindowsFunctionAppSlotSiteConfigInitParameters struct {
 	// The Managed Pipeline mode. Possible values include: `Integrated`, `Classic`. Defaults to `Integrated`.
 	ManagedPipelineMode *string `json:"managedPipelineMode,omitempty" tf:"managed_pipeline_mode,omitempty"`
 
+	// The configures the minimum cipher suite of TLS required for SSL requests. Possible values include: TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384",TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384",TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", TLS_RSA_WITH_AES_128_CBC_SHA",TLS_RSA_WITH_AES_128_CBC_SHA256",TLS_RSA_WITH_AES_128_GCM_SHA256",TLS_RSA_WITH_AES_256_CBC_SHA",TLS_RSA_WITH_AES_256_CBC_SHA256",TLS_RSA_WITH_AES_256_GCM_SHA384".
+	// Configures the minimum TLS cipher suite for the incoming requests to the Site.
+	MinimumTLSCipherSuite *string `json:"minimumTlsCipherSuite,omitempty" tf:"minimum_tls_cipher_suite,omitempty"`
+
 	// The configures the minimum version of TLS required for SSL requests. Possible values include: 1.0, 1.1, 1.2 and 1.3. Defaults to 1.2.
 	// The configures the minimum version of TLS required for SSL requests. Possible values include: `1.0`, `1.1`, `1.2` and `1.3`. Defaults to `1.2`.
 	MinimumTLSVersion *string `json:"minimumTlsVersion,omitempty" tf:"minimum_tls_version,omitempty"`
@@ -2745,6 +2749,10 @@ type WindowsFunctionAppSlotSiteConfigObservation struct {
 	// The Managed Pipeline mode. Possible values include: Integrated, Classic. Defaults to Integrated.
 	// The Managed Pipeline mode. Possible values include: `Integrated`, `Classic`. Defaults to `Integrated`.
 	ManagedPipelineMode *string `json:"managedPipelineMode,omitempty" tf:"managed_pipeline_mode,omitempty"`
+
+	// The configures the minimum cipher suite of TLS required for SSL requests. Possible values include: TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384",TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384",TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", TLS_RSA_WITH_AES_128_CBC_SHA",TLS_RSA_WITH_AES_128_CBC_SHA256",TLS_RSA_WITH_AES_128_GCM_SHA256",TLS_RSA_WITH_AES_256_CBC_SHA",TLS_RSA_WITH_AES_256_CBC_SHA256",TLS_RSA_WITH_AES_256_GCM_SHA384".
+	// Configures the minimum TLS cipher suite for the incoming requests to the Site.
+	MinimumTLSCipherSuite *string `json:"minimumTlsCipherSuite,omitempty" tf:"minimum_tls_cipher_suite,omitempty"`
 
 	// The configures the minimum version of TLS required for SSL requests. Possible values include: 1.0, 1.1, 1.2 and 1.3. Defaults to 1.2.
 	// The configures the minimum version of TLS required for SSL requests. Possible values include: `1.0`, `1.1`, `1.2` and `1.3`. Defaults to `1.2`.
@@ -2905,6 +2913,11 @@ type WindowsFunctionAppSlotSiteConfigParameters struct {
 	// The Managed Pipeline mode. Possible values include: `Integrated`, `Classic`. Defaults to `Integrated`.
 	// +kubebuilder:validation:Optional
 	ManagedPipelineMode *string `json:"managedPipelineMode,omitempty" tf:"managed_pipeline_mode,omitempty"`
+
+	// The configures the minimum cipher suite of TLS required for SSL requests. Possible values include: TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384",TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384",TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", TLS_RSA_WITH_AES_128_CBC_SHA",TLS_RSA_WITH_AES_128_CBC_SHA256",TLS_RSA_WITH_AES_128_GCM_SHA256",TLS_RSA_WITH_AES_256_CBC_SHA",TLS_RSA_WITH_AES_256_CBC_SHA256",TLS_RSA_WITH_AES_256_GCM_SHA384".
+	// Configures the minimum TLS cipher suite for the incoming requests to the Site.
+	// +kubebuilder:validation:Optional
+	MinimumTLSCipherSuite *string `json:"minimumTlsCipherSuite,omitempty" tf:"minimum_tls_cipher_suite,omitempty"`
 
 	// The configures the minimum version of TLS required for SSL requests. Possible values include: 1.0, 1.1, 1.2 and 1.3. Defaults to 1.2.
 	// The configures the minimum version of TLS required for SSL requests. Possible values include: `1.0`, `1.1`, `1.2` and `1.3`. Defaults to `1.2`.

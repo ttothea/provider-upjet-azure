@@ -49,3 +49,19 @@ func SetupGated_desktopvirtualization(mgr ctrl.Manager, o controller.Options) er
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_desktopvirtualization registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_desktopvirtualization(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		virtualdesktopapplicationgroup.SetupWebhookWithManager,
+		virtualdesktophostpool.SetupWebhookWithManager,
+		virtualdesktophostpoolregistrationinfo.SetupWebhookWithManager,
+		virtualdesktopworkspace.SetupWebhookWithManager,
+		virtualdesktopworkspaceapplicationgroupassociation.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

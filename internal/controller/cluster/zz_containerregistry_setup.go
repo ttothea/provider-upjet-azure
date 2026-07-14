@@ -61,3 +61,23 @@ func SetupGated_containerregistry(mgr ctrl.Manager, o controller.Options) error 
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_containerregistry registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_containerregistry(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		agentpool.SetupWebhookWithManager,
+		cacherule.SetupWebhookWithManager,
+		containerconnectedregistry.SetupWebhookWithManager,
+		credentialset.SetupWebhookWithManager,
+		registry.SetupWebhookWithManager,
+		scopemap.SetupWebhookWithManager,
+		token.SetupWebhookWithManager,
+		tokenpassword.SetupWebhookWithManager,
+		webhook.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

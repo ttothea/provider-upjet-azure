@@ -655,7 +655,7 @@ spec:
                     type: boolean
                   size:
                     description: The SKU which should be used for this Virtual Machine,
-                      such as Standard_F2.
+                      such as Standard_D4_v5.
                     type: string
                   sourceImageId:
                     description: The ID of the Image which this Virtual Machine should
@@ -1273,7 +1273,7 @@ spec:
                     type: boolean
                   size:
                     description: The SKU which should be used for this Virtual Machine,
-                      such as Standard_F2.
+                      such as Standard_D4_v5.
                     type: string
                   sourceImageId:
                     description: The ID of the Image which this Virtual Machine should
@@ -1884,7 +1884,7 @@ spec:
                     type: boolean
                   size:
                     description: The SKU which should be used for this Virtual Machine,
-                      such as Standard_F2.
+                      such as Standard_D4_v5.
                     type: string
                   sourceImageId:
                     description: The ID of the Image which this Virtual Machine should
@@ -2672,7 +2672,7 @@ spec:
                     type: boolean
                   size:
                     description: The SKU which should be used for this Virtual Machine,
-                      such as Standard_F2.
+                      such as Standard_D4_v5.
                     type: string
                   sourceImageId:
                     description: The ID of the Image which this Virtual Machine should
@@ -3270,7 +3270,7 @@ spec:
                     type: boolean
                   size:
                     description: The SKU which should be used for this Virtual Machine,
-                      such as Standard_F2.
+                      such as Standard_D4_v5.
                     type: string
                   sourceImageId:
                     description: The ID of the Image which this Virtual Machine should
@@ -3861,7 +3861,7 @@ spec:
                     type: boolean
                   size:
                     description: The SKU which should be used for this Virtual Machine,
-                      such as Standard_F2.
+                      such as Standard_D4_v5.
                     type: string
                   sourceImageId:
                     description: The ID of the Image which this Virtual Machine should

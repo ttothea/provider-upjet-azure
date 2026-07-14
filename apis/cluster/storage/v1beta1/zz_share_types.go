@@ -137,6 +137,9 @@ type ShareObservation struct {
 	// The maximum size of the share, in gigabytes.
 	Quota *float64 `json:"quota,omitempty" tf:"quota,omitempty"`
 
+	// The ID that is supposed to be used as the scope of an azurerm_role_assignmet for this File Share.
+	RbacScopeID *string `json:"rbacScopeId,omitempty" tf:"rbac_scope_id,omitempty"`
+
 	// The Resource Manager ID of this File Share.
 	ResourceManagerID *string `json:"resourceManagerId,omitempty" tf:"resource_manager_id,omitempty"`
 

@@ -40,3 +40,16 @@ func SetupGated_management(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_management registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_management(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		managementgroup.SetupWebhookWithManager,
+		managementgroupsubscriptionassociation.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

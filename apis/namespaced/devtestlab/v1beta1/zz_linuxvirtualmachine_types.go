@@ -173,7 +173,7 @@ type LinuxVirtualMachineInitParameters struct {
 	// The SSH Key associated with the username used to login to this Virtual Machine. Changing this forces a new resource to be created.
 	SSHKey *string `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
 
-	// The Machine Size to use for this Virtual Machine, such as Standard_F2. Changing this forces a new resource to be created.
+	// The Machine Size to use for this Virtual Machine, such as Standard_D4_v5. Changing this forces a new resource to be created.
 	Size *string `json:"size,omitempty" tf:"size,omitempty"`
 
 	// The type of Storage to use on this Virtual Machine. Possible values are Standard and Premium. Changing this forces a new resource to be created.
@@ -231,7 +231,7 @@ type LinuxVirtualMachineObservation struct {
 	// The SSH Key associated with the username used to login to this Virtual Machine. Changing this forces a new resource to be created.
 	SSHKey *string `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
 
-	// The Machine Size to use for this Virtual Machine, such as Standard_F2. Changing this forces a new resource to be created.
+	// The Machine Size to use for this Virtual Machine, such as Standard_D4_v5. Changing this forces a new resource to be created.
 	Size *string `json:"size,omitempty" tf:"size,omitempty"`
 
 	// The type of Storage to use on this Virtual Machine. Possible values are Standard and Premium. Changing this forces a new resource to be created.
@@ -339,7 +339,7 @@ type LinuxVirtualMachineParameters struct {
 	// +kubebuilder:validation:Optional
 	SSHKey *string `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
 
-	// The Machine Size to use for this Virtual Machine, such as Standard_F2. Changing this forces a new resource to be created.
+	// The Machine Size to use for this Virtual Machine, such as Standard_D4_v5. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
 	Size *string `json:"size,omitempty" tf:"size,omitempty"`
 

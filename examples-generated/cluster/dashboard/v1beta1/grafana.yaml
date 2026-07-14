@@ -14,7 +14,7 @@ spec:
   forProvider:
     apiKeyEnabled: true
     deterministicOutboundIpEnabled: true
-    grafanaMajorVersion: 11
+    grafanaMajorVersion: 12
     identity:
       type: SystemAssigned
     location: West Europe
@@ -22,6 +22,8 @@ spec:
     resourceGroupNameSelector:
       matchLabels:
         testing.upbound.io/example-name: example
+    sku: Standard
+    skuSize: X1
     tags:
       key: value
 

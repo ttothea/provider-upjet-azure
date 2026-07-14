@@ -41,7 +41,7 @@ spec:
     - resourceIdSelector:
         matchLabels:
           testing.upbound.io/example-name: example
-    grafanaMajorVersion: 11
+    grafanaMajorVersion: 12
     location: Canada Central
     publicNetworkAccessEnabled: false
     resourceGroupNameSelector:

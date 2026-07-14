@@ -773,6 +773,10 @@ spec:
                       resource exists. Changing this forces a new resource to be created.
                       Review Azure Bastion Host FAQ for supported locations.
                     type: string
+                  privateOnlyEnabled:
+                    description: Whether Private-Only deployment is enabled for the
+                      Bastion Host.
+                    type: boolean
                   resourceGroupName:
                     description: The name of the resource group in which to create
                       the Bastion Host. Changing this forces a new resource to be

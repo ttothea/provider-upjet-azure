@@ -163,3 +163,57 @@ func SetupGated_apimanagement(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_apimanagement registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_apimanagement(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		api.SetupWebhookWithManager,
+		apidiagnostic.SetupWebhookWithManager,
+		apioperation.SetupWebhookWithManager,
+		apioperationpolicy.SetupWebhookWithManager,
+		apioperationtag.SetupWebhookWithManager,
+		apipolicy.SetupWebhookWithManager,
+		apirelease.SetupWebhookWithManager,
+		apischema.SetupWebhookWithManager,
+		apitag.SetupWebhookWithManager,
+		apiversionset.SetupWebhookWithManager,
+		authorizationserver.SetupWebhookWithManager,
+		backend.SetupWebhookWithManager,
+		certificate.SetupWebhookWithManager,
+		customdomain.SetupWebhookWithManager,
+		diagnostic.SetupWebhookWithManager,
+		emailtemplate.SetupWebhookWithManager,
+		gateway.SetupWebhookWithManager,
+		gatewayapi.SetupWebhookWithManager,
+		globalschema.SetupWebhookWithManager,
+		group.SetupWebhookWithManager,
+		groupuser.SetupWebhookWithManager,
+		identityprovideraad.SetupWebhookWithManager,
+		identityproviderfacebook.SetupWebhookWithManager,
+		identityprovidergoogle.SetupWebhookWithManager,
+		identityprovidermicrosoft.SetupWebhookWithManager,
+		identityprovidertwitter.SetupWebhookWithManager,
+		logger.SetupWebhookWithManager,
+		management.SetupWebhookWithManager,
+		namedvalue.SetupWebhookWithManager,
+		notificationrecipientemail.SetupWebhookWithManager,
+		notificationrecipientuser.SetupWebhookWithManager,
+		openidconnectprovider.SetupWebhookWithManager,
+		policy.SetupWebhookWithManager,
+		policyfragment.SetupWebhookWithManager,
+		product.SetupWebhookWithManager,
+		productapi.SetupWebhookWithManager,
+		productgroup.SetupWebhookWithManager,
+		productpolicy.SetupWebhookWithManager,
+		producttag.SetupWebhookWithManager,
+		rediscache.SetupWebhookWithManager,
+		subscription.SetupWebhookWithManager,
+		tag.SetupWebhookWithManager,
+		user.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

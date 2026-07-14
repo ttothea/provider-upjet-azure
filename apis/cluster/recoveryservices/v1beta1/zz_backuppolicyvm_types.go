@@ -119,6 +119,9 @@ type BackupPolicyVMInitParameters struct {
 	// Configures the Policy backup frequency, times & days as documented in the backup block below.
 	Backup []BackupPolicyVMBackupInitParameters `json:"backup,omitempty" tf:"backup,omitempty"`
 
+	// The consistency type for the backup policy. The only possible value is OnlyCrashConsistent.
+	ConsistencyType *string `json:"consistencyType,omitempty" tf:"consistency_type,omitempty"`
+
 	// Specifies the instant restore resource group name as documented in the instant_restore_resource_group block below.
 	InstantRestoreResourceGroup []InstantRestoreResourceGroupInitParameters `json:"instantRestoreResourceGroup,omitempty" tf:"instant_restore_resource_group,omitempty"`
 
@@ -151,6 +154,9 @@ type BackupPolicyVMObservation struct {
 
 	// Configures the Policy backup frequency, times & days as documented in the backup block below.
 	Backup []BackupPolicyVMBackupObservation `json:"backup,omitempty" tf:"backup,omitempty"`
+
+	// The consistency type for the backup policy. The only possible value is OnlyCrashConsistent.
+	ConsistencyType *string `json:"consistencyType,omitempty" tf:"consistency_type,omitempty"`
 
 	// The ID of the VM Backup Policy.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -194,6 +200,10 @@ type BackupPolicyVMParameters struct {
 	// Configures the Policy backup frequency, times & days as documented in the backup block below.
 	// +kubebuilder:validation:Optional
 	Backup []BackupPolicyVMBackupParameters `json:"backup,omitempty" tf:"backup,omitempty"`
+
+	// The consistency type for the backup policy. The only possible value is OnlyCrashConsistent.
+	// +kubebuilder:validation:Optional
+	ConsistencyType *string `json:"consistencyType,omitempty" tf:"consistency_type,omitempty"`
 
 	// Specifies the instant restore resource group name as documented in the instant_restore_resource_group block below.
 	// +kubebuilder:validation:Optional

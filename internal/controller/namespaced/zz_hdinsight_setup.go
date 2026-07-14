@@ -49,3 +49,19 @@ func SetupGated_hdinsight(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_hdinsight registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_hdinsight(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		hadoopcluster.SetupWebhookWithManager,
+		hbasecluster.SetupWebhookWithManager,
+		interactivequerycluster.SetupWebhookWithManager,
+		kafkacluster.SetupWebhookWithManager,
+		sparkcluster.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

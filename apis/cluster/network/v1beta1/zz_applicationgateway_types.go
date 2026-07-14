@@ -21,6 +21,9 @@ type ApplicationGatewayInitParameters struct {
 	// An autoscale_configuration block as defined below.
 	AutoscaleConfiguration []AutoscaleConfigurationInitParameters `json:"autoscaleConfiguration,omitempty" tf:"autoscale_configuration,omitempty"`
 
+	// One or more backend blocks as defined below.
+	Backend []BackendInitParameters `json:"backend,omitempty" tf:"backend,omitempty"`
+
 	// One or more backend_address_pool blocks as defined below.
 	BackendAddressPool []BackendAddressPoolInitParameters `json:"backendAddressPool,omitempty" tf:"backend_address_pool,omitempty"`
 
@@ -61,8 +64,14 @@ type ApplicationGatewayInitParameters struct {
 	// One or more http_listener blocks as defined below.
 	HTTPListener []HTTPListenerInitParameters `json:"httpListener,omitempty" tf:"http_listener,omitempty"`
 
+	// Is HTTP2 enabled on the application gateway resource? Defaults to false.
+	Http2Enabled *bool `json:"http2Enabled,omitempty" tf:"http2_enabled,omitempty"`
+
 	// An identity block as defined below.
 	Identity []IdentityInitParameters `json:"identity,omitempty" tf:"identity,omitempty"`
+
+	// One or more listener blocks as defined below.
+	Listener []ListenerInitParameters `json:"listener,omitempty" tf:"listener,omitempty"`
 
 	// The Azure region where the Application Gateway should exist. Changing this forces a new resource to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
@@ -81,6 +90,9 @@ type ApplicationGatewayInitParameters struct {
 
 	// One or more rewrite_rule_set blocks as defined below. Only valid for v2 WAF and Standard SKUs.
 	RewriteRuleSet []RewriteRuleSetInitParameters `json:"rewriteRuleSet,omitempty" tf:"rewrite_rule_set,omitempty"`
+
+	// One or more routing_rule blocks as defined below.
+	RoutingRule []RoutingRuleInitParameters `json:"routingRule,omitempty" tf:"routing_rule,omitempty"`
 
 	// One or more ssl_certificate blocks as defined below.
 	SSLCertificate []SSLCertificateInitParameters `json:"sslCertificate,omitempty" tf:"ssl_certificate,omitempty"`
@@ -123,6 +135,9 @@ type ApplicationGatewayObservation struct {
 	// An autoscale_configuration block as defined below.
 	AutoscaleConfiguration []AutoscaleConfigurationObservation `json:"autoscaleConfiguration,omitempty" tf:"autoscale_configuration,omitempty"`
 
+	// One or more backend blocks as defined below.
+	Backend []BackendObservation `json:"backend,omitempty" tf:"backend,omitempty"`
+
 	// One or more backend_address_pool blocks as defined below.
 	BackendAddressPool []BackendAddressPoolObservation `json:"backendAddressPool,omitempty" tf:"backend_address_pool,omitempty"`
 
@@ -145,16 +160,12 @@ type ApplicationGatewayObservation struct {
 	ForceFirewallPolicyAssociation *bool `json:"forceFirewallPolicyAssociation,omitempty" tf:"force_firewall_policy_association,omitempty"`
 
 	// One or more frontend_ip_configuration blocks as defined below.
-	// +listType=map
-	// +listMapKey=index
 	FrontendIPConfiguration []FrontendIPConfigurationObservation `json:"frontendIpConfiguration,omitempty" tf:"frontend_ip_configuration,omitempty"`
 
 	// One or more frontend_port blocks as defined below.
 	FrontendPort []FrontendPortObservation `json:"frontendPort,omitempty" tf:"frontend_port,omitempty"`
 
 	// One or more gateway_ip_configuration blocks as defined below.
-	// +listType=map
-	// +listMapKey=index
 	GatewayIPConfiguration []GatewayIPConfigurationObservation `json:"gatewayIpConfiguration,omitempty" tf:"gateway_ip_configuration,omitempty"`
 
 	// A global block as defined below.
@@ -163,11 +174,17 @@ type ApplicationGatewayObservation struct {
 	// One or more http_listener blocks as defined below.
 	HTTPListener []HTTPListenerObservation `json:"httpListener,omitempty" tf:"http_listener,omitempty"`
 
+	// Is HTTP2 enabled on the application gateway resource? Defaults to false.
+	Http2Enabled *bool `json:"http2Enabled,omitempty" tf:"http2_enabled,omitempty"`
+
 	// The ID of the Application Gateway.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// An identity block as defined below.
 	Identity []IdentityObservation `json:"identity,omitempty" tf:"identity,omitempty"`
+
+	// One or more listener blocks as defined below.
+	Listener []ListenerObservation `json:"listener,omitempty" tf:"listener,omitempty"`
 
 	// The Azure region where the Application Gateway should exist. Changing this forces a new resource to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
@@ -192,6 +209,9 @@ type ApplicationGatewayObservation struct {
 
 	// One or more rewrite_rule_set blocks as defined below. Only valid for v2 WAF and Standard SKUs.
 	RewriteRuleSet []RewriteRuleSetObservation `json:"rewriteRuleSet,omitempty" tf:"rewrite_rule_set,omitempty"`
+
+	// One or more routing_rule blocks as defined below.
+	RoutingRule []RoutingRuleObservation `json:"routingRule,omitempty" tf:"routing_rule,omitempty"`
 
 	// One or more ssl_certificate blocks as defined below.
 	SSLCertificate []SSLCertificateObservation `json:"sslCertificate,omitempty" tf:"ssl_certificate,omitempty"`
@@ -235,6 +255,10 @@ type ApplicationGatewayParameters struct {
 	// An autoscale_configuration block as defined below.
 	// +kubebuilder:validation:Optional
 	AutoscaleConfiguration []AutoscaleConfigurationParameters `json:"autoscaleConfiguration,omitempty" tf:"autoscale_configuration,omitempty"`
+
+	// One or more backend blocks as defined below.
+	// +kubebuilder:validation:Optional
+	Backend []BackendParameters `json:"backend,omitempty" tf:"backend,omitempty"`
 
 	// One or more backend_address_pool blocks as defined below.
 	// +kubebuilder:validation:Optional
@@ -288,9 +312,17 @@ type ApplicationGatewayParameters struct {
 	// +kubebuilder:validation:Optional
 	HTTPListener []HTTPListenerParameters `json:"httpListener,omitempty" tf:"http_listener,omitempty"`
 
+	// Is HTTP2 enabled on the application gateway resource? Defaults to false.
+	// +kubebuilder:validation:Optional
+	Http2Enabled *bool `json:"http2Enabled,omitempty" tf:"http2_enabled,omitempty"`
+
 	// An identity block as defined below.
 	// +kubebuilder:validation:Optional
 	Identity []IdentityParameters `json:"identity,omitempty" tf:"identity,omitempty"`
+
+	// One or more listener blocks as defined below.
+	// +kubebuilder:validation:Optional
+	Listener []ListenerParameters `json:"listener,omitempty" tf:"listener,omitempty"`
 
 	// The Azure region where the Application Gateway should exist. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
@@ -328,6 +360,10 @@ type ApplicationGatewayParameters struct {
 	// One or more rewrite_rule_set blocks as defined below. Only valid for v2 WAF and Standard SKUs.
 	// +kubebuilder:validation:Optional
 	RewriteRuleSet []RewriteRuleSetParameters `json:"rewriteRuleSet,omitempty" tf:"rewrite_rule_set,omitempty"`
+
+	// One or more routing_rule blocks as defined below.
+	// +kubebuilder:validation:Optional
+	RoutingRule []RoutingRuleParameters `json:"routingRule,omitempty" tf:"routing_rule,omitempty"`
 
 	// One or more ssl_certificate blocks as defined below.
 	// +kubebuilder:validation:Optional
@@ -508,6 +544,9 @@ type BackendHTTPSettingsInitParameters struct {
 	// One or more authentication_certificate_backend blocks as defined below.
 	AuthenticationCertificate []BackendHTTPSettingsAuthenticationCertificateInitParameters `json:"authenticationCertificate,omitempty" tf:"authentication_certificate,omitempty"`
 
+	// Whether to validate the certificate chain and expiry on the backend HTTPS servers. Defaults to true.
+	CertificateChainValidationEnabled *bool `json:"certificateChainValidationEnabled,omitempty" tf:"certificate_chain_validation_enabled,omitempty"`
+
 	// A connection_draining block as defined below.
 	ConnectionDraining []ConnectionDrainingInitParameters `json:"connectionDraining,omitempty" tf:"connection_draining,omitempty"`
 
@@ -541,6 +580,12 @@ type BackendHTTPSettingsInitParameters struct {
 	// The request timeout in seconds, which must be between 1 and 86400 seconds. Defaults to 30.
 	RequestTimeout *float64 `json:"requestTimeout,omitempty" tf:"request_timeout,omitempty"`
 
+	// The Server Name Indication (SNI) hostname to send to the backend servers.
+	SniName *string `json:"sniName,omitempty" tf:"sni_name,omitempty"`
+
+	// Whether to enable Server Name Indication (SNI) validation on the backend HTTPS servers. Defaults to true.
+	SniValidationEnabled *bool `json:"sniValidationEnabled,omitempty" tf:"sni_validation_enabled,omitempty"`
+
 	// A list of trusted_root_certificate names.
 	TrustedRootCertificateNames []*string `json:"trustedRootCertificateNames,omitempty" tf:"trusted_root_certificate_names,omitempty"`
 }
@@ -552,6 +597,9 @@ type BackendHTTPSettingsObservation struct {
 
 	// One or more authentication_certificate_backend blocks as defined below.
 	AuthenticationCertificate []BackendHTTPSettingsAuthenticationCertificateObservation `json:"authenticationCertificate,omitempty" tf:"authentication_certificate,omitempty"`
+
+	// Whether to validate the certificate chain and expiry on the backend HTTPS servers. Defaults to true.
+	CertificateChainValidationEnabled *bool `json:"certificateChainValidationEnabled,omitempty" tf:"certificate_chain_validation_enabled,omitempty"`
 
 	// A connection_draining block as defined below.
 	ConnectionDraining []ConnectionDrainingObservation `json:"connectionDraining,omitempty" tf:"connection_draining,omitempty"`
@@ -592,6 +640,12 @@ type BackendHTTPSettingsObservation struct {
 	// The request timeout in seconds, which must be between 1 and 86400 seconds. Defaults to 30.
 	RequestTimeout *float64 `json:"requestTimeout,omitempty" tf:"request_timeout,omitempty"`
 
+	// The Server Name Indication (SNI) hostname to send to the backend servers.
+	SniName *string `json:"sniName,omitempty" tf:"sni_name,omitempty"`
+
+	// Whether to enable Server Name Indication (SNI) validation on the backend HTTPS servers. Defaults to true.
+	SniValidationEnabled *bool `json:"sniValidationEnabled,omitempty" tf:"sni_validation_enabled,omitempty"`
+
 	// A list of trusted_root_certificate names.
 	TrustedRootCertificateNames []*string `json:"trustedRootCertificateNames,omitempty" tf:"trusted_root_certificate_names,omitempty"`
 }
@@ -605,6 +659,10 @@ type BackendHTTPSettingsParameters struct {
 	// One or more authentication_certificate_backend blocks as defined below.
 	// +kubebuilder:validation:Optional
 	AuthenticationCertificate []BackendHTTPSettingsAuthenticationCertificateParameters `json:"authenticationCertificate,omitempty" tf:"authentication_certificate,omitempty"`
+
+	// Whether to validate the certificate chain and expiry on the backend HTTPS servers. Defaults to true.
+	// +kubebuilder:validation:Optional
+	CertificateChainValidationEnabled *bool `json:"certificateChainValidationEnabled,omitempty" tf:"certificate_chain_validation_enabled,omitempty"`
 
 	// A connection_draining block as defined below.
 	// +kubebuilder:validation:Optional
@@ -649,6 +707,109 @@ type BackendHTTPSettingsParameters struct {
 	// The request timeout in seconds, which must be between 1 and 86400 seconds. Defaults to 30.
 	// +kubebuilder:validation:Optional
 	RequestTimeout *float64 `json:"requestTimeout,omitempty" tf:"request_timeout,omitempty"`
+
+	// The Server Name Indication (SNI) hostname to send to the backend servers.
+	// +kubebuilder:validation:Optional
+	SniName *string `json:"sniName,omitempty" tf:"sni_name,omitempty"`
+
+	// Whether to enable Server Name Indication (SNI) validation on the backend HTTPS servers. Defaults to true.
+	// +kubebuilder:validation:Optional
+	SniValidationEnabled *bool `json:"sniValidationEnabled,omitempty" tf:"sni_validation_enabled,omitempty"`
+
+	// A list of trusted_root_certificate names.
+	// +kubebuilder:validation:Optional
+	TrustedRootCertificateNames []*string `json:"trustedRootCertificateNames,omitempty" tf:"trusted_root_certificate_names,omitempty"`
+}
+
+type BackendInitParameters struct {
+
+	// Whether client IP preservation is enabled for this Backend Settings Collection. Defaults to false.
+	ClientIPPreservationEnabled *bool `json:"clientIpPreservationEnabled,omitempty" tf:"client_ip_preservation_enabled,omitempty"`
+
+	// Host header to be sent to the backend servers. Can only be set when protocol is Tls.
+	HostName *string `json:"hostName,omitempty" tf:"host_name,omitempty"`
+
+	// The name of the Backend Settings Collection.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// The port which should be used for this Backend Settings Collection.
+	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
+
+	// The name of an associated Probe.
+	ProbeName *string `json:"probeName,omitempty" tf:"probe_name,omitempty"`
+
+	// The Protocol which should be used. Possible values are Tcp and Tls.
+	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
+
+	// The connection timeout in seconds. Possible values range between 1 and 86400. Defaults to 30.
+	TimeoutInSeconds *float64 `json:"timeoutInSeconds,omitempty" tf:"timeout_in_seconds,omitempty"`
+
+	// A list of trusted_root_certificate names.
+	TrustedRootCertificateNames []*string `json:"trustedRootCertificateNames,omitempty" tf:"trusted_root_certificate_names,omitempty"`
+}
+
+type BackendObservation struct {
+
+	// Whether client IP preservation is enabled for this Backend Settings Collection. Defaults to false.
+	ClientIPPreservationEnabled *bool `json:"clientIpPreservationEnabled,omitempty" tf:"client_ip_preservation_enabled,omitempty"`
+
+	// Host header to be sent to the backend servers. Can only be set when protocol is Tls.
+	HostName *string `json:"hostName,omitempty" tf:"host_name,omitempty"`
+
+	// The ID of the Backend Settings Configuration.
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The name of the Backend Settings Collection.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// The port which should be used for this Backend Settings Collection.
+	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
+
+	// The ID of the associated Probe.
+	ProbeID *string `json:"probeId,omitempty" tf:"probe_id,omitempty"`
+
+	// The name of an associated Probe.
+	ProbeName *string `json:"probeName,omitempty" tf:"probe_name,omitempty"`
+
+	// The Protocol which should be used. Possible values are Tcp and Tls.
+	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
+
+	// The connection timeout in seconds. Possible values range between 1 and 86400. Defaults to 30.
+	TimeoutInSeconds *float64 `json:"timeoutInSeconds,omitempty" tf:"timeout_in_seconds,omitempty"`
+
+	// A list of trusted_root_certificate names.
+	TrustedRootCertificateNames []*string `json:"trustedRootCertificateNames,omitempty" tf:"trusted_root_certificate_names,omitempty"`
+}
+
+type BackendParameters struct {
+
+	// Whether client IP preservation is enabled for this Backend Settings Collection. Defaults to false.
+	// +kubebuilder:validation:Optional
+	ClientIPPreservationEnabled *bool `json:"clientIpPreservationEnabled,omitempty" tf:"client_ip_preservation_enabled,omitempty"`
+
+	// Host header to be sent to the backend servers. Can only be set when protocol is Tls.
+	// +kubebuilder:validation:Optional
+	HostName *string `json:"hostName,omitempty" tf:"host_name,omitempty"`
+
+	// The name of the Backend Settings Collection.
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name" tf:"name,omitempty"`
+
+	// The port which should be used for this Backend Settings Collection.
+	// +kubebuilder:validation:Optional
+	Port *float64 `json:"port" tf:"port,omitempty"`
+
+	// The name of an associated Probe.
+	// +kubebuilder:validation:Optional
+	ProbeName *string `json:"probeName,omitempty" tf:"probe_name,omitempty"`
+
+	// The Protocol which should be used. Possible values are Tcp and Tls.
+	// +kubebuilder:validation:Optional
+	Protocol *string `json:"protocol" tf:"protocol,omitempty"`
+
+	// The connection timeout in seconds. Possible values range between 1 and 86400. Defaults to 30.
+	// +kubebuilder:validation:Optional
+	TimeoutInSeconds *float64 `json:"timeoutInSeconds,omitempty" tf:"timeout_in_seconds,omitempty"`
 
 	// A list of trusted_root_certificate names.
 	// +kubebuilder:validation:Optional
@@ -767,7 +928,7 @@ type CustomErrorConfigurationParameters struct {
 
 type DisabledRuleGroupInitParameters struct {
 
-	// The rule group where specific rules should be disabled. Possible values are BadBots, crs_20_protocol_violations, crs_21_protocol_anomalies, crs_23_request_limits, crs_30_http_policy, crs_35_bad_robots, crs_40_generic_attacks, crs_41_sql_injection_attacks, crs_41_xss_attacks, crs_42_tight_security, crs_45_trojans, crs_49_inbound_blocking, General, GoodBots, KnownBadBots, Known-CVEs, REQUEST-911-METHOD-ENFORCEMENT, REQUEST-913-SCANNER-DETECTION, REQUEST-920-PROTOCOL-ENFORCEMENT, REQUEST-921-PROTOCOL-ATTACK, REQUEST-930-APPLICATION-ATTACK-LFI, REQUEST-931-APPLICATION-ATTACK-RFI, REQUEST-932-APPLICATION-ATTACK-RCE, REQUEST-933-APPLICATION-ATTACK-PHP, REQUEST-941-APPLICATION-ATTACK-XSS, REQUEST-942-APPLICATION-ATTACK-SQLI, REQUEST-943-APPLICATION-ATTACK-SESSION-FIXATION, REQUEST-944-APPLICATION-ATTACK-JAVA, UnknownBots, METHOD-ENFORCEMENT, PROTOCOL-ENFORCEMENT, PROTOCOL-ATTACK, LFI, RFI, RCE, PHP, NODEJS, XSS, SQLI, FIX, JAVA, MS-ThreatIntel-WebShells, MS-ThreatIntel-AppSec, MS-ThreatIntel-SQLI and MS-ThreatIntel-CVEs.
+	// The rule group where specific rules should be disabled. Possible values are BadBots, crs_20_protocol_violations, crs_21_protocol_anomalies, crs_23_request_limits, crs_30_http_policy, crs_35_bad_robots, crs_40_generic_attacks, crs_41_sql_injection_attacks, crs_41_xss_attacks, crs_42_tight_security, crs_45_trojans, crs_49_inbound_blocking, General, GoodBots, KnownBadBots, Known-CVEs, REQUEST-911-METHOD-ENFORCEMENT, REQUEST-913-SCANNER-DETECTION, REQUEST-920-PROTOCOL-ENFORCEMENT, REQUEST-921-PROTOCOL-ATTACK, REQUEST-930-APPLICATION-ATTACK-LFI, REQUEST-931-APPLICATION-ATTACK-RFI, REQUEST-932-APPLICATION-ATTACK-RCE, REQUEST-933-APPLICATION-ATTACK-PHP, REQUEST-941-APPLICATION-ATTACK-XSS, REQUEST-942-APPLICATION-ATTACK-SQLI, REQUEST-943-APPLICATION-ATTACK-SESSION-FIXATION, REQUEST-944-APPLICATION-ATTACK-JAVA, UnknownBots, METHOD-ENFORCEMENT, PROTOCOL-ENFORCEMENT, PROTOCOL-ATTACK, LFI, RFI, RCE, PHP, NODEJS, XSS, SQLI, FIX, JAVA, MS-ThreatIntel-WebShells, MS-ThreatIntel-AppSec, MS-ThreatIntel-SQLI, MS-ThreatIntel-CVEs and MS-ThreatIntel-XSS.
 	RuleGroupName *string `json:"ruleGroupName,omitempty" tf:"rule_group_name,omitempty"`
 
 	// A list of rules which should be disabled in that group. Disables all rules in the specified group if rules is not specified.
@@ -776,7 +937,7 @@ type DisabledRuleGroupInitParameters struct {
 
 type DisabledRuleGroupObservation struct {
 
-	// The rule group where specific rules should be disabled. Possible values are BadBots, crs_20_protocol_violations, crs_21_protocol_anomalies, crs_23_request_limits, crs_30_http_policy, crs_35_bad_robots, crs_40_generic_attacks, crs_41_sql_injection_attacks, crs_41_xss_attacks, crs_42_tight_security, crs_45_trojans, crs_49_inbound_blocking, General, GoodBots, KnownBadBots, Known-CVEs, REQUEST-911-METHOD-ENFORCEMENT, REQUEST-913-SCANNER-DETECTION, REQUEST-920-PROTOCOL-ENFORCEMENT, REQUEST-921-PROTOCOL-ATTACK, REQUEST-930-APPLICATION-ATTACK-LFI, REQUEST-931-APPLICATION-ATTACK-RFI, REQUEST-932-APPLICATION-ATTACK-RCE, REQUEST-933-APPLICATION-ATTACK-PHP, REQUEST-941-APPLICATION-ATTACK-XSS, REQUEST-942-APPLICATION-ATTACK-SQLI, REQUEST-943-APPLICATION-ATTACK-SESSION-FIXATION, REQUEST-944-APPLICATION-ATTACK-JAVA, UnknownBots, METHOD-ENFORCEMENT, PROTOCOL-ENFORCEMENT, PROTOCOL-ATTACK, LFI, RFI, RCE, PHP, NODEJS, XSS, SQLI, FIX, JAVA, MS-ThreatIntel-WebShells, MS-ThreatIntel-AppSec, MS-ThreatIntel-SQLI and MS-ThreatIntel-CVEs.
+	// The rule group where specific rules should be disabled. Possible values are BadBots, crs_20_protocol_violations, crs_21_protocol_anomalies, crs_23_request_limits, crs_30_http_policy, crs_35_bad_robots, crs_40_generic_attacks, crs_41_sql_injection_attacks, crs_41_xss_attacks, crs_42_tight_security, crs_45_trojans, crs_49_inbound_blocking, General, GoodBots, KnownBadBots, Known-CVEs, REQUEST-911-METHOD-ENFORCEMENT, REQUEST-913-SCANNER-DETECTION, REQUEST-920-PROTOCOL-ENFORCEMENT, REQUEST-921-PROTOCOL-ATTACK, REQUEST-930-APPLICATION-ATTACK-LFI, REQUEST-931-APPLICATION-ATTACK-RFI, REQUEST-932-APPLICATION-ATTACK-RCE, REQUEST-933-APPLICATION-ATTACK-PHP, REQUEST-941-APPLICATION-ATTACK-XSS, REQUEST-942-APPLICATION-ATTACK-SQLI, REQUEST-943-APPLICATION-ATTACK-SESSION-FIXATION, REQUEST-944-APPLICATION-ATTACK-JAVA, UnknownBots, METHOD-ENFORCEMENT, PROTOCOL-ENFORCEMENT, PROTOCOL-ATTACK, LFI, RFI, RCE, PHP, NODEJS, XSS, SQLI, FIX, JAVA, MS-ThreatIntel-WebShells, MS-ThreatIntel-AppSec, MS-ThreatIntel-SQLI, MS-ThreatIntel-CVEs and MS-ThreatIntel-XSS.
 	RuleGroupName *string `json:"ruleGroupName,omitempty" tf:"rule_group_name,omitempty"`
 
 	// A list of rules which should be disabled in that group. Disables all rules in the specified group if rules is not specified.
@@ -785,7 +946,7 @@ type DisabledRuleGroupObservation struct {
 
 type DisabledRuleGroupParameters struct {
 
-	// The rule group where specific rules should be disabled. Possible values are BadBots, crs_20_protocol_violations, crs_21_protocol_anomalies, crs_23_request_limits, crs_30_http_policy, crs_35_bad_robots, crs_40_generic_attacks, crs_41_sql_injection_attacks, crs_41_xss_attacks, crs_42_tight_security, crs_45_trojans, crs_49_inbound_blocking, General, GoodBots, KnownBadBots, Known-CVEs, REQUEST-911-METHOD-ENFORCEMENT, REQUEST-913-SCANNER-DETECTION, REQUEST-920-PROTOCOL-ENFORCEMENT, REQUEST-921-PROTOCOL-ATTACK, REQUEST-930-APPLICATION-ATTACK-LFI, REQUEST-931-APPLICATION-ATTACK-RFI, REQUEST-932-APPLICATION-ATTACK-RCE, REQUEST-933-APPLICATION-ATTACK-PHP, REQUEST-941-APPLICATION-ATTACK-XSS, REQUEST-942-APPLICATION-ATTACK-SQLI, REQUEST-943-APPLICATION-ATTACK-SESSION-FIXATION, REQUEST-944-APPLICATION-ATTACK-JAVA, UnknownBots, METHOD-ENFORCEMENT, PROTOCOL-ENFORCEMENT, PROTOCOL-ATTACK, LFI, RFI, RCE, PHP, NODEJS, XSS, SQLI, FIX, JAVA, MS-ThreatIntel-WebShells, MS-ThreatIntel-AppSec, MS-ThreatIntel-SQLI and MS-ThreatIntel-CVEs.
+	// The rule group where specific rules should be disabled. Possible values are BadBots, crs_20_protocol_violations, crs_21_protocol_anomalies, crs_23_request_limits, crs_30_http_policy, crs_35_bad_robots, crs_40_generic_attacks, crs_41_sql_injection_attacks, crs_41_xss_attacks, crs_42_tight_security, crs_45_trojans, crs_49_inbound_blocking, General, GoodBots, KnownBadBots, Known-CVEs, REQUEST-911-METHOD-ENFORCEMENT, REQUEST-913-SCANNER-DETECTION, REQUEST-920-PROTOCOL-ENFORCEMENT, REQUEST-921-PROTOCOL-ATTACK, REQUEST-930-APPLICATION-ATTACK-LFI, REQUEST-931-APPLICATION-ATTACK-RFI, REQUEST-932-APPLICATION-ATTACK-RCE, REQUEST-933-APPLICATION-ATTACK-PHP, REQUEST-941-APPLICATION-ATTACK-XSS, REQUEST-942-APPLICATION-ATTACK-SQLI, REQUEST-943-APPLICATION-ATTACK-SESSION-FIXATION, REQUEST-944-APPLICATION-ATTACK-JAVA, UnknownBots, METHOD-ENFORCEMENT, PROTOCOL-ENFORCEMENT, PROTOCOL-ATTACK, LFI, RFI, RCE, PHP, NODEJS, XSS, SQLI, FIX, JAVA, MS-ThreatIntel-WebShells, MS-ThreatIntel-AppSec, MS-ThreatIntel-SQLI, MS-ThreatIntel-CVEs and MS-ThreatIntel-XSS.
 	// +kubebuilder:validation:Optional
 	RuleGroupName *string `json:"ruleGroupName" tf:"rule_group_name,omitempty"`
 
@@ -1373,6 +1534,103 @@ type IdentityParameters struct {
 	Type *string `json:"type" tf:"type,omitempty"`
 }
 
+type ListenerInitParameters struct {
+
+	// The Name of the Frontend IP Configuration used for this Listener.
+	FrontendIPConfigurationName *string `json:"frontendIpConfigurationName,omitempty" tf:"frontend_ip_configuration_name,omitempty"`
+
+	// The Name of the Frontend Port use for this Listener.
+	FrontendPortName *string `json:"frontendPortName,omitempty" tf:"frontend_port_name,omitempty"`
+
+	// A list of Hostname(s) should be used for this Listener. It allows special wildcard characters.
+	// +listType=set
+	HostNames []*string `json:"hostNames,omitempty" tf:"host_names,omitempty"`
+
+	// The Name of the Listener.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// The Protocol to use for this Listener. Possible values are Tcp, and Tls.
+	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
+
+	// The name of the associated SSL Certificate which should be used for this Listener.
+	SSLCertificateName *string `json:"sslCertificateName,omitempty" tf:"ssl_certificate_name,omitempty"`
+
+	// The name of the associated SSL Profile which should be used for this Listener.
+	SSLProfileName *string `json:"sslProfileName,omitempty" tf:"ssl_profile_name,omitempty"`
+}
+
+type ListenerObservation struct {
+
+	// The ID of the associated Frontend Configuration.
+	FrontendIPConfigurationID *string `json:"frontendIpConfigurationId,omitempty" tf:"frontend_ip_configuration_id,omitempty"`
+
+	// The Name of the Frontend IP Configuration used for this Listener.
+	FrontendIPConfigurationName *string `json:"frontendIpConfigurationName,omitempty" tf:"frontend_ip_configuration_name,omitempty"`
+
+	// The ID of the associated Frontend Port.
+	FrontendPortID *string `json:"frontendPortId,omitempty" tf:"frontend_port_id,omitempty"`
+
+	// The Name of the Frontend Port use for this Listener.
+	FrontendPortName *string `json:"frontendPortName,omitempty" tf:"frontend_port_name,omitempty"`
+
+	// A list of Hostname(s) should be used for this Listener. It allows special wildcard characters.
+	// +listType=set
+	HostNames []*string `json:"hostNames,omitempty" tf:"host_names,omitempty"`
+
+	// The ID of the Listener.
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The Name of the Listener.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// The Protocol to use for this Listener. Possible values are Tcp, and Tls.
+	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
+
+	// The ID of the associated SSL Certificate.
+	SSLCertificateID *string `json:"sslCertificateId,omitempty" tf:"ssl_certificate_id,omitempty"`
+
+	// The name of the associated SSL Certificate which should be used for this Listener.
+	SSLCertificateName *string `json:"sslCertificateName,omitempty" tf:"ssl_certificate_name,omitempty"`
+
+	// The ID of the associated SSL Profile.
+	SSLProfileID *string `json:"sslProfileId,omitempty" tf:"ssl_profile_id,omitempty"`
+
+	// The name of the associated SSL Profile which should be used for this Listener.
+	SSLProfileName *string `json:"sslProfileName,omitempty" tf:"ssl_profile_name,omitempty"`
+}
+
+type ListenerParameters struct {
+
+	// The Name of the Frontend IP Configuration used for this Listener.
+	// +kubebuilder:validation:Optional
+	FrontendIPConfigurationName *string `json:"frontendIpConfigurationName" tf:"frontend_ip_configuration_name,omitempty"`
+
+	// The Name of the Frontend Port use for this Listener.
+	// +kubebuilder:validation:Optional
+	FrontendPortName *string `json:"frontendPortName" tf:"frontend_port_name,omitempty"`
+
+	// A list of Hostname(s) should be used for this Listener. It allows special wildcard characters.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	HostNames []*string `json:"hostNames,omitempty" tf:"host_names,omitempty"`
+
+	// The Name of the Listener.
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name" tf:"name,omitempty"`
+
+	// The Protocol to use for this Listener. Possible values are Tcp, and Tls.
+	// +kubebuilder:validation:Optional
+	Protocol *string `json:"protocol" tf:"protocol,omitempty"`
+
+	// The name of the associated SSL Certificate which should be used for this Listener.
+	// +kubebuilder:validation:Optional
+	SSLCertificateName *string `json:"sslCertificateName,omitempty" tf:"ssl_certificate_name,omitempty"`
+
+	// The name of the associated SSL Profile which should be used for this Listener.
+	// +kubebuilder:validation:Optional
+	SSLProfileName *string `json:"sslProfileName,omitempty" tf:"ssl_profile_name,omitempty"`
+}
+
 type MatchInitParameters struct {
 
 	// A snippet from the Response Body which must be present in the Response.
@@ -1404,7 +1662,7 @@ type MatchParameters struct {
 
 type PathRuleInitParameters struct {
 
-	// The Name of the Backend Address Pool which should be used for this Routing Rule. Cannot be set if redirect_configuration_name is set.
+	// The Name of the Backend Address Pool which should be used for this Routing Rule.
 	BackendAddressPoolName *string `json:"backendAddressPoolName,omitempty" tf:"backend_address_pool_name,omitempty"`
 
 	// The Name of the Backend HTTP Settings Collection which should be used for this Routing Rule. Cannot be set if redirect_configuration_name is set.
@@ -1431,7 +1689,7 @@ type PathRuleObservation struct {
 	// The ID of the associated Backend Address Pool.
 	BackendAddressPoolID *string `json:"backendAddressPoolId,omitempty" tf:"backend_address_pool_id,omitempty"`
 
-	// The Name of the Backend Address Pool which should be used for this Routing Rule. Cannot be set if redirect_configuration_name is set.
+	// The Name of the Backend Address Pool which should be used for this Routing Rule.
 	BackendAddressPoolName *string `json:"backendAddressPoolName,omitempty" tf:"backend_address_pool_name,omitempty"`
 
 	// The ID of the associated Backend HTTP Settings Configuration.
@@ -1467,7 +1725,7 @@ type PathRuleObservation struct {
 
 type PathRuleParameters struct {
 
-	// The Name of the Backend Address Pool which should be used for this Routing Rule. Cannot be set if redirect_configuration_name is set.
+	// The Name of the Backend Address Pool which should be used for this Routing Rule.
 	// +kubebuilder:validation:Optional
 	BackendAddressPoolName *string `json:"backendAddressPoolName,omitempty" tf:"backend_address_pool_name,omitempty"`
 
@@ -1545,10 +1803,10 @@ type PrivateLinkConfigurationParameters struct {
 
 type ProbeInitParameters struct {
 
-	// The Hostname used for this Probe. If the Application Gateway is configured for a single site, by default the Host name should be specified as 127.0.0.1, unless otherwise configured in custom probe. Cannot be set if pick_host_name_from_backend_http_settings is set to true.
+	// The hostname used for this Probe. If the Application Gateway is configured for a single site, by default the hostname should be specified as 127.0.0.1, unless otherwise configured in custom Probe.
 	Host *string `json:"host,omitempty" tf:"host,omitempty"`
 
-	// The Interval between two consecutive probes in seconds. Possible values range from 1 second to a maximum of 86,400 seconds.
+	// The interval between two consecutive probes in seconds. Possible values range from 1 to 86400.
 	Interval *float64 `json:"interval,omitempty" tf:"interval,omitempty"`
 
 	// A match block as defined above.
@@ -1557,37 +1815,40 @@ type ProbeInitParameters struct {
 	// The minimum number of servers that are always marked as healthy. Defaults to 0.
 	MinimumServers *float64 `json:"minimumServers,omitempty" tf:"minimum_servers,omitempty"`
 
-	// The Name of the Probe.
+	// The name of the Probe.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// The Path used for this Probe.
+	// The relative URL path of the Probe. Valid value starts with /.
 	Path *string `json:"path,omitempty" tf:"path,omitempty"`
 
 	// Whether the host header should be picked from the backend HTTP settings. Defaults to false.
 	PickHostNameFromBackendHTTPSettings *bool `json:"pickHostNameFromBackendHttpSettings,omitempty" tf:"pick_host_name_from_backend_http_settings,omitempty"`
 
-	// Custom port which will be used for probing the backend servers. The valid value ranges from 1 to 65535. In case not set, port from HTTP settings will be used. This property is valid for Basic, Standard_v2 and WAF_v2 only.
+	// Custom port which will be used for probing the backend servers. Possible values range from 1 to 65535.
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
-	// The Protocol used for this Probe. Possible values are Http and Https.
+	// The protocol used for this Probe. Possible values are Http, Https, Tcp, and Tls.
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
-	// The Timeout used for this Probe, which indicates when a probe becomes unhealthy. Possible values range from 1 second to a maximum of 86,400 seconds.
+	// Whether the proxy protocol header is enabled for this Probe. Defaults to false.
+	ProxyProtocolHeaderEnabled *bool `json:"proxyProtocolHeaderEnabled,omitempty" tf:"proxy_protocol_header_enabled,omitempty"`
+
+	// The timeout in seconds used for this Probe, which indicates when a Probe becomes unhealthy. Possible values range from 1 to 86400.
 	Timeout *float64 `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
-	// The Unhealthy Threshold for this Probe, which indicates the amount of retries which should be attempted before a node is deemed unhealthy. Possible values are from 1 to 20.
+	// The unhealthy threshold for this Probe, which indicates the amount of retries which should be attempted before a node is deemed unhealthy. Possible values range from 1 to 20.
 	UnhealthyThreshold *float64 `json:"unhealthyThreshold,omitempty" tf:"unhealthy_threshold,omitempty"`
 }
 
 type ProbeObservation struct {
 
-	// The Hostname used for this Probe. If the Application Gateway is configured for a single site, by default the Host name should be specified as 127.0.0.1, unless otherwise configured in custom probe. Cannot be set if pick_host_name_from_backend_http_settings is set to true.
+	// The hostname used for this Probe. If the Application Gateway is configured for a single site, by default the hostname should be specified as 127.0.0.1, unless otherwise configured in custom Probe.
 	Host *string `json:"host,omitempty" tf:"host,omitempty"`
 
 	// The ID of the Probe.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// The Interval between two consecutive probes in seconds. Possible values range from 1 second to a maximum of 86,400 seconds.
+	// The interval between two consecutive probes in seconds. Possible values range from 1 to 86400.
 	Interval *float64 `json:"interval,omitempty" tf:"interval,omitempty"`
 
 	// A match block as defined above.
@@ -1596,35 +1857,38 @@ type ProbeObservation struct {
 	// The minimum number of servers that are always marked as healthy. Defaults to 0.
 	MinimumServers *float64 `json:"minimumServers,omitempty" tf:"minimum_servers,omitempty"`
 
-	// The Name of the Probe.
+	// The name of the Probe.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// The Path used for this Probe.
+	// The relative URL path of the Probe. Valid value starts with /.
 	Path *string `json:"path,omitempty" tf:"path,omitempty"`
 
 	// Whether the host header should be picked from the backend HTTP settings. Defaults to false.
 	PickHostNameFromBackendHTTPSettings *bool `json:"pickHostNameFromBackendHttpSettings,omitempty" tf:"pick_host_name_from_backend_http_settings,omitempty"`
 
-	// Custom port which will be used for probing the backend servers. The valid value ranges from 1 to 65535. In case not set, port from HTTP settings will be used. This property is valid for Basic, Standard_v2 and WAF_v2 only.
+	// Custom port which will be used for probing the backend servers. Possible values range from 1 to 65535.
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
-	// The Protocol used for this Probe. Possible values are Http and Https.
+	// The protocol used for this Probe. Possible values are Http, Https, Tcp, and Tls.
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
-	// The Timeout used for this Probe, which indicates when a probe becomes unhealthy. Possible values range from 1 second to a maximum of 86,400 seconds.
+	// Whether the proxy protocol header is enabled for this Probe. Defaults to false.
+	ProxyProtocolHeaderEnabled *bool `json:"proxyProtocolHeaderEnabled,omitempty" tf:"proxy_protocol_header_enabled,omitempty"`
+
+	// The timeout in seconds used for this Probe, which indicates when a Probe becomes unhealthy. Possible values range from 1 to 86400.
 	Timeout *float64 `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
-	// The Unhealthy Threshold for this Probe, which indicates the amount of retries which should be attempted before a node is deemed unhealthy. Possible values are from 1 to 20.
+	// The unhealthy threshold for this Probe, which indicates the amount of retries which should be attempted before a node is deemed unhealthy. Possible values range from 1 to 20.
 	UnhealthyThreshold *float64 `json:"unhealthyThreshold,omitempty" tf:"unhealthy_threshold,omitempty"`
 }
 
 type ProbeParameters struct {
 
-	// The Hostname used for this Probe. If the Application Gateway is configured for a single site, by default the Host name should be specified as 127.0.0.1, unless otherwise configured in custom probe. Cannot be set if pick_host_name_from_backend_http_settings is set to true.
+	// The hostname used for this Probe. If the Application Gateway is configured for a single site, by default the hostname should be specified as 127.0.0.1, unless otherwise configured in custom Probe.
 	// +kubebuilder:validation:Optional
 	Host *string `json:"host,omitempty" tf:"host,omitempty"`
 
-	// The Interval between two consecutive probes in seconds. Possible values range from 1 second to a maximum of 86,400 seconds.
+	// The interval between two consecutive probes in seconds. Possible values range from 1 to 86400.
 	// +kubebuilder:validation:Optional
 	Interval *float64 `json:"interval" tf:"interval,omitempty"`
 
@@ -1636,31 +1900,35 @@ type ProbeParameters struct {
 	// +kubebuilder:validation:Optional
 	MinimumServers *float64 `json:"minimumServers,omitempty" tf:"minimum_servers,omitempty"`
 
-	// The Name of the Probe.
+	// The name of the Probe.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name" tf:"name,omitempty"`
 
-	// The Path used for this Probe.
+	// The relative URL path of the Probe. Valid value starts with /.
 	// +kubebuilder:validation:Optional
-	Path *string `json:"path" tf:"path,omitempty"`
+	Path *string `json:"path,omitempty" tf:"path,omitempty"`
 
 	// Whether the host header should be picked from the backend HTTP settings. Defaults to false.
 	// +kubebuilder:validation:Optional
 	PickHostNameFromBackendHTTPSettings *bool `json:"pickHostNameFromBackendHttpSettings,omitempty" tf:"pick_host_name_from_backend_http_settings,omitempty"`
 
-	// Custom port which will be used for probing the backend servers. The valid value ranges from 1 to 65535. In case not set, port from HTTP settings will be used. This property is valid for Basic, Standard_v2 and WAF_v2 only.
+	// Custom port which will be used for probing the backend servers. Possible values range from 1 to 65535.
 	// +kubebuilder:validation:Optional
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
-	// The Protocol used for this Probe. Possible values are Http and Https.
+	// The protocol used for this Probe. Possible values are Http, Https, Tcp, and Tls.
 	// +kubebuilder:validation:Optional
 	Protocol *string `json:"protocol" tf:"protocol,omitempty"`
 
-	// The Timeout used for this Probe, which indicates when a probe becomes unhealthy. Possible values range from 1 second to a maximum of 86,400 seconds.
+	// Whether the proxy protocol header is enabled for this Probe. Defaults to false.
+	// +kubebuilder:validation:Optional
+	ProxyProtocolHeaderEnabled *bool `json:"proxyProtocolHeaderEnabled,omitempty" tf:"proxy_protocol_header_enabled,omitempty"`
+
+	// The timeout in seconds used for this Probe, which indicates when a Probe becomes unhealthy. Possible values range from 1 to 86400.
 	// +kubebuilder:validation:Optional
 	Timeout *float64 `json:"timeout" tf:"timeout,omitempty"`
 
-	// The Unhealthy Threshold for this Probe, which indicates the amount of retries which should be attempted before a node is deemed unhealthy. Possible values are from 1 to 20.
+	// The unhealthy threshold for this Probe, which indicates the amount of retries which should be attempted before a node is deemed unhealthy. Possible values range from 1 to 20.
 	// +kubebuilder:validation:Optional
 	UnhealthyThreshold *float64 `json:"unhealthyThreshold" tf:"unhealthy_threshold,omitempty"`
 }
@@ -2019,6 +2287,77 @@ type RewriteRuleSetParameters struct {
 	RewriteRule []RewriteRuleParameters `json:"rewriteRule,omitempty" tf:"rewrite_rule,omitempty"`
 }
 
+type RoutingRuleInitParameters struct {
+
+	// The Name of the Backend Address Pool which should be used for this Routing Rule.
+	BackendAddressPoolName *string `json:"backendAddressPoolName,omitempty" tf:"backend_address_pool_name,omitempty"`
+
+	// The Name of the Backend Settings which should be used for this Routing Rule.
+	BackendName *string `json:"backendName,omitempty" tf:"backend_name,omitempty"`
+
+	// The Name of the Listener which should be used for this Routing Rule.
+	ListenerName *string `json:"listenerName,omitempty" tf:"listener_name,omitempty"`
+
+	// The Name of this Routing Rule.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// The routing rule priority, indicating the order in which rules are evaluated. Possible values range between 1 and 20000, with 1 being the highest priority and 20000 being the lowest priority.
+	Priority *float64 `json:"priority,omitempty" tf:"priority,omitempty"`
+}
+
+type RoutingRuleObservation struct {
+
+	// The ID of the associated Backend Address Pool.
+	BackendAddressPoolID *string `json:"backendAddressPoolId,omitempty" tf:"backend_address_pool_id,omitempty"`
+
+	// The Name of the Backend Address Pool which should be used for this Routing Rule.
+	BackendAddressPoolName *string `json:"backendAddressPoolName,omitempty" tf:"backend_address_pool_name,omitempty"`
+
+	// The ID of the associated Backend Settings.
+	BackendID *string `json:"backendId,omitempty" tf:"backend_id,omitempty"`
+
+	// The Name of the Backend Settings which should be used for this Routing Rule.
+	BackendName *string `json:"backendName,omitempty" tf:"backend_name,omitempty"`
+
+	// The ID of the Routing Rule.
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The ID of the associated Listener.
+	ListenerID *string `json:"listenerId,omitempty" tf:"listener_id,omitempty"`
+
+	// The Name of the Listener which should be used for this Routing Rule.
+	ListenerName *string `json:"listenerName,omitempty" tf:"listener_name,omitempty"`
+
+	// The Name of this Routing Rule.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// The routing rule priority, indicating the order in which rules are evaluated. Possible values range between 1 and 20000, with 1 being the highest priority and 20000 being the lowest priority.
+	Priority *float64 `json:"priority,omitempty" tf:"priority,omitempty"`
+}
+
+type RoutingRuleParameters struct {
+
+	// The Name of the Backend Address Pool which should be used for this Routing Rule.
+	// +kubebuilder:validation:Optional
+	BackendAddressPoolName *string `json:"backendAddressPoolName" tf:"backend_address_pool_name,omitempty"`
+
+	// The Name of the Backend Settings which should be used for this Routing Rule.
+	// +kubebuilder:validation:Optional
+	BackendName *string `json:"backendName" tf:"backend_name,omitempty"`
+
+	// The Name of the Listener which should be used for this Routing Rule.
+	// +kubebuilder:validation:Optional
+	ListenerName *string `json:"listenerName" tf:"listener_name,omitempty"`
+
+	// The Name of this Routing Rule.
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name" tf:"name,omitempty"`
+
+	// The routing rule priority, indicating the order in which rules are evaluated. Possible values range between 1 and 20000, with 1 being the highest priority and 20000 being the lowest priority.
+	// +kubebuilder:validation:Optional
+	Priority *float64 `json:"priority" tf:"priority,omitempty"`
+}
+
 type SSLCertificateInitParameters struct {
 
 	// The base64-encoded PFX certificate data. Required if key_vault_secret_id is not set.
@@ -2141,6 +2480,9 @@ type SSLProfileInitParameters struct {
 	// Should client certificate issuer DN be verified? Defaults to false.
 	VerifyClientCertIssuerDn *bool `json:"verifyClientCertIssuerDn,omitempty" tf:"verify_client_cert_issuer_dn,omitempty"`
 
+	// Should client certificate issuer DN be verified? Defaults to false.
+	VerifyClientCertificateIssuerDn *bool `json:"verifyClientCertificateIssuerDn,omitempty" tf:"verify_client_certificate_issuer_dn,omitempty"`
+
 	// Specify the method to check client certificate revocation status. Possible value is OCSP.
 	VerifyClientCertificateRevocation *string `json:"verifyClientCertificateRevocation,omitempty" tf:"verify_client_certificate_revocation,omitempty"`
 }
@@ -2161,6 +2503,9 @@ type SSLProfileObservation struct {
 
 	// Should client certificate issuer DN be verified? Defaults to false.
 	VerifyClientCertIssuerDn *bool `json:"verifyClientCertIssuerDn,omitempty" tf:"verify_client_cert_issuer_dn,omitempty"`
+
+	// Should client certificate issuer DN be verified? Defaults to false.
+	VerifyClientCertificateIssuerDn *bool `json:"verifyClientCertificateIssuerDn,omitempty" tf:"verify_client_certificate_issuer_dn,omitempty"`
 
 	// Specify the method to check client certificate revocation status. Possible value is OCSP.
 	VerifyClientCertificateRevocation *string `json:"verifyClientCertificateRevocation,omitempty" tf:"verify_client_certificate_revocation,omitempty"`
@@ -2183,6 +2528,10 @@ type SSLProfileParameters struct {
 	// Should client certificate issuer DN be verified? Defaults to false.
 	// +kubebuilder:validation:Optional
 	VerifyClientCertIssuerDn *bool `json:"verifyClientCertIssuerDn,omitempty" tf:"verify_client_cert_issuer_dn,omitempty"`
+
+	// Should client certificate issuer DN be verified? Defaults to false.
+	// +kubebuilder:validation:Optional
+	VerifyClientCertificateIssuerDn *bool `json:"verifyClientCertificateIssuerDn,omitempty" tf:"verify_client_certificate_issuer_dn,omitempty"`
 
 	// Specify the method to check client certificate revocation status. Possible value is OCSP.
 	// +kubebuilder:validation:Optional
@@ -2256,7 +2605,7 @@ type SkuInitParameters struct {
 	// The Name of the SKU to use for this Application Gateway. Possible values are Basic, Standard_Small, Standard_Medium, Standard_Large, Standard_v2, WAF_Large, WAF_Medium and WAF_v2.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// The Tier of the SKU to use for this Application Gateway. Possible values are Basic, Standard_v2, and WAF_v2.
+	// The Tier of the SKU to use for this Application Gateway. Possible values are Basic, Standard, Standard_v2, WAF, and WAF_v2.
 	Tier *string `json:"tier,omitempty" tf:"tier,omitempty"`
 }
 
@@ -2268,7 +2617,7 @@ type SkuObservation struct {
 	// The Name of the SKU to use for this Application Gateway. Possible values are Basic, Standard_Small, Standard_Medium, Standard_Large, Standard_v2, WAF_Large, WAF_Medium and WAF_v2.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// The Tier of the SKU to use for this Application Gateway. Possible values are Basic, Standard_v2, and WAF_v2.
+	// The Tier of the SKU to use for this Application Gateway. Possible values are Basic, Standard, Standard_v2, WAF, and WAF_v2.
 	Tier *string `json:"tier,omitempty" tf:"tier,omitempty"`
 }
 
@@ -2282,7 +2631,7 @@ type SkuParameters struct {
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name" tf:"name,omitempty"`
 
-	// The Tier of the SKU to use for this Application Gateway. Possible values are Basic, Standard_v2, and WAF_v2.
+	// The Tier of the SKU to use for this Application Gateway. Possible values are Basic, Standard, Standard_v2, WAF, and WAF_v2.
 	// +kubebuilder:validation:Optional
 	Tier *string `json:"tier" tf:"tier,omitempty"`
 }
@@ -2514,7 +2863,7 @@ type WafConfigurationInitParameters struct {
 	// The Type of the Rule Set used for this Web Application Firewall. Possible values are OWASP, Microsoft_BotManagerRuleSet and Microsoft_DefaultRuleSet. Defaults to OWASP.
 	RuleSetType *string `json:"ruleSetType,omitempty" tf:"rule_set_type,omitempty"`
 
-	// The Version of the Rule Set used for this Web Application Firewall. Possible values are 0.1, 1.0, 1.1, 2.1, 2.2.9, 3.0, 3.1 and 3.2.
+	// The Version of the Rule Set used for this Web Application Firewall. Possible values are 0.1, 1.0, 1.1, 2.1, 2.2, 2.2.9, 3.0, 3.1 and 3.2.
 	RuleSetVersion *string `json:"ruleSetVersion,omitempty" tf:"rule_set_version,omitempty"`
 }
 
@@ -2544,7 +2893,7 @@ type WafConfigurationObservation struct {
 	// The Type of the Rule Set used for this Web Application Firewall. Possible values are OWASP, Microsoft_BotManagerRuleSet and Microsoft_DefaultRuleSet. Defaults to OWASP.
 	RuleSetType *string `json:"ruleSetType,omitempty" tf:"rule_set_type,omitempty"`
 
-	// The Version of the Rule Set used for this Web Application Firewall. Possible values are 0.1, 1.0, 1.1, 2.1, 2.2.9, 3.0, 3.1 and 3.2.
+	// The Version of the Rule Set used for this Web Application Firewall. Possible values are 0.1, 1.0, 1.1, 2.1, 2.2, 2.2.9, 3.0, 3.1 and 3.2.
 	RuleSetVersion *string `json:"ruleSetVersion,omitempty" tf:"rule_set_version,omitempty"`
 }
 
@@ -2582,7 +2931,7 @@ type WafConfigurationParameters struct {
 	// +kubebuilder:validation:Optional
 	RuleSetType *string `json:"ruleSetType,omitempty" tf:"rule_set_type,omitempty"`
 
-	// The Version of the Rule Set used for this Web Application Firewall. Possible values are 0.1, 1.0, 1.1, 2.1, 2.2.9, 3.0, 3.1 and 3.2.
+	// The Version of the Rule Set used for this Web Application Firewall. Possible values are 0.1, 1.0, 1.1, 2.1, 2.2, 2.2.9, 3.0, 3.1 and 3.2.
 	// +kubebuilder:validation:Optional
 	RuleSetVersion *string `json:"ruleSetVersion" tf:"rule_set_version,omitempty"`
 }

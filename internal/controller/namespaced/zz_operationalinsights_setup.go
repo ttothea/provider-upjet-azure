@@ -61,3 +61,23 @@ func SetupGated_operationalinsights(mgr ctrl.Manager, o controller.Options) erro
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_operationalinsights registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_operationalinsights(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		loganalyticsdataexportrule.SetupWebhookWithManager,
+		loganalyticsdatasourcewindowsevent.SetupWebhookWithManager,
+		loganalyticsdatasourcewindowsperformancecounter.SetupWebhookWithManager,
+		loganalyticslinkedservice.SetupWebhookWithManager,
+		loganalyticslinkedstorageaccount.SetupWebhookWithManager,
+		loganalyticsquerypack.SetupWebhookWithManager,
+		loganalyticsquerypackquery.SetupWebhookWithManager,
+		loganalyticssavedsearch.SetupWebhookWithManager,
+		workspace.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

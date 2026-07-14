@@ -1805,6 +1805,21 @@ func (in *BotChannelsRegistrationInitParameters) DeepCopyInto(out *BotChannelsRe
 		*out = new(string)
 		**out = **in
 	}
+	if in.MicrosoftAppTenantID != nil {
+		in, out := &in.MicrosoftAppTenantID, &out.MicrosoftAppTenantID
+		*out = new(string)
+		**out = **in
+	}
+	if in.MicrosoftAppType != nil {
+		in, out := &in.MicrosoftAppType, &out.MicrosoftAppType
+		*out = new(string)
+		**out = **in
+	}
+	if in.MicrosoftAppUserAssignedIdentityID != nil {
+		in, out := &in.MicrosoftAppUserAssignedIdentityID, &out.MicrosoftAppUserAssignedIdentityID
+		*out = new(string)
+		**out = **in
+	}
 	if in.Name != nil {
 		in, out := &in.Name, &out.Name
 		*out = new(string)
@@ -1953,6 +1968,21 @@ func (in *BotChannelsRegistrationObservation) DeepCopyInto(out *BotChannelsRegis
 		*out = new(string)
 		**out = **in
 	}
+	if in.MicrosoftAppTenantID != nil {
+		in, out := &in.MicrosoftAppTenantID, &out.MicrosoftAppTenantID
+		*out = new(string)
+		**out = **in
+	}
+	if in.MicrosoftAppType != nil {
+		in, out := &in.MicrosoftAppType, &out.MicrosoftAppType
+		*out = new(string)
+		**out = **in
+	}
+	if in.MicrosoftAppUserAssignedIdentityID != nil {
+		in, out := &in.MicrosoftAppUserAssignedIdentityID, &out.MicrosoftAppUserAssignedIdentityID
+		*out = new(string)
+		**out = **in
+	}
 	if in.Name != nil {
 		in, out := &in.Name, &out.Name
 		*out = new(string)
@@ -2056,6 +2086,21 @@ func (in *BotChannelsRegistrationParameters) DeepCopyInto(out *BotChannelsRegist
 	}
 	if in.MicrosoftAppID != nil {
 		in, out := &in.MicrosoftAppID, &out.MicrosoftAppID
+		*out = new(string)
+		**out = **in
+	}
+	if in.MicrosoftAppTenantID != nil {
+		in, out := &in.MicrosoftAppTenantID, &out.MicrosoftAppTenantID
+		*out = new(string)
+		**out = **in
+	}
+	if in.MicrosoftAppType != nil {
+		in, out := &in.MicrosoftAppType, &out.MicrosoftAppType
+		*out = new(string)
+		**out = **in
+	}
+	if in.MicrosoftAppUserAssignedIdentityID != nil {
+		in, out := &in.MicrosoftAppUserAssignedIdentityID, &out.MicrosoftAppUserAssignedIdentityID
 		*out = new(string)
 		**out = **in
 	}
@@ -2532,6 +2577,21 @@ func (in *BotWebAppInitParameters) DeepCopyInto(out *BotWebAppInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.MicrosoftAppTenantID != nil {
+		in, out := &in.MicrosoftAppTenantID, &out.MicrosoftAppTenantID
+		*out = new(string)
+		**out = **in
+	}
+	if in.MicrosoftAppType != nil {
+		in, out := &in.MicrosoftAppType, &out.MicrosoftAppType
+		*out = new(string)
+		**out = **in
+	}
+	if in.MicrosoftAppUserAssignedIdentityID != nil {
+		in, out := &in.MicrosoftAppUserAssignedIdentityID, &out.MicrosoftAppUserAssignedIdentityID
+		*out = new(string)
+		**out = **in
+	}
 	if in.Sku != nil {
 		in, out := &in.Sku, &out.Sku
 		*out = new(string)
@@ -2646,6 +2706,21 @@ func (in *BotWebAppObservation) DeepCopyInto(out *BotWebAppObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.MicrosoftAppTenantID != nil {
+		in, out := &in.MicrosoftAppTenantID, &out.MicrosoftAppTenantID
+		*out = new(string)
+		**out = **in
+	}
+	if in.MicrosoftAppType != nil {
+		in, out := &in.MicrosoftAppType, &out.MicrosoftAppType
+		*out = new(string)
+		**out = **in
+	}
+	if in.MicrosoftAppUserAssignedIdentityID != nil {
+		in, out := &in.MicrosoftAppUserAssignedIdentityID, &out.MicrosoftAppUserAssignedIdentityID
+		*out = new(string)
+		**out = **in
+	}
 	if in.ResourceGroupName != nil {
 		in, out := &in.ResourceGroupName, &out.ResourceGroupName
 		*out = new(string)
@@ -2735,6 +2810,21 @@ func (in *BotWebAppParameters) DeepCopyInto(out *BotWebAppParameters) {
 	}
 	if in.MicrosoftAppID != nil {
 		in, out := &in.MicrosoftAppID, &out.MicrosoftAppID
+		*out = new(string)
+		**out = **in
+	}
+	if in.MicrosoftAppTenantID != nil {
+		in, out := &in.MicrosoftAppTenantID, &out.MicrosoftAppTenantID
+		*out = new(string)
+		**out = **in
+	}
+	if in.MicrosoftAppType != nil {
+		in, out := &in.MicrosoftAppType, &out.MicrosoftAppType
+		*out = new(string)
+		**out = **in
+	}
+	if in.MicrosoftAppUserAssignedIdentityID != nil {
+		in, out := &in.MicrosoftAppUserAssignedIdentityID, &out.MicrosoftAppUserAssignedIdentityID
 		*out = new(string)
 		**out = **in
 	}

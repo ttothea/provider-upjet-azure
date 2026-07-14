@@ -28,6 +28,9 @@ type IntegrationRuntimeAzureInitParameters struct {
 	// Integration runtime description.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// The time to live in minutes for the interactive authoring feature, setting this enables interactive authoring. Possible values are 10, 30, 60, and 120.
+	InteractiveAuthoringTimeToLiveInMinutes *float64 `json:"interactiveAuthoringTimeToLiveInMinutes,omitempty" tf:"interactive_authoring_time_to_live_in_minutes,omitempty"`
+
 	// Specifies the supported Azure location where the resource exists. Use AutoResolve to create an auto-resolve integration runtime. Changing this forces a new resource to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
@@ -49,7 +52,7 @@ type IntegrationRuntimeAzureObservation struct {
 	// Core count of the cluster which will execute data flow job. Valid values are 8, 16, 32, 48, 80, 144 and 272. Defaults to 8.
 	CoreCount *float64 `json:"coreCount,omitempty" tf:"core_count,omitempty"`
 
-	// The Data Factory ID in which to associate the Linked Service with. Changing this forces a new resource.
+	// The Data Factory ID in which to associate the Linked Service with. Changing this forces a new resource to be created.
 	DataFactoryID *string `json:"dataFactoryId,omitempty" tf:"data_factory_id,omitempty"`
 
 	// Integration runtime description.
@@ -57,6 +60,9 @@ type IntegrationRuntimeAzureObservation struct {
 
 	// The ID of the Data Factory Integration Runtime.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The time to live in minutes for the interactive authoring feature, setting this enables interactive authoring. Possible values are 10, 30, 60, and 120.
+	InteractiveAuthoringTimeToLiveInMinutes *float64 `json:"interactiveAuthoringTimeToLiveInMinutes,omitempty" tf:"interactive_authoring_time_to_live_in_minutes,omitempty"`
 
 	// Specifies the supported Azure location where the resource exists. Use AutoResolve to create an auto-resolve integration runtime. Changing this forces a new resource to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
@@ -82,7 +88,7 @@ type IntegrationRuntimeAzureParameters struct {
 	// +kubebuilder:validation:Optional
 	CoreCount *float64 `json:"coreCount,omitempty" tf:"core_count,omitempty"`
 
-	// The Data Factory ID in which to associate the Linked Service with. Changing this forces a new resource.
+	// The Data Factory ID in which to associate the Linked Service with. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/datafactory/v1beta1.Factory
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
@@ -99,6 +105,10 @@ type IntegrationRuntimeAzureParameters struct {
 	// Integration runtime description.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// The time to live in minutes for the interactive authoring feature, setting this enables interactive authoring. Possible values are 10, 30, 60, and 120.
+	// +kubebuilder:validation:Optional
+	InteractiveAuthoringTimeToLiveInMinutes *float64 `json:"interactiveAuthoringTimeToLiveInMinutes,omitempty" tf:"interactive_authoring_time_to_live_in_minutes,omitempty"`
 
 	// Specifies the supported Azure location where the resource exists. Use AutoResolve to create an auto-resolve integration runtime. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional

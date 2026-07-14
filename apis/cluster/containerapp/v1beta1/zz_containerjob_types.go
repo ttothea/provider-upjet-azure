@@ -485,7 +485,7 @@ type ContainerJobTemplateParameters struct {
 
 type ContainerLivenessProbeInitParameters struct {
 
-	// The number of consecutive failures required to consider this probe as failed. Possible values are between 1 and 10. Defaults to 3.
+	// The number of consecutive failures required to consider this probe as failed. Possible values are between 1 and 240. Defaults to 3.
 	// The number of consecutive failures required to consider this probe as failed. Possible values are between `1` and `30`. Defaults to `3`.
 	FailureCountThreshold *float64 `json:"failureCountThreshold,omitempty" tf:"failure_count_threshold,omitempty"`
 
@@ -523,7 +523,7 @@ type ContainerLivenessProbeInitParameters struct {
 
 type ContainerLivenessProbeObservation struct {
 
-	// The number of consecutive failures required to consider this probe as failed. Possible values are between 1 and 10. Defaults to 3.
+	// The number of consecutive failures required to consider this probe as failed. Possible values are between 1 and 240. Defaults to 3.
 	// The number of consecutive failures required to consider this probe as failed. Possible values are between `1` and `30`. Defaults to `3`.
 	FailureCountThreshold *float64 `json:"failureCountThreshold,omitempty" tf:"failure_count_threshold,omitempty"`
 
@@ -564,7 +564,7 @@ type ContainerLivenessProbeObservation struct {
 
 type ContainerLivenessProbeParameters struct {
 
-	// The number of consecutive failures required to consider this probe as failed. Possible values are between 1 and 10. Defaults to 3.
+	// The number of consecutive failures required to consider this probe as failed. Possible values are between 1 and 240. Defaults to 3.
 	// The number of consecutive failures required to consider this probe as failed. Possible values are between `1` and `30`. Defaults to `3`.
 	// +kubebuilder:validation:Optional
 	FailureCountThreshold *float64 `json:"failureCountThreshold,omitempty" tf:"failure_count_threshold,omitempty"`
@@ -646,8 +646,8 @@ type ContainerReadinessProbeHeaderParameters struct {
 
 type ContainerReadinessProbeInitParameters struct {
 
-	// The number of consecutive failures required to consider this probe as failed. Possible values are between 1 and 10. Defaults to 3.
-	// The number of consecutive failures required to consider this probe as failed. Possible values are between `1` and `30`. Defaults to `3`.
+	// The number of consecutive failures required to consider this probe as failed. Possible values are between 1 and 240. Defaults to 3.
+	// The number of consecutive failures required to consider this probe as failed. Possible values are between `1` and `48`. Defaults to `3`.
 	FailureCountThreshold *float64 `json:"failureCountThreshold,omitempty" tf:"failure_count_threshold,omitempty"`
 
 	// A header block as detailed below.
@@ -688,8 +688,8 @@ type ContainerReadinessProbeInitParameters struct {
 
 type ContainerReadinessProbeObservation struct {
 
-	// The number of consecutive failures required to consider this probe as failed. Possible values are between 1 and 10. Defaults to 3.
-	// The number of consecutive failures required to consider this probe as failed. Possible values are between `1` and `30`. Defaults to `3`.
+	// The number of consecutive failures required to consider this probe as failed. Possible values are between 1 and 240. Defaults to 3.
+	// The number of consecutive failures required to consider this probe as failed. Possible values are between `1` and `48`. Defaults to `3`.
 	FailureCountThreshold *float64 `json:"failureCountThreshold,omitempty" tf:"failure_count_threshold,omitempty"`
 
 	// A header block as detailed below.
@@ -730,8 +730,8 @@ type ContainerReadinessProbeObservation struct {
 
 type ContainerReadinessProbeParameters struct {
 
-	// The number of consecutive failures required to consider this probe as failed. Possible values are between 1 and 10. Defaults to 3.
-	// The number of consecutive failures required to consider this probe as failed. Possible values are between `1` and `30`. Defaults to `3`.
+	// The number of consecutive failures required to consider this probe as failed. Possible values are between 1 and 240. Defaults to 3.
+	// The number of consecutive failures required to consider this probe as failed. Possible values are between `1` and `48`. Defaults to `3`.
 	// +kubebuilder:validation:Optional
 	FailureCountThreshold *float64 `json:"failureCountThreshold,omitempty" tf:"failure_count_threshold,omitempty"`
 
@@ -817,8 +817,8 @@ type ContainerStartupProbeHeaderParameters struct {
 
 type ContainerStartupProbeInitParameters struct {
 
-	// The number of consecutive failures required to consider this probe as failed. Possible values are between 1 and 10. Defaults to 3.
-	// The number of consecutive failures required to consider this probe as failed. Possible values are between `1` and `30`. Defaults to `3`.
+	// The number of consecutive failures required to consider this probe as failed. Possible values are between 1 and 240. Defaults to 3.
+	// The number of consecutive failures required to consider this probe as failed. Possible values are between `1` and `240`. Defaults to `3`.
 	FailureCountThreshold *float64 `json:"failureCountThreshold,omitempty" tf:"failure_count_threshold,omitempty"`
 
 	// A header block as detailed below.
@@ -855,8 +855,8 @@ type ContainerStartupProbeInitParameters struct {
 
 type ContainerStartupProbeObservation struct {
 
-	// The number of consecutive failures required to consider this probe as failed. Possible values are between 1 and 10. Defaults to 3.
-	// The number of consecutive failures required to consider this probe as failed. Possible values are between `1` and `30`. Defaults to `3`.
+	// The number of consecutive failures required to consider this probe as failed. Possible values are between 1 and 240. Defaults to 3.
+	// The number of consecutive failures required to consider this probe as failed. Possible values are between `1` and `240`. Defaults to `3`.
 	FailureCountThreshold *float64 `json:"failureCountThreshold,omitempty" tf:"failure_count_threshold,omitempty"`
 
 	// A header block as detailed below.
@@ -896,8 +896,8 @@ type ContainerStartupProbeObservation struct {
 
 type ContainerStartupProbeParameters struct {
 
-	// The number of consecutive failures required to consider this probe as failed. Possible values are between 1 and 10. Defaults to 3.
-	// The number of consecutive failures required to consider this probe as failed. Possible values are between `1` and `30`. Defaults to `3`.
+	// The number of consecutive failures required to consider this probe as failed. Possible values are between 1 and 240. Defaults to 3.
+	// The number of consecutive failures required to consider this probe as failed. Possible values are between `1` and `240`. Defaults to `3`.
 	// +kubebuilder:validation:Optional
 	FailureCountThreshold *float64 `json:"failureCountThreshold,omitempty" tf:"failure_count_threshold,omitempty"`
 
@@ -1129,6 +1129,10 @@ type RulesInitParameters struct {
 	// Type of the scale rule. Possible values are activemq, artemis-queue, kafka, pulsar, aws-cloudwatch, aws-dynamodb, aws-dynamodb-streams, aws-kinesis-stream, aws-sqs-queue, azure-app-insights, azure-blob, azure-data-explorer, azure-eventhub, azure-log-analytics, azure-monitor, azure-pipelines, azure-servicebus, azure-queue, cassandra, cpu, cron, datadog, elasticsearch, external, external-push, gcp-stackdriver, gcp-storage, gcp-pubsub, graphite, http, huawei-cloudeye, ibmmq, influxdb, kubernetes-workload, liiklus, memory, metrics-api, mongodb, mssql, mysql, nats-jetstream, stan, tcp, new-relic, openstack-metric, openstack-swift, postgresql, predictkube, prometheus, rabbitmq, redis, redis-cluster, redis-sentinel, redis-streams, redis-cluster-streams, redis-sentinel-streams, selenium-grid, solace-event-queue and github-runner.
 	CustomRuleType *string `json:"customRuleType,omitempty" tf:"custom_rule_type,omitempty"`
 
+	// The ID of the identity used to authenticate with the scale rule backend. This can either be the Resource ID of a User Assigned Identity, or System for the System Assigned Identity.
+	// ID of the System or User Managed Identity used to execute scale rule.
+	IdentityID *string `json:"identityId,omitempty" tf:"identity_id,omitempty"`
+
 	// Metadata properties to describe the scale rule.
 	// +mapType=granular
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
@@ -1144,6 +1148,10 @@ type RulesObservation struct {
 
 	// Type of the scale rule. Possible values are activemq, artemis-queue, kafka, pulsar, aws-cloudwatch, aws-dynamodb, aws-dynamodb-streams, aws-kinesis-stream, aws-sqs-queue, azure-app-insights, azure-blob, azure-data-explorer, azure-eventhub, azure-log-analytics, azure-monitor, azure-pipelines, azure-servicebus, azure-queue, cassandra, cpu, cron, datadog, elasticsearch, external, external-push, gcp-stackdriver, gcp-storage, gcp-pubsub, graphite, http, huawei-cloudeye, ibmmq, influxdb, kubernetes-workload, liiklus, memory, metrics-api, mongodb, mssql, mysql, nats-jetstream, stan, tcp, new-relic, openstack-metric, openstack-swift, postgresql, predictkube, prometheus, rabbitmq, redis, redis-cluster, redis-sentinel, redis-streams, redis-cluster-streams, redis-sentinel-streams, selenium-grid, solace-event-queue and github-runner.
 	CustomRuleType *string `json:"customRuleType,omitempty" tf:"custom_rule_type,omitempty"`
+
+	// The ID of the identity used to authenticate with the scale rule backend. This can either be the Resource ID of a User Assigned Identity, or System for the System Assigned Identity.
+	// ID of the System or User Managed Identity used to execute scale rule.
+	IdentityID *string `json:"identityId,omitempty" tf:"identity_id,omitempty"`
 
 	// Metadata properties to describe the scale rule.
 	// +mapType=granular
@@ -1162,6 +1170,11 @@ type RulesParameters struct {
 	// Type of the scale rule. Possible values are activemq, artemis-queue, kafka, pulsar, aws-cloudwatch, aws-dynamodb, aws-dynamodb-streams, aws-kinesis-stream, aws-sqs-queue, azure-app-insights, azure-blob, azure-data-explorer, azure-eventhub, azure-log-analytics, azure-monitor, azure-pipelines, azure-servicebus, azure-queue, cassandra, cpu, cron, datadog, elasticsearch, external, external-push, gcp-stackdriver, gcp-storage, gcp-pubsub, graphite, http, huawei-cloudeye, ibmmq, influxdb, kubernetes-workload, liiklus, memory, metrics-api, mongodb, mssql, mysql, nats-jetstream, stan, tcp, new-relic, openstack-metric, openstack-swift, postgresql, predictkube, prometheus, rabbitmq, redis, redis-cluster, redis-sentinel, redis-streams, redis-cluster-streams, redis-sentinel-streams, selenium-grid, solace-event-queue and github-runner.
 	// +kubebuilder:validation:Optional
 	CustomRuleType *string `json:"customRuleType" tf:"custom_rule_type,omitempty"`
+
+	// The ID of the identity used to authenticate with the scale rule backend. This can either be the Resource ID of a User Assigned Identity, or System for the System Assigned Identity.
+	// ID of the System or User Managed Identity used to execute scale rule.
+	// +kubebuilder:validation:Optional
+	IdentityID *string `json:"identityId,omitempty" tf:"identity_id,omitempty"`
 
 	// Metadata properties to describe the scale rule.
 	// +kubebuilder:validation:Optional

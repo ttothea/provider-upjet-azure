@@ -186,7 +186,7 @@ type EnhancedSecurityComplianceInitParameters struct {
 	// Enables compliance security profile for this workspace. Defaults to false.
 	ComplianceSecurityProfileEnabled *bool `json:"complianceSecurityProfileEnabled,omitempty" tf:"compliance_security_profile_enabled,omitempty"`
 
-	// A list of standards to enforce on this workspace. Possible values include HIPAA and PCI_DSS.
+	// A list of standards to enforce on this workspace. Possible values include HIPAA, PCI_DSS, FEDRAMP_MODERATE, IRAP_PROTECTED, FEDRAMP_HIGH, FEDRAMP_IL5, ITAR_EAR, CYBER_ESSENTIAL_PLUS, CANADA_PROTECTED_B, ISMAP, HITRUST, K_FSI, GERMANY_C5, and GERMANY_TISAX
 	// +listType=set
 	ComplianceSecurityProfileStandards []*string `json:"complianceSecurityProfileStandards,omitempty" tf:"compliance_security_profile_standards,omitempty"`
 
@@ -202,7 +202,7 @@ type EnhancedSecurityComplianceObservation struct {
 	// Enables compliance security profile for this workspace. Defaults to false.
 	ComplianceSecurityProfileEnabled *bool `json:"complianceSecurityProfileEnabled,omitempty" tf:"compliance_security_profile_enabled,omitempty"`
 
-	// A list of standards to enforce on this workspace. Possible values include HIPAA and PCI_DSS.
+	// A list of standards to enforce on this workspace. Possible values include HIPAA, PCI_DSS, FEDRAMP_MODERATE, IRAP_PROTECTED, FEDRAMP_HIGH, FEDRAMP_IL5, ITAR_EAR, CYBER_ESSENTIAL_PLUS, CANADA_PROTECTED_B, ISMAP, HITRUST, K_FSI, GERMANY_C5, and GERMANY_TISAX
 	// +listType=set
 	ComplianceSecurityProfileStandards []*string `json:"complianceSecurityProfileStandards,omitempty" tf:"compliance_security_profile_standards,omitempty"`
 
@@ -220,7 +220,7 @@ type EnhancedSecurityComplianceParameters struct {
 	// +kubebuilder:validation:Optional
 	ComplianceSecurityProfileEnabled *bool `json:"complianceSecurityProfileEnabled,omitempty" tf:"compliance_security_profile_enabled,omitempty"`
 
-	// A list of standards to enforce on this workspace. Possible values include HIPAA and PCI_DSS.
+	// A list of standards to enforce on this workspace. Possible values include HIPAA, PCI_DSS, FEDRAMP_MODERATE, IRAP_PROTECTED, FEDRAMP_HIGH, FEDRAMP_IL5, ITAR_EAR, CYBER_ESSENTIAL_PLUS, CANADA_PROTECTED_B, ISMAP, HITRUST, K_FSI, GERMANY_C5, and GERMANY_TISAX
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	ComplianceSecurityProfileStandards []*string `json:"complianceSecurityProfileStandards,omitempty" tf:"compliance_security_profile_standards,omitempty"`

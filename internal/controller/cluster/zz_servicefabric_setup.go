@@ -40,3 +40,16 @@ func SetupGated_servicefabric(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_servicefabric registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_servicefabric(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		cluster.SetupWebhookWithManager,
+		managedcluster.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

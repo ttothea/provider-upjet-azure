@@ -19,6 +19,7 @@ spec:
       customProperties:
         key: value
         key2: value2
+      emailSubject: Email Header
     autoMitigationEnabled: true
     criteria:
     - dimension:

@@ -73,6 +73,13 @@ spec:
                 type: string
               forProvider:
                 properties:
+                  fullyQualifiedDomainNames:
+                    description: A list of fully qualified domain names to assign
+                      to the Synapse Private Endpoint. Changing this forces a new
+                      resource to be created.
+                    items:
+                      type: string
+                    type: array
                   name:
                     description: Specifies the name which should be used for this
                       Managed Private Endpoint. Changing this forces a new resource
@@ -255,6 +262,13 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
+                  fullyQualifiedDomainNames:
+                    description: A list of fully qualified domain names to assign
+                      to the Synapse Private Endpoint. Changing this forces a new
+                      resource to be created.
+                    items:
+                      type: string
+                    type: array
                   name:
                     description: Specifies the name which should be used for this
                       Managed Private Endpoint. Changing this forces a new resource
@@ -525,6 +539,13 @@ spec:
             properties:
               atProvider:
                 properties:
+                  fullyQualifiedDomainNames:
+                    description: A list of fully qualified domain names to assign
+                      to the Synapse Private Endpoint. Changing this forces a new
+                      resource to be created.
+                    items:
+                      type: string
+                    type: array
                   id:
                     description: The Synapse Managed Private Endpoint ID.
                     type: string

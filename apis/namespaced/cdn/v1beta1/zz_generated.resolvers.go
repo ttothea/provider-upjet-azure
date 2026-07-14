@@ -117,6 +117,26 @@ func (mg *FrontdoorCustomDomain) ResolveReferences(ctx context.Context, c client
 	mg.Spec.ForProvider.DNSZoneID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.DNSZoneIDRef = rsp.ResolvedReference
 	{
+		m, l, err = apisresolver.GetManagedResource("cdn.azure.m.upbound.io", "v1beta1", "FrontdoorOrigin", "FrontdoorOriginList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.HostName),
+			Extract:      resource.ExtractParamPath("host_name", false),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.ForProvider.HostNameRef,
+			Selector:     mg.Spec.ForProvider.HostNameSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.HostName")
+	}
+	mg.Spec.ForProvider.HostName = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.HostNameRef = rsp.ResolvedReference
+	{
 		m, l, err = apisresolver.GetManagedResource("network.azure.m.upbound.io", "v1beta1", "DNSZone", "DNSZoneList")
 		if err != nil {
 			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
@@ -136,6 +156,26 @@ func (mg *FrontdoorCustomDomain) ResolveReferences(ctx context.Context, c client
 	}
 	mg.Spec.InitProvider.DNSZoneID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.InitProvider.DNSZoneIDRef = rsp.ResolvedReference
+	{
+		m, l, err = apisresolver.GetManagedResource("cdn.azure.m.upbound.io", "v1beta1", "FrontdoorOrigin", "FrontdoorOriginList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.HostName),
+			Extract:      resource.ExtractParamPath("host_name", false),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.InitProvider.HostNameRef,
+			Selector:     mg.Spec.InitProvider.HostNameSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.HostName")
+	}
+	mg.Spec.InitProvider.HostName = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.HostNameRef = rsp.ResolvedReference
 
 	return nil
 }

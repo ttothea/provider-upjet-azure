@@ -17,6 +17,9 @@ type ManagerNetworkGroupInitParameters struct {
 
 	// A description of the Network Manager Network Group.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// The member type for the network group. Possible values are Subnet and VirtualNetwork. Defaults to VirtualNetwork.
+	MemberType *string `json:"memberType,omitempty" tf:"member_type,omitempty"`
 }
 
 type ManagerNetworkGroupObservation struct {
@@ -27,6 +30,9 @@ type ManagerNetworkGroupObservation struct {
 	// The ID of the Network Manager Network Group.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The member type for the network group. Possible values are Subnet and VirtualNetwork. Defaults to VirtualNetwork.
+	MemberType *string `json:"memberType,omitempty" tf:"member_type,omitempty"`
+
 	// Specifies the ID of the Network Manager. Changing this forces a new Network Manager Network Group to be created.
 	NetworkManagerID *string `json:"networkManagerId,omitempty" tf:"network_manager_id,omitempty"`
 }
@@ -36,6 +42,10 @@ type ManagerNetworkGroupParameters struct {
 	// A description of the Network Manager Network Group.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// The member type for the network group. Possible values are Subnet and VirtualNetwork. Defaults to VirtualNetwork.
+	// +kubebuilder:validation:Optional
+	MemberType *string `json:"memberType,omitempty" tf:"member_type,omitempty"`
 
 	// Specifies the ID of the Network Manager. Changing this forces a new Network Manager Network Group to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/cluster/network/v1beta2.Manager

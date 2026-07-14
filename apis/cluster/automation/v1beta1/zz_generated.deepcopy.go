@@ -3230,6 +3230,11 @@ func (in *RunBookInitParameters) DeepCopyInto(out *RunBookInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.RuntimeEnvironmentName != nil {
+		in, out := &in.RuntimeEnvironmentName, &out.RuntimeEnvironmentName
+		*out = new(string)
+		**out = **in
+	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
 		*out = make(map[string]*string, len(*in))
@@ -3369,6 +3374,11 @@ func (in *RunBookObservation) DeepCopyInto(out *RunBookObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.RuntimeEnvironmentName != nil {
+		in, out := &in.RuntimeEnvironmentName, &out.RuntimeEnvironmentName
+		*out = new(string)
+		**out = **in
+	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
 		*out = make(map[string]*string, len(*in))
@@ -3488,6 +3498,11 @@ func (in *RunBookParameters) DeepCopyInto(out *RunBookParameters) {
 	}
 	if in.RunBookType != nil {
 		in, out := &in.RunBookType, &out.RunBookType
+		*out = new(string)
+		**out = **in
+	}
+	if in.RuntimeEnvironmentName != nil {
+		in, out := &in.RuntimeEnvironmentName, &out.RuntimeEnvironmentName
 		*out = new(string)
 		**out = **in
 	}

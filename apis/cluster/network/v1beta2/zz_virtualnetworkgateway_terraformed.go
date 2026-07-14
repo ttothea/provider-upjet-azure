@@ -21,7 +21,7 @@ func (mg *VirtualNetworkGateway) GetTerraformResourceType() string {
 
 // GetConnectionDetailsMapping for this VirtualNetworkGateway
 func (tr *VirtualNetworkGateway) GetConnectionDetailsMapping() map[string]string {
-	return map[string]string{"vpn_client_configuration[*].radius_server[*].secret": "vpnClientConfiguration.radiusServer[*].secretSecretRef"}
+	return map[string]string{"vpn_client_configuration[*].radius_server[*].secret": "vpnClientConfiguration.radiusServer[*].secretSecretRef", "vpn_client_configuration[*].radius_server_secret": "vpnClientConfiguration.radiusServerSecretSecretRef"}
 }
 
 // GetObservation of this VirtualNetworkGateway

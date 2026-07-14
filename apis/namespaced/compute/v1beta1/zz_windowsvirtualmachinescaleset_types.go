@@ -713,7 +713,7 @@ type WindowsVirtualMachineScaleSetInitParameters struct {
 	// Should this Virtual Machine Scale Set be limited to a Single Placement Group, which means the number of instances will be capped at 100 Virtual Machines. Defaults to true.
 	SinglePlacementGroup *bool `json:"singlePlacementGroup,omitempty" tf:"single_placement_group,omitempty"`
 
-	// The Virtual Machine SKU for the Scale Set, such as Standard_F2.
+	// The Virtual Machine SKU for the Scale Set, such as Standard_D4_v5.
 	Sku *string `json:"sku,omitempty" tf:"sku,omitempty"`
 
 	// The ID of an Image which each Virtual Machine in this Scale Set should be based on. Possible Image ID types include Image ID, Shared Image ID, Shared Image Version ID, Community Gallery Image ID, Community Gallery Image Version ID, Shared Gallery Image ID and Shared Gallery Image Version ID.
@@ -1113,7 +1113,7 @@ type WindowsVirtualMachineScaleSetObservation struct {
 	// Should this Virtual Machine Scale Set be limited to a Single Placement Group, which means the number of instances will be capped at 100 Virtual Machines. Defaults to true.
 	SinglePlacementGroup *bool `json:"singlePlacementGroup,omitempty" tf:"single_placement_group,omitempty"`
 
-	// The Virtual Machine SKU for the Scale Set, such as Standard_F2.
+	// The Virtual Machine SKU for the Scale Set, such as Standard_D4_v5.
 	Sku *string `json:"sku,omitempty" tf:"sku,omitempty"`
 
 	// The ID of an Image which each Virtual Machine in this Scale Set should be based on. Possible Image ID types include Image ID, Shared Image ID, Shared Image Version ID, Community Gallery Image ID, Community Gallery Image Version ID, Shared Gallery Image ID and Shared Gallery Image Version ID.
@@ -1459,7 +1459,7 @@ type WindowsVirtualMachineScaleSetParameters struct {
 	// +kubebuilder:validation:Optional
 	SinglePlacementGroup *bool `json:"singlePlacementGroup,omitempty" tf:"single_placement_group,omitempty"`
 
-	// The Virtual Machine SKU for the Scale Set, such as Standard_F2.
+	// The Virtual Machine SKU for the Scale Set, such as Standard_D4_v5.
 	// +kubebuilder:validation:Optional
 	Sku *string `json:"sku,omitempty" tf:"sku,omitempty"`
 

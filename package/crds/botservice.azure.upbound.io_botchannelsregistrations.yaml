@@ -126,6 +126,21 @@ spec:
                     description: The Microsoft Application ID for the Bot Channels
                       Registration. Changing this forces a new resource to be created.
                     type: string
+                  microsoftAppTenantId:
+                    description: The Microsoft Application Tenant ID for the Bot Channels
+                      Registration. Changing this forces a new resource to be created.
+                    type: string
+                  microsoftAppType:
+                    description: The Microsoft Application Type for the Bot Channels
+                      Registration. Possible values are MultiTenant, SingleTenant
+                      and UserAssignedMSI. Changing this forces a new resource to
+                      be created.
+                    type: string
+                  microsoftAppUserAssignedIdentityId:
+                    description: The ID of Microsoft Application User Assigned Identity
+                      for the Bot Channels Registration. Changing this forces a new
+                      resource to be created.
+                    type: string
                   name:
                     description: Specifies the name of the Bot Channels Registration.
                       Changing this forces a new resource to be created. Must be globally
@@ -295,6 +310,21 @@ spec:
                   microsoftAppId:
                     description: The Microsoft Application ID for the Bot Channels
                       Registration. Changing this forces a new resource to be created.
+                    type: string
+                  microsoftAppTenantId:
+                    description: The Microsoft Application Tenant ID for the Bot Channels
+                      Registration. Changing this forces a new resource to be created.
+                    type: string
+                  microsoftAppType:
+                    description: The Microsoft Application Type for the Bot Channels
+                      Registration. Possible values are MultiTenant, SingleTenant
+                      and UserAssignedMSI. Changing this forces a new resource to
+                      be created.
+                    type: string
+                  microsoftAppUserAssignedIdentityId:
+                    description: The ID of Microsoft Application User Assigned Identity
+                      for the Bot Channels Registration. Changing this forces a new
+                      resource to be created.
                     type: string
                   name:
                     description: Specifies the name of the Bot Channels Registration.
@@ -546,6 +576,21 @@ spec:
                   microsoftAppId:
                     description: The Microsoft Application ID for the Bot Channels
                       Registration. Changing this forces a new resource to be created.
+                    type: string
+                  microsoftAppTenantId:
+                    description: The Microsoft Application Tenant ID for the Bot Channels
+                      Registration. Changing this forces a new resource to be created.
+                    type: string
+                  microsoftAppType:
+                    description: The Microsoft Application Type for the Bot Channels
+                      Registration. Possible values are MultiTenant, SingleTenant
+                      and UserAssignedMSI. Changing this forces a new resource to
+                      be created.
+                    type: string
+                  microsoftAppUserAssignedIdentityId:
+                    description: The ID of Microsoft Application User Assigned Identity
+                      for the Bot Channels Registration. Changing this forces a new
+                      resource to be created.
                     type: string
                   name:
                     description: Specifies the name of the Bot Channels Registration.

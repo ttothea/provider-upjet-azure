@@ -18,7 +18,7 @@ type ComputeClusterInitParameters struct {
 	// The description of the Machine Learning compute. Changing this forces a new Machine Learning Compute Cluster to be created.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
-	// An identity block as defined below. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// An identity block as defined below.
 	Identity []IdentityInitParameters `json:"identity,omitempty" tf:"identity,omitempty"`
 
 	// Whether local authentication methods is enabled. Defaults to true. Changing this forces a new Machine Learning Compute Cluster to be created.
@@ -43,16 +43,16 @@ type ComputeClusterInitParameters struct {
 	// The name which should be used for this Machine Learning Compute Cluster. Changing this forces a new Machine Learning Compute Cluster to be created.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// Whether the compute cluster will have a public ip. To set this to false a subnet_resource_id needs to be set. Defaults to true. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// Whether the compute cluster will have a public ip. Defaults to true. Changing this forces a new Machine Learning Compute Cluster to be created.
 	NodePublicIPEnabled *bool `json:"nodePublicIpEnabled,omitempty" tf:"node_public_ip_enabled,omitempty"`
 
 	// Credentials for an administrator user account that will be created on each compute node. A ssh block as defined below. Changing this forces a new Machine Learning Compute Cluster to be created.
 	SSH []SSHInitParameters `json:"ssh,omitempty" tf:"ssh,omitempty"`
 
-	// A boolean value indicating whether enable the public SSH port. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// A boolean value indicating whether enable the public SSH port. Defaults to false. Changing this forces a new Machine Learning Compute Cluster to be created.
 	SSHPublicAccessEnabled *bool `json:"sshPublicAccessEnabled,omitempty" tf:"ssh_public_access_enabled,omitempty"`
 
-	// A scale_settings block as defined below. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// A scale_settings block as defined below.
 	ScaleSettings []ScaleSettingsInitParameters `json:"scaleSettings,omitempty" tf:"scale_settings,omitempty"`
 
 	// The ID of the Subnet that the Compute Cluster should reside in. Changing this forces a new Machine Learning Compute Cluster to be created.
@@ -68,7 +68,7 @@ type ComputeClusterInitParameters struct {
 	// +kubebuilder:validation:Optional
 	SubnetResourceIDSelector *v1.Selector `json:"subnetResourceIdSelector,omitempty" tf:"-"`
 
-	// A mapping of tags which should be assigned to the Machine Learning Compute Cluster. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// A mapping of tags which should be assigned to the Machine Learning Compute Cluster.
 	// +mapType=granular
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
@@ -87,7 +87,7 @@ type ComputeClusterObservation struct {
 	// The ID of the Machine Learning Compute Cluster.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// An identity block as defined below. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// An identity block as defined below.
 	Identity []IdentityObservation `json:"identity,omitempty" tf:"identity,omitempty"`
 
 	// Whether local authentication methods is enabled. Defaults to true. Changing this forces a new Machine Learning Compute Cluster to be created.
@@ -102,22 +102,22 @@ type ComputeClusterObservation struct {
 	// The name which should be used for this Machine Learning Compute Cluster. Changing this forces a new Machine Learning Compute Cluster to be created.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// Whether the compute cluster will have a public ip. To set this to false a subnet_resource_id needs to be set. Defaults to true. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// Whether the compute cluster will have a public ip. Defaults to true. Changing this forces a new Machine Learning Compute Cluster to be created.
 	NodePublicIPEnabled *bool `json:"nodePublicIpEnabled,omitempty" tf:"node_public_ip_enabled,omitempty"`
 
 	// Credentials for an administrator user account that will be created on each compute node. A ssh block as defined below. Changing this forces a new Machine Learning Compute Cluster to be created.
 	SSH []SSHObservation `json:"ssh,omitempty" tf:"ssh,omitempty"`
 
-	// A boolean value indicating whether enable the public SSH port. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// A boolean value indicating whether enable the public SSH port. Defaults to false. Changing this forces a new Machine Learning Compute Cluster to be created.
 	SSHPublicAccessEnabled *bool `json:"sshPublicAccessEnabled,omitempty" tf:"ssh_public_access_enabled,omitempty"`
 
-	// A scale_settings block as defined below. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// A scale_settings block as defined below.
 	ScaleSettings []ScaleSettingsObservation `json:"scaleSettings,omitempty" tf:"scale_settings,omitempty"`
 
 	// The ID of the Subnet that the Compute Cluster should reside in. Changing this forces a new Machine Learning Compute Cluster to be created.
 	SubnetResourceID *string `json:"subnetResourceId,omitempty" tf:"subnet_resource_id,omitempty"`
 
-	// A mapping of tags which should be assigned to the Machine Learning Compute Cluster. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// A mapping of tags which should be assigned to the Machine Learning Compute Cluster.
 	// +mapType=granular
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
@@ -134,7 +134,7 @@ type ComputeClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
-	// An identity block as defined below. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// An identity block as defined below.
 	// +kubebuilder:validation:Optional
 	Identity []IdentityParameters `json:"identity,omitempty" tf:"identity,omitempty"`
 
@@ -164,7 +164,7 @@ type ComputeClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// Whether the compute cluster will have a public ip. To set this to false a subnet_resource_id needs to be set. Defaults to true. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// Whether the compute cluster will have a public ip. Defaults to true. Changing this forces a new Machine Learning Compute Cluster to be created.
 	// +kubebuilder:validation:Optional
 	NodePublicIPEnabled *bool `json:"nodePublicIpEnabled,omitempty" tf:"node_public_ip_enabled,omitempty"`
 
@@ -172,11 +172,11 @@ type ComputeClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	SSH []SSHParameters `json:"ssh,omitempty" tf:"ssh,omitempty"`
 
-	// A boolean value indicating whether enable the public SSH port. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// A boolean value indicating whether enable the public SSH port. Defaults to false. Changing this forces a new Machine Learning Compute Cluster to be created.
 	// +kubebuilder:validation:Optional
 	SSHPublicAccessEnabled *bool `json:"sshPublicAccessEnabled,omitempty" tf:"ssh_public_access_enabled,omitempty"`
 
-	// A scale_settings block as defined below. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// A scale_settings block as defined below.
 	// +kubebuilder:validation:Optional
 	ScaleSettings []ScaleSettingsParameters `json:"scaleSettings,omitempty" tf:"scale_settings,omitempty"`
 
@@ -194,7 +194,7 @@ type ComputeClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	SubnetResourceIDSelector *v1.Selector `json:"subnetResourceIdSelector,omitempty" tf:"-"`
 
-	// A mapping of tags which should be assigned to the Machine Learning Compute Cluster. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// A mapping of tags which should be assigned to the Machine Learning Compute Cluster.
 	// +kubebuilder:validation:Optional
 	// +mapType=granular
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -210,17 +210,17 @@ type ComputeClusterParameters struct {
 
 type IdentityInitParameters struct {
 
-	// Specifies a list of User Assigned Managed Identity IDs to be assigned to this Machine Learning Compute Cluster. Changing this forces a new resource to be created.
+	// Specifies a list of User Assigned Managed Identity IDs to be assigned to this Machine Learning Compute Cluster.
 	// +listType=set
 	IdentityIds []*string `json:"identityIds,omitempty" tf:"identity_ids,omitempty"`
 
-	// Specifies the type of Managed Service Identity that should be configured on this Machine Learning Compute Cluster. Possible values are SystemAssigned, UserAssigned, SystemAssigned, UserAssigned (to enable both). Changing this forces a new resource to be created.
+	// Specifies the type of Managed Service Identity that should be configured on this Machine Learning Compute Cluster. Possible values are SystemAssigned, UserAssigned, SystemAssigned, UserAssigned (to enable both).
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
 type IdentityObservation struct {
 
-	// Specifies a list of User Assigned Managed Identity IDs to be assigned to this Machine Learning Compute Cluster. Changing this forces a new resource to be created.
+	// Specifies a list of User Assigned Managed Identity IDs to be assigned to this Machine Learning Compute Cluster.
 	// +listType=set
 	IdentityIds []*string `json:"identityIds,omitempty" tf:"identity_ids,omitempty"`
 
@@ -230,18 +230,18 @@ type IdentityObservation struct {
 	// The Tenant ID for the Service Principal associated with the Managed Service Identity of this Machine Learning Compute Cluster.
 	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 
-	// Specifies the type of Managed Service Identity that should be configured on this Machine Learning Compute Cluster. Possible values are SystemAssigned, UserAssigned, SystemAssigned, UserAssigned (to enable both). Changing this forces a new resource to be created.
+	// Specifies the type of Managed Service Identity that should be configured on this Machine Learning Compute Cluster. Possible values are SystemAssigned, UserAssigned, SystemAssigned, UserAssigned (to enable both).
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
 type IdentityParameters struct {
 
-	// Specifies a list of User Assigned Managed Identity IDs to be assigned to this Machine Learning Compute Cluster. Changing this forces a new resource to be created.
+	// Specifies a list of User Assigned Managed Identity IDs to be assigned to this Machine Learning Compute Cluster.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	IdentityIds []*string `json:"identityIds,omitempty" tf:"identity_ids,omitempty"`
 
-	// Specifies the type of Managed Service Identity that should be configured on this Machine Learning Compute Cluster. Possible values are SystemAssigned, UserAssigned, SystemAssigned, UserAssigned (to enable both). Changing this forces a new resource to be created.
+	// Specifies the type of Managed Service Identity that should be configured on this Machine Learning Compute Cluster. Possible values are SystemAssigned, UserAssigned, SystemAssigned, UserAssigned (to enable both).
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type" tf:"type,omitempty"`
 }
@@ -249,7 +249,7 @@ type IdentityParameters struct {
 type SSHInitParameters struct {
 
 	// Password of the administrator user account. Changing this forces a new Machine Learning Compute Cluster to be created.
-	AdminPassword *string `json:"adminPassword,omitempty" tf:"admin_password,omitempty"`
+	AdminPasswordSecretRef *v1.SecretKeySelector `json:"adminPasswordSecretRef,omitempty" tf:"-"`
 
 	// Name of the administrator user account which can be used to SSH to nodes. Changing this forces a new Machine Learning Compute Cluster to be created.
 	AdminUsername *string `json:"adminUsername,omitempty" tf:"admin_username,omitempty"`
@@ -259,9 +259,6 @@ type SSHInitParameters struct {
 }
 
 type SSHObservation struct {
-
-	// Password of the administrator user account. Changing this forces a new Machine Learning Compute Cluster to be created.
-	AdminPassword *string `json:"adminPassword,omitempty" tf:"admin_password,omitempty"`
 
 	// Name of the administrator user account which can be used to SSH to nodes. Changing this forces a new Machine Learning Compute Cluster to be created.
 	AdminUsername *string `json:"adminUsername,omitempty" tf:"admin_username,omitempty"`
@@ -274,7 +271,7 @@ type SSHParameters struct {
 
 	// Password of the administrator user account. Changing this forces a new Machine Learning Compute Cluster to be created.
 	// +kubebuilder:validation:Optional
-	AdminPassword *string `json:"adminPassword,omitempty" tf:"admin_password,omitempty"`
+	AdminPasswordSecretRef *v1.SecretKeySelector `json:"adminPasswordSecretRef,omitempty" tf:"-"`
 
 	// Name of the administrator user account which can be used to SSH to nodes. Changing this forces a new Machine Learning Compute Cluster to be created.
 	// +kubebuilder:validation:Optional
@@ -287,39 +284,39 @@ type SSHParameters struct {
 
 type ScaleSettingsInitParameters struct {
 
-	// Maximum node count. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// Maximum node count.
 	MaxNodeCount *float64 `json:"maxNodeCount,omitempty" tf:"max_node_count,omitempty"`
 
-	// Minimal node count. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// Minimal node count.
 	MinNodeCount *float64 `json:"minNodeCount,omitempty" tf:"min_node_count,omitempty"`
 
-	// Node Idle Time Before Scale Down: defines the time until the compute is shutdown when it has gone into Idle state. Is defined according to W3C XML schema standard for duration. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// Node Idle Time Before Scale Down: defines the time until the compute is shutdown when it has gone into Idle state. Is defined according to W3C XML schema standard for duration.
 	ScaleDownNodesAfterIdleDuration *string `json:"scaleDownNodesAfterIdleDuration,omitempty" tf:"scale_down_nodes_after_idle_duration,omitempty"`
 }
 
 type ScaleSettingsObservation struct {
 
-	// Maximum node count. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// Maximum node count.
 	MaxNodeCount *float64 `json:"maxNodeCount,omitempty" tf:"max_node_count,omitempty"`
 
-	// Minimal node count. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// Minimal node count.
 	MinNodeCount *float64 `json:"minNodeCount,omitempty" tf:"min_node_count,omitempty"`
 
-	// Node Idle Time Before Scale Down: defines the time until the compute is shutdown when it has gone into Idle state. Is defined according to W3C XML schema standard for duration. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// Node Idle Time Before Scale Down: defines the time until the compute is shutdown when it has gone into Idle state. Is defined according to W3C XML schema standard for duration.
 	ScaleDownNodesAfterIdleDuration *string `json:"scaleDownNodesAfterIdleDuration,omitempty" tf:"scale_down_nodes_after_idle_duration,omitempty"`
 }
 
 type ScaleSettingsParameters struct {
 
-	// Maximum node count. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// Maximum node count.
 	// +kubebuilder:validation:Optional
 	MaxNodeCount *float64 `json:"maxNodeCount" tf:"max_node_count,omitempty"`
 
-	// Minimal node count. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// Minimal node count.
 	// +kubebuilder:validation:Optional
 	MinNodeCount *float64 `json:"minNodeCount" tf:"min_node_count,omitempty"`
 
-	// Node Idle Time Before Scale Down: defines the time until the compute is shutdown when it has gone into Idle state. Is defined according to W3C XML schema standard for duration. Changing this forces a new Machine Learning Compute Cluster to be created.
+	// Node Idle Time Before Scale Down: defines the time until the compute is shutdown when it has gone into Idle state. Is defined according to W3C XML schema standard for duration.
 	// +kubebuilder:validation:Optional
 	ScaleDownNodesAfterIdleDuration *string `json:"scaleDownNodesAfterIdleDuration" tf:"scale_down_nodes_after_idle_duration,omitempty"`
 }

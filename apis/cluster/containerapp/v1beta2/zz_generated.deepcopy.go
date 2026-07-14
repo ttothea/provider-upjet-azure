@@ -1257,6 +1257,11 @@ func (in *CustomScaleRuleInitParameters) DeepCopyInto(out *CustomScaleRuleInitPa
 		*out = new(string)
 		**out = **in
 	}
+	if in.IdentityID != nil {
+		in, out := &in.IdentityID, &out.IdentityID
+		*out = new(string)
+		**out = **in
+	}
 	if in.Metadata != nil {
 		in, out := &in.Metadata, &out.Metadata
 		*out = make(map[string]*string, len(*in))
@@ -1305,6 +1310,11 @@ func (in *CustomScaleRuleObservation) DeepCopyInto(out *CustomScaleRuleObservati
 		*out = new(string)
 		**out = **in
 	}
+	if in.IdentityID != nil {
+		in, out := &in.IdentityID, &out.IdentityID
+		*out = new(string)
+		**out = **in
+	}
 	if in.Metadata != nil {
 		in, out := &in.Metadata, &out.Metadata
 		*out = make(map[string]*string, len(*in))
@@ -1350,6 +1360,11 @@ func (in *CustomScaleRuleParameters) DeepCopyInto(out *CustomScaleRuleParameters
 	}
 	if in.CustomRuleType != nil {
 		in, out := &in.CustomRuleType, &out.CustomRuleType
+		*out = new(string)
+		**out = **in
+	}
+	if in.IdentityID != nil {
+		in, out := &in.IdentityID, &out.IdentityID
 		*out = new(string)
 		**out = **in
 	}

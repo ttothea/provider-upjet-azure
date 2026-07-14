@@ -15,19 +15,19 @@ import (
 
 type ActionInitParameters struct {
 
-	// The Type of action to be performed when the lifetime trigger is triggerec. Possible values include AutoRenew and EmailContacts.
+	// The Type of action to be performed when the lifetime trigger is triggered. Possible values include AutoRenew and EmailContacts.
 	ActionType *string `json:"actionType,omitempty" tf:"action_type,omitempty"`
 }
 
 type ActionObservation struct {
 
-	// The Type of action to be performed when the lifetime trigger is triggerec. Possible values include AutoRenew and EmailContacts.
+	// The Type of action to be performed when the lifetime trigger is triggered. Possible values include AutoRenew and EmailContacts.
 	ActionType *string `json:"actionType,omitempty" tf:"action_type,omitempty"`
 }
 
 type ActionParameters struct {
 
-	// The Type of action to be performed when the lifetime trigger is triggerec. Possible values include AutoRenew and EmailContacts.
+	// The Type of action to be performed when the lifetime trigger is triggered. Possible values include AutoRenew and EmailContacts.
 	// +kubebuilder:validation:Optional
 	ActionType *string `json:"actionType" tf:"action_type,omitempty"`
 }

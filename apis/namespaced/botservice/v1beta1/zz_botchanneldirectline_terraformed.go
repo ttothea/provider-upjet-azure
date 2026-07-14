@@ -21,7 +21,7 @@ func (mg *BotChannelDirectLine) GetTerraformResourceType() string {
 
 // GetConnectionDetailsMapping for this BotChannelDirectLine
 func (tr *BotChannelDirectLine) GetConnectionDetailsMapping() map[string]string {
-	return map[string]string{"site[*].key": "status.atProvider.site[*].key", "site[*].key2": "status.atProvider.site[*].key2"}
+	return map[string]string{"extension_key_1": "status.atProvider.extensionKey1", "extension_key_2": "status.atProvider.extensionKey2", "site[*].key": "status.atProvider.site[*].key", "site[*].key2": "status.atProvider.site[*].key2"}
 }
 
 // GetObservation of this BotChannelDirectLine

@@ -11970,6 +11970,11 @@ func (in *LinuxFunctionAppSiteConfigInitParameters) DeepCopyInto(out *LinuxFunct
 		*out = new(string)
 		**out = **in
 	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
+		*out = new(string)
+		**out = **in
+	}
 	if in.MinimumTLSVersion != nil {
 		in, out := &in.MinimumTLSVersion, &out.MinimumTLSVersion
 		*out = new(string)
@@ -12167,6 +12172,11 @@ func (in *LinuxFunctionAppSiteConfigObservation) DeepCopyInto(out *LinuxFunction
 	}
 	if in.ManagedPipelineMode != nil {
 		in, out := &in.ManagedPipelineMode, &out.ManagedPipelineMode
+		*out = new(string)
+		**out = **in
+	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
 		*out = new(string)
 		**out = **in
 	}
@@ -12372,6 +12382,11 @@ func (in *LinuxFunctionAppSiteConfigParameters) DeepCopyInto(out *LinuxFunctionA
 	}
 	if in.ManagedPipelineMode != nil {
 		in, out := &in.ManagedPipelineMode, &out.ManagedPipelineMode
+		*out = new(string)
+		**out = **in
+	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
 		*out = new(string)
 		**out = **in
 	}
@@ -15740,6 +15755,11 @@ func (in *LinuxFunctionAppSlotSiteConfigInitParameters) DeepCopyInto(out *LinuxF
 		*out = new(string)
 		**out = **in
 	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
+		*out = new(string)
+		**out = **in
+	}
 	if in.MinimumTLSVersion != nil {
 		in, out := &in.MinimumTLSVersion, &out.MinimumTLSVersion
 		*out = new(string)
@@ -15942,6 +15962,11 @@ func (in *LinuxFunctionAppSlotSiteConfigObservation) DeepCopyInto(out *LinuxFunc
 	}
 	if in.ManagedPipelineMode != nil {
 		in, out := &in.ManagedPipelineMode, &out.ManagedPipelineMode
+		*out = new(string)
+		**out = **in
+	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
 		*out = new(string)
 		**out = **in
 	}
@@ -16152,6 +16177,11 @@ func (in *LinuxFunctionAppSlotSiteConfigParameters) DeepCopyInto(out *LinuxFunct
 	}
 	if in.ManagedPipelineMode != nil {
 		in, out := &in.ManagedPipelineMode, &out.ManagedPipelineMode
+		*out = new(string)
+		**out = **in
+	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
 		*out = new(string)
 		**out = **in
 	}
@@ -21626,6 +21656,11 @@ func (in *LinuxWebAppSiteConfigInitParameters) DeepCopyInto(out *LinuxWebAppSite
 		*out = new(string)
 		**out = **in
 	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
+		*out = new(string)
+		**out = **in
+	}
 	if in.MinimumTLSVersion != nil {
 		in, out := &in.MinimumTLSVersion, &out.MinimumTLSVersion
 		*out = new(string)
@@ -21811,6 +21846,11 @@ func (in *LinuxWebAppSiteConfigObservation) DeepCopyInto(out *LinuxWebAppSiteCon
 		*out = new(string)
 		**out = **in
 	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
+		*out = new(string)
+		**out = **in
+	}
 	if in.MinimumTLSVersion != nil {
 		in, out := &in.MinimumTLSVersion, &out.MinimumTLSVersion
 		*out = new(string)
@@ -21988,6 +22028,11 @@ func (in *LinuxWebAppSiteConfigParameters) DeepCopyInto(out *LinuxWebAppSiteConf
 	}
 	if in.ManagedPipelineMode != nil {
 		in, out := &in.ManagedPipelineMode, &out.ManagedPipelineMode
+		*out = new(string)
+		**out = **in
+	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
 		*out = new(string)
 		**out = **in
 	}
@@ -27366,6 +27411,11 @@ func (in *LinuxWebAppSlotSiteConfigInitParameters) DeepCopyInto(out *LinuxWebApp
 		*out = new(string)
 		**out = **in
 	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
+		*out = new(string)
+		**out = **in
+	}
 	if in.MinimumTLSVersion != nil {
 		in, out := &in.MinimumTLSVersion, &out.MinimumTLSVersion
 		*out = new(string)
@@ -27556,6 +27606,11 @@ func (in *LinuxWebAppSlotSiteConfigObservation) DeepCopyInto(out *LinuxWebAppSlo
 		*out = new(string)
 		**out = **in
 	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
+		*out = new(string)
+		**out = **in
+	}
 	if in.MinimumTLSVersion != nil {
 		in, out := &in.MinimumTLSVersion, &out.MinimumTLSVersion
 		*out = new(string)
@@ -27738,6 +27793,11 @@ func (in *LinuxWebAppSlotSiteConfigParameters) DeepCopyInto(out *LinuxWebAppSlot
 	}
 	if in.ManagedPipelineMode != nil {
 		in, out := &in.ManagedPipelineMode, &out.ManagedPipelineMode
+		*out = new(string)
+		**out = **in
+	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
 		*out = new(string)
 		**out = **in
 	}
@@ -39497,6 +39557,11 @@ func (in *WindowsFunctionAppSiteConfigInitParameters) DeepCopyInto(out *WindowsF
 		*out = new(string)
 		**out = **in
 	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
+		*out = new(string)
+		**out = **in
+	}
 	if in.MinimumTLSVersion != nil {
 		in, out := &in.MinimumTLSVersion, &out.MinimumTLSVersion
 		*out = new(string)
@@ -39679,6 +39744,11 @@ func (in *WindowsFunctionAppSiteConfigObservation) DeepCopyInto(out *WindowsFunc
 	}
 	if in.ManagedPipelineMode != nil {
 		in, out := &in.ManagedPipelineMode, &out.ManagedPipelineMode
+		*out = new(string)
+		**out = **in
+	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
 		*out = new(string)
 		**out = **in
 	}
@@ -39879,6 +39949,11 @@ func (in *WindowsFunctionAppSiteConfigParameters) DeepCopyInto(out *WindowsFunct
 	}
 	if in.ManagedPipelineMode != nil {
 		in, out := &in.ManagedPipelineMode, &out.ManagedPipelineMode
+		*out = new(string)
+		**out = **in
+	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
 		*out = new(string)
 		**out = **in
 	}
@@ -45186,6 +45261,11 @@ func (in *WindowsFunctionAppSlotSiteConfigInitParameters) DeepCopyInto(out *Wind
 		*out = new(string)
 		**out = **in
 	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
+		*out = new(string)
+		**out = **in
+	}
 	if in.MinimumTLSVersion != nil {
 		in, out := &in.MinimumTLSVersion, &out.MinimumTLSVersion
 		*out = new(string)
@@ -45373,6 +45453,11 @@ func (in *WindowsFunctionAppSlotSiteConfigObservation) DeepCopyInto(out *Windows
 	}
 	if in.ManagedPipelineMode != nil {
 		in, out := &in.ManagedPipelineMode, &out.ManagedPipelineMode
+		*out = new(string)
+		**out = **in
+	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
 		*out = new(string)
 		**out = **in
 	}
@@ -45578,6 +45663,11 @@ func (in *WindowsFunctionAppSlotSiteConfigParameters) DeepCopyInto(out *WindowsF
 	}
 	if in.ManagedPipelineMode != nil {
 		in, out := &in.ManagedPipelineMode, &out.ManagedPipelineMode
+		*out = new(string)
+		**out = **in
+	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
 		*out = new(string)
 		**out = **in
 	}
@@ -51714,6 +51804,11 @@ func (in *WindowsWebAppSiteConfigInitParameters) DeepCopyInto(out *WindowsWebApp
 		*out = new(string)
 		**out = **in
 	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
+		*out = new(string)
+		**out = **in
+	}
 	if in.MinimumTLSVersion != nil {
 		in, out := &in.MinimumTLSVersion, &out.MinimumTLSVersion
 		*out = new(string)
@@ -51913,6 +52008,11 @@ func (in *WindowsWebAppSiteConfigObservation) DeepCopyInto(out *WindowsWebAppSit
 		*out = new(string)
 		**out = **in
 	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
+		*out = new(string)
+		**out = **in
+	}
 	if in.MinimumTLSVersion != nil {
 		in, out := &in.MinimumTLSVersion, &out.MinimumTLSVersion
 		*out = new(string)
@@ -52109,6 +52209,11 @@ func (in *WindowsWebAppSiteConfigParameters) DeepCopyInto(out *WindowsWebAppSite
 	}
 	if in.ManagedPipelineMode != nil {
 		in, out := &in.ManagedPipelineMode, &out.ManagedPipelineMode
+		*out = new(string)
+		**out = **in
+	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
 		*out = new(string)
 		**out = **in
 	}
@@ -58159,6 +58264,11 @@ func (in *WindowsWebAppSlotSiteConfigInitParameters) DeepCopyInto(out *WindowsWe
 		*out = new(string)
 		**out = **in
 	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
+		*out = new(string)
+		**out = **in
+	}
 	if in.MinimumTLSVersion != nil {
 		in, out := &in.MinimumTLSVersion, &out.MinimumTLSVersion
 		*out = new(string)
@@ -58355,6 +58465,11 @@ func (in *WindowsWebAppSlotSiteConfigObservation) DeepCopyInto(out *WindowsWebAp
 	}
 	if in.ManagedPipelineMode != nil {
 		in, out := &in.ManagedPipelineMode, &out.ManagedPipelineMode
+		*out = new(string)
+		**out = **in
+	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
 		*out = new(string)
 		**out = **in
 	}
@@ -58559,6 +58674,11 @@ func (in *WindowsWebAppSlotSiteConfigParameters) DeepCopyInto(out *WindowsWebApp
 	}
 	if in.ManagedPipelineMode != nil {
 		in, out := &in.ManagedPipelineMode, &out.ManagedPipelineMode
+		*out = new(string)
+		**out = **in
+	}
+	if in.MinimumTLSCipherSuite != nil {
+		in, out := &in.MinimumTLSCipherSuite, &out.MinimumTLSCipherSuite
 		*out = new(string)
 		**out = **in
 	}

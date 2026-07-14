@@ -100,3 +100,36 @@ func SetupGated_insights(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_insights registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_insights(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		applicationinsights.SetupWebhookWithManager,
+		applicationinsightsanalyticsitem.SetupWebhookWithManager,
+		applicationinsightsapikey.SetupWebhookWithManager,
+		applicationinsightssmartdetectionrule.SetupWebhookWithManager,
+		applicationinsightsstandardwebtest.SetupWebhookWithManager,
+		applicationinsightswebtest.SetupWebhookWithManager,
+		applicationinsightsworkbook.SetupWebhookWithManager,
+		applicationinsightsworkbooktemplate.SetupWebhookWithManager,
+		monitoractiongroup.SetupWebhookWithManager,
+		monitoractivitylogalert.SetupWebhookWithManager,
+		monitorautoscalesetting.SetupWebhookWithManager,
+		monitordatacollectionendpoint.SetupWebhookWithManager,
+		monitordatacollectionrule.SetupWebhookWithManager,
+		monitordatacollectionruleassociation.SetupWebhookWithManager,
+		monitordiagnosticsetting.SetupWebhookWithManager,
+		monitormetricalert.SetupWebhookWithManager,
+		monitorprivatelinkscope.SetupWebhookWithManager,
+		monitorprivatelinkscopedservice.SetupWebhookWithManager,
+		monitorscheduledqueryrulesalert.SetupWebhookWithManager,
+		monitorscheduledqueryrulesalertv2.SetupWebhookWithManager,
+		monitorscheduledqueryruleslog.SetupWebhookWithManager,
+		monitorworkspace.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

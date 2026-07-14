@@ -129,6 +129,9 @@ type ServiceObservation struct {
 	// Specifies whether the Search Service should enforce that non-customer resources are encrypted. Defaults to false.
 	CustomerManagedKeyEnforcementEnabled *bool `json:"customerManagedKeyEnforcementEnabled,omitempty" tf:"customer_managed_key_enforcement_enabled,omitempty"`
 
+	// The endpoint used to connect to this Search Service.
+	Endpoint *string `json:"endpoint,omitempty" tf:"endpoint,omitempty"`
+
 	// Specifies the Hosting Mode, which allows for High Density partitions (that allow for up to 1000 indexes) should be supported. Possible values are HighDensity or Default. Defaults to Default. Changing this forces a new Search Service to be created.
 	HostingMode *string `json:"hostingMode,omitempty" tf:"hosting_mode,omitempty"`
 

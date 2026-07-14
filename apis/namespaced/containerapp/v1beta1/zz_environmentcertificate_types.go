@@ -14,15 +14,85 @@ import (
 	v2 "github.com/crossplane/crossplane-runtime/v2/apis/common/v2"
 )
 
+type CertificateKeyVaultInitParameters struct {
+
+	// The managed identity to authenticate with Azure Key Vault. Possible values are the resource ID of user-assigned identity, and System for system-assigned identity. Defaults to System. Changing this forces a new resource to be created.
+	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/managedidentity/v1beta1.UserAssignedIdentity
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
+	Identity *string `json:"identity,omitempty" tf:"identity,omitempty"`
+
+	// Reference to a UserAssignedIdentity in managedidentity to populate identity.
+	// +kubebuilder:validation:Optional
+	IdentityRef *v1.NamespacedReference `json:"identityRef,omitempty" tf:"-"`
+
+	// Selector for a UserAssignedIdentity in managedidentity to populate identity.
+	// +kubebuilder:validation:Optional
+	IdentitySelector *v1.NamespacedSelector `json:"identitySelector,omitempty" tf:"-"`
+
+	// The ID of the Key Vault Secret containing the certificate. Changing this forces a new resource to be created.
+	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/keyvault/v1beta1.Certificate
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("versionless_secret_id",true)
+	KeyVaultSecretID *string `json:"keyVaultSecretId,omitempty" tf:"key_vault_secret_id,omitempty"`
+
+	// Reference to a Certificate in keyvault to populate keyVaultSecretId.
+	// +kubebuilder:validation:Optional
+	KeyVaultSecretIDRef *v1.NamespacedReference `json:"keyVaultSecretIdRef,omitempty" tf:"-"`
+
+	// Selector for a Certificate in keyvault to populate keyVaultSecretId.
+	// +kubebuilder:validation:Optional
+	KeyVaultSecretIDSelector *v1.NamespacedSelector `json:"keyVaultSecretIdSelector,omitempty" tf:"-"`
+}
+
+type CertificateKeyVaultObservation struct {
+
+	// The managed identity to authenticate with Azure Key Vault. Possible values are the resource ID of user-assigned identity, and System for system-assigned identity. Defaults to System. Changing this forces a new resource to be created.
+	Identity *string `json:"identity,omitempty" tf:"identity,omitempty"`
+
+	// The ID of the Key Vault Secret containing the certificate. Changing this forces a new resource to be created.
+	KeyVaultSecretID *string `json:"keyVaultSecretId,omitempty" tf:"key_vault_secret_id,omitempty"`
+}
+
+type CertificateKeyVaultParameters struct {
+
+	// The managed identity to authenticate with Azure Key Vault. Possible values are the resource ID of user-assigned identity, and System for system-assigned identity. Defaults to System. Changing this forces a new resource to be created.
+	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/managedidentity/v1beta1.UserAssignedIdentity
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
+	// +kubebuilder:validation:Optional
+	Identity *string `json:"identity,omitempty" tf:"identity,omitempty"`
+
+	// Reference to a UserAssignedIdentity in managedidentity to populate identity.
+	// +kubebuilder:validation:Optional
+	IdentityRef *v1.NamespacedReference `json:"identityRef,omitempty" tf:"-"`
+
+	// Selector for a UserAssignedIdentity in managedidentity to populate identity.
+	// +kubebuilder:validation:Optional
+	IdentitySelector *v1.NamespacedSelector `json:"identitySelector,omitempty" tf:"-"`
+
+	// The ID of the Key Vault Secret containing the certificate. Changing this forces a new resource to be created.
+	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/keyvault/v1beta1.Certificate
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("versionless_secret_id",true)
+	// +kubebuilder:validation:Optional
+	KeyVaultSecretID *string `json:"keyVaultSecretId,omitempty" tf:"key_vault_secret_id,omitempty"`
+
+	// Reference to a Certificate in keyvault to populate keyVaultSecretId.
+	// +kubebuilder:validation:Optional
+	KeyVaultSecretIDRef *v1.NamespacedReference `json:"keyVaultSecretIdRef,omitempty" tf:"-"`
+
+	// Selector for a Certificate in keyvault to populate keyVaultSecretId.
+	// +kubebuilder:validation:Optional
+	KeyVaultSecretIDSelector *v1.NamespacedSelector `json:"keyVaultSecretIdSelector,omitempty" tf:"-"`
+}
+
 type EnvironmentCertificateInitParameters struct {
 
 	// The Certificate Private Key as a base64 encoded PFX or PEM. Changing this forces a new resource to be created.
-	// The Certificate Private Key as a base64 encoded PFX or PEM.
 	CertificateBlobBase64 *string `json:"certificateBlobBase64,omitempty" tf:"certificate_blob_base64,omitempty"`
 
+	// A certificate_key_vault block as defined below. Changing this forces a new resource to be created.
+	CertificateKeyVault *CertificateKeyVaultInitParameters `json:"certificateKeyVault,omitempty" tf:"certificate_key_vault,omitempty"`
+
 	// The password for the Certificate. Changing this forces a new resource to be created.
-	// The password for the Certificate.
-	CertificatePasswordSecretRef v1.LocalSecretKeySelector `json:"certificatePasswordSecretRef" tf:"-"`
+	CertificatePasswordSecretRef *v1.LocalSecretKeySelector `json:"certificatePasswordSecretRef,omitempty" tf:"-"`
 
 	// A mapping of tags to assign to the resource.
 	// +mapType=granular
@@ -32,11 +102,12 @@ type EnvironmentCertificateInitParameters struct {
 type EnvironmentCertificateObservation struct {
 
 	// The Certificate Private Key as a base64 encoded PFX or PEM. Changing this forces a new resource to be created.
-	// The Certificate Private Key as a base64 encoded PFX or PEM.
 	CertificateBlobBase64 *string `json:"certificateBlobBase64,omitempty" tf:"certificate_blob_base64,omitempty"`
 
+	// A certificate_key_vault block as defined below. Changing this forces a new resource to be created.
+	CertificateKeyVault *CertificateKeyVaultObservation `json:"certificateKeyVault,omitempty" tf:"certificate_key_vault,omitempty"`
+
 	// The Container App Managed Environment ID to configure this Certificate on. Changing this forces a new resource to be created.
-	// The Container App Managed Environment ID to configure this Certificate on.
 	ContainerAppEnvironmentID *string `json:"containerAppEnvironmentId,omitempty" tf:"container_app_environment_id,omitempty"`
 
 	// The expiration date for the Certificate.
@@ -70,17 +141,18 @@ type EnvironmentCertificateObservation struct {
 type EnvironmentCertificateParameters struct {
 
 	// The Certificate Private Key as a base64 encoded PFX or PEM. Changing this forces a new resource to be created.
-	// The Certificate Private Key as a base64 encoded PFX or PEM.
 	// +kubebuilder:validation:Optional
 	CertificateBlobBase64 *string `json:"certificateBlobBase64,omitempty" tf:"certificate_blob_base64,omitempty"`
 
-	// The password for the Certificate. Changing this forces a new resource to be created.
-	// The password for the Certificate.
+	// A certificate_key_vault block as defined below. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
-	CertificatePasswordSecretRef v1.LocalSecretKeySelector `json:"certificatePasswordSecretRef" tf:"-"`
+	CertificateKeyVault *CertificateKeyVaultParameters `json:"certificateKeyVault,omitempty" tf:"certificate_key_vault,omitempty"`
+
+	// The password for the Certificate. Changing this forces a new resource to be created.
+	// +kubebuilder:validation:Optional
+	CertificatePasswordSecretRef *v1.LocalSecretKeySelector `json:"certificatePasswordSecretRef,omitempty" tf:"-"`
 
 	// The Container App Managed Environment ID to configure this Certificate on. Changing this forces a new resource to be created.
-	// The Container App Managed Environment ID to configure this Certificate on.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/containerapp/v1beta1.Environment
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
@@ -136,10 +208,8 @@ type EnvironmentCertificateStatus struct {
 type EnvironmentCertificate struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.certificateBlobBase64) || (has(self.initProvider) && has(self.initProvider.certificateBlobBase64))",message="spec.forProvider.certificateBlobBase64 is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.certificatePasswordSecretRef)",message="spec.forProvider.certificatePasswordSecretRef is a required parameter"
-	Spec   EnvironmentCertificateSpec   `json:"spec"`
-	Status EnvironmentCertificateStatus `json:"status,omitempty"`
+	Spec              EnvironmentCertificateSpec   `json:"spec"`
+	Status            EnvironmentCertificateStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

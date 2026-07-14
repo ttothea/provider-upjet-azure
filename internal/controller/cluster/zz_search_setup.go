@@ -40,3 +40,16 @@ func SetupGated_search(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_search registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_search(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		service.SetupWebhookWithManager,
+		sharedprivatelinkservice.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

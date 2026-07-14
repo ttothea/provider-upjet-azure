@@ -370,8 +370,11 @@ type RunBookInitParameters struct {
 	// +kubebuilder:validation:Optional
 	ResourceGroupNameSelector *v1.NamespacedSelector `json:"resourceGroupNameSelector,omitempty" tf:"-"`
 
-	// The type of the runbook - can be either Graph, GraphPowerShell, GraphPowerShellWorkflow, PowerShellWorkflow, PowerShell, PowerShell72, Python3, Python2 or Script. Changing this forces a new resource to be created.
+	// The type of the runbook - can be either Graph, GraphPowerShell, GraphPowerShellWorkflow, PowerShellWorkflow, PowerShell, PowerShell72, Python, Python3, Python2 or Script. Changing this forces a new resource to be created.
 	RunBookType *string `json:"runbookType,omitempty" tf:"runbook_type,omitempty"`
+
+	// The runtime environment name for the runbook.
+	RuntimeEnvironmentName *string `json:"runtimeEnvironmentName,omitempty" tf:"runtime_environment_name,omitempty"`
 
 	// A mapping of tags to assign to the resource.
 	// +mapType=granular
@@ -419,8 +422,11 @@ type RunBookObservation struct {
 	// The name of the resource group in which the Runbook is created. Changing this forces a new resource to be created.
 	ResourceGroupName *string `json:"resourceGroupName,omitempty" tf:"resource_group_name,omitempty"`
 
-	// The type of the runbook - can be either Graph, GraphPowerShell, GraphPowerShellWorkflow, PowerShellWorkflow, PowerShell, PowerShell72, Python3, Python2 or Script. Changing this forces a new resource to be created.
+	// The type of the runbook - can be either Graph, GraphPowerShell, GraphPowerShellWorkflow, PowerShellWorkflow, PowerShell, PowerShell72, Python, Python3, Python2 or Script. Changing this forces a new resource to be created.
 	RunBookType *string `json:"runbookType,omitempty" tf:"runbook_type,omitempty"`
+
+	// The runtime environment name for the runbook.
+	RuntimeEnvironmentName *string `json:"runtimeEnvironmentName,omitempty" tf:"runtime_environment_name,omitempty"`
 
 	// A mapping of tags to assign to the resource.
 	// +mapType=granular
@@ -495,9 +501,13 @@ type RunBookParameters struct {
 	// +kubebuilder:validation:Optional
 	ResourceGroupNameSelector *v1.NamespacedSelector `json:"resourceGroupNameSelector,omitempty" tf:"-"`
 
-	// The type of the runbook - can be either Graph, GraphPowerShell, GraphPowerShellWorkflow, PowerShellWorkflow, PowerShell, PowerShell72, Python3, Python2 or Script. Changing this forces a new resource to be created.
+	// The type of the runbook - can be either Graph, GraphPowerShell, GraphPowerShellWorkflow, PowerShellWorkflow, PowerShell, PowerShell72, Python, Python3, Python2 or Script. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
 	RunBookType *string `json:"runbookType,omitempty" tf:"runbook_type,omitempty"`
+
+	// The runtime environment name for the runbook.
+	// +kubebuilder:validation:Optional
+	RuntimeEnvironmentName *string `json:"runtimeEnvironmentName,omitempty" tf:"runtime_environment_name,omitempty"`
 
 	// A mapping of tags to assign to the resource.
 	// +kubebuilder:validation:Optional

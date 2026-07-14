@@ -76,3 +76,28 @@ func SetupGated_cdn(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_cdn registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_cdn(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		endpoint.SetupWebhookWithManager,
+		frontdoorcustomdomain.SetupWebhookWithManager,
+		frontdoorcustomdomainassociation.SetupWebhookWithManager,
+		frontdoorendpoint.SetupWebhookWithManager,
+		frontdoorfirewallpolicy.SetupWebhookWithManager,
+		frontdoororigin.SetupWebhookWithManager,
+		frontdoororigingroup.SetupWebhookWithManager,
+		frontdoorprofile.SetupWebhookWithManager,
+		frontdoorroute.SetupWebhookWithManager,
+		frontdoorrule.SetupWebhookWithManager,
+		frontdoorruleset.SetupWebhookWithManager,
+		frontdoorsecret.SetupWebhookWithManager,
+		frontdoorsecuritypolicy.SetupWebhookWithManager,
+		profile.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}
