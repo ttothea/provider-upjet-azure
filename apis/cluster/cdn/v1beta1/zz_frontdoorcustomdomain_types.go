@@ -13,9 +13,73 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 )
 
+type CipherSuiteInitParameters struct {
+
+	// A custom_ciphers block as defined below.
+	CustomCiphers []CustomCiphersInitParameters `json:"customCiphers,omitempty" tf:"custom_ciphers,omitempty"`
+
+	// The cipher suite set type. Possible values are Customized, TLS12_2022, and TLS12_2023.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+}
+
+type CipherSuiteObservation struct {
+
+	// A custom_ciphers block as defined below.
+	CustomCiphers []CustomCiphersObservation `json:"customCiphers,omitempty" tf:"custom_ciphers,omitempty"`
+
+	// The cipher suite set type. Possible values are Customized, TLS12_2022, and TLS12_2023.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+}
+
+type CipherSuiteParameters struct {
+
+	// A custom_ciphers block as defined below.
+	// +kubebuilder:validation:Optional
+	CustomCiphers []CustomCiphersParameters `json:"customCiphers,omitempty" tf:"custom_ciphers,omitempty"`
+
+	// The cipher suite set type. Possible values are Customized, TLS12_2022, and TLS12_2023.
+	// +kubebuilder:validation:Optional
+	Type *string `json:"type" tf:"type,omitempty"`
+}
+
+type CustomCiphersInitParameters struct {
+
+	// A set of TLS 1.2 cipher suites. Possible values are ECDHE_RSA_AES128_GCM_SHA256, ECDHE_RSA_AES128_SHA256, ECDHE_RSA_AES256_GCM_SHA384, and ECDHE_RSA_AES256_SHA384.
+	// +listType=set
+	Tls12 []*string `json:"tls12,omitempty" tf:"tls12,omitempty"`
+
+	// A set of TLS 1.3 cipher suites. Possible values are TLS_AES_128_GCM_SHA256 and TLS_AES_256_GCM_SHA384.
+	// +listType=set
+	Tls13 []*string `json:"tls13,omitempty" tf:"tls13,omitempty"`
+}
+
+type CustomCiphersObservation struct {
+
+	// A set of TLS 1.2 cipher suites. Possible values are ECDHE_RSA_AES128_GCM_SHA256, ECDHE_RSA_AES128_SHA256, ECDHE_RSA_AES256_GCM_SHA384, and ECDHE_RSA_AES256_SHA384.
+	// +listType=set
+	Tls12 []*string `json:"tls12,omitempty" tf:"tls12,omitempty"`
+
+	// A set of TLS 1.3 cipher suites. Possible values are TLS_AES_128_GCM_SHA256 and TLS_AES_256_GCM_SHA384.
+	// +listType=set
+	Tls13 []*string `json:"tls13,omitempty" tf:"tls13,omitempty"`
+}
+
+type CustomCiphersParameters struct {
+
+	// A set of TLS 1.2 cipher suites. Possible values are ECDHE_RSA_AES128_GCM_SHA256, ECDHE_RSA_AES128_SHA256, ECDHE_RSA_AES256_GCM_SHA384, and ECDHE_RSA_AES256_SHA384.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	Tls12 []*string `json:"tls12,omitempty" tf:"tls12,omitempty"`
+
+	// A set of TLS 1.3 cipher suites. Possible values are TLS_AES_128_GCM_SHA256 and TLS_AES_256_GCM_SHA384.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	Tls13 []*string `json:"tls13,omitempty" tf:"tls13,omitempty"`
+}
+
 type FrontdoorCustomDomainInitParameters struct {
 
-	// The ID of the Azure DNS Zone which should be used for this Front Door Custom Domain. If you are using Azure to host your DNS domains, you must delegate the domain provider's domain name system (DNS) to an Azure DNS Zone. For more information, see Delegate a domain to Azure DNS. Otherwise, if you're using your own domain provider to handle your DNS, you must validate the Front Door Custom Domain by creating the DNS TXT records manually.
+	// The ID of the Azure DNS Zone which should be used for this Front Door Custom Domain.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/cluster/network/v1beta1.DNSZone
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
 	DNSZoneID *string `json:"dnsZoneId,omitempty" tf:"dns_zone_id,omitempty"`
@@ -28,8 +92,16 @@ type FrontdoorCustomDomainInitParameters struct {
 	// +kubebuilder:validation:Optional
 	DNSZoneIDSelector *v1.Selector `json:"dnsZoneIdSelector,omitempty" tf:"-"`
 
-	// The host name of the domain. The host_name field must be the FQDN of your domain(e.g. contoso.fabrikam.com). Changing this forces a new Front Door Custom Domain to be created.
+	// The host name of the domain. Changing this forces a new resource to be created.
 	HostName *string `json:"hostName,omitempty" tf:"host_name,omitempty"`
+
+	// Reference to a FrontdoorOrigin in cdn to populate hostName.
+	// +kubebuilder:validation:Optional
+	HostNameRef *v1.Reference `json:"hostNameRef,omitempty" tf:"-"`
+
+	// Selector for a FrontdoorOrigin in cdn to populate hostName.
+	// +kubebuilder:validation:Optional
+	HostNameSelector *v1.Selector `json:"hostNameSelector,omitempty" tf:"-"`
 
 	// A tls block as defined below.
 	TLS []TLSInitParameters `json:"tls,omitempty" tf:"tls,omitempty"`
@@ -37,16 +109,16 @@ type FrontdoorCustomDomainInitParameters struct {
 
 type FrontdoorCustomDomainObservation struct {
 
-	// The ID of the Front Door Profile. Changing this forces a new Front Door Custom Domain to be created.
+	// The ID of the Front Door Profile. Changing this forces a new resource to be created.
 	CdnFrontdoorProfileID *string `json:"cdnFrontdoorProfileId,omitempty" tf:"cdn_frontdoor_profile_id,omitempty"`
 
-	// The ID of the Azure DNS Zone which should be used for this Front Door Custom Domain. If you are using Azure to host your DNS domains, you must delegate the domain provider's domain name system (DNS) to an Azure DNS Zone. For more information, see Delegate a domain to Azure DNS. Otherwise, if you're using your own domain provider to handle your DNS, you must validate the Front Door Custom Domain by creating the DNS TXT records manually.
+	// The ID of the Azure DNS Zone which should be used for this Front Door Custom Domain.
 	DNSZoneID *string `json:"dnsZoneId,omitempty" tf:"dns_zone_id,omitempty"`
 
-	// The date time that the token expires.
+	// The date and time that the token expires.
 	ExpirationDate *string `json:"expirationDate,omitempty" tf:"expiration_date,omitempty"`
 
-	// The host name of the domain. The host_name field must be the FQDN of your domain(e.g. contoso.fabrikam.com). Changing this forces a new Front Door Custom Domain to be created.
+	// The host name of the domain. Changing this forces a new resource to be created.
 	HostName *string `json:"hostName,omitempty" tf:"host_name,omitempty"`
 
 	// The ID of the Front Door Custom Domain.
@@ -61,7 +133,7 @@ type FrontdoorCustomDomainObservation struct {
 
 type FrontdoorCustomDomainParameters struct {
 
-	// The ID of the Front Door Profile. Changing this forces a new Front Door Custom Domain to be created.
+	// The ID of the Front Door Profile. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/cluster/cdn/v1beta1.FrontdoorProfile
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
@@ -75,7 +147,7 @@ type FrontdoorCustomDomainParameters struct {
 	// +kubebuilder:validation:Optional
 	CdnFrontdoorProfileIDSelector *v1.Selector `json:"cdnFrontdoorProfileIdSelector,omitempty" tf:"-"`
 
-	// The ID of the Azure DNS Zone which should be used for this Front Door Custom Domain. If you are using Azure to host your DNS domains, you must delegate the domain provider's domain name system (DNS) to an Azure DNS Zone. For more information, see Delegate a domain to Azure DNS. Otherwise, if you're using your own domain provider to handle your DNS, you must validate the Front Door Custom Domain by creating the DNS TXT records manually.
+	// The ID of the Azure DNS Zone which should be used for this Front Door Custom Domain.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/cluster/network/v1beta1.DNSZone
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
@@ -89,9 +161,17 @@ type FrontdoorCustomDomainParameters struct {
 	// +kubebuilder:validation:Optional
 	DNSZoneIDSelector *v1.Selector `json:"dnsZoneIdSelector,omitempty" tf:"-"`
 
-	// The host name of the domain. The host_name field must be the FQDN of your domain(e.g. contoso.fabrikam.com). Changing this forces a new Front Door Custom Domain to be created.
+	// The host name of the domain. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
 	HostName *string `json:"hostName,omitempty" tf:"host_name,omitempty"`
+
+	// Reference to a FrontdoorOrigin in cdn to populate hostName.
+	// +kubebuilder:validation:Optional
+	HostNameRef *v1.Reference `json:"hostNameRef,omitempty" tf:"-"`
+
+	// Selector for a FrontdoorOrigin in cdn to populate hostName.
+	// +kubebuilder:validation:Optional
+	HostNameSelector *v1.Selector `json:"hostNameSelector,omitempty" tf:"-"`
 
 	// A tls block as defined below.
 	// +kubebuilder:validation:Optional
@@ -103,11 +183,17 @@ type TLSInitParameters struct {
 	// Resource ID of the Front Door Secret.
 	CdnFrontdoorSecretID *string `json:"cdnFrontdoorSecretId,omitempty" tf:"cdn_frontdoor_secret_id,omitempty"`
 
-	// Defines the source of the SSL certificate. Possible values include CustomerCertificate and ManagedCertificate. Defaults to ManagedCertificate.
+	// Defines the source of the SSL certificate. Possible values are CustomerCertificate and ManagedCertificate. Defaults to ManagedCertificate.
 	CertificateType *string `json:"certificateType,omitempty" tf:"certificate_type,omitempty"`
+
+	// A cipher_suite block as defined below.
+	CipherSuite []CipherSuiteInitParameters `json:"cipherSuite,omitempty" tf:"cipher_suite,omitempty"`
 
 	// TLS protocol version that will be used for Https. Possible values include TLS10 and TLS12. Defaults to TLS12.
 	MinimumTLSVersion *string `json:"minimumTlsVersion,omitempty" tf:"minimum_tls_version,omitempty"`
+
+	// TLS protocol version that will be used for HTTPS. The only possible value is TLS12. Defaults to TLS12.
+	MinimumVersion *string `json:"minimumVersion,omitempty" tf:"minimum_version,omitempty"`
 }
 
 type TLSObservation struct {
@@ -115,11 +201,17 @@ type TLSObservation struct {
 	// Resource ID of the Front Door Secret.
 	CdnFrontdoorSecretID *string `json:"cdnFrontdoorSecretId,omitempty" tf:"cdn_frontdoor_secret_id,omitempty"`
 
-	// Defines the source of the SSL certificate. Possible values include CustomerCertificate and ManagedCertificate. Defaults to ManagedCertificate.
+	// Defines the source of the SSL certificate. Possible values are CustomerCertificate and ManagedCertificate. Defaults to ManagedCertificate.
 	CertificateType *string `json:"certificateType,omitempty" tf:"certificate_type,omitempty"`
+
+	// A cipher_suite block as defined below.
+	CipherSuite []CipherSuiteObservation `json:"cipherSuite,omitempty" tf:"cipher_suite,omitempty"`
 
 	// TLS protocol version that will be used for Https. Possible values include TLS10 and TLS12. Defaults to TLS12.
 	MinimumTLSVersion *string `json:"minimumTlsVersion,omitempty" tf:"minimum_tls_version,omitempty"`
+
+	// TLS protocol version that will be used for HTTPS. The only possible value is TLS12. Defaults to TLS12.
+	MinimumVersion *string `json:"minimumVersion,omitempty" tf:"minimum_version,omitempty"`
 }
 
 type TLSParameters struct {
@@ -128,13 +220,21 @@ type TLSParameters struct {
 	// +kubebuilder:validation:Optional
 	CdnFrontdoorSecretID *string `json:"cdnFrontdoorSecretId,omitempty" tf:"cdn_frontdoor_secret_id,omitempty"`
 
-	// Defines the source of the SSL certificate. Possible values include CustomerCertificate and ManagedCertificate. Defaults to ManagedCertificate.
+	// Defines the source of the SSL certificate. Possible values are CustomerCertificate and ManagedCertificate. Defaults to ManagedCertificate.
 	// +kubebuilder:validation:Optional
 	CertificateType *string `json:"certificateType,omitempty" tf:"certificate_type,omitempty"`
+
+	// A cipher_suite block as defined below.
+	// +kubebuilder:validation:Optional
+	CipherSuite []CipherSuiteParameters `json:"cipherSuite,omitempty" tf:"cipher_suite,omitempty"`
 
 	// TLS protocol version that will be used for Https. Possible values include TLS10 and TLS12. Defaults to TLS12.
 	// +kubebuilder:validation:Optional
 	MinimumTLSVersion *string `json:"minimumTlsVersion,omitempty" tf:"minimum_tls_version,omitempty"`
+
+	// TLS protocol version that will be used for HTTPS. The only possible value is TLS12. Defaults to TLS12.
+	// +kubebuilder:validation:Optional
+	MinimumVersion *string `json:"minimumVersion,omitempty" tf:"minimum_version,omitempty"`
 }
 
 // FrontdoorCustomDomainSpec defines the desired state of FrontdoorCustomDomain

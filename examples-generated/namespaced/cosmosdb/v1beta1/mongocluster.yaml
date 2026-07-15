@@ -25,6 +25,7 @@ spec:
         testing.upbound.io/example-name: example
     shardCount: "1"
     storageSizeInGb: "32"
+    version: "8.0"
 
 ---
 

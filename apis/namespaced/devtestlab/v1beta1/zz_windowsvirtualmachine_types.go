@@ -170,7 +170,7 @@ type WindowsVirtualMachineInitParameters struct {
 	// +kubebuilder:validation:Optional
 	ResourceGroupNameSelector *v1.NamespacedSelector `json:"resourceGroupNameSelector,omitempty" tf:"-"`
 
-	// The Machine Size to use for this Virtual Machine, such as Standard_F2. Changing this forces a new resource to be created.
+	// The Machine Size to use for this Virtual Machine, such as Standard_D4_v5. Changing this forces a new resource to be created.
 	Size *string `json:"size,omitempty" tf:"size,omitempty"`
 
 	// The type of Storage to use on this Virtual Machine. Possible values are Standard and Premium. Changing this forces a new resource to be created.
@@ -225,7 +225,7 @@ type WindowsVirtualMachineObservation struct {
 	// The name of the resource group in which the Dev Test Lab resource exists. Changing this forces a new resource to be created.
 	ResourceGroupName *string `json:"resourceGroupName,omitempty" tf:"resource_group_name,omitempty"`
 
-	// The Machine Size to use for this Virtual Machine, such as Standard_F2. Changing this forces a new resource to be created.
+	// The Machine Size to use for this Virtual Machine, such as Standard_D4_v5. Changing this forces a new resource to be created.
 	Size *string `json:"size,omitempty" tf:"size,omitempty"`
 
 	// The type of Storage to use on this Virtual Machine. Possible values are Standard and Premium. Changing this forces a new resource to be created.
@@ -329,7 +329,7 @@ type WindowsVirtualMachineParameters struct {
 	// +kubebuilder:validation:Optional
 	ResourceGroupNameSelector *v1.NamespacedSelector `json:"resourceGroupNameSelector,omitempty" tf:"-"`
 
-	// The Machine Size to use for this Virtual Machine, such as Standard_F2. Changing this forces a new resource to be created.
+	// The Machine Size to use for this Virtual Machine, such as Standard_D4_v5. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
 	Size *string `json:"size,omitempty" tf:"size,omitempty"`
 

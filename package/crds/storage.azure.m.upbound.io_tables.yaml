@@ -93,6 +93,11 @@ spec:
                       the storage account the table is located. Changing this forces
                       a new resource to be created.
                     type: string
+                  storageAccountId:
+                    description: Specifies the ID of the storage account in which
+                      to create the storage table. Changing this forces a new resource
+                      to be created.
+                    type: string
                   storageAccountName:
                     description: Specifies the storage account in which to create
                       the storage table. Changing this forces a new resource to be
@@ -225,6 +230,11 @@ spec:
                       characters allowed, starting with a letter. Must be unique within
                       the storage account the table is located. Changing this forces
                       a new resource to be created.
+                    type: string
+                  storageAccountId:
+                    description: Specifies the ID of the storage account in which
+                      to create the storage table. Changing this forces a new resource
+                      to be created.
                     type: string
                   storageAccountName:
                     description: Specifies the storage account in which to create
@@ -421,6 +431,11 @@ spec:
                     description: |-
                       The Resource Manager ID of this Storage Table.
                       The Resource Manager ID of this Storage Table.
+                    type: string
+                  storageAccountId:
+                    description: Specifies the ID of the storage account in which
+                      to create the storage table. Changing this forces a new resource
+                      to be created.
                     type: string
                   storageAccountName:
                     description: Specifies the storage account in which to create

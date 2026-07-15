@@ -58,3 +58,22 @@ func SetupGated_eventgrid(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_eventgrid registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_eventgrid(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		domain.SetupWebhookWithManager,
+		domaintopic.SetupWebhookWithManager,
+		eventgridnamespace.SetupWebhookWithManager,
+		eventsubscription.SetupWebhookWithManager,
+		partnerconfiguration.SetupWebhookWithManager,
+		systemtopic.SetupWebhookWithManager,
+		systemtopiceventsubscription.SetupWebhookWithManager,
+		topic.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

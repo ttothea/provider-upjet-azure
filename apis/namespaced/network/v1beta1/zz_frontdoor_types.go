@@ -14,7 +14,7 @@ import (
 	v2 "github.com/crossplane/crossplane-runtime/v2/apis/common/v2"
 )
 
-type BackendInitParameters struct {
+type BackendPoolBackendInitParameters struct {
 
 	// Location of the backend (IP address or FQDN)
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
@@ -38,7 +38,7 @@ type BackendInitParameters struct {
 	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
-type BackendObservation struct {
+type BackendPoolBackendObservation struct {
 
 	// Location of the backend (IP address or FQDN)
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
@@ -62,7 +62,7 @@ type BackendObservation struct {
 	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
-type BackendParameters struct {
+type BackendPoolBackendParameters struct {
 
 	// Location of the backend (IP address or FQDN)
 	// +kubebuilder:validation:Optional
@@ -168,7 +168,7 @@ type BackendPoolHealthProbeParameters struct {
 type BackendPoolInitParameters struct {
 
 	// A backend block as defined below.
-	Backend []BackendInitParameters `json:"backend,omitempty" tf:"backend,omitempty"`
+	Backend []BackendPoolBackendInitParameters `json:"backend,omitempty" tf:"backend,omitempty"`
 
 	// Specifies the name of the backend_pool_health_probe block within this resource to use for this Backend Pool.
 	HealthProbeName *string `json:"healthProbeName,omitempty" tf:"health_probe_name,omitempty"`
@@ -235,7 +235,7 @@ type BackendPoolLoadBalancingParameters struct {
 type BackendPoolObservation struct {
 
 	// A backend block as defined below.
-	Backend []BackendObservation `json:"backend,omitempty" tf:"backend,omitempty"`
+	Backend []BackendPoolBackendObservation `json:"backend,omitempty" tf:"backend,omitempty"`
 
 	// Specifies the name of the backend_pool_health_probe block within this resource to use for this Backend Pool.
 	HealthProbeName *string `json:"healthProbeName,omitempty" tf:"health_probe_name,omitempty"`
@@ -254,7 +254,7 @@ type BackendPoolParameters struct {
 
 	// A backend block as defined below.
 	// +kubebuilder:validation:Optional
-	Backend []BackendParameters `json:"backend" tf:"backend,omitempty"`
+	Backend []BackendPoolBackendParameters `json:"backend" tf:"backend,omitempty"`
 
 	// Specifies the name of the backend_pool_health_probe block within this resource to use for this Backend Pool.
 	// +kubebuilder:validation:Optional
@@ -429,7 +429,7 @@ type FrontDoorInitParameters struct {
 	LoadBalancerEnabled *bool `json:"loadBalancerEnabled,omitempty" tf:"load_balancer_enabled,omitempty"`
 
 	// A routing_rule block as defined below.
-	RoutingRule []RoutingRuleInitParameters `json:"routingRule,omitempty" tf:"routing_rule,omitempty"`
+	RoutingRule []FrontDoorRoutingRuleInitParameters `json:"routingRule,omitempty" tf:"routing_rule,omitempty"`
 
 	// A mapping of tags to assign to the resource.
 	// +mapType=granular
@@ -490,7 +490,7 @@ type FrontDoorObservation struct {
 	ResourceGroupName *string `json:"resourceGroupName,omitempty" tf:"resource_group_name,omitempty"`
 
 	// A routing_rule block as defined below.
-	RoutingRule []RoutingRuleObservation `json:"routingRule,omitempty" tf:"routing_rule,omitempty"`
+	RoutingRule []FrontDoorRoutingRuleObservation `json:"routingRule,omitempty" tf:"routing_rule,omitempty"`
 
 	// A map/dictionary of Routing Rule Names (key) to the Routing Rule ID (value)
 	// +mapType=granular
@@ -546,12 +546,94 @@ type FrontDoorParameters struct {
 
 	// A routing_rule block as defined below.
 	// +kubebuilder:validation:Optional
-	RoutingRule []RoutingRuleParameters `json:"routingRule,omitempty" tf:"routing_rule,omitempty"`
+	RoutingRule []FrontDoorRoutingRuleParameters `json:"routingRule,omitempty" tf:"routing_rule,omitempty"`
 
 	// A mapping of tags to assign to the resource.
 	// +kubebuilder:validation:Optional
 	// +mapType=granular
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
+}
+
+type FrontDoorRoutingRuleInitParameters struct {
+
+	// Protocol schemes to match for the Backend Routing Rule. Possible values are Http and Https.
+	AcceptedProtocols []*string `json:"acceptedProtocols,omitempty" tf:"accepted_protocols,omitempty"`
+
+	// Enable or Disable use of this Backend Routing Rule. Permitted values are true or false. Defaults to true.
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+
+	// A forwarding_configuration block as defined below.
+	ForwardingConfiguration *ForwardingConfigurationInitParameters `json:"forwardingConfiguration,omitempty" tf:"forwarding_configuration,omitempty"`
+
+	// The names of the frontend_endpoint blocks within this resource to associate with this routing_rule.
+	FrontendEndpoints []*string `json:"frontendEndpoints,omitempty" tf:"frontend_endpoints,omitempty"`
+
+	// Specifies the name of the Routing Rule.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// The route patterns for the Backend Routing Rule.
+	PatternsToMatch []*string `json:"patternsToMatch,omitempty" tf:"patterns_to_match,omitempty"`
+
+	// A redirect_configuration block as defined below.
+	RedirectConfiguration *RoutingRuleRedirectConfigurationInitParameters `json:"redirectConfiguration,omitempty" tf:"redirect_configuration,omitempty"`
+}
+
+type FrontDoorRoutingRuleObservation struct {
+
+	// Protocol schemes to match for the Backend Routing Rule. Possible values are Http and Https.
+	AcceptedProtocols []*string `json:"acceptedProtocols,omitempty" tf:"accepted_protocols,omitempty"`
+
+	// Enable or Disable use of this Backend Routing Rule. Permitted values are true or false. Defaults to true.
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+
+	// A forwarding_configuration block as defined below.
+	ForwardingConfiguration *ForwardingConfigurationObservation `json:"forwardingConfiguration,omitempty" tf:"forwarding_configuration,omitempty"`
+
+	// The names of the frontend_endpoint blocks within this resource to associate with this routing_rule.
+	FrontendEndpoints []*string `json:"frontendEndpoints,omitempty" tf:"frontend_endpoints,omitempty"`
+
+	// The ID of the Azure Front Door Backend.
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Specifies the name of the Routing Rule.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// The route patterns for the Backend Routing Rule.
+	PatternsToMatch []*string `json:"patternsToMatch,omitempty" tf:"patterns_to_match,omitempty"`
+
+	// A redirect_configuration block as defined below.
+	RedirectConfiguration *RoutingRuleRedirectConfigurationObservation `json:"redirectConfiguration,omitempty" tf:"redirect_configuration,omitempty"`
+}
+
+type FrontDoorRoutingRuleParameters struct {
+
+	// Protocol schemes to match for the Backend Routing Rule. Possible values are Http and Https.
+	// +kubebuilder:validation:Optional
+	AcceptedProtocols []*string `json:"acceptedProtocols" tf:"accepted_protocols,omitempty"`
+
+	// Enable or Disable use of this Backend Routing Rule. Permitted values are true or false. Defaults to true.
+	// +kubebuilder:validation:Optional
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+
+	// A forwarding_configuration block as defined below.
+	// +kubebuilder:validation:Optional
+	ForwardingConfiguration *ForwardingConfigurationParameters `json:"forwardingConfiguration,omitempty" tf:"forwarding_configuration,omitempty"`
+
+	// The names of the frontend_endpoint blocks within this resource to associate with this routing_rule.
+	// +kubebuilder:validation:Optional
+	FrontendEndpoints []*string `json:"frontendEndpoints" tf:"frontend_endpoints,omitempty"`
+
+	// Specifies the name of the Routing Rule.
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name" tf:"name,omitempty"`
+
+	// The route patterns for the Backend Routing Rule.
+	// +kubebuilder:validation:Optional
+	PatternsToMatch []*string `json:"patternsToMatch" tf:"patterns_to_match,omitempty"`
+
+	// A redirect_configuration block as defined below.
+	// +kubebuilder:validation:Optional
+	RedirectConfiguration *RoutingRuleRedirectConfigurationParameters `json:"redirectConfiguration,omitempty" tf:"redirect_configuration,omitempty"`
 }
 
 type FrontendEndpointInitParameters struct {
@@ -614,88 +696,6 @@ type FrontendEndpointParameters struct {
 	// Defines the Web Application Firewall policy ID for each host.
 	// +kubebuilder:validation:Optional
 	WebApplicationFirewallPolicyLinkID *string `json:"webApplicationFirewallPolicyLinkId,omitempty" tf:"web_application_firewall_policy_link_id,omitempty"`
-}
-
-type RoutingRuleInitParameters struct {
-
-	// Protocol schemes to match for the Backend Routing Rule. Possible values are Http and Https.
-	AcceptedProtocols []*string `json:"acceptedProtocols,omitempty" tf:"accepted_protocols,omitempty"`
-
-	// Enable or Disable use of this Backend Routing Rule. Permitted values are true or false. Defaults to true.
-	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
-
-	// A forwarding_configuration block as defined below.
-	ForwardingConfiguration *ForwardingConfigurationInitParameters `json:"forwardingConfiguration,omitempty" tf:"forwarding_configuration,omitempty"`
-
-	// The names of the frontend_endpoint blocks within this resource to associate with this routing_rule.
-	FrontendEndpoints []*string `json:"frontendEndpoints,omitempty" tf:"frontend_endpoints,omitempty"`
-
-	// Specifies the name of the Routing Rule.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// The route patterns for the Backend Routing Rule.
-	PatternsToMatch []*string `json:"patternsToMatch,omitempty" tf:"patterns_to_match,omitempty"`
-
-	// A redirect_configuration block as defined below.
-	RedirectConfiguration *RoutingRuleRedirectConfigurationInitParameters `json:"redirectConfiguration,omitempty" tf:"redirect_configuration,omitempty"`
-}
-
-type RoutingRuleObservation struct {
-
-	// Protocol schemes to match for the Backend Routing Rule. Possible values are Http and Https.
-	AcceptedProtocols []*string `json:"acceptedProtocols,omitempty" tf:"accepted_protocols,omitempty"`
-
-	// Enable or Disable use of this Backend Routing Rule. Permitted values are true or false. Defaults to true.
-	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
-
-	// A forwarding_configuration block as defined below.
-	ForwardingConfiguration *ForwardingConfigurationObservation `json:"forwardingConfiguration,omitempty" tf:"forwarding_configuration,omitempty"`
-
-	// The names of the frontend_endpoint blocks within this resource to associate with this routing_rule.
-	FrontendEndpoints []*string `json:"frontendEndpoints,omitempty" tf:"frontend_endpoints,omitempty"`
-
-	// The ID of the Azure Front Door Backend.
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-
-	// Specifies the name of the Routing Rule.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// The route patterns for the Backend Routing Rule.
-	PatternsToMatch []*string `json:"patternsToMatch,omitempty" tf:"patterns_to_match,omitempty"`
-
-	// A redirect_configuration block as defined below.
-	RedirectConfiguration *RoutingRuleRedirectConfigurationObservation `json:"redirectConfiguration,omitempty" tf:"redirect_configuration,omitempty"`
-}
-
-type RoutingRuleParameters struct {
-
-	// Protocol schemes to match for the Backend Routing Rule. Possible values are Http and Https.
-	// +kubebuilder:validation:Optional
-	AcceptedProtocols []*string `json:"acceptedProtocols" tf:"accepted_protocols,omitempty"`
-
-	// Enable or Disable use of this Backend Routing Rule. Permitted values are true or false. Defaults to true.
-	// +kubebuilder:validation:Optional
-	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
-
-	// A forwarding_configuration block as defined below.
-	// +kubebuilder:validation:Optional
-	ForwardingConfiguration *ForwardingConfigurationParameters `json:"forwardingConfiguration,omitempty" tf:"forwarding_configuration,omitempty"`
-
-	// The names of the frontend_endpoint blocks within this resource to associate with this routing_rule.
-	// +kubebuilder:validation:Optional
-	FrontendEndpoints []*string `json:"frontendEndpoints" tf:"frontend_endpoints,omitempty"`
-
-	// Specifies the name of the Routing Rule.
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name" tf:"name,omitempty"`
-
-	// The route patterns for the Backend Routing Rule.
-	// +kubebuilder:validation:Optional
-	PatternsToMatch []*string `json:"patternsToMatch" tf:"patterns_to_match,omitempty"`
-
-	// A redirect_configuration block as defined below.
-	// +kubebuilder:validation:Optional
-	RedirectConfiguration *RoutingRuleRedirectConfigurationParameters `json:"redirectConfiguration,omitempty" tf:"redirect_configuration,omitempty"`
 }
 
 type RoutingRuleRedirectConfigurationInitParameters struct {

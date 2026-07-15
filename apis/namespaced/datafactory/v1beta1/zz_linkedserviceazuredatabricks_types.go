@@ -93,9 +93,9 @@ type LinkedServiceAzureDatabricksInitParameters struct {
 	// Authenticate to ADB via Azure Key Vault Linked Service as defined in the key_vault_password block below.
 	KeyVaultPassword *LinkedServiceAzureDatabricksKeyVaultPasswordInitParameters `json:"keyVaultPassword,omitempty" tf:"key_vault_password,omitempty"`
 
-	// Authenticate to ADB via managed service identity.
+	// The ID of the Data Factory Linked Service.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/databricks/v1beta1.Workspace
-	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/provider-azure/v2/apis/namespaced/rconfig.ExtractResourceID()
 	MsiWorkSpaceResourceID *string `json:"msiWorkSpaceResourceId,omitempty" tf:"msi_work_space_resource_id,omitempty"`
 
 	// Reference to a Workspace in databricks to populate msiWorkSpaceResourceId.
@@ -105,6 +105,19 @@ type LinkedServiceAzureDatabricksInitParameters struct {
 	// Selector for a Workspace in databricks to populate msiWorkSpaceResourceId.
 	// +kubebuilder:validation:Optional
 	MsiWorkSpaceResourceIDSelector *v1.NamespacedSelector `json:"msiWorkSpaceResourceIdSelector,omitempty" tf:"-"`
+
+	// Authenticate to ADB via managed service identity.
+	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/databricks/v1beta1.Workspace
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
+	MsiWorkspaceID *string `json:"msiWorkspaceId,omitempty" tf:"msi_workspace_id,omitempty"`
+
+	// Reference to a Workspace in databricks to populate msiWorkspaceId.
+	// +kubebuilder:validation:Optional
+	MsiWorkspaceIDRef *v1.NamespacedReference `json:"msiWorkspaceIdRef,omitempty" tf:"-"`
+
+	// Selector for a Workspace in databricks to populate msiWorkspaceId.
+	// +kubebuilder:validation:Optional
+	MsiWorkspaceIDSelector *v1.NamespacedSelector `json:"msiWorkspaceIdSelector,omitempty" tf:"-"`
 
 	// Creates new clusters within the linked ADB instance as defined in the new_cluster_config block below.
 	NewClusterConfig *NewClusterConfigInitParameters `json:"newClusterConfig,omitempty" tf:"new_cluster_config,omitempty"`
@@ -176,8 +189,11 @@ type LinkedServiceAzureDatabricksObservation struct {
 	// Authenticate to ADB via Azure Key Vault Linked Service as defined in the key_vault_password block below.
 	KeyVaultPassword *LinkedServiceAzureDatabricksKeyVaultPasswordObservation `json:"keyVaultPassword,omitempty" tf:"key_vault_password,omitempty"`
 
-	// Authenticate to ADB via managed service identity.
+	// The ID of the Data Factory Linked Service.
 	MsiWorkSpaceResourceID *string `json:"msiWorkSpaceResourceId,omitempty" tf:"msi_work_space_resource_id,omitempty"`
+
+	// Authenticate to ADB via managed service identity.
+	MsiWorkspaceID *string `json:"msiWorkspaceId,omitempty" tf:"msi_workspace_id,omitempty"`
 
 	// Creates new clusters within the linked ADB instance as defined in the new_cluster_config block below.
 	NewClusterConfig *NewClusterConfigObservation `json:"newClusterConfig,omitempty" tf:"new_cluster_config,omitempty"`
@@ -240,9 +256,9 @@ type LinkedServiceAzureDatabricksParameters struct {
 	// +kubebuilder:validation:Optional
 	KeyVaultPassword *LinkedServiceAzureDatabricksKeyVaultPasswordParameters `json:"keyVaultPassword,omitempty" tf:"key_vault_password,omitempty"`
 
-	// Authenticate to ADB via managed service identity.
+	// The ID of the Data Factory Linked Service.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/databricks/v1beta1.Workspace
-	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/provider-azure/v2/apis/namespaced/rconfig.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	MsiWorkSpaceResourceID *string `json:"msiWorkSpaceResourceId,omitempty" tf:"msi_work_space_resource_id,omitempty"`
 
@@ -253,6 +269,20 @@ type LinkedServiceAzureDatabricksParameters struct {
 	// Selector for a Workspace in databricks to populate msiWorkSpaceResourceId.
 	// +kubebuilder:validation:Optional
 	MsiWorkSpaceResourceIDSelector *v1.NamespacedSelector `json:"msiWorkSpaceResourceIdSelector,omitempty" tf:"-"`
+
+	// Authenticate to ADB via managed service identity.
+	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/databricks/v1beta1.Workspace
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
+	// +kubebuilder:validation:Optional
+	MsiWorkspaceID *string `json:"msiWorkspaceId,omitempty" tf:"msi_workspace_id,omitempty"`
+
+	// Reference to a Workspace in databricks to populate msiWorkspaceId.
+	// +kubebuilder:validation:Optional
+	MsiWorkspaceIDRef *v1.NamespacedReference `json:"msiWorkspaceIdRef,omitempty" tf:"-"`
+
+	// Selector for a Workspace in databricks to populate msiWorkspaceId.
+	// +kubebuilder:validation:Optional
+	MsiWorkspaceIDSelector *v1.NamespacedSelector `json:"msiWorkspaceIdSelector,omitempty" tf:"-"`
 
 	// Creates new clusters within the linked ADB instance as defined in the new_cluster_config block below.
 	// +kubebuilder:validation:Optional

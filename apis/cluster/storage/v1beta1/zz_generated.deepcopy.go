@@ -2902,6 +2902,21 @@ func (in *BlobInitParameters) DeepCopyInto(out *BlobInitParameters) {
 		*out = new(v1.Selector)
 		(*in).DeepCopyInto(*out)
 	}
+	if in.StorageContainerID != nil {
+		in, out := &in.StorageContainerID, &out.StorageContainerID
+		*out = new(string)
+		**out = **in
+	}
+	if in.StorageContainerIDRef != nil {
+		in, out := &in.StorageContainerIDRef, &out.StorageContainerIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.StorageContainerIDSelector != nil {
+		in, out := &in.StorageContainerIDSelector, &out.StorageContainerIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.StorageContainerName != nil {
 		in, out := &in.StorageContainerName, &out.StorageContainerName
 		*out = new(string)
@@ -3245,6 +3260,11 @@ func (in *BlobObservation) DeepCopyInto(out *BlobObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.StorageContainerID != nil {
+		in, out := &in.StorageContainerID, &out.StorageContainerID
+		*out = new(string)
+		**out = **in
+	}
 	if in.StorageContainerName != nil {
 		in, out := &in.StorageContainerName, &out.StorageContainerName
 		*out = new(string)
@@ -3353,6 +3373,21 @@ func (in *BlobParameters) DeepCopyInto(out *BlobParameters) {
 	}
 	if in.StorageAccountNameSelector != nil {
 		in, out := &in.StorageAccountNameSelector, &out.StorageAccountNameSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.StorageContainerID != nil {
+		in, out := &in.StorageContainerID, &out.StorageContainerID
+		*out = new(string)
+		**out = **in
+	}
+	if in.StorageContainerIDRef != nil {
+		in, out := &in.StorageContainerIDRef, &out.StorageContainerIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.StorageContainerIDSelector != nil {
+		in, out := &in.StorageContainerIDSelector, &out.StorageContainerIDSelector
 		*out = new(v1.Selector)
 		(*in).DeepCopyInto(*out)
 	}
@@ -4107,6 +4142,11 @@ func (in *ContainerObservation) DeepCopyInto(out *ContainerObservation) {
 	}
 	if in.StorageAccountName != nil {
 		in, out := &in.StorageAccountName, &out.StorageAccountName
+		*out = new(string)
+		**out = **in
+	}
+	if in.URL != nil {
+		in, out := &in.URL, &out.URL
 		*out = new(string)
 		**out = **in
 	}
@@ -6965,6 +7005,11 @@ func (in *ObjectReplicationInitParameters) DeepCopyInto(out *ObjectReplicationIn
 		*out = new(v1.Selector)
 		(*in).DeepCopyInto(*out)
 	}
+	if in.MetricsEnabled != nil {
+		in, out := &in.MetricsEnabled, &out.MetricsEnabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Rules != nil {
 		in, out := &in.Rules, &out.Rules
 		*out = make([]ObjectReplicationRulesInitParameters, len(*in))
@@ -7049,6 +7094,11 @@ func (in *ObjectReplicationObservation) DeepCopyInto(out *ObjectReplicationObser
 		*out = new(string)
 		**out = **in
 	}
+	if in.MetricsEnabled != nil {
+		in, out := &in.MetricsEnabled, &out.MetricsEnabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Rules != nil {
 		in, out := &in.Rules, &out.Rules
 		*out = make([]ObjectReplicationRulesObservation, len(*in))
@@ -7095,6 +7145,11 @@ func (in *ObjectReplicationParameters) DeepCopyInto(out *ObjectReplicationParame
 		in, out := &in.DestinationStorageAccountIDSelector, &out.DestinationStorageAccountIDSelector
 		*out = new(v1.Selector)
 		(*in).DeepCopyInto(*out)
+	}
+	if in.MetricsEnabled != nil {
+		in, out := &in.MetricsEnabled, &out.MetricsEnabled
+		*out = new(bool)
+		**out = **in
 	}
 	if in.Rules != nil {
 		in, out := &in.Rules, &out.Rules
@@ -9535,6 +9590,11 @@ func (in *ShareObservation) DeepCopyInto(out *ShareObservation) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.RbacScopeID != nil {
+		in, out := &in.RbacScopeID, &out.RbacScopeID
+		*out = new(string)
+		**out = **in
+	}
 	if in.ResourceManagerID != nil {
 		in, out := &in.ResourceManagerID, &out.ResourceManagerID
 		*out = new(string)
@@ -10550,6 +10610,11 @@ func (in *TableInitParameters) DeepCopyInto(out *TableInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.StorageAccountID != nil {
+		in, out := &in.StorageAccountID, &out.StorageAccountID
+		*out = new(string)
+		**out = **in
+	}
 	if in.StorageAccountName != nil {
 		in, out := &in.StorageAccountName, &out.StorageAccountName
 		*out = new(string)
@@ -10634,6 +10699,11 @@ func (in *TableObservation) DeepCopyInto(out *TableObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.StorageAccountID != nil {
+		in, out := &in.StorageAccountID, &out.StorageAccountID
+		*out = new(string)
+		**out = **in
+	}
 	if in.StorageAccountName != nil {
 		in, out := &in.StorageAccountName, &out.StorageAccountName
 		*out = new(string)
@@ -10663,6 +10733,11 @@ func (in *TableParameters) DeepCopyInto(out *TableParameters) {
 	}
 	if in.Name != nil {
 		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
+	if in.StorageAccountID != nil {
+		in, out := &in.StorageAccountID, &out.StorageAccountID
 		*out = new(string)
 		**out = **in
 	}

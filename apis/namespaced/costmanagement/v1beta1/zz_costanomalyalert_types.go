@@ -23,10 +23,10 @@ type CostAnomalyAlertInitParameters struct {
 	// +listType=set
 	EmailAddresses []*string `json:"emailAddresses,omitempty" tf:"email_addresses,omitempty"`
 
-	// The email subject of the Cost Anomaly Alerts. Maximum length of the subject is 70.
+	// The email subject of the Cost Anomaly Alerts. Maximum length of the subject is 50.
 	EmailSubject *string `json:"emailSubject,omitempty" tf:"email_subject,omitempty"`
 
-	// The message of the Cost Anomaly Alert. Maximum length of the message is 250.
+	// The message of the Cost Anomaly Alert. Maximum length of the message is 100.
 	Message *string `json:"message,omitempty" tf:"message,omitempty"`
 
 	// The email address of the point of contact that should get the unsubscribe requests and notification emails.
@@ -45,13 +45,13 @@ type CostAnomalyAlertObservation struct {
 	// +listType=set
 	EmailAddresses []*string `json:"emailAddresses,omitempty" tf:"email_addresses,omitempty"`
 
-	// The email subject of the Cost Anomaly Alerts. Maximum length of the subject is 70.
+	// The email subject of the Cost Anomaly Alerts. Maximum length of the subject is 50.
 	EmailSubject *string `json:"emailSubject,omitempty" tf:"email_subject,omitempty"`
 
 	// The ID of the Cost Anomaly Alert.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// The message of the Cost Anomaly Alert. Maximum length of the message is 250.
+	// The message of the Cost Anomaly Alert. Maximum length of the message is 100.
 	Message *string `json:"message,omitempty" tf:"message,omitempty"`
 
 	// The email address of the point of contact that should get the unsubscribe requests and notification emails.
@@ -72,11 +72,11 @@ type CostAnomalyAlertParameters struct {
 	// +listType=set
 	EmailAddresses []*string `json:"emailAddresses,omitempty" tf:"email_addresses,omitempty"`
 
-	// The email subject of the Cost Anomaly Alerts. Maximum length of the subject is 70.
+	// The email subject of the Cost Anomaly Alerts. Maximum length of the subject is 50.
 	// +kubebuilder:validation:Optional
 	EmailSubject *string `json:"emailSubject,omitempty" tf:"email_subject,omitempty"`
 
-	// The message of the Cost Anomaly Alert. Maximum length of the message is 250.
+	// The message of the Cost Anomaly Alert. Maximum length of the message is 100.
 	// +kubebuilder:validation:Optional
 	Message *string `json:"message,omitempty" tf:"message,omitempty"`
 

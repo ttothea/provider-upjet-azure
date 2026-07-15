@@ -95,6 +95,9 @@ type IOTHubDataConnectionInitParameters struct {
 	// +kubebuilder:validation:Optional
 	ResourceGroupNameSelector *v1.Selector `json:"resourceGroupNameSelector,omitempty" tf:"-"`
 
+	// Specifies the date after which data should be retrieved from IoT Hub. When defined, the data connection retrieves existing events created since the specified retrieval start date. It can only retrieve events retained by the IoT Hub, based on its retention period. The value should be in RFC3339 format (e.g., 2023-06-26T12:00:00Z).
+	RetrievalStartDate *string `json:"retrievalStartDate,omitempty" tf:"retrieval_start_date,omitempty"`
+
 	// Specifies the IotHub Shared Access Policy this data connection will use for ingestion, which must have read permission. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/cluster/devices/v1beta1.IOTHubSharedAccessPolicy
 	SharedAccessPolicyName *string `json:"sharedAccessPolicyName,omitempty" tf:"shared_access_policy_name,omitempty"`
@@ -149,6 +152,9 @@ type IOTHubDataConnectionObservation struct {
 
 	// Specifies the Resource Group where the Kusto Database should exist. Changing this forces a new resource to be created.
 	ResourceGroupName *string `json:"resourceGroupName,omitempty" tf:"resource_group_name,omitempty"`
+
+	// Specifies the date after which data should be retrieved from IoT Hub. When defined, the data connection retrieves existing events created since the specified retrieval start date. It can only retrieve events retained by the IoT Hub, based on its retention period. The value should be in RFC3339 format (e.g., 2023-06-26T12:00:00Z).
+	RetrievalStartDate *string `json:"retrievalStartDate,omitempty" tf:"retrieval_start_date,omitempty"`
 
 	// Specifies the IotHub Shared Access Policy this data connection will use for ingestion, which must have read permission. Changing this forces a new resource to be created.
 	SharedAccessPolicyName *string `json:"sharedAccessPolicyName,omitempty" tf:"shared_access_policy_name,omitempty"`
@@ -249,6 +255,10 @@ type IOTHubDataConnectionParameters struct {
 	// Selector for a ResourceGroup in azure to populate resourceGroupName.
 	// +kubebuilder:validation:Optional
 	ResourceGroupNameSelector *v1.Selector `json:"resourceGroupNameSelector,omitempty" tf:"-"`
+
+	// Specifies the date after which data should be retrieved from IoT Hub. When defined, the data connection retrieves existing events created since the specified retrieval start date. It can only retrieve events retained by the IoT Hub, based on its retention period. The value should be in RFC3339 format (e.g., 2023-06-26T12:00:00Z).
+	// +kubebuilder:validation:Optional
+	RetrievalStartDate *string `json:"retrievalStartDate,omitempty" tf:"retrieval_start_date,omitempty"`
 
 	// Specifies the IotHub Shared Access Policy this data connection will use for ingestion, which must have read permission. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/cluster/devices/v1beta1.IOTHubSharedAccessPolicy

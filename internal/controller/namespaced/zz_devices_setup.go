@@ -76,3 +76,28 @@ func SetupGated_devices(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_devices registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_devices(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		iothub.SetupWebhookWithManager,
+		iothubcertificate.SetupWebhookWithManager,
+		iothubconsumergroup.SetupWebhookWithManager,
+		iothubdps.SetupWebhookWithManager,
+		iothubdpscertificate.SetupWebhookWithManager,
+		iothubdpssharedaccesspolicy.SetupWebhookWithManager,
+		iothubendpointeventhub.SetupWebhookWithManager,
+		iothubendpointservicebusqueue.SetupWebhookWithManager,
+		iothubendpointservicebustopic.SetupWebhookWithManager,
+		iothubendpointstoragecontainer.SetupWebhookWithManager,
+		iothubenrichment.SetupWebhookWithManager,
+		iothubfallbackroute.SetupWebhookWithManager,
+		iothubroute.SetupWebhookWithManager,
+		iothubsharedaccesspolicy.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

@@ -12,6 +12,7 @@ import (
 	xpresource "github.com/crossplane/crossplane-runtime/v2/pkg/resource"
 	resource "github.com/crossplane/upjet/v2/pkg/resource"
 	errors "github.com/pkg/errors"
+	rconfig "github.com/upbound/provider-azure/v2/apis/cluster/rconfig"
 	apisresolver "github.com/upbound/provider-azure/v2/internal/apis"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
@@ -32,7 +33,7 @@ func (mg *FederatedIdentityCredential) ResolveReferences( // ResolveReferences o
 
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ParentID),
-			Extract:      resource.ExtractResourceID(),
+			Extract:      rconfig.ExtractResourceID(),
 			Namespace:    mg.GetNamespace(),
 			Reference:    mg.Spec.ForProvider.ParentIDRef,
 			Selector:     mg.Spec.ForProvider.ParentIDSelector,
@@ -65,6 +66,26 @@ func (mg *FederatedIdentityCredential) ResolveReferences( // ResolveReferences o
 	mg.Spec.ForProvider.ResourceGroupName = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.ResourceGroupNameRef = rsp.ResolvedReference
 	{
+		m, l, err = apisresolver.GetManagedResource("managedidentity.azure.upbound.io", "v1beta1", "UserAssignedIdentity", "UserAssignedIdentityList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.UserAssignedIdentityID),
+			Extract:      resource.ExtractResourceID(),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.ForProvider.UserAssignedIdentityIDRef,
+			Selector:     mg.Spec.ForProvider.UserAssignedIdentityIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.UserAssignedIdentityID")
+	}
+	mg.Spec.ForProvider.UserAssignedIdentityID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.UserAssignedIdentityIDRef = rsp.ResolvedReference
+	{
 		m, l, err = apisresolver.GetManagedResource("azure.upbound.io", "v1beta1", "ResourceGroup", "ResourceGroupList")
 		if err != nil {
 			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
@@ -84,6 +105,26 @@ func (mg *FederatedIdentityCredential) ResolveReferences( // ResolveReferences o
 	}
 	mg.Spec.InitProvider.ResourceGroupName = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.InitProvider.ResourceGroupNameRef = rsp.ResolvedReference
+	{
+		m, l, err = apisresolver.GetManagedResource("managedidentity.azure.upbound.io", "v1beta1", "UserAssignedIdentity", "UserAssignedIdentityList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.UserAssignedIdentityID),
+			Extract:      resource.ExtractResourceID(),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.InitProvider.UserAssignedIdentityIDRef,
+			Selector:     mg.Spec.InitProvider.UserAssignedIdentityIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.UserAssignedIdentityID")
+	}
+	mg.Spec.InitProvider.UserAssignedIdentityID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.UserAssignedIdentityIDRef = rsp.ResolvedReference
 
 	return nil
 }

@@ -37,10 +37,10 @@ type LinkedServiceDataLakeStorageGen2InitParameters struct {
 	ServicePrincipalID *string `json:"servicePrincipalId,omitempty" tf:"service_principal_id,omitempty"`
 
 	// The service principal key with which to authenticate against the Azure Data Lake Storage Gen2 account.
-	ServicePrincipalKey *string `json:"servicePrincipalKey,omitempty" tf:"service_principal_key,omitempty"`
+	ServicePrincipalKeySecretRef *v1.LocalSecretKeySelector `json:"servicePrincipalKeySecretRef,omitempty" tf:"-"`
 
 	// The Storage Account Key with which to authenticate against the Azure Data Lake Storage Gen2 account. Incompatible with service_principal_id, service_principal_key, tenant and use_managed_identity.
-	StorageAccountKey *string `json:"storageAccountKey,omitempty" tf:"storage_account_key,omitempty"`
+	StorageAccountKeySecretRef *v1.LocalSecretKeySelector `json:"storageAccountKeySecretRef,omitempty" tf:"-"`
 
 	// The tenant id or name in which the service principal exists to authenticate against the Azure Data Lake Storage Gen2 account.
 	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
@@ -79,12 +79,6 @@ type LinkedServiceDataLakeStorageGen2Observation struct {
 
 	// The service principal id with which to authenticate against the Azure Data Lake Storage Gen2 account. Incompatible with storage_account_key and use_managed_identity.
 	ServicePrincipalID *string `json:"servicePrincipalId,omitempty" tf:"service_principal_id,omitempty"`
-
-	// The service principal key with which to authenticate against the Azure Data Lake Storage Gen2 account.
-	ServicePrincipalKey *string `json:"servicePrincipalKey,omitempty" tf:"service_principal_key,omitempty"`
-
-	// The Storage Account Key with which to authenticate against the Azure Data Lake Storage Gen2 account. Incompatible with service_principal_id, service_principal_key, tenant and use_managed_identity.
-	StorageAccountKey *string `json:"storageAccountKey,omitempty" tf:"storage_account_key,omitempty"`
 
 	// The tenant id or name in which the service principal exists to authenticate against the Azure Data Lake Storage Gen2 account.
 	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
@@ -140,11 +134,11 @@ type LinkedServiceDataLakeStorageGen2Parameters struct {
 
 	// The service principal key with which to authenticate against the Azure Data Lake Storage Gen2 account.
 	// +kubebuilder:validation:Optional
-	ServicePrincipalKey *string `json:"servicePrincipalKey,omitempty" tf:"service_principal_key,omitempty"`
+	ServicePrincipalKeySecretRef *v1.LocalSecretKeySelector `json:"servicePrincipalKeySecretRef,omitempty" tf:"-"`
 
 	// The Storage Account Key with which to authenticate against the Azure Data Lake Storage Gen2 account. Incompatible with service_principal_id, service_principal_key, tenant and use_managed_identity.
 	// +kubebuilder:validation:Optional
-	StorageAccountKey *string `json:"storageAccountKey,omitempty" tf:"storage_account_key,omitempty"`
+	StorageAccountKeySecretRef *v1.LocalSecretKeySelector `json:"storageAccountKeySecretRef,omitempty" tf:"-"`
 
 	// The tenant id or name in which the service principal exists to authenticate against the Azure Data Lake Storage Gen2 account.
 	// +kubebuilder:validation:Optional

@@ -166,3 +166,58 @@ func SetupGated_datafactory(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_datafactory registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_datafactory(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		customdataset.SetupWebhookWithManager,
+		dataflow.SetupWebhookWithManager,
+		datasetazureblob.SetupWebhookWithManager,
+		datasetbinary.SetupWebhookWithManager,
+		datasetcosmosdbsqlapi.SetupWebhookWithManager,
+		datasetdelimitedtext.SetupWebhookWithManager,
+		datasethttp.SetupWebhookWithManager,
+		datasetjson.SetupWebhookWithManager,
+		datasetmysql.SetupWebhookWithManager,
+		datasetparquet.SetupWebhookWithManager,
+		datasetpostgresql.SetupWebhookWithManager,
+		datasetsnowflake.SetupWebhookWithManager,
+		datasetsqlservertable.SetupWebhookWithManager,
+		factory.SetupWebhookWithManager,
+		integrationruntimeazure.SetupWebhookWithManager,
+		integrationruntimeazuressis.SetupWebhookWithManager,
+		integrationruntimeselfhosted.SetupWebhookWithManager,
+		linkedcustomservice.SetupWebhookWithManager,
+		linkedserviceazureblobstorage.SetupWebhookWithManager,
+		linkedserviceazuredatabricks.SetupWebhookWithManager,
+		linkedserviceazurefilestorage.SetupWebhookWithManager,
+		linkedserviceazurefunction.SetupWebhookWithManager,
+		linkedserviceazuresearch.SetupWebhookWithManager,
+		linkedserviceazuresqldatabase.SetupWebhookWithManager,
+		linkedserviceazuretablestorage.SetupWebhookWithManager,
+		linkedservicecosmosdb.SetupWebhookWithManager,
+		linkedservicecosmosdbmongoapi.SetupWebhookWithManager,
+		linkedservicedatalakestoragegen2.SetupWebhookWithManager,
+		linkedservicekeyvault.SetupWebhookWithManager,
+		linkedservicekusto.SetupWebhookWithManager,
+		linkedservicemysql.SetupWebhookWithManager,
+		linkedserviceodata.SetupWebhookWithManager,
+		linkedserviceodbc.SetupWebhookWithManager,
+		linkedservicepostgresql.SetupWebhookWithManager,
+		linkedservicesftp.SetupWebhookWithManager,
+		linkedservicesnowflake.SetupWebhookWithManager,
+		linkedservicesqlserver.SetupWebhookWithManager,
+		linkedservicesynapse.SetupWebhookWithManager,
+		linkedserviceweb.SetupWebhookWithManager,
+		managedprivateendpoint.SetupWebhookWithManager,
+		pipeline.SetupWebhookWithManager,
+		triggerblobevent.SetupWebhookWithManager,
+		triggercustomevent.SetupWebhookWithManager,
+		triggerschedule.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

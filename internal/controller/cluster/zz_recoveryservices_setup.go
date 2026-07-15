@@ -70,3 +70,26 @@ func SetupGated_recoveryservices(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_recoveryservices registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_recoveryservices(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		backupcontainerstorageaccount.SetupWebhookWithManager,
+		backuppolicyfileshare.SetupWebhookWithManager,
+		backuppolicyvm.SetupWebhookWithManager,
+		backuppolicyvmworkload.SetupWebhookWithManager,
+		backupprotectedfileshare.SetupWebhookWithManager,
+		backupprotectedvm.SetupWebhookWithManager,
+		siterecoveryfabric.SetupWebhookWithManager,
+		siterecoverynetworkmapping.SetupWebhookWithManager,
+		siterecoveryprotectioncontainer.SetupWebhookWithManager,
+		siterecoveryprotectioncontainermapping.SetupWebhookWithManager,
+		siterecoveryreplicationpolicy.SetupWebhookWithManager,
+		vault.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

@@ -22,7 +22,7 @@ type FederatedIdentityCredentialInitParameters struct {
 	// Specifies the issuer of this Federated Identity Credential.
 	Issuer *string `json:"issuer,omitempty" tf:"issuer,omitempty"`
 
-	// Specifies the name of the Resource Group within which this Federated Identity Credential should exist. Changing this forces a new Federated Identity Credential to be created.
+	// Specifies the name of this Federated Identity Credential. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/azure/v1beta1.ResourceGroup
 	ResourceGroupName *string `json:"resourceGroupName,omitempty" tf:"resource_group_name,omitempty"`
 
@@ -36,6 +36,19 @@ type FederatedIdentityCredentialInitParameters struct {
 
 	// Specifies the subject for this Federated Identity Credential.
 	Subject *string `json:"subject,omitempty" tf:"subject,omitempty"`
+
+	// Specifies the ID of the User Assigned Identity for this Federated Identity Credential. Changing this forces a new Federated Identity Credential to be created.
+	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/managedidentity/v1beta1.UserAssignedIdentity
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
+	UserAssignedIdentityID *string `json:"userAssignedIdentityId,omitempty" tf:"user_assigned_identity_id,omitempty"`
+
+	// Reference to a UserAssignedIdentity in managedidentity to populate userAssignedIdentityId.
+	// +kubebuilder:validation:Optional
+	UserAssignedIdentityIDRef *v1.NamespacedReference `json:"userAssignedIdentityIdRef,omitempty" tf:"-"`
+
+	// Selector for a UserAssignedIdentity in managedidentity to populate userAssignedIdentityId.
+	// +kubebuilder:validation:Optional
+	UserAssignedIdentityIDSelector *v1.NamespacedSelector `json:"userAssignedIdentityIdSelector,omitempty" tf:"-"`
 }
 
 type FederatedIdentityCredentialObservation struct {
@@ -49,14 +62,17 @@ type FederatedIdentityCredentialObservation struct {
 	// Specifies the issuer of this Federated Identity Credential.
 	Issuer *string `json:"issuer,omitempty" tf:"issuer,omitempty"`
 
-	// Specifies parent ID of User Assigned Identity for this Federated Identity Credential. Changing this forces a new Federated Identity Credential to be created.
+	// The ID of the Federated Identity Credential.
 	ParentID *string `json:"parentId,omitempty" tf:"parent_id,omitempty"`
 
-	// Specifies the name of the Resource Group within which this Federated Identity Credential should exist. Changing this forces a new Federated Identity Credential to be created.
+	// Specifies the name of this Federated Identity Credential. Changing this forces a new resource to be created.
 	ResourceGroupName *string `json:"resourceGroupName,omitempty" tf:"resource_group_name,omitempty"`
 
 	// Specifies the subject for this Federated Identity Credential.
 	Subject *string `json:"subject,omitempty" tf:"subject,omitempty"`
+
+	// Specifies the ID of the User Assigned Identity for this Federated Identity Credential. Changing this forces a new Federated Identity Credential to be created.
+	UserAssignedIdentityID *string `json:"userAssignedIdentityId,omitempty" tf:"user_assigned_identity_id,omitempty"`
 }
 
 type FederatedIdentityCredentialParameters struct {
@@ -69,9 +85,9 @@ type FederatedIdentityCredentialParameters struct {
 	// +kubebuilder:validation:Optional
 	Issuer *string `json:"issuer,omitempty" tf:"issuer,omitempty"`
 
-	// Specifies parent ID of User Assigned Identity for this Federated Identity Credential. Changing this forces a new Federated Identity Credential to be created.
+	// The ID of the Federated Identity Credential.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/managedidentity/v1beta1.UserAssignedIdentity
-	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/provider-azure/v2/apis/namespaced/rconfig.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ParentID *string `json:"parentId,omitempty" tf:"parent_id,omitempty"`
 
@@ -83,7 +99,7 @@ type FederatedIdentityCredentialParameters struct {
 	// +kubebuilder:validation:Optional
 	ParentIDSelector *v1.NamespacedSelector `json:"parentIdSelector,omitempty" tf:"-"`
 
-	// Specifies the name of the Resource Group within which this Federated Identity Credential should exist. Changing this forces a new Federated Identity Credential to be created.
+	// Specifies the name of this Federated Identity Credential. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/azure/v1beta1.ResourceGroup
 	// +kubebuilder:validation:Optional
 	ResourceGroupName *string `json:"resourceGroupName,omitempty" tf:"resource_group_name,omitempty"`
@@ -99,6 +115,20 @@ type FederatedIdentityCredentialParameters struct {
 	// Specifies the subject for this Federated Identity Credential.
 	// +kubebuilder:validation:Optional
 	Subject *string `json:"subject,omitempty" tf:"subject,omitempty"`
+
+	// Specifies the ID of the User Assigned Identity for this Federated Identity Credential. Changing this forces a new Federated Identity Credential to be created.
+	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/managedidentity/v1beta1.UserAssignedIdentity
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
+	// +kubebuilder:validation:Optional
+	UserAssignedIdentityID *string `json:"userAssignedIdentityId,omitempty" tf:"user_assigned_identity_id,omitempty"`
+
+	// Reference to a UserAssignedIdentity in managedidentity to populate userAssignedIdentityId.
+	// +kubebuilder:validation:Optional
+	UserAssignedIdentityIDRef *v1.NamespacedReference `json:"userAssignedIdentityIdRef,omitempty" tf:"-"`
+
+	// Selector for a UserAssignedIdentity in managedidentity to populate userAssignedIdentityId.
+	// +kubebuilder:validation:Optional
+	UserAssignedIdentityIDSelector *v1.NamespacedSelector `json:"userAssignedIdentityIdSelector,omitempty" tf:"-"`
 }
 
 // FederatedIdentityCredentialSpec defines the desired state of FederatedIdentityCredential

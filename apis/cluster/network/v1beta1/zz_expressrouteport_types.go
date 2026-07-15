@@ -56,7 +56,7 @@ type ExpressRoutePortInitParameters struct {
 	// Bandwidth of the Express Route Port in Gbps. Changing this forces a new Express Route Port to be created.
 	BandwidthInGbps *float64 `json:"bandwidthInGbps,omitempty" tf:"bandwidth_in_gbps,omitempty"`
 
-	// The billing type of the Express Route Port. Possible values are MeteredData and UnlimitedData.
+	// The billing type of the Express Route Port. Possible values are MeteredData and UnlimitedData. Defaults to MeteredData.
 	BillingType *string `json:"billingType,omitempty" tf:"billing_type,omitempty"`
 
 	// The encapsulation method used for the Express Route Port. Changing this forces a new Express Route Port to be created. Possible values are: Dot1Q, QinQ.
@@ -87,7 +87,7 @@ type ExpressRoutePortObservation struct {
 	// Bandwidth of the Express Route Port in Gbps. Changing this forces a new Express Route Port to be created.
 	BandwidthInGbps *float64 `json:"bandwidthInGbps,omitempty" tf:"bandwidth_in_gbps,omitempty"`
 
-	// The billing type of the Express Route Port. Possible values are MeteredData and UnlimitedData.
+	// The billing type of the Express Route Port. Possible values are MeteredData and UnlimitedData. Defaults to MeteredData.
 	BillingType *string `json:"billingType,omitempty" tf:"billing_type,omitempty"`
 
 	// The encapsulation method used for the Express Route Port. Changing this forces a new Express Route Port to be created. Possible values are: Dot1Q, QinQ.
@@ -134,7 +134,7 @@ type ExpressRoutePortParameters struct {
 	// +kubebuilder:validation:Optional
 	BandwidthInGbps *float64 `json:"bandwidthInGbps,omitempty" tf:"bandwidth_in_gbps,omitempty"`
 
-	// The billing type of the Express Route Port. Possible values are MeteredData and UnlimitedData.
+	// The billing type of the Express Route Port. Possible values are MeteredData and UnlimitedData. Defaults to MeteredData.
 	// +kubebuilder:validation:Optional
 	BillingType *string `json:"billingType,omitempty" tf:"billing_type,omitempty"`
 
@@ -189,7 +189,7 @@ type Link1InitParameters struct {
 	// The ID of the Key Vault Secret that contains the Mac security CAK key for this Express Route Port Link.
 	MacsecCakKeyvaultSecretID *string `json:"macsecCakKeyvaultSecretId,omitempty" tf:"macsec_cak_keyvault_secret_id,omitempty"`
 
-	// The MACSec cipher used for this Express Route Port Link. Possible values are GcmAes128 and GcmAes256. Defaults to GcmAes128.
+	// The MACSec cipher used for this Express Route Port Link. Possible values are GcmAes128, GcmAes256, GcmAesXpn128 and GcmAesXpn256. Defaults to GcmAes128.
 	MacsecCipher *string `json:"macsecCipher,omitempty" tf:"macsec_cipher,omitempty"`
 
 	// The ID of the Key Vault Secret that contains the MACSec CKN key for this Express Route Port Link.
@@ -216,7 +216,7 @@ type Link1Observation struct {
 	// The ID of the Key Vault Secret that contains the Mac security CAK key for this Express Route Port Link.
 	MacsecCakKeyvaultSecretID *string `json:"macsecCakKeyvaultSecretId,omitempty" tf:"macsec_cak_keyvault_secret_id,omitempty"`
 
-	// The MACSec cipher used for this Express Route Port Link. Possible values are GcmAes128 and GcmAes256. Defaults to GcmAes128.
+	// The MACSec cipher used for this Express Route Port Link. Possible values are GcmAes128, GcmAes256, GcmAesXpn128 and GcmAesXpn256. Defaults to GcmAes128.
 	MacsecCipher *string `json:"macsecCipher,omitempty" tf:"macsec_cipher,omitempty"`
 
 	// The ID of the Key Vault Secret that contains the MACSec CKN key for this Express Route Port Link.
@@ -245,7 +245,7 @@ type Link1Parameters struct {
 	// +kubebuilder:validation:Optional
 	MacsecCakKeyvaultSecretID *string `json:"macsecCakKeyvaultSecretId,omitempty" tf:"macsec_cak_keyvault_secret_id,omitempty"`
 
-	// The MACSec cipher used for this Express Route Port Link. Possible values are GcmAes128 and GcmAes256. Defaults to GcmAes128.
+	// The MACSec cipher used for this Express Route Port Link. Possible values are GcmAes128, GcmAes256, GcmAesXpn128 and GcmAesXpn256. Defaults to GcmAes128.
 	// +kubebuilder:validation:Optional
 	MacsecCipher *string `json:"macsecCipher,omitempty" tf:"macsec_cipher,omitempty"`
 
@@ -266,7 +266,7 @@ type Link2InitParameters struct {
 	// The ID of the Key Vault Secret that contains the Mac security CAK key for this Express Route Port Link.
 	MacsecCakKeyvaultSecretID *string `json:"macsecCakKeyvaultSecretId,omitempty" tf:"macsec_cak_keyvault_secret_id,omitempty"`
 
-	// The MACSec cipher used for this Express Route Port Link. Possible values are GcmAes128 and GcmAes256. Defaults to GcmAes128.
+	// The MACSec cipher used for this Express Route Port Link. Possible values are GcmAes128, GcmAes256, GcmAesXpn128 and GcmAesXpn256. Defaults to GcmAes128.
 	MacsecCipher *string `json:"macsecCipher,omitempty" tf:"macsec_cipher,omitempty"`
 
 	// The ID of the Key Vault Secret that contains the MACSec CKN key for this Express Route Port Link.
@@ -293,7 +293,7 @@ type Link2Observation struct {
 	// The ID of the Key Vault Secret that contains the Mac security CAK key for this Express Route Port Link.
 	MacsecCakKeyvaultSecretID *string `json:"macsecCakKeyvaultSecretId,omitempty" tf:"macsec_cak_keyvault_secret_id,omitempty"`
 
-	// The MACSec cipher used for this Express Route Port Link. Possible values are GcmAes128 and GcmAes256. Defaults to GcmAes128.
+	// The MACSec cipher used for this Express Route Port Link. Possible values are GcmAes128, GcmAes256, GcmAesXpn128 and GcmAesXpn256. Defaults to GcmAes128.
 	MacsecCipher *string `json:"macsecCipher,omitempty" tf:"macsec_cipher,omitempty"`
 
 	// The ID of the Key Vault Secret that contains the MACSec CKN key for this Express Route Port Link.
@@ -322,7 +322,7 @@ type Link2Parameters struct {
 	// +kubebuilder:validation:Optional
 	MacsecCakKeyvaultSecretID *string `json:"macsecCakKeyvaultSecretId,omitempty" tf:"macsec_cak_keyvault_secret_id,omitempty"`
 
-	// The MACSec cipher used for this Express Route Port Link. Possible values are GcmAes128 and GcmAes256. Defaults to GcmAes128.
+	// The MACSec cipher used for this Express Route Port Link. Possible values are GcmAes128, GcmAes256, GcmAesXpn128 and GcmAesXpn256. Defaults to GcmAes128.
 	// +kubebuilder:validation:Optional
 	MacsecCipher *string `json:"macsecCipher,omitempty" tf:"macsec_cipher,omitempty"`
 

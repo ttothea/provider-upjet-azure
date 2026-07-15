@@ -46,3 +46,18 @@ func SetupGated_oracle(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_oracle registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_oracle(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		autonomousdatabase.SetupWebhookWithManager,
+		autonomousdatabasebackup.SetupWebhookWithManager,
+		autonomousdatabaseclonefrombackup.SetupWebhookWithManager,
+		autonomousdatabaseclonefromdatabase.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

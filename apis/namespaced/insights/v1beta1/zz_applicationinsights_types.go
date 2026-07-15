@@ -22,14 +22,18 @@ type ApplicationInsightsInitParameters struct {
 	// Specifies the Application Insights component daily data volume cap in GB. Defaults to 100.
 	DailyDataCapInGb *float64 `json:"dailyDataCapInGb,omitempty" tf:"daily_data_cap_in_gb,omitempty"`
 
-	// Specifies if a notification email will be sent when the daily data volume cap is met. Defaults to false.
 	DailyDataCapNotificationsDisabled *bool `json:"dailyDataCapNotificationsDisabled,omitempty" tf:"daily_data_cap_notifications_disabled,omitempty"`
 
-	// By default the real client IP is masked as 0.0.0.0 in the logs. Use this argument to disable masking and log the real client IP. Defaults to false.
+	// Whether a notification email will be sent when the daily data volume cap is met. Defaults to true.
+	DailyDataCapNotificationsEnabled *bool `json:"dailyDataCapNotificationsEnabled,omitempty" tf:"daily_data_cap_notifications_enabled,omitempty"`
+
 	DisableIPMasking *bool `json:"disableIpMasking,omitempty" tf:"disable_ip_masking,omitempty"`
 
 	// Should the Application Insights component force users to create their own storage account for profiling? Defaults to false.
 	ForceCustomerStorageForProfiler *bool `json:"forceCustomerStorageForProfiler,omitempty" tf:"force_customer_storage_for_profiler,omitempty"`
+
+	// By default the real client IP is masked as 0.0.0.0 in the logs. Set this argument to false to disable masking and log the real client IP. Defaults to true.
+	IPMaskingEnabled *bool `json:"ipMaskingEnabled,omitempty" tf:"ip_masking_enabled,omitempty"`
 
 	// Should the Application Insights component support ingestion over the Public Internet? Defaults to true.
 	InternetIngestionEnabled *bool `json:"internetIngestionEnabled,omitempty" tf:"internet_ingestion_enabled,omitempty"`
@@ -37,8 +41,10 @@ type ApplicationInsightsInitParameters struct {
 	// Should the Application Insights component support querying over the Public Internet? Defaults to true.
 	InternetQueryEnabled *bool `json:"internetQueryEnabled,omitempty" tf:"internet_query_enabled,omitempty"`
 
-	// Disable Non-Azure AD based Auth. Defaults to false.
 	LocalAuthenticationDisabled *bool `json:"localAuthenticationDisabled,omitempty" tf:"local_authentication_disabled,omitempty"`
+
+	// Whether Non-Azure AD based Auth is enabled. Defaults to true.
+	LocalAuthenticationEnabled *bool `json:"localAuthenticationEnabled,omitempty" tf:"local_authentication_enabled,omitempty"`
 
 	// Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
@@ -78,10 +84,11 @@ type ApplicationInsightsObservation struct {
 	// Specifies the Application Insights component daily data volume cap in GB. Defaults to 100.
 	DailyDataCapInGb *float64 `json:"dailyDataCapInGb,omitempty" tf:"daily_data_cap_in_gb,omitempty"`
 
-	// Specifies if a notification email will be sent when the daily data volume cap is met. Defaults to false.
 	DailyDataCapNotificationsDisabled *bool `json:"dailyDataCapNotificationsDisabled,omitempty" tf:"daily_data_cap_notifications_disabled,omitempty"`
 
-	// By default the real client IP is masked as 0.0.0.0 in the logs. Use this argument to disable masking and log the real client IP. Defaults to false.
+	// Whether a notification email will be sent when the daily data volume cap is met. Defaults to true.
+	DailyDataCapNotificationsEnabled *bool `json:"dailyDataCapNotificationsEnabled,omitempty" tf:"daily_data_cap_notifications_enabled,omitempty"`
+
 	DisableIPMasking *bool `json:"disableIpMasking,omitempty" tf:"disable_ip_masking,omitempty"`
 
 	// Should the Application Insights component force users to create their own storage account for profiling? Defaults to false.
@@ -90,14 +97,19 @@ type ApplicationInsightsObservation struct {
 	// The ID of the Application Insights component.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// By default the real client IP is masked as 0.0.0.0 in the logs. Set this argument to false to disable masking and log the real client IP. Defaults to true.
+	IPMaskingEnabled *bool `json:"ipMaskingEnabled,omitempty" tf:"ip_masking_enabled,omitempty"`
+
 	// Should the Application Insights component support ingestion over the Public Internet? Defaults to true.
 	InternetIngestionEnabled *bool `json:"internetIngestionEnabled,omitempty" tf:"internet_ingestion_enabled,omitempty"`
 
 	// Should the Application Insights component support querying over the Public Internet? Defaults to true.
 	InternetQueryEnabled *bool `json:"internetQueryEnabled,omitempty" tf:"internet_query_enabled,omitempty"`
 
-	// Disable Non-Azure AD based Auth. Defaults to false.
 	LocalAuthenticationDisabled *bool `json:"localAuthenticationDisabled,omitempty" tf:"local_authentication_disabled,omitempty"`
+
+	// Whether Non-Azure AD based Auth is enabled. Defaults to true.
+	LocalAuthenticationEnabled *bool `json:"localAuthenticationEnabled,omitempty" tf:"local_authentication_enabled,omitempty"`
 
 	// Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
@@ -129,17 +141,23 @@ type ApplicationInsightsParameters struct {
 	// +kubebuilder:validation:Optional
 	DailyDataCapInGb *float64 `json:"dailyDataCapInGb,omitempty" tf:"daily_data_cap_in_gb,omitempty"`
 
-	// Specifies if a notification email will be sent when the daily data volume cap is met. Defaults to false.
 	// +kubebuilder:validation:Optional
 	DailyDataCapNotificationsDisabled *bool `json:"dailyDataCapNotificationsDisabled,omitempty" tf:"daily_data_cap_notifications_disabled,omitempty"`
 
-	// By default the real client IP is masked as 0.0.0.0 in the logs. Use this argument to disable masking and log the real client IP. Defaults to false.
+	// Whether a notification email will be sent when the daily data volume cap is met. Defaults to true.
+	// +kubebuilder:validation:Optional
+	DailyDataCapNotificationsEnabled *bool `json:"dailyDataCapNotificationsEnabled,omitempty" tf:"daily_data_cap_notifications_enabled,omitempty"`
+
 	// +kubebuilder:validation:Optional
 	DisableIPMasking *bool `json:"disableIpMasking,omitempty" tf:"disable_ip_masking,omitempty"`
 
 	// Should the Application Insights component force users to create their own storage account for profiling? Defaults to false.
 	// +kubebuilder:validation:Optional
 	ForceCustomerStorageForProfiler *bool `json:"forceCustomerStorageForProfiler,omitempty" tf:"force_customer_storage_for_profiler,omitempty"`
+
+	// By default the real client IP is masked as 0.0.0.0 in the logs. Set this argument to false to disable masking and log the real client IP. Defaults to true.
+	// +kubebuilder:validation:Optional
+	IPMaskingEnabled *bool `json:"ipMaskingEnabled,omitempty" tf:"ip_masking_enabled,omitempty"`
 
 	// Should the Application Insights component support ingestion over the Public Internet? Defaults to true.
 	// +kubebuilder:validation:Optional
@@ -149,9 +167,12 @@ type ApplicationInsightsParameters struct {
 	// +kubebuilder:validation:Optional
 	InternetQueryEnabled *bool `json:"internetQueryEnabled,omitempty" tf:"internet_query_enabled,omitempty"`
 
-	// Disable Non-Azure AD based Auth. Defaults to false.
 	// +kubebuilder:validation:Optional
 	LocalAuthenticationDisabled *bool `json:"localAuthenticationDisabled,omitempty" tf:"local_authentication_disabled,omitempty"`
+
+	// Whether Non-Azure AD based Auth is enabled. Defaults to true.
+	// +kubebuilder:validation:Optional
+	LocalAuthenticationEnabled *bool `json:"localAuthenticationEnabled,omitempty" tf:"local_authentication_enabled,omitempty"`
 
 	// Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional

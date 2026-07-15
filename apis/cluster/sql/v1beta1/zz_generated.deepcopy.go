@@ -2068,6 +2068,11 @@ func (in *MSSQLElasticPoolInitParameters) DeepCopyInto(out *MSSQLElasticPoolInit
 		*out = new(string)
 		**out = **in
 	}
+	if in.HighAvailabilityReplicaCount != nil {
+		in, out := &in.HighAvailabilityReplicaCount, &out.HighAvailabilityReplicaCount
+		*out = new(float64)
+		**out = **in
+	}
 	if in.LicenseType != nil {
 		in, out := &in.LicenseType, &out.LicenseType
 		*out = new(string)
@@ -2180,6 +2185,11 @@ func (in *MSSQLElasticPoolObservation) DeepCopyInto(out *MSSQLElasticPoolObserva
 		*out = new(string)
 		**out = **in
 	}
+	if in.HighAvailabilityReplicaCount != nil {
+		in, out := &in.HighAvailabilityReplicaCount, &out.HighAvailabilityReplicaCount
+		*out = new(float64)
+		**out = **in
+	}
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
 		*out = new(string)
@@ -2273,6 +2283,11 @@ func (in *MSSQLElasticPoolParameters) DeepCopyInto(out *MSSQLElasticPoolParamete
 	if in.EnclaveType != nil {
 		in, out := &in.EnclaveType, &out.EnclaveType
 		*out = new(string)
+		**out = **in
+	}
+	if in.HighAvailabilityReplicaCount != nil {
+		in, out := &in.HighAvailabilityReplicaCount, &out.HighAvailabilityReplicaCount
+		*out = new(float64)
 		**out = **in
 	}
 	if in.LicenseType != nil {
@@ -4681,6 +4696,11 @@ func (in *MSSQLManagedInstanceInitParameters) DeepCopyInto(out *MSSQLManagedInst
 		*out = new(string)
 		**out = **in
 	}
+	if in.GeneralPurposeV2Enabled != nil {
+		in, out := &in.GeneralPurposeV2Enabled, &out.GeneralPurposeV2Enabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.HybridSecondaryUsage != nil {
 		in, out := &in.HybridSecondaryUsage, &out.HybridSecondaryUsage
 		*out = new(string)
@@ -4736,6 +4756,11 @@ func (in *MSSQLManagedInstanceInitParameters) DeepCopyInto(out *MSSQLManagedInst
 	if in.StorageAccountType != nil {
 		in, out := &in.StorageAccountType, &out.StorageAccountType
 		*out = new(string)
+		**out = **in
+	}
+	if in.StorageIops != nil {
+		in, out := &in.StorageIops, &out.StorageIops
+		*out = new(float64)
 		**out = **in
 	}
 	if in.StorageSizeInGb != nil {
@@ -4873,6 +4898,11 @@ func (in *MSSQLManagedInstanceObservation) DeepCopyInto(out *MSSQLManagedInstanc
 		*out = new(string)
 		**out = **in
 	}
+	if in.GeneralPurposeV2Enabled != nil {
+		in, out := &in.GeneralPurposeV2Enabled, &out.GeneralPurposeV2Enabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.HybridSecondaryUsage != nil {
 		in, out := &in.HybridSecondaryUsage, &out.HybridSecondaryUsage
 		*out = new(string)
@@ -4938,6 +4968,11 @@ func (in *MSSQLManagedInstanceObservation) DeepCopyInto(out *MSSQLManagedInstanc
 	if in.StorageAccountType != nil {
 		in, out := &in.StorageAccountType, &out.StorageAccountType
 		*out = new(string)
+		**out = **in
+	}
+	if in.StorageIops != nil {
+		in, out := &in.StorageIops, &out.StorageIops
+		*out = new(float64)
 		**out = **in
 	}
 	if in.StorageSizeInGb != nil {
@@ -5038,6 +5073,11 @@ func (in *MSSQLManagedInstanceParameters) DeepCopyInto(out *MSSQLManagedInstance
 		*out = new(string)
 		**out = **in
 	}
+	if in.GeneralPurposeV2Enabled != nil {
+		in, out := &in.GeneralPurposeV2Enabled, &out.GeneralPurposeV2Enabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.HybridSecondaryUsage != nil {
 		in, out := &in.HybridSecondaryUsage, &out.HybridSecondaryUsage
 		*out = new(string)
@@ -5108,6 +5148,11 @@ func (in *MSSQLManagedInstanceParameters) DeepCopyInto(out *MSSQLManagedInstance
 	if in.StorageAccountType != nil {
 		in, out := &in.StorageAccountType, &out.StorageAccountType
 		*out = new(string)
+		**out = **in
+	}
+	if in.StorageIops != nil {
+		in, out := &in.StorageIops, &out.StorageIops
+		*out = new(float64)
 		**out = **in
 	}
 	if in.StorageSizeInGb != nil {

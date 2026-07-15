@@ -371,7 +371,7 @@ type LinuxVirtualMachineInitParameters struct {
 	// Specifies whether secure boot should be enabled on the virtual machine. Changing this forces a new resource to be created.
 	SecureBootEnabled *bool `json:"secureBootEnabled,omitempty" tf:"secure_boot_enabled,omitempty"`
 
-	// The SKU which should be used for this Virtual Machine, such as Standard_F2.
+	// The SKU which should be used for this Virtual Machine, such as Standard_D4_v5.
 	Size *string `json:"size,omitempty" tf:"size,omitempty"`
 
 	// The ID of the Image which this Virtual Machine should be created from. Changing this forces a new resource to be created. Possible Image ID types include Image IDs, Shared Image IDs, Shared Image Version IDs, Community Gallery Image IDs, Community Gallery Image Version IDs, Shared Gallery Image IDs and Shared Gallery Image Version IDs.
@@ -531,7 +531,7 @@ type LinuxVirtualMachineObservation struct {
 	// Specifies whether secure boot should be enabled on the virtual machine. Changing this forces a new resource to be created.
 	SecureBootEnabled *bool `json:"secureBootEnabled,omitempty" tf:"secure_boot_enabled,omitempty"`
 
-	// The SKU which should be used for this Virtual Machine, such as Standard_F2.
+	// The SKU which should be used for this Virtual Machine, such as Standard_D4_v5.
 	Size *string `json:"size,omitempty" tf:"size,omitempty"`
 
 	// The ID of the Image which this Virtual Machine should be created from. Changing this forces a new resource to be created. Possible Image ID types include Image IDs, Shared Image IDs, Shared Image Version IDs, Community Gallery Image IDs, Community Gallery Image Version IDs, Shared Gallery Image IDs and Shared Gallery Image Version IDs.
@@ -845,7 +845,7 @@ type LinuxVirtualMachineParameters struct {
 	// +kubebuilder:validation:Optional
 	SecureBootEnabled *bool `json:"secureBootEnabled,omitempty" tf:"secure_boot_enabled,omitempty"`
 
-	// The SKU which should be used for this Virtual Machine, such as Standard_F2.
+	// The SKU which should be used for this Virtual Machine, such as Standard_D4_v5.
 	// +kubebuilder:validation:Optional
 	Size *string `json:"size,omitempty" tf:"size,omitempty"`
 

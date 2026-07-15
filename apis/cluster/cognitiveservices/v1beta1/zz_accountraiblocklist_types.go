@@ -17,6 +17,10 @@ type AccountRaiBlocklistInitParameters struct {
 
 	// A short description for the Cognitive Account Rai Blocklist.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// A mapping of tags assigned to the resource.
+	// +mapType=granular
+	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
 type AccountRaiBlocklistObservation struct {
@@ -29,6 +33,10 @@ type AccountRaiBlocklistObservation struct {
 
 	// The ID of the Cognitive Account Rai Blocklist.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// A mapping of tags assigned to the resource.
+	// +mapType=granular
+	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
 type AccountRaiBlocklistParameters struct {
@@ -50,6 +58,11 @@ type AccountRaiBlocklistParameters struct {
 	// A short description for the Cognitive Account Rai Blocklist.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// A mapping of tags assigned to the resource.
+	// +kubebuilder:validation:Optional
+	// +mapType=granular
+	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
 // AccountRaiBlocklistSpec defines the desired state of AccountRaiBlocklist
@@ -79,7 +92,7 @@ type AccountRaiBlocklistStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// AccountRaiBlocklist is the Schema for the AccountRaiBlocklists API. Manages a Cognitive Account Rai Blocklist.
+// AccountRaiBlocklist is the Schema for the AccountRaiBlocklists API. Manages a Microsoft Foundry "Guardrails + Controls" blocklist. Microsoft Foundry was previously known as "Cognitive Account".
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

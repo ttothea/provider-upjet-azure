@@ -18,10 +18,85 @@ spec:
     dnsZoneIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example
-    hostName: contoso.fabrikam.com
+    hostNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     tls:
       certificateType: ManagedCertificate
-      minimumTlsVersion: TLS12
+      minimumVersion: TLS12
+
+---
+
+apiVersion: cdn.azure.upbound.io/v1beta1
+kind: FrontdoorEndpoint
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cdn/v1beta2/frontdoorcustomdomain
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    cdnFrontdoorProfileIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+
+apiVersion: cdn.azure.upbound.io/v1beta1
+kind: FrontdoorFirewallPolicy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cdn/v1beta2/frontdoorcustomdomain
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    mode: Prevention
+    resourceGroupNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    skuNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+
+apiVersion: cdn.azure.upbound.io/v1beta2
+kind: FrontdoorOrigin
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cdn/v1beta2/frontdoorcustomdomain
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    cdnFrontdoorOriginGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    certificateNameCheckEnabled: false
+    hostNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+
+apiVersion: cdn.azure.upbound.io/v1beta2
+kind: FrontdoorOriginGroup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cdn/v1beta2/frontdoorcustomdomain
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    cdnFrontdoorProfileIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    loadBalancing: {}
 
 ---
 
@@ -39,6 +114,62 @@ spec:
       matchLabels:
         testing.upbound.io/example-name: example
     skuName: Standard_AzureFrontDoor
+
+---
+
+apiVersion: cdn.azure.upbound.io/v1beta2
+kind: FrontdoorRoute
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cdn/v1beta2/frontdoorcustomdomain
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    cdnFrontdoorCustomDomainIdsRefs:
+    - name: example
+    cdnFrontdoorEndpointIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    cdnFrontdoorOriginGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    cdnFrontdoorOriginIdsRefs:
+    - name: example
+    patternsToMatch:
+    - /*
+    supportedProtocols:
+    - Http
+    - Https
+
+---
+
+apiVersion: cdn.azure.upbound.io/v1beta2
+kind: FrontdoorSecurityPolicy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cdn/v1beta2/frontdoorcustomdomain
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    cdnFrontdoorProfileIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    securityPolicies:
+      firewall:
+        association:
+          domain:
+          - cdnFrontdoorDomainIdSelector:
+              matchLabels:
+                testing.upbound.io/example-name: example
+          patternsToMatch:
+          - /*
+        cdnFrontdoorFirewallPolicyIdSelector:
+          matchLabels:
+            testing.upbound.io/example-name: example
 
 ---
 

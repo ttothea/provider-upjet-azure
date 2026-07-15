@@ -100,3 +100,36 @@ func SetupGated_appplatform(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_appplatform registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_appplatform(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		springcloudaccelerator.SetupWebhookWithManager,
+		springcloudactivedeployment.SetupWebhookWithManager,
+		springcloudapiportal.SetupWebhookWithManager,
+		springcloudapiportalcustomdomain.SetupWebhookWithManager,
+		springcloudapp.SetupWebhookWithManager,
+		springcloudappcosmosdbassociation.SetupWebhookWithManager,
+		springcloudappmysqlassociation.SetupWebhookWithManager,
+		springcloudappredisassociation.SetupWebhookWithManager,
+		springcloudbuilddeployment.SetupWebhookWithManager,
+		springcloudbuilder.SetupWebhookWithManager,
+		springcloudbuildpackbinding.SetupWebhookWithManager,
+		springcloudcertificate.SetupWebhookWithManager,
+		springcloudconfigurationservice.SetupWebhookWithManager,
+		springcloudcontainerdeployment.SetupWebhookWithManager,
+		springcloudcustomdomain.SetupWebhookWithManager,
+		springcloudcustomizedaccelerator.SetupWebhookWithManager,
+		springclouddevtoolportal.SetupWebhookWithManager,
+		springcloudgateway.SetupWebhookWithManager,
+		springcloudgatewaycustomdomain.SetupWebhookWithManager,
+		springcloudjavadeployment.SetupWebhookWithManager,
+		springcloudservice.SetupWebhookWithManager,
+		springcloudstorage.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

@@ -58,6 +58,9 @@ type BackupPolicyFileShareInitParameters struct {
 	// Configures the Policy backup frequency and times as documented in the backup block below.
 	Backup *BackupInitParameters `json:"backup,omitempty" tf:"backup,omitempty"`
 
+	// The backup tier to use. Possible values are vault-standard and snapshot. Defaults to snapshot.
+	BackupTier *string `json:"backupTier,omitempty" tf:"backup_tier,omitempty"`
+
 	// Configures the policy daily retention as documented in the retention_daily block below.
 	RetentionDaily *RetentionDailyInitParameters `json:"retentionDaily,omitempty" tf:"retention_daily,omitempty"`
 
@@ -70,6 +73,9 @@ type BackupPolicyFileShareInitParameters struct {
 	// Configures the policy yearly retention as documented in the retention_yearly block below.
 	RetentionYearly *RetentionYearlyInitParameters `json:"retentionYearly,omitempty" tf:"retention_yearly,omitempty"`
 
+	// The number of days to retain the snapshots. Defaults to 0.
+	SnapshotRetentionInDays *float64 `json:"snapshotRetentionInDays,omitempty" tf:"snapshot_retention_in_days,omitempty"`
+
 	// Specifies the timezone. the possible values are defined here. Defaults to UTC
 	Timezone *string `json:"timezone,omitempty" tf:"timezone,omitempty"`
 }
@@ -78,6 +84,9 @@ type BackupPolicyFileShareObservation struct {
 
 	// Configures the Policy backup frequency and times as documented in the backup block below.
 	Backup *BackupObservation `json:"backup,omitempty" tf:"backup,omitempty"`
+
+	// The backup tier to use. Possible values are vault-standard and snapshot. Defaults to snapshot.
+	BackupTier *string `json:"backupTier,omitempty" tf:"backup_tier,omitempty"`
 
 	// The ID of the Azure File Share Backup Policy.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -100,6 +109,9 @@ type BackupPolicyFileShareObservation struct {
 	// Configures the policy yearly retention as documented in the retention_yearly block below.
 	RetentionYearly *RetentionYearlyObservation `json:"retentionYearly,omitempty" tf:"retention_yearly,omitempty"`
 
+	// The number of days to retain the snapshots. Defaults to 0.
+	SnapshotRetentionInDays *float64 `json:"snapshotRetentionInDays,omitempty" tf:"snapshot_retention_in_days,omitempty"`
+
 	// Specifies the timezone. the possible values are defined here. Defaults to UTC
 	Timezone *string `json:"timezone,omitempty" tf:"timezone,omitempty"`
 }
@@ -109,6 +121,10 @@ type BackupPolicyFileShareParameters struct {
 	// Configures the Policy backup frequency and times as documented in the backup block below.
 	// +kubebuilder:validation:Optional
 	Backup *BackupParameters `json:"backup,omitempty" tf:"backup,omitempty"`
+
+	// The backup tier to use. Possible values are vault-standard and snapshot. Defaults to snapshot.
+	// +kubebuilder:validation:Optional
+	BackupTier *string `json:"backupTier,omitempty" tf:"backup_tier,omitempty"`
 
 	// Specifies the name of the Recovery Services Vault to use. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/recoveryservices/v1beta1.Vault
@@ -151,6 +167,10 @@ type BackupPolicyFileShareParameters struct {
 	// Configures the policy yearly retention as documented in the retention_yearly block below.
 	// +kubebuilder:validation:Optional
 	RetentionYearly *RetentionYearlyParameters `json:"retentionYearly,omitempty" tf:"retention_yearly,omitempty"`
+
+	// The number of days to retain the snapshots. Defaults to 0.
+	// +kubebuilder:validation:Optional
+	SnapshotRetentionInDays *float64 `json:"snapshotRetentionInDays,omitempty" tf:"snapshot_retention_in_days,omitempty"`
 
 	// Specifies the timezone. the possible values are defined here. Defaults to UTC
 	// +kubebuilder:validation:Optional

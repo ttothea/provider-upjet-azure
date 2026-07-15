@@ -27,6 +27,15 @@ import (
 	features "github.com/upbound/provider-azure/v2/internal/features"
 )
 
+// SetupWebhookWithManager registers the conversion webhook for LinkedServiceSynapse.
+func SetupWebhookWithManager(mgr ctrl.Manager) error {
+	if err := ctrl.NewWebhookManagedBy(mgr, &v1beta2.LinkedServiceSynapse{}).
+		Complete(); err != nil {
+		return errors.Wrap(err, "cannot register webhook for the kind v1beta2.LinkedServiceSynapse")
+	}
+	return nil
+}
+
 // SetupGated adds a controller that reconciles LinkedServiceSynapse managed resources.
 func SetupGated(mgr ctrl.Manager, o tjcontroller.Options) error {
 	o.Options.Gate.Register(func() {
@@ -79,14 +88,6 @@ func Setup(mgr ctrl.Manager, o tjcontroller.Options) error {
 	}
 	if o.Features.Enabled(xpfeature.EnableAlphaChangeLogs) {
 		opts = append(opts, managed.WithChangeLogger(o.ChangeLogOptions.ChangeLogger))
-	}
-
-	// register webhooks for the kind v1beta2.LinkedServiceSynapse if they're enabled.
-	if o.StartWebhooks {
-		if err := ctrl.NewWebhookManagedBy(mgr, &v1beta2.LinkedServiceSynapse{}).
-			Complete(); err != nil {
-			return errors.Wrap(err, "cannot register webhook for the kind v1beta2.LinkedServiceSynapse")
-		}
 	}
 
 	if o.MetricOptions != nil && o.MetricOptions.MRStateMetrics != nil {

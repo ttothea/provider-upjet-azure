@@ -1722,7 +1722,7 @@ type FunctionAppFlexConsumptionInitParameters struct {
 	// The Azure Region where the Function App should exist. Changing this forces a new Function App to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// The number of workers this function app can scale out to.
+	// The number of workers this function app can scale out to. The supported value are from 1 to 1000.
 	MaximumInstanceCount *float64 `json:"maximumInstanceCount,omitempty" tf:"maximum_instance_count,omitempty"`
 
 	// Should public network access be enabled for the Function App. Defaults to true.
@@ -1731,7 +1731,7 @@ type FunctionAppFlexConsumptionInitParameters struct {
 	// The Runtime of the Linux Function App. Possible values are node, dotnet-isolated, powershell, python, java and custom.
 	RuntimeName *string `json:"runtimeName,omitempty" tf:"runtime_name,omitempty"`
 
-	// The Runtime version of the Linux Function App. The values are diff from different runtime version. The supported values are 8.0, 9.0 for dotnet-isolated, 20 for node, 3.10, 3.11 for python, 11, 17 for java, 7.4 for powershell.
+	// The Runtime version of the Linux Function App. Accepted values varies with the value of runtime_name.
 	RuntimeVersion *string `json:"runtimeVersion,omitempty" tf:"runtime_version,omitempty"`
 
 	// The ID of the App Service Plan within which to create this Function App. Changing this forces a new Linux Function App to be created.
@@ -1889,7 +1889,7 @@ type FunctionAppFlexConsumptionObservation struct {
 	// The Azure Region where the Function App should exist. Changing this forces a new Function App to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// The number of workers this function app can scale out to.
+	// The number of workers this function app can scale out to. The supported value are from 1 to 1000.
 	MaximumInstanceCount *float64 `json:"maximumInstanceCount,omitempty" tf:"maximum_instance_count,omitempty"`
 
 	// A list of outbound IP addresses. For example ["52.23.25.3", "52.143.43.12"]
@@ -1913,7 +1913,7 @@ type FunctionAppFlexConsumptionObservation struct {
 	// The Runtime of the Linux Function App. Possible values are node, dotnet-isolated, powershell, python, java and custom.
 	RuntimeName *string `json:"runtimeName,omitempty" tf:"runtime_name,omitempty"`
 
-	// The Runtime version of the Linux Function App. The values are diff from different runtime version. The supported values are 8.0, 9.0 for dotnet-isolated, 20 for node, 3.10, 3.11 for python, 11, 17 for java, 7.4 for powershell.
+	// The Runtime version of the Linux Function App. Accepted values varies with the value of runtime_name.
 	RuntimeVersion *string `json:"runtimeVersion,omitempty" tf:"runtime_version,omitempty"`
 
 	// The ID of the App Service Plan within which to create this Function App. Changing this forces a new Linux Function App to be created.
@@ -2023,7 +2023,7 @@ type FunctionAppFlexConsumptionParameters struct {
 	// +kubebuilder:validation:Optional
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// The number of workers this function app can scale out to.
+	// The number of workers this function app can scale out to. The supported value are from 1 to 1000.
 	// +kubebuilder:validation:Optional
 	MaximumInstanceCount *float64 `json:"maximumInstanceCount,omitempty" tf:"maximum_instance_count,omitempty"`
 
@@ -2048,7 +2048,7 @@ type FunctionAppFlexConsumptionParameters struct {
 	// +kubebuilder:validation:Optional
 	RuntimeName *string `json:"runtimeName,omitempty" tf:"runtime_name,omitempty"`
 
-	// The Runtime version of the Linux Function App. The values are diff from different runtime version. The supported values are 8.0, 9.0 for dotnet-isolated, 20 for node, 3.10, 3.11 for python, 11, 17 for java, 7.4 for powershell.
+	// The Runtime version of the Linux Function App. Accepted values varies with the value of runtime_name.
 	// +kubebuilder:validation:Optional
 	RuntimeVersion *string `json:"runtimeVersion,omitempty" tf:"runtime_version,omitempty"`
 

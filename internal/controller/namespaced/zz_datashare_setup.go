@@ -52,3 +52,20 @@ func SetupGated_datashare(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_datashare registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_datashare(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		account.SetupWebhookWithManager,
+		datasetblobstorage.SetupWebhookWithManager,
+		datasetdatalakegen2.SetupWebhookWithManager,
+		datasetkustocluster.SetupWebhookWithManager,
+		datasetkustodatabase.SetupWebhookWithManager,
+		datashare.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

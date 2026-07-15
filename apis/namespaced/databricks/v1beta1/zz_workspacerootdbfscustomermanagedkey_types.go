@@ -19,7 +19,7 @@ type WorkspaceRootDbfsCustomerManagedKeyInitParameters struct {
 	// Specifies the Resource ID of the Key Vault which contains the key_vault_key_id.
 	KeyVaultID *string `json:"keyVaultId,omitempty" tf:"key_vault_id,omitempty"`
 
-	// The resource ID of the Key Vault Key to be used.
+	// The ID of the Key Vault Key to be used.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/keyvault/v1beta1.Key
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
 	KeyVaultKeyID *string `json:"keyVaultKeyId,omitempty" tf:"key_vault_key_id,omitempty"`
@@ -41,10 +41,10 @@ type WorkspaceRootDbfsCustomerManagedKeyObservation struct {
 	// Specifies the Resource ID of the Key Vault which contains the key_vault_key_id.
 	KeyVaultID *string `json:"keyVaultId,omitempty" tf:"key_vault_id,omitempty"`
 
-	// The resource ID of the Key Vault Key to be used.
+	// The ID of the Key Vault Key to be used.
 	KeyVaultKeyID *string `json:"keyVaultKeyId,omitempty" tf:"key_vault_key_id,omitempty"`
 
-	// The resource ID of the Databricks Workspace.
+	// The Resource ID of the Databricks Workspace.
 	WorkspaceID *string `json:"workspaceId,omitempty" tf:"workspace_id,omitempty"`
 }
 
@@ -54,7 +54,7 @@ type WorkspaceRootDbfsCustomerManagedKeyParameters struct {
 	// +kubebuilder:validation:Optional
 	KeyVaultID *string `json:"keyVaultId,omitempty" tf:"key_vault_id,omitempty"`
 
-	// The resource ID of the Key Vault Key to be used.
+	// The ID of the Key Vault Key to be used.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/keyvault/v1beta1.Key
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
@@ -68,7 +68,7 @@ type WorkspaceRootDbfsCustomerManagedKeyParameters struct {
 	// +kubebuilder:validation:Optional
 	KeyVaultKeyIDSelector *v1.NamespacedSelector `json:"keyVaultKeyIdSelector,omitempty" tf:"-"`
 
-	// The resource ID of the Databricks Workspace.
+	// The Resource ID of the Databricks Workspace.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/databricks/v1beta1.Workspace
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
@@ -110,7 +110,7 @@ type WorkspaceRootDbfsCustomerManagedKeyStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// WorkspaceRootDbfsCustomerManagedKey is the Schema for the WorkspaceRootDbfsCustomerManagedKeys API. Manages a Customer Managed Key for the Databricks Workspaces Root Databricks File System(DBFS)
+// WorkspaceRootDbfsCustomerManagedKey is the Schema for the WorkspaceRootDbfsCustomerManagedKeys API. Manages a Customer Managed Key for the Databricks Workspaces Root Databricks File System (DBFS)
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

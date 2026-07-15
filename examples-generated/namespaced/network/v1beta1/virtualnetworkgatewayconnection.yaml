@@ -139,7 +139,7 @@ metadata:
 spec:
   forProvider:
     activeActive: false
-    enableBgp: false
+    bgpEnabled: false
     ipConfiguration:
     - privateIpAddressAllocation: Dynamic
       publicIpAddressIdSelector:

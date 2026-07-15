@@ -43,3 +43,17 @@ func SetupGated_databricks(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_databricks registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_databricks(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		accessconnector.SetupWebhookWithManager,
+		workspace.SetupWebhookWithManager,
+		workspacerootdbfscustomermanagedkey.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

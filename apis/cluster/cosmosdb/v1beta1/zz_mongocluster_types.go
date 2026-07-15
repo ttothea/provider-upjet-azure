@@ -31,6 +31,67 @@ type ConnectionStringsObservation struct {
 type ConnectionStringsParameters struct {
 }
 
+type CustomerManagedKeyInitParameters struct {
+
+	// The ID of the key vault key used for encryption. For example: https://example-vault-name.vault.azure.net/keys/example-key-name.
+	KeyVaultKeyID *string `json:"keyVaultKeyId,omitempty" tf:"key_vault_key_id,omitempty"`
+
+	// The ID of the User Assigned Identity that has access to the Key Vault Key.
+	UserAssignedIdentityID *string `json:"userAssignedIdentityId,omitempty" tf:"user_assigned_identity_id,omitempty"`
+}
+
+type CustomerManagedKeyObservation struct {
+
+	// The ID of the key vault key used for encryption. For example: https://example-vault-name.vault.azure.net/keys/example-key-name.
+	KeyVaultKeyID *string `json:"keyVaultKeyId,omitempty" tf:"key_vault_key_id,omitempty"`
+
+	// The ID of the User Assigned Identity that has access to the Key Vault Key.
+	UserAssignedIdentityID *string `json:"userAssignedIdentityId,omitempty" tf:"user_assigned_identity_id,omitempty"`
+}
+
+type CustomerManagedKeyParameters struct {
+
+	// The ID of the key vault key used for encryption. For example: https://example-vault-name.vault.azure.net/keys/example-key-name.
+	// +kubebuilder:validation:Optional
+	KeyVaultKeyID *string `json:"keyVaultKeyId" tf:"key_vault_key_id,omitempty"`
+
+	// The ID of the User Assigned Identity that has access to the Key Vault Key.
+	// +kubebuilder:validation:Optional
+	UserAssignedIdentityID *string `json:"userAssignedIdentityId" tf:"user_assigned_identity_id,omitempty"`
+}
+
+type MongoClusterIdentityInitParameters struct {
+
+	// - A list of one or more Resource IDs for User Assigned Managed identities to assign.
+	// +listType=set
+	IdentityIds []*string `json:"identityIds,omitempty" tf:"identity_ids,omitempty"`
+
+	// The type of managed identity to assign. Possible value is UserAssigned.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+}
+
+type MongoClusterIdentityObservation struct {
+
+	// - A list of one or more Resource IDs for User Assigned Managed identities to assign.
+	// +listType=set
+	IdentityIds []*string `json:"identityIds,omitempty" tf:"identity_ids,omitempty"`
+
+	// The type of managed identity to assign. Possible value is UserAssigned.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+}
+
+type MongoClusterIdentityParameters struct {
+
+	// - A list of one or more Resource IDs for User Assigned Managed identities to assign.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	IdentityIds []*string `json:"identityIds" tf:"identity_ids,omitempty"`
+
+	// The type of managed identity to assign. Possible value is UserAssigned.
+	// +kubebuilder:validation:Optional
+	Type *string `json:"type" tf:"type,omitempty"`
+}
+
 type MongoClusterInitParameters struct {
 
 	// The Password associated with the administrator_username for the MongoDB Cluster.
@@ -39,14 +100,27 @@ type MongoClusterInitParameters struct {
 	// The administrator username of the MongoDB Cluster. Changing this forces a new resource to be created.
 	AdministratorUsername *string `json:"administratorUsername,omitempty" tf:"administrator_username,omitempty"`
 
+	// A list of allowed authentication modes for the MongoDB Cluster. Possible values are NativeAuth and MicrosoftEntraID.
+	// +listType=set
+	AuthenticationMethods []*string `json:"authenticationMethods,omitempty" tf:"authentication_methods,omitempty"`
+
 	// The compute tier to assign to the MongoDB Cluster. Possible values are Free, M10, M20, M25, M30, M40, M50, M60, M80, and M200.
 	ComputeTier *string `json:"computeTier,omitempty" tf:"compute_tier,omitempty"`
 
-	// The creation mode for the MongoDB Cluster. Possibles values are Default and GeoReplica. Defaults to Default.
+	// The creation mode for the MongoDB Cluster. Possible values are Default, GeoReplica and PointInTimeRestore. Defaults to Default. Changing this forces a new resource to be created.
 	CreateMode *string `json:"createMode,omitempty" tf:"create_mode,omitempty"`
+
+	// A customer_managed_key block as defined below. Changing this forces a new resource to be created.
+	CustomerManagedKey *CustomerManagedKeyInitParameters `json:"customerManagedKey,omitempty" tf:"customer_managed_key,omitempty"`
+
+	// Is the Data API for the MongoDB Cluster enabled? Defaults to false.
+	DataAPIModeEnabled *bool `json:"dataApiModeEnabled,omitempty" tf:"data_api_mode_enabled,omitempty"`
 
 	// The high availability mode for the MongoDB Cluster. Possibles values are Disabled and ZoneRedundantPreferred.
 	HighAvailabilityMode *string `json:"highAvailabilityMode,omitempty" tf:"high_availability_mode,omitempty"`
+
+	// An identity block as detailed below.
+	Identity *MongoClusterIdentityInitParameters `json:"identity,omitempty" tf:"identity,omitempty"`
 
 	// The supported Azure location where the MongoDB Cluster exists. Changing this forces a new resource to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
@@ -56,6 +130,9 @@ type MongoClusterInitParameters struct {
 
 	// The Public Network Access setting for the MongoDB Cluster. Possibles values are Disabled and Enabled. Defaults to Enabled.
 	PublicNetworkAccess *string `json:"publicNetworkAccess,omitempty" tf:"public_network_access,omitempty"`
+
+	// A restore block as defined below. Required when create_mode is set to PointInTimeRestore. Changing this forces a new resource to be created.
+	Restore *MongoClusterRestoreInitParameters `json:"restore,omitempty" tf:"restore,omitempty"`
 
 	// The Number of shards to provision on the MongoDB Cluster. Changing this forces a new resource to be created.
 	ShardCount *float64 `json:"shardCount,omitempty" tf:"shard_count,omitempty"`
@@ -89,6 +166,9 @@ type MongoClusterInitParameters struct {
 	// The size of the data disk space for the MongoDB Cluster.
 	StorageSizeInGb *float64 `json:"storageSizeInGb,omitempty" tf:"storage_size_in_gb,omitempty"`
 
+	// The storage type for the MongoDB Cluster. Possible values are PremiumSSD and PremiumSSDv2. Defaults to PremiumSSD. Changing this forces a new resource to be created.
+	StorageType *string `json:"storageType,omitempty" tf:"storage_type,omitempty"`
+
 	// A mapping of tags to assign to the MongoDB Cluster.
 	// +mapType=granular
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -102,17 +182,30 @@ type MongoClusterObservation struct {
 	// The administrator username of the MongoDB Cluster. Changing this forces a new resource to be created.
 	AdministratorUsername *string `json:"administratorUsername,omitempty" tf:"administrator_username,omitempty"`
 
+	// A list of allowed authentication modes for the MongoDB Cluster. Possible values are NativeAuth and MicrosoftEntraID.
+	// +listType=set
+	AuthenticationMethods []*string `json:"authenticationMethods,omitempty" tf:"authentication_methods,omitempty"`
+
 	// The compute tier to assign to the MongoDB Cluster. Possible values are Free, M10, M20, M25, M30, M40, M50, M60, M80, and M200.
 	ComputeTier *string `json:"computeTier,omitempty" tf:"compute_tier,omitempty"`
 
-	// The creation mode for the MongoDB Cluster. Possibles values are Default and GeoReplica. Defaults to Default.
+	// The creation mode for the MongoDB Cluster. Possible values are Default, GeoReplica and PointInTimeRestore. Defaults to Default. Changing this forces a new resource to be created.
 	CreateMode *string `json:"createMode,omitempty" tf:"create_mode,omitempty"`
+
+	// A customer_managed_key block as defined below. Changing this forces a new resource to be created.
+	CustomerManagedKey *CustomerManagedKeyObservation `json:"customerManagedKey,omitempty" tf:"customer_managed_key,omitempty"`
+
+	// Is the Data API for the MongoDB Cluster enabled? Defaults to false.
+	DataAPIModeEnabled *bool `json:"dataApiModeEnabled,omitempty" tf:"data_api_mode_enabled,omitempty"`
 
 	// The high availability mode for the MongoDB Cluster. Possibles values are Disabled and ZoneRedundantPreferred.
 	HighAvailabilityMode *string `json:"highAvailabilityMode,omitempty" tf:"high_availability_mode,omitempty"`
 
 	// The ID of the MongoDB Cluster.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// An identity block as detailed below.
+	Identity *MongoClusterIdentityObservation `json:"identity,omitempty" tf:"identity,omitempty"`
 
 	// The supported Azure location where the MongoDB Cluster exists. Changing this forces a new resource to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
@@ -126,6 +219,9 @@ type MongoClusterObservation struct {
 	// The name of the resource group in which to create the MongoDB Cluster. Changing this forces a new resource to be created.
 	ResourceGroupName *string `json:"resourceGroupName,omitempty" tf:"resource_group_name,omitempty"`
 
+	// A restore block as defined below. Required when create_mode is set to PointInTimeRestore. Changing this forces a new resource to be created.
+	Restore *MongoClusterRestoreObservation `json:"restore,omitempty" tf:"restore,omitempty"`
+
 	// The Number of shards to provision on the MongoDB Cluster. Changing this forces a new resource to be created.
 	ShardCount *float64 `json:"shardCount,omitempty" tf:"shard_count,omitempty"`
 
@@ -137,6 +233,9 @@ type MongoClusterObservation struct {
 
 	// The size of the data disk space for the MongoDB Cluster.
 	StorageSizeInGb *float64 `json:"storageSizeInGb,omitempty" tf:"storage_size_in_gb,omitempty"`
+
+	// The storage type for the MongoDB Cluster. Possible values are PremiumSSD and PremiumSSDv2. Defaults to PremiumSSD. Changing this forces a new resource to be created.
+	StorageType *string `json:"storageType,omitempty" tf:"storage_type,omitempty"`
 
 	// A mapping of tags to assign to the MongoDB Cluster.
 	// +mapType=granular
@@ -156,17 +255,34 @@ type MongoClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	AdministratorUsername *string `json:"administratorUsername,omitempty" tf:"administrator_username,omitempty"`
 
+	// A list of allowed authentication modes for the MongoDB Cluster. Possible values are NativeAuth and MicrosoftEntraID.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	AuthenticationMethods []*string `json:"authenticationMethods,omitempty" tf:"authentication_methods,omitempty"`
+
 	// The compute tier to assign to the MongoDB Cluster. Possible values are Free, M10, M20, M25, M30, M40, M50, M60, M80, and M200.
 	// +kubebuilder:validation:Optional
 	ComputeTier *string `json:"computeTier,omitempty" tf:"compute_tier,omitempty"`
 
-	// The creation mode for the MongoDB Cluster. Possibles values are Default and GeoReplica. Defaults to Default.
+	// The creation mode for the MongoDB Cluster. Possible values are Default, GeoReplica and PointInTimeRestore. Defaults to Default. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
 	CreateMode *string `json:"createMode,omitempty" tf:"create_mode,omitempty"`
+
+	// A customer_managed_key block as defined below. Changing this forces a new resource to be created.
+	// +kubebuilder:validation:Optional
+	CustomerManagedKey *CustomerManagedKeyParameters `json:"customerManagedKey,omitempty" tf:"customer_managed_key,omitempty"`
+
+	// Is the Data API for the MongoDB Cluster enabled? Defaults to false.
+	// +kubebuilder:validation:Optional
+	DataAPIModeEnabled *bool `json:"dataApiModeEnabled,omitempty" tf:"data_api_mode_enabled,omitempty"`
 
 	// The high availability mode for the MongoDB Cluster. Possibles values are Disabled and ZoneRedundantPreferred.
 	// +kubebuilder:validation:Optional
 	HighAvailabilityMode *string `json:"highAvailabilityMode,omitempty" tf:"high_availability_mode,omitempty"`
+
+	// An identity block as detailed below.
+	// +kubebuilder:validation:Optional
+	Identity *MongoClusterIdentityParameters `json:"identity,omitempty" tf:"identity,omitempty"`
 
 	// The supported Azure location where the MongoDB Cluster exists. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
@@ -193,6 +309,10 @@ type MongoClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	ResourceGroupNameSelector *v1.Selector `json:"resourceGroupNameSelector,omitempty" tf:"-"`
 
+	// A restore block as defined below. Required when create_mode is set to PointInTimeRestore. Changing this forces a new resource to be created.
+	// +kubebuilder:validation:Optional
+	Restore *MongoClusterRestoreParameters `json:"restore,omitempty" tf:"restore,omitempty"`
+
 	// The Number of shards to provision on the MongoDB Cluster. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
 	ShardCount *float64 `json:"shardCount,omitempty" tf:"shard_count,omitempty"`
@@ -229,6 +349,10 @@ type MongoClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	StorageSizeInGb *float64 `json:"storageSizeInGb,omitempty" tf:"storage_size_in_gb,omitempty"`
 
+	// The storage type for the MongoDB Cluster. Possible values are PremiumSSD and PremiumSSDv2. Defaults to PremiumSSD. Changing this forces a new resource to be created.
+	// +kubebuilder:validation:Optional
+	StorageType *string `json:"storageType,omitempty" tf:"storage_type,omitempty"`
+
 	// A mapping of tags to assign to the MongoDB Cluster.
 	// +kubebuilder:validation:Optional
 	// +mapType=granular
@@ -237,6 +361,35 @@ type MongoClusterParameters struct {
 	// The version for the MongoDB Cluster. Possibles values are 5.0, 6.0, 7.0 and 8.0.
 	// +kubebuilder:validation:Optional
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
+}
+
+type MongoClusterRestoreInitParameters struct {
+
+	// The point in time (in UTC) to restore from, in ISO 8601 format (e.g., 2024-01-01T00:00:00Z). Changing this forces a new resource to be created.
+	PointInTimeUtc *string `json:"pointInTimeUtc,omitempty" tf:"point_in_time_utc,omitempty"`
+
+	// The ID of the source MongoDB Cluster to restore from. Changing this forces a new resource to be created.
+	SourceID *string `json:"sourceId,omitempty" tf:"source_id,omitempty"`
+}
+
+type MongoClusterRestoreObservation struct {
+
+	// The point in time (in UTC) to restore from, in ISO 8601 format (e.g., 2024-01-01T00:00:00Z). Changing this forces a new resource to be created.
+	PointInTimeUtc *string `json:"pointInTimeUtc,omitempty" tf:"point_in_time_utc,omitempty"`
+
+	// The ID of the source MongoDB Cluster to restore from. Changing this forces a new resource to be created.
+	SourceID *string `json:"sourceId,omitempty" tf:"source_id,omitempty"`
+}
+
+type MongoClusterRestoreParameters struct {
+
+	// The point in time (in UTC) to restore from, in ISO 8601 format (e.g., 2024-01-01T00:00:00Z). Changing this forces a new resource to be created.
+	// +kubebuilder:validation:Optional
+	PointInTimeUtc *string `json:"pointInTimeUtc" tf:"point_in_time_utc,omitempty"`
+
+	// The ID of the source MongoDB Cluster to restore from. Changing this forces a new resource to be created.
+	// +kubebuilder:validation:Optional
+	SourceID *string `json:"sourceId" tf:"source_id,omitempty"`
 }
 
 // MongoClusterSpec defines the desired state of MongoCluster

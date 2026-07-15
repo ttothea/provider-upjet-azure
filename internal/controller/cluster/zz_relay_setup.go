@@ -46,3 +46,18 @@ func SetupGated_relay(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_relay registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_relay(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		eventrelaynamespace.SetupWebhookWithManager,
+		hybridconnection.SetupWebhookWithManager,
+		hybridconnectionauthorizationrule.SetupWebhookWithManager,
+		namespaceauthorizationrule.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

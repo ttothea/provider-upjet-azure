@@ -16,10 +16,10 @@ import (
 
 type NATIPConfigurationInitParameters struct {
 
-	// Specifies the name which should be used for the NAT IP Configuration. Changing this forces a new resource to be created.
+	// Specifies the name which should be used for the NAT IP Configuration.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// Is this is the Primary IP Configuration? Changing this forces a new resource to be created.
+	// Is this is the Primary IP Configuration?
 	Primary *bool `json:"primary,omitempty" tf:"primary,omitempty"`
 
 	// Specifies a Private Static IP Address for this IP Configuration.
@@ -44,10 +44,10 @@ type NATIPConfigurationInitParameters struct {
 
 type NATIPConfigurationObservation struct {
 
-	// Specifies the name which should be used for the NAT IP Configuration. Changing this forces a new resource to be created.
+	// Specifies the name which should be used for the NAT IP Configuration.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// Is this is the Primary IP Configuration? Changing this forces a new resource to be created.
+	// Is this is the Primary IP Configuration?
 	Primary *bool `json:"primary,omitempty" tf:"primary,omitempty"`
 
 	// Specifies a Private Static IP Address for this IP Configuration.
@@ -62,11 +62,11 @@ type NATIPConfigurationObservation struct {
 
 type NATIPConfigurationParameters struct {
 
-	// Specifies the name which should be used for the NAT IP Configuration. Changing this forces a new resource to be created.
+	// Specifies the name which should be used for the NAT IP Configuration.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name" tf:"name,omitempty"`
 
-	// Is this is the Primary IP Configuration? Changing this forces a new resource to be created.
+	// Is this is the Primary IP Configuration?
 	// +kubebuilder:validation:Optional
 	Primary *bool `json:"primary" tf:"primary,omitempty"`
 
@@ -102,7 +102,6 @@ type PrivateLinkServiceInitParameters struct {
 	// The destination IP address of the Private Link Service.
 	DestinationIPAddress *string `json:"destinationIpAddress,omitempty" tf:"destination_ip_address,omitempty"`
 
-	// Should the Private Link Service support the Proxy Protocol?
 	EnableProxyProtocol *bool `json:"enableProxyProtocol,omitempty" tf:"enable_proxy_protocol,omitempty"`
 
 	// List of FQDNs allowed for the Private Link Service.
@@ -117,6 +116,9 @@ type PrivateLinkServiceInitParameters struct {
 
 	// One or more (up to 8) nat_ip_configuration block as defined below.
 	NATIPConfiguration []NATIPConfigurationInitParameters `json:"natIpConfiguration,omitempty" tf:"nat_ip_configuration,omitempty"`
+
+	// Should the Private Link Service support the Proxy Protocol? Defaults to false.
+	ProxyProtocolEnabled *bool `json:"proxyProtocolEnabled,omitempty" tf:"proxy_protocol_enabled,omitempty"`
 
 	// A mapping of tags to assign to the resource.
 	// +mapType=granular
@@ -139,7 +141,6 @@ type PrivateLinkServiceObservation struct {
 	// The destination IP address of the Private Link Service.
 	DestinationIPAddress *string `json:"destinationIpAddress,omitempty" tf:"destination_ip_address,omitempty"`
 
-	// Should the Private Link Service support the Proxy Protocol?
 	EnableProxyProtocol *bool `json:"enableProxyProtocol,omitempty" tf:"enable_proxy_protocol,omitempty"`
 
 	// List of FQDNs allowed for the Private Link Service.
@@ -156,6 +157,9 @@ type PrivateLinkServiceObservation struct {
 
 	// One or more (up to 8) nat_ip_configuration block as defined below.
 	NATIPConfiguration []NATIPConfigurationObservation `json:"natIpConfiguration,omitempty" tf:"nat_ip_configuration,omitempty"`
+
+	// Should the Private Link Service support the Proxy Protocol? Defaults to false.
+	ProxyProtocolEnabled *bool `json:"proxyProtocolEnabled,omitempty" tf:"proxy_protocol_enabled,omitempty"`
 
 	// The name of the Resource Group where the Private Link Service should exist. Changing this forces a new resource to be created.
 	ResourceGroupName *string `json:"resourceGroupName,omitempty" tf:"resource_group_name,omitempty"`
@@ -180,7 +184,6 @@ type PrivateLinkServiceParameters struct {
 	// +kubebuilder:validation:Optional
 	DestinationIPAddress *string `json:"destinationIpAddress,omitempty" tf:"destination_ip_address,omitempty"`
 
-	// Should the Private Link Service support the Proxy Protocol?
 	// +kubebuilder:validation:Optional
 	EnableProxyProtocol *bool `json:"enableProxyProtocol,omitempty" tf:"enable_proxy_protocol,omitempty"`
 
@@ -200,6 +203,10 @@ type PrivateLinkServiceParameters struct {
 	// One or more (up to 8) nat_ip_configuration block as defined below.
 	// +kubebuilder:validation:Optional
 	NATIPConfiguration []NATIPConfigurationParameters `json:"natIpConfiguration,omitempty" tf:"nat_ip_configuration,omitempty"`
+
+	// Should the Private Link Service support the Proxy Protocol? Defaults to false.
+	// +kubebuilder:validation:Optional
+	ProxyProtocolEnabled *bool `json:"proxyProtocolEnabled,omitempty" tf:"proxy_protocol_enabled,omitempty"`
 
 	// The name of the Resource Group where the Private Link Service should exist. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/azure/v1beta1.ResourceGroup

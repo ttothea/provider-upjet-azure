@@ -85,3 +85,31 @@ func SetupGated_authorization(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_authorization registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_authorization(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		managementgrouppolicyassignment.SetupWebhookWithManager,
+		managementgrouppolicyexemption.SetupWebhookWithManager,
+		managementlock.SetupWebhookWithManager,
+		pimactiveroleassignment.SetupWebhookWithManager,
+		pimeligibleroleassignment.SetupWebhookWithManager,
+		policydefinition.SetupWebhookWithManager,
+		policysetdefinition.SetupWebhookWithManager,
+		resourcegrouppolicyassignment.SetupWebhookWithManager,
+		resourcegrouppolicyexemption.SetupWebhookWithManager,
+		resourcepolicyassignment.SetupWebhookWithManager,
+		resourcepolicyexemption.SetupWebhookWithManager,
+		roleassignment.SetupWebhookWithManager,
+		roledefinition.SetupWebhookWithManager,
+		rolemanagementpolicy.SetupWebhookWithManager,
+		subscriptionpolicyassignment.SetupWebhookWithManager,
+		subscriptionpolicyexemption.SetupWebhookWithManager,
+		trustedaccessrolebinding.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

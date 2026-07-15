@@ -21,13 +21,13 @@ type AccountInitParameters struct {
 	// If kind is TextAnalytics this specifies the key of the Search service.
 	CustomQuestionAnsweringSearchServiceKeySecretRef *v1.SecretKeySelector `json:"customQuestionAnsweringSearchServiceKeySecretRef,omitempty" tf:"-"`
 
-	// The subdomain name used for token-based authentication. This property is required when network_acls is specified. This property is also required when using the OpenAI service with libraries which assume the Azure OpenAI endpoint is a subdomain on https://openai.azure.com/, eg. https://<custom_subdomain_name>.openai.azure.com/.  Changing this forces a new resource to be created.
+	// The subdomain name used for Entra ID token-based authentication. This attribute is required when network_acls is specified. This attribute is also required when using the OpenAI service with libraries which assume the Azure OpenAI endpoint is a subdomain on https://openai.azure.com/, eg. https://<custom_subdomain_name>.openai.azure.com/. This can be specified during creation or added later, but once set changing this forces a new resource to be created.
 	CustomSubdomainName *string `json:"customSubdomainName,omitempty" tf:"custom_subdomain_name,omitempty"`
 
 	// A customer_managed_key block as documented below.
 	CustomerManagedKey []CustomerManagedKeyInitParameters `json:"customerManagedKey,omitempty" tf:"customer_managed_key,omitempty"`
 
-	// Whether to enable the dynamic throttling for this Cognitive Service Account.
+	// Whether to enable the dynamic throttling for this Cognitive Service Account. This attribute cannot be set when the kind is OpenAI or AIServices.
 	DynamicThrottlingEnabled *bool `json:"dynamicThrottlingEnabled,omitempty" tf:"dynamic_throttling_enabled,omitempty"`
 
 	// List of FQDNs allowed for the Cognitive Account.
@@ -36,7 +36,7 @@ type AccountInitParameters struct {
 	// An identity block as defined below.
 	Identity []IdentityInitParameters `json:"identity,omitempty" tf:"identity,omitempty"`
 
-	// Specifies the type of Cognitive Service Account that should be created. Possible values are Academic, AnomalyDetector, Bing.Autosuggest, Bing.Autosuggest.v7, Bing.CustomSearch, Bing.Search, Bing.Search.v7, Bing.Speech, Bing.SpellCheck, Bing.SpellCheck.v7, CognitiveServices, ComputerVision, ContentModerator, ContentSafety, CustomSpeech, CustomVision.Prediction, CustomVision.Training, Emotion, Face, FormRecognizer, ImmersiveReader, LUIS, LUIS.Authoring, MetricsAdvisor, OpenAI, Personalizer, QnAMaker, Recommendations, SpeakerRecognition, Speech, SpeechServices, SpeechTranslation, TextAnalytics, TextTranslation and WebLM. Changing this forces a new resource to be created.
+	// Specifies the type of Cognitive Service Account that should be created. Possible values are Academic, AIServices, AnomalyDetector, Bing.Autosuggest, Bing.Autosuggest.v7, Bing.CustomSearch, Bing.Search, Bing.Search.v7, Bing.Speech, Bing.SpellCheck, Bing.SpellCheck.v7, CognitiveServices, ComputerVision, ContentModerator, ContentSafety, CustomSpeech, CustomVision.Prediction, CustomVision.Training, Emotion, Face, FormRecognizer, ImmersiveReader, LUIS, LUIS.Authoring, MetricsAdvisor, OpenAI, Personalizer, QnAMaker, Recommendations, SpeakerRecognition, Speech, SpeechServices, SpeechTranslation, TextAnalytics, TextTranslation and WebLM. Changing this forces a new resource to be created except when upgrading the Cognitive Service Account from OpenAI to AIServices or rolling back from AIServices to OpenAI. More information on upgrade and rollback scenario.
 	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
 
 	// Whether local authentication methods is enabled for the Cognitive Account. Defaults to true.
@@ -66,7 +66,7 @@ type AccountInitParameters struct {
 	// Whether outbound network access is restricted for the Cognitive Account. Defaults to false.
 	OutboundNetworkAccessRestricted *bool `json:"outboundNetworkAccessRestricted,omitempty" tf:"outbound_network_access_restricted,omitempty"`
 
-	// Whether project management is enabled when the kind is set to AIServices. Once enabled, project_management_enabled cannot be disabled. Defaults to false.
+	// Whether project management is enabled. Can only be set to true when kind is set to AIServices. Once enabled, disabling project_management_enabled forces a new resource to be created unless kind is set to OpenAI. Defaults to false.
 	ProjectManagementEnabled *bool `json:"projectManagementEnabled,omitempty" tf:"project_management_enabled,omitempty"`
 
 	// Whether public network access is allowed for the Cognitive Account. Defaults to true.
@@ -75,7 +75,7 @@ type AccountInitParameters struct {
 	// A URL to link a QnAMaker cognitive account to a QnA runtime.
 	QnaRuntimeEndpoint *string `json:"qnaRuntimeEndpoint,omitempty" tf:"qna_runtime_endpoint,omitempty"`
 
-	// Specifies the SKU Name for this Cognitive Service Account. Possible values are F0, F1, S0, S, S1, S2, S3, S4, S5, S6, P0, P1, P2, E0 and DC0.
+	// Specifies the SKU Name for this Cognitive Service Account. Possible values are C2, C3, C4, D3, DC0, E0, F0, F1, P0, P1, P2, S, S0, S1, S2, S3, S4, S5 and S6.
 	SkuName *string `json:"skuName,omitempty" tf:"sku_name,omitempty"`
 
 	// A storage block as defined below.
@@ -91,13 +91,13 @@ type AccountObservation struct {
 	// If kind is TextAnalytics this specifies the ID of the Search service.
 	CustomQuestionAnsweringSearchServiceID *string `json:"customQuestionAnsweringSearchServiceId,omitempty" tf:"custom_question_answering_search_service_id,omitempty"`
 
-	// The subdomain name used for token-based authentication. This property is required when network_acls is specified. This property is also required when using the OpenAI service with libraries which assume the Azure OpenAI endpoint is a subdomain on https://openai.azure.com/, eg. https://<custom_subdomain_name>.openai.azure.com/.  Changing this forces a new resource to be created.
+	// The subdomain name used for Entra ID token-based authentication. This attribute is required when network_acls is specified. This attribute is also required when using the OpenAI service with libraries which assume the Azure OpenAI endpoint is a subdomain on https://openai.azure.com/, eg. https://<custom_subdomain_name>.openai.azure.com/. This can be specified during creation or added later, but once set changing this forces a new resource to be created.
 	CustomSubdomainName *string `json:"customSubdomainName,omitempty" tf:"custom_subdomain_name,omitempty"`
 
 	// A customer_managed_key block as documented below.
 	CustomerManagedKey []CustomerManagedKeyObservation `json:"customerManagedKey,omitempty" tf:"customer_managed_key,omitempty"`
 
-	// Whether to enable the dynamic throttling for this Cognitive Service Account.
+	// Whether to enable the dynamic throttling for this Cognitive Service Account. This attribute cannot be set when the kind is OpenAI or AIServices.
 	DynamicThrottlingEnabled *bool `json:"dynamicThrottlingEnabled,omitempty" tf:"dynamic_throttling_enabled,omitempty"`
 
 	// The endpoint used to connect to the Cognitive Service Account.
@@ -112,7 +112,7 @@ type AccountObservation struct {
 	// An identity block as defined below.
 	Identity []IdentityObservation `json:"identity,omitempty" tf:"identity,omitempty"`
 
-	// Specifies the type of Cognitive Service Account that should be created. Possible values are Academic, AnomalyDetector, Bing.Autosuggest, Bing.Autosuggest.v7, Bing.CustomSearch, Bing.Search, Bing.Search.v7, Bing.Speech, Bing.SpellCheck, Bing.SpellCheck.v7, CognitiveServices, ComputerVision, ContentModerator, ContentSafety, CustomSpeech, CustomVision.Prediction, CustomVision.Training, Emotion, Face, FormRecognizer, ImmersiveReader, LUIS, LUIS.Authoring, MetricsAdvisor, OpenAI, Personalizer, QnAMaker, Recommendations, SpeakerRecognition, Speech, SpeechServices, SpeechTranslation, TextAnalytics, TextTranslation and WebLM. Changing this forces a new resource to be created.
+	// Specifies the type of Cognitive Service Account that should be created. Possible values are Academic, AIServices, AnomalyDetector, Bing.Autosuggest, Bing.Autosuggest.v7, Bing.CustomSearch, Bing.Search, Bing.Search.v7, Bing.Speech, Bing.SpellCheck, Bing.SpellCheck.v7, CognitiveServices, ComputerVision, ContentModerator, ContentSafety, CustomSpeech, CustomVision.Prediction, CustomVision.Training, Emotion, Face, FormRecognizer, ImmersiveReader, LUIS, LUIS.Authoring, MetricsAdvisor, OpenAI, Personalizer, QnAMaker, Recommendations, SpeakerRecognition, Speech, SpeechServices, SpeechTranslation, TextAnalytics, TextTranslation and WebLM. Changing this forces a new resource to be created except when upgrading the Cognitive Service Account from OpenAI to AIServices or rolling back from AIServices to OpenAI. More information on upgrade and rollback scenario.
 	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
 
 	// Whether local authentication methods is enabled for the Cognitive Account. Defaults to true.
@@ -142,7 +142,7 @@ type AccountObservation struct {
 	// Whether outbound network access is restricted for the Cognitive Account. Defaults to false.
 	OutboundNetworkAccessRestricted *bool `json:"outboundNetworkAccessRestricted,omitempty" tf:"outbound_network_access_restricted,omitempty"`
 
-	// Whether project management is enabled when the kind is set to AIServices. Once enabled, project_management_enabled cannot be disabled. Defaults to false.
+	// Whether project management is enabled. Can only be set to true when kind is set to AIServices. Once enabled, disabling project_management_enabled forces a new resource to be created unless kind is set to OpenAI. Defaults to false.
 	ProjectManagementEnabled *bool `json:"projectManagementEnabled,omitempty" tf:"project_management_enabled,omitempty"`
 
 	// Whether public network access is allowed for the Cognitive Account. Defaults to true.
@@ -154,7 +154,7 @@ type AccountObservation struct {
 	// The name of the resource group in which the Cognitive Service Account is created. Changing this forces a new resource to be created.
 	ResourceGroupName *string `json:"resourceGroupName,omitempty" tf:"resource_group_name,omitempty"`
 
-	// Specifies the SKU Name for this Cognitive Service Account. Possible values are F0, F1, S0, S, S1, S2, S3, S4, S5, S6, P0, P1, P2, E0 and DC0.
+	// Specifies the SKU Name for this Cognitive Service Account. Possible values are C2, C3, C4, D3, DC0, E0, F0, F1, P0, P1, P2, S, S0, S1, S2, S3, S4, S5 and S6.
 	SkuName *string `json:"skuName,omitempty" tf:"sku_name,omitempty"`
 
 	// A storage block as defined below.
@@ -175,7 +175,7 @@ type AccountParameters struct {
 	// +kubebuilder:validation:Optional
 	CustomQuestionAnsweringSearchServiceKeySecretRef *v1.SecretKeySelector `json:"customQuestionAnsweringSearchServiceKeySecretRef,omitempty" tf:"-"`
 
-	// The subdomain name used for token-based authentication. This property is required when network_acls is specified. This property is also required when using the OpenAI service with libraries which assume the Azure OpenAI endpoint is a subdomain on https://openai.azure.com/, eg. https://<custom_subdomain_name>.openai.azure.com/.  Changing this forces a new resource to be created.
+	// The subdomain name used for Entra ID token-based authentication. This attribute is required when network_acls is specified. This attribute is also required when using the OpenAI service with libraries which assume the Azure OpenAI endpoint is a subdomain on https://openai.azure.com/, eg. https://<custom_subdomain_name>.openai.azure.com/. This can be specified during creation or added later, but once set changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
 	CustomSubdomainName *string `json:"customSubdomainName,omitempty" tf:"custom_subdomain_name,omitempty"`
 
@@ -183,7 +183,7 @@ type AccountParameters struct {
 	// +kubebuilder:validation:Optional
 	CustomerManagedKey []CustomerManagedKeyParameters `json:"customerManagedKey,omitempty" tf:"customer_managed_key,omitempty"`
 
-	// Whether to enable the dynamic throttling for this Cognitive Service Account.
+	// Whether to enable the dynamic throttling for this Cognitive Service Account. This attribute cannot be set when the kind is OpenAI or AIServices.
 	// +kubebuilder:validation:Optional
 	DynamicThrottlingEnabled *bool `json:"dynamicThrottlingEnabled,omitempty" tf:"dynamic_throttling_enabled,omitempty"`
 
@@ -195,7 +195,7 @@ type AccountParameters struct {
 	// +kubebuilder:validation:Optional
 	Identity []IdentityParameters `json:"identity,omitempty" tf:"identity,omitempty"`
 
-	// Specifies the type of Cognitive Service Account that should be created. Possible values are Academic, AnomalyDetector, Bing.Autosuggest, Bing.Autosuggest.v7, Bing.CustomSearch, Bing.Search, Bing.Search.v7, Bing.Speech, Bing.SpellCheck, Bing.SpellCheck.v7, CognitiveServices, ComputerVision, ContentModerator, ContentSafety, CustomSpeech, CustomVision.Prediction, CustomVision.Training, Emotion, Face, FormRecognizer, ImmersiveReader, LUIS, LUIS.Authoring, MetricsAdvisor, OpenAI, Personalizer, QnAMaker, Recommendations, SpeakerRecognition, Speech, SpeechServices, SpeechTranslation, TextAnalytics, TextTranslation and WebLM. Changing this forces a new resource to be created.
+	// Specifies the type of Cognitive Service Account that should be created. Possible values are Academic, AIServices, AnomalyDetector, Bing.Autosuggest, Bing.Autosuggest.v7, Bing.CustomSearch, Bing.Search, Bing.Search.v7, Bing.Speech, Bing.SpellCheck, Bing.SpellCheck.v7, CognitiveServices, ComputerVision, ContentModerator, ContentSafety, CustomSpeech, CustomVision.Prediction, CustomVision.Training, Emotion, Face, FormRecognizer, ImmersiveReader, LUIS, LUIS.Authoring, MetricsAdvisor, OpenAI, Personalizer, QnAMaker, Recommendations, SpeakerRecognition, Speech, SpeechServices, SpeechTranslation, TextAnalytics, TextTranslation and WebLM. Changing this forces a new resource to be created except when upgrading the Cognitive Service Account from OpenAI to AIServices or rolling back from AIServices to OpenAI. More information on upgrade and rollback scenario.
 	// +kubebuilder:validation:Optional
 	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
 
@@ -235,7 +235,7 @@ type AccountParameters struct {
 	// +kubebuilder:validation:Optional
 	OutboundNetworkAccessRestricted *bool `json:"outboundNetworkAccessRestricted,omitempty" tf:"outbound_network_access_restricted,omitempty"`
 
-	// Whether project management is enabled when the kind is set to AIServices. Once enabled, project_management_enabled cannot be disabled. Defaults to false.
+	// Whether project management is enabled. Can only be set to true when kind is set to AIServices. Once enabled, disabling project_management_enabled forces a new resource to be created unless kind is set to OpenAI. Defaults to false.
 	// +kubebuilder:validation:Optional
 	ProjectManagementEnabled *bool `json:"projectManagementEnabled,omitempty" tf:"project_management_enabled,omitempty"`
 
@@ -260,7 +260,7 @@ type AccountParameters struct {
 	// +kubebuilder:validation:Optional
 	ResourceGroupNameSelector *v1.Selector `json:"resourceGroupNameSelector,omitempty" tf:"-"`
 
-	// Specifies the SKU Name for this Cognitive Service Account. Possible values are F0, F1, S0, S, S1, S2, S3, S4, S5, S6, P0, P1, P2, E0 and DC0.
+	// Specifies the SKU Name for this Cognitive Service Account. Possible values are C2, C3, C4, D3, DC0, E0, F0, F1, P0, P1, P2, S, S0, S1, S2, S3, S4, S5 and S6.
 	// +kubebuilder:validation:Optional
 	SkuName *string `json:"skuName,omitempty" tf:"sku_name,omitempty"`
 
@@ -533,7 +533,7 @@ type StorageParameters struct {
 
 type VirtualNetworkRulesInitParameters struct {
 
-	// Whether ignore missing vnet service endpoint or not. Default to false.
+	// Whether ignore missing vnet service endpoint or not. Defaults to false.
 	IgnoreMissingVnetServiceEndpoint *bool `json:"ignoreMissingVnetServiceEndpoint,omitempty" tf:"ignore_missing_vnet_service_endpoint,omitempty"`
 
 	// The ID of the subnet which should be able to access this Cognitive Account.
@@ -552,7 +552,7 @@ type VirtualNetworkRulesInitParameters struct {
 
 type VirtualNetworkRulesObservation struct {
 
-	// Whether ignore missing vnet service endpoint or not. Default to false.
+	// Whether ignore missing vnet service endpoint or not. Defaults to false.
 	IgnoreMissingVnetServiceEndpoint *bool `json:"ignoreMissingVnetServiceEndpoint,omitempty" tf:"ignore_missing_vnet_service_endpoint,omitempty"`
 
 	// The ID of the subnet which should be able to access this Cognitive Account.
@@ -561,7 +561,7 @@ type VirtualNetworkRulesObservation struct {
 
 type VirtualNetworkRulesParameters struct {
 
-	// Whether ignore missing vnet service endpoint or not. Default to false.
+	// Whether ignore missing vnet service endpoint or not. Defaults to false.
 	// +kubebuilder:validation:Optional
 	IgnoreMissingVnetServiceEndpoint *bool `json:"ignoreMissingVnetServiceEndpoint,omitempty" tf:"ignore_missing_vnet_service_endpoint,omitempty"`
 

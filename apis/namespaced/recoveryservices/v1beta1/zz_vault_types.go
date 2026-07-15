@@ -103,31 +103,61 @@ type IdentityParameters struct {
 
 type MonitoringInitParameters struct {
 
+	// Enabling/Disabling built-in Azure Monitor alerts for all failover issues. Defaults to true.
+	AlertsForAllFailoverIssuesEnabled *bool `json:"alertsForAllFailoverIssuesEnabled,omitempty" tf:"alerts_for_all_failover_issues_enabled,omitempty"`
+
 	// Enabling/Disabling built-in Azure Monitor alerts for security scenarios and job failure scenarios. Defaults to true.
 	AlertsForAllJobFailuresEnabled *bool `json:"alertsForAllJobFailuresEnabled,omitempty" tf:"alerts_for_all_job_failures_enabled,omitempty"`
 
+	// Enabling/Disabling built-in Azure Monitor alerts for all replication issues. Defaults to true.
+	AlertsForAllReplicationIssuesEnabled *bool `json:"alertsForAllReplicationIssuesEnabled,omitempty" tf:"alerts_for_all_replication_issues_enabled,omitempty"`
+
 	// Enabling/Disabling alerts from the older (classic alerts) solution. Defaults to true. More details could be found here.
 	AlertsForCriticalOperationFailuresEnabled *bool `json:"alertsForCriticalOperationFailuresEnabled,omitempty" tf:"alerts_for_critical_operation_failures_enabled,omitempty"`
+
+	// Enabling/Disabling email notifications for site recovery (classic alerts) solution. Defaults to true.
+	EmailNotificationsForSiteRecoveryEnabled *bool `json:"emailNotificationsForSiteRecoveryEnabled,omitempty" tf:"email_notifications_for_site_recovery_enabled,omitempty"`
 }
 
 type MonitoringObservation struct {
 
+	// Enabling/Disabling built-in Azure Monitor alerts for all failover issues. Defaults to true.
+	AlertsForAllFailoverIssuesEnabled *bool `json:"alertsForAllFailoverIssuesEnabled,omitempty" tf:"alerts_for_all_failover_issues_enabled,omitempty"`
+
 	// Enabling/Disabling built-in Azure Monitor alerts for security scenarios and job failure scenarios. Defaults to true.
 	AlertsForAllJobFailuresEnabled *bool `json:"alertsForAllJobFailuresEnabled,omitempty" tf:"alerts_for_all_job_failures_enabled,omitempty"`
 
+	// Enabling/Disabling built-in Azure Monitor alerts for all replication issues. Defaults to true.
+	AlertsForAllReplicationIssuesEnabled *bool `json:"alertsForAllReplicationIssuesEnabled,omitempty" tf:"alerts_for_all_replication_issues_enabled,omitempty"`
+
 	// Enabling/Disabling alerts from the older (classic alerts) solution. Defaults to true. More details could be found here.
 	AlertsForCriticalOperationFailuresEnabled *bool `json:"alertsForCriticalOperationFailuresEnabled,omitempty" tf:"alerts_for_critical_operation_failures_enabled,omitempty"`
+
+	// Enabling/Disabling email notifications for site recovery (classic alerts) solution. Defaults to true.
+	EmailNotificationsForSiteRecoveryEnabled *bool `json:"emailNotificationsForSiteRecoveryEnabled,omitempty" tf:"email_notifications_for_site_recovery_enabled,omitempty"`
 }
 
 type MonitoringParameters struct {
 
+	// Enabling/Disabling built-in Azure Monitor alerts for all failover issues. Defaults to true.
+	// +kubebuilder:validation:Optional
+	AlertsForAllFailoverIssuesEnabled *bool `json:"alertsForAllFailoverIssuesEnabled,omitempty" tf:"alerts_for_all_failover_issues_enabled,omitempty"`
+
 	// Enabling/Disabling built-in Azure Monitor alerts for security scenarios and job failure scenarios. Defaults to true.
 	// +kubebuilder:validation:Optional
 	AlertsForAllJobFailuresEnabled *bool `json:"alertsForAllJobFailuresEnabled,omitempty" tf:"alerts_for_all_job_failures_enabled,omitempty"`
 
+	// Enabling/Disabling built-in Azure Monitor alerts for all replication issues. Defaults to true.
+	// +kubebuilder:validation:Optional
+	AlertsForAllReplicationIssuesEnabled *bool `json:"alertsForAllReplicationIssuesEnabled,omitempty" tf:"alerts_for_all_replication_issues_enabled,omitempty"`
+
 	// Enabling/Disabling alerts from the older (classic alerts) solution. Defaults to true. More details could be found here.
 	// +kubebuilder:validation:Optional
 	AlertsForCriticalOperationFailuresEnabled *bool `json:"alertsForCriticalOperationFailuresEnabled,omitempty" tf:"alerts_for_critical_operation_failures_enabled,omitempty"`
+
+	// Enabling/Disabling email notifications for site recovery (classic alerts) solution. Defaults to true.
+	// +kubebuilder:validation:Optional
+	EmailNotificationsForSiteRecoveryEnabled *bool `json:"emailNotificationsForSiteRecoveryEnabled,omitempty" tf:"email_notifications_for_site_recovery_enabled,omitempty"`
 }
 
 type VaultInitParameters struct {
@@ -159,7 +189,6 @@ type VaultInitParameters struct {
 	// Sets the vault's SKU. Possible values include: Standard, RS0.
 	Sku *string `json:"sku,omitempty" tf:"sku,omitempty"`
 
-	// Is soft delete enable for this Vault? Defaults to true.
 	SoftDeleteEnabled *bool `json:"softDeleteEnabled,omitempty" tf:"soft_delete_enabled,omitempty"`
 
 	// The storage type of the Recovery Services Vault. Possible values are GeoRedundant, LocallyRedundant and ZoneRedundant. Defaults to GeoRedundant.
@@ -205,7 +234,6 @@ type VaultObservation struct {
 	// Sets the vault's SKU. Possible values include: Standard, RS0.
 	Sku *string `json:"sku,omitempty" tf:"sku,omitempty"`
 
-	// Is soft delete enable for this Vault? Defaults to true.
 	SoftDeleteEnabled *bool `json:"softDeleteEnabled,omitempty" tf:"soft_delete_enabled,omitempty"`
 
 	// The storage type of the Recovery Services Vault. Possible values are GeoRedundant, LocallyRedundant and ZoneRedundant. Defaults to GeoRedundant.
@@ -267,7 +295,6 @@ type VaultParameters struct {
 	// +kubebuilder:validation:Optional
 	Sku *string `json:"sku,omitempty" tf:"sku,omitempty"`
 
-	// Is soft delete enable for this Vault? Defaults to true.
 	// +kubebuilder:validation:Optional
 	SoftDeleteEnabled *bool `json:"softDeleteEnabled,omitempty" tf:"soft_delete_enabled,omitempty"`
 

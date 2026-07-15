@@ -1465,7 +1465,7 @@ func (mg *LinkedServiceAzureDatabricks) ResolveReferences(ctx context.Context, c
 
 		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.MsiWorkSpaceResourceID),
-			Extract:      resource.ExtractResourceID(),
+			Extract:      rconfig.ExtractResourceID(),
 			Namespace:    mg.GetNamespace(),
 			Reference:    mg.Spec.ForProvider.MsiWorkSpaceResourceIDRef,
 			Selector:     mg.Spec.ForProvider.MsiWorkSpaceResourceIDSelector,
@@ -1484,8 +1484,28 @@ func (mg *LinkedServiceAzureDatabricks) ResolveReferences(ctx context.Context, c
 		}
 
 		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
-			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.MsiWorkSpaceResourceID),
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.MsiWorkspaceID),
 			Extract:      resource.ExtractResourceID(),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.ForProvider.MsiWorkspaceIDRef,
+			Selector:     mg.Spec.ForProvider.MsiWorkspaceIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.MsiWorkspaceID")
+	}
+	mg.Spec.ForProvider.MsiWorkspaceID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.MsiWorkspaceIDRef = rsp.ResolvedReference
+	{
+		m, l, err = apisresolver.GetManagedResource("databricks.azure.m.upbound.io", "v1beta1", "Workspace", "WorkspaceList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.MsiWorkSpaceResourceID),
+			Extract:      rconfig.ExtractResourceID(),
 			Namespace:    mg.GetNamespace(),
 			Reference:    mg.Spec.InitProvider.MsiWorkSpaceResourceIDRef,
 			Selector:     mg.Spec.InitProvider.MsiWorkSpaceResourceIDSelector,
@@ -1497,6 +1517,26 @@ func (mg *LinkedServiceAzureDatabricks) ResolveReferences(ctx context.Context, c
 	}
 	mg.Spec.InitProvider.MsiWorkSpaceResourceID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.InitProvider.MsiWorkSpaceResourceIDRef = rsp.ResolvedReference
+	{
+		m, l, err = apisresolver.GetManagedResource("databricks.azure.m.upbound.io", "v1beta1", "Workspace", "WorkspaceList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.MsiWorkspaceID),
+			Extract:      resource.ExtractResourceID(),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.InitProvider.MsiWorkspaceIDRef,
+			Selector:     mg.Spec.InitProvider.MsiWorkspaceIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.MsiWorkspaceID")
+	}
+	mg.Spec.InitProvider.MsiWorkspaceID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.MsiWorkspaceIDRef = rsp.ResolvedReference
 
 	return nil
 }

@@ -62,6 +62,9 @@ type EventHubDataConnectionInitParameters struct {
 	// Specifies the mapping rule used for the message ingestion. Mapping rule must exist before resource is created.
 	MappingRuleName *string `json:"mappingRuleName,omitempty" tf:"mapping_rule_name,omitempty"`
 
+	// Specifies the date after which data should be retrieved from Event Hub. When defined, the data connection retrieves existing events created since the specified retrieval start date. It can only retrieve events retained by the Event Hub, based on its retention period. The value should be in RFC3339 format (e.g., 2023-06-26T12:00:00Z).
+	RetrievalStartDate *string `json:"retrievalStartDate,omitempty" tf:"retrieval_start_date,omitempty"`
+
 	// Specifies the target table name used for the message ingestion. Table must exist before resource is created.
 	TableName *string `json:"tableName,omitempty" tf:"table_name,omitempty"`
 }
@@ -106,6 +109,9 @@ type EventHubDataConnectionObservation struct {
 
 	// Specifies the Resource Group where the Kusto Database should exist. Changing this forces a new resource to be created.
 	ResourceGroupName *string `json:"resourceGroupName,omitempty" tf:"resource_group_name,omitempty"`
+
+	// Specifies the date after which data should be retrieved from Event Hub. When defined, the data connection retrieves existing events created since the specified retrieval start date. It can only retrieve events retained by the Event Hub, based on its retention period. The value should be in RFC3339 format (e.g., 2023-06-26T12:00:00Z).
+	RetrievalStartDate *string `json:"retrievalStartDate,omitempty" tf:"retrieval_start_date,omitempty"`
 
 	// Specifies the target table name used for the message ingestion. Table must exist before resource is created.
 	TableName *string `json:"tableName,omitempty" tf:"table_name,omitempty"`
@@ -206,6 +212,10 @@ type EventHubDataConnectionParameters struct {
 	// Selector for a ResourceGroup in azure to populate resourceGroupName.
 	// +kubebuilder:validation:Optional
 	ResourceGroupNameSelector *v1.NamespacedSelector `json:"resourceGroupNameSelector,omitempty" tf:"-"`
+
+	// Specifies the date after which data should be retrieved from Event Hub. When defined, the data connection retrieves existing events created since the specified retrieval start date. It can only retrieve events retained by the Event Hub, based on its retention period. The value should be in RFC3339 format (e.g., 2023-06-26T12:00:00Z).
+	// +kubebuilder:validation:Optional
+	RetrievalStartDate *string `json:"retrievalStartDate,omitempty" tf:"retrieval_start_date,omitempty"`
 
 	// Specifies the target table name used for the message ingestion. Table must exist before resource is created.
 	// +kubebuilder:validation:Optional

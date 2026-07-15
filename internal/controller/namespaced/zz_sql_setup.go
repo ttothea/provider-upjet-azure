@@ -100,3 +100,36 @@ func SetupGated_sql(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_sql registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_sql(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		mssqldatabase.SetupWebhookWithManager,
+		mssqldatabaseextendedauditingpolicy.SetupWebhookWithManager,
+		mssqldatabasevulnerabilityassessmentrulebaseline.SetupWebhookWithManager,
+		mssqlelasticpool.SetupWebhookWithManager,
+		mssqlfailovergroup.SetupWebhookWithManager,
+		mssqlfirewallrule.SetupWebhookWithManager,
+		mssqljobagent.SetupWebhookWithManager,
+		mssqljobcredential.SetupWebhookWithManager,
+		mssqlmanageddatabase.SetupWebhookWithManager,
+		mssqlmanagedinstance.SetupWebhookWithManager,
+		mssqlmanagedinstanceactivedirectoryadministrator.SetupWebhookWithManager,
+		mssqlmanagedinstancefailovergroup.SetupWebhookWithManager,
+		mssqlmanagedinstancetransparentdataencryption.SetupWebhookWithManager,
+		mssqlmanagedinstancevulnerabilityassessment.SetupWebhookWithManager,
+		mssqloutboundfirewallrule.SetupWebhookWithManager,
+		mssqlserver.SetupWebhookWithManager,
+		mssqlserverdnsalias.SetupWebhookWithManager,
+		mssqlservermicrosoftsupportauditingpolicy.SetupWebhookWithManager,
+		mssqlserversecurityalertpolicy.SetupWebhookWithManager,
+		mssqlservertransparentdataencryption.SetupWebhookWithManager,
+		mssqlservervulnerabilityassessment.SetupWebhookWithManager,
+		mssqlvirtualnetworkrule.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

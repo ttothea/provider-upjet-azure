@@ -35,7 +35,7 @@ spec:
     resourceGroupNameSelector:
       matchLabels:
         testing.upbound.io/example-name: example
-    sku: Standard_F2
+    sku: Standard_D4_v5
     sourceImageReference:
       offer: WindowsServer
       publisher: MicrosoftWindowsServer

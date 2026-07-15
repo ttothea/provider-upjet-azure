@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: AIFoundryProject is the Schema for the AIFoundryProjects API.
-          Manages an AI Foundry Project.
+          Manages a Microsoft Foundry Hub (classic) Project resource.
         properties:
           apiVersion:
             description: |-

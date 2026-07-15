@@ -85,3 +85,31 @@ func SetupGated_storage(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_storage registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_storage(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		account.SetupWebhookWithManager,
+		accountlocaluser.SetupWebhookWithManager,
+		accountnetworkrules.SetupWebhookWithManager,
+		blob.SetupWebhookWithManager,
+		blobinventorypolicy.SetupWebhookWithManager,
+		container.SetupWebhookWithManager,
+		containerimmutabilitypolicy.SetupWebhookWithManager,
+		datalakegen2filesystem.SetupWebhookWithManager,
+		datalakegen2path.SetupWebhookWithManager,
+		encryptionscope.SetupWebhookWithManager,
+		managementpolicy.SetupWebhookWithManager,
+		objectreplication.SetupWebhookWithManager,
+		queue.SetupWebhookWithManager,
+		share.SetupWebhookWithManager,
+		sharedirectory.SetupWebhookWithManager,
+		table.SetupWebhookWithManager,
+		tableentity.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

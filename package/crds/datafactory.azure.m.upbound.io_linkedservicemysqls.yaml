@@ -167,6 +167,10 @@ spec:
                     description: The description for the Data Factory Linked Service
                       MySQL.
                     type: string
+                  driverVersion:
+                    description: The version of the MySQL driver. Possible values
+                      are V1 and V2. Defaults to V1.
+                    type: string
                   integrationRuntimeName:
                     description: The integration runtime reference to associate with
                       the Data Factory Linked Service MySQL.
@@ -212,6 +216,10 @@ spec:
                   description:
                     description: The description for the Data Factory Linked Service
                       MySQL.
+                    type: string
+                  driverVersion:
+                    description: The version of the MySQL driver. Possible values
+                      are V1 and V2. Defaults to V1.
                     type: string
                   integrationRuntimeName:
                     description: The integration runtime reference to associate with
@@ -317,6 +325,10 @@ spec:
                   description:
                     description: The description for the Data Factory Linked Service
                       MySQL.
+                    type: string
+                  driverVersion:
+                    description: The version of the MySQL driver. Possible values
+                      are V1 and V2. Defaults to V1.
                     type: string
                   id:
                     description: The ID of the Data Factory MySQL Linked Service.

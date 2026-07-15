@@ -483,12 +483,56 @@ func (mg *EnvironmentCertificate) ResolveReferences(ctx context.Context, c clien
 
 	var rsp reference.NamespacedResolutionResponse
 	var err error
+
+	if mg.Spec.ForProvider.CertificateKeyVault != nil {
+		{
+			m, l, err = apisresolver.GetManagedResource("managedidentity.azure.m.upbound.io", "v1beta1", "UserAssignedIdentity", "UserAssignedIdentityList")
+			if err != nil {
+				return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+			}
+			rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+				CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.CertificateKeyVault.Identity),
+				Extract:      resource.ExtractResourceID(),
+				Namespace:    mg.GetNamespace(),
+				Reference:    mg.Spec.ForProvider.CertificateKeyVault.IdentityRef,
+				Selector:     mg.Spec.ForProvider.CertificateKeyVault.IdentitySelector,
+				To:           reference.To{List: l, Managed: m},
+			})
+		}
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.CertificateKeyVault.Identity")
+		}
+		mg.Spec.ForProvider.CertificateKeyVault.Identity = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.CertificateKeyVault.IdentityRef = rsp.ResolvedReference
+
+	}
+	if mg.Spec.ForProvider.CertificateKeyVault != nil {
+		{
+			m, l, err = apisresolver.GetManagedResource("keyvault.azure.m.upbound.io", "v1beta1", "Certificate", "CertificateList")
+			if err != nil {
+				return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+			}
+			rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+				CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.CertificateKeyVault.KeyVaultSecretID),
+				Extract:      resource.ExtractParamPath("versionless_secret_id", true),
+				Namespace:    mg.GetNamespace(),
+				Reference:    mg.Spec.ForProvider.CertificateKeyVault.KeyVaultSecretIDRef,
+				Selector:     mg.Spec.ForProvider.CertificateKeyVault.KeyVaultSecretIDSelector,
+				To:           reference.To{List: l, Managed: m},
+			})
+		}
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.CertificateKeyVault.KeyVaultSecretID")
+		}
+		mg.Spec.ForProvider.CertificateKeyVault.KeyVaultSecretID = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.CertificateKeyVault.KeyVaultSecretIDRef = rsp.ResolvedReference
+
+	}
 	{
 		m, l, err = apisresolver.GetManagedResource("containerapp.azure.m.upbound.io", "v1beta1", "Environment", "EnvironmentList")
 		if err != nil {
 			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
 		}
-
 		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ContainerAppEnvironmentID),
 			Extract:      resource.ExtractResourceID(),
@@ -503,6 +547,51 @@ func (mg *EnvironmentCertificate) ResolveReferences(ctx context.Context, c clien
 	}
 	mg.Spec.ForProvider.ContainerAppEnvironmentID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.ContainerAppEnvironmentIDRef = rsp.ResolvedReference
+
+	if mg.Spec.InitProvider.CertificateKeyVault != nil {
+		{
+			m, l, err = apisresolver.GetManagedResource("managedidentity.azure.m.upbound.io", "v1beta1", "UserAssignedIdentity", "UserAssignedIdentityList")
+			if err != nil {
+				return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+			}
+			rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+				CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.CertificateKeyVault.Identity),
+				Extract:      resource.ExtractResourceID(),
+				Namespace:    mg.GetNamespace(),
+				Reference:    mg.Spec.InitProvider.CertificateKeyVault.IdentityRef,
+				Selector:     mg.Spec.InitProvider.CertificateKeyVault.IdentitySelector,
+				To:           reference.To{List: l, Managed: m},
+			})
+		}
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.InitProvider.CertificateKeyVault.Identity")
+		}
+		mg.Spec.InitProvider.CertificateKeyVault.Identity = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.InitProvider.CertificateKeyVault.IdentityRef = rsp.ResolvedReference
+
+	}
+	if mg.Spec.InitProvider.CertificateKeyVault != nil {
+		{
+			m, l, err = apisresolver.GetManagedResource("keyvault.azure.m.upbound.io", "v1beta1", "Certificate", "CertificateList")
+			if err != nil {
+				return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+			}
+			rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+				CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.CertificateKeyVault.KeyVaultSecretID),
+				Extract:      resource.ExtractParamPath("versionless_secret_id", true),
+				Namespace:    mg.GetNamespace(),
+				Reference:    mg.Spec.InitProvider.CertificateKeyVault.KeyVaultSecretIDRef,
+				Selector:     mg.Spec.InitProvider.CertificateKeyVault.KeyVaultSecretIDSelector,
+				To:           reference.To{List: l, Managed: m},
+			})
+		}
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.InitProvider.CertificateKeyVault.KeyVaultSecretID")
+		}
+		mg.Spec.InitProvider.CertificateKeyVault.KeyVaultSecretID = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.InitProvider.CertificateKeyVault.KeyVaultSecretIDRef = rsp.ResolvedReference
+
+	}
 
 	return nil
 }

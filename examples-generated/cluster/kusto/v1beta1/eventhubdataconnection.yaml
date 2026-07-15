@@ -30,6 +30,7 @@ spec:
     resourceGroupNameSelector:
       matchLabels:
         testing.upbound.io/example-name: example
+    retrievalStartDate: "2023-06-26T12:00:00Z"
     tableName: my-table
 
 ---
@@ -45,13 +46,10 @@ metadata:
 spec:
   forProvider:
     messageRetention: 1
-    namespaceNameSelector:
+    namespaceIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: eventhub_ns
     partitionCount: 1
-    resourceGroupNameSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example
 
 ---
 

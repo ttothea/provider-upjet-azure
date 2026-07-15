@@ -88,3 +88,32 @@ func SetupGated_streamanalytics(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_streamanalytics registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_streamanalytics(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		cluster.SetupWebhookWithManager,
+		functionjavascriptuda.SetupWebhookWithManager,
+		job.SetupWebhookWithManager,
+		managedprivateendpoint.SetupWebhookWithManager,
+		outputblob.SetupWebhookWithManager,
+		outputeventhub.SetupWebhookWithManager,
+		outputfunction.SetupWebhookWithManager,
+		outputmssql.SetupWebhookWithManager,
+		outputpowerbi.SetupWebhookWithManager,
+		outputservicebusqueue.SetupWebhookWithManager,
+		outputservicebustopic.SetupWebhookWithManager,
+		outputsynapse.SetupWebhookWithManager,
+		outputtable.SetupWebhookWithManager,
+		referenceinputblob.SetupWebhookWithManager,
+		referenceinputmssql.SetupWebhookWithManager,
+		streaminputblob.SetupWebhookWithManager,
+		streaminputeventhub.SetupWebhookWithManager,
+		streaminputiothub.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

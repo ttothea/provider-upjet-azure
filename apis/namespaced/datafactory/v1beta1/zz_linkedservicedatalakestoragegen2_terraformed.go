@@ -21,7 +21,7 @@ func (mg *LinkedServiceDataLakeStorageGen2) GetTerraformResourceType() string {
 
 // GetConnectionDetailsMapping for this LinkedServiceDataLakeStorageGen2
 func (tr *LinkedServiceDataLakeStorageGen2) GetConnectionDetailsMapping() map[string]string {
-	return nil
+	return map[string]string{"service_principal_key": "servicePrincipalKeySecretRef", "storage_account_key": "storageAccountKeySecretRef"}
 }
 
 // GetObservation of this LinkedServiceDataLakeStorageGen2

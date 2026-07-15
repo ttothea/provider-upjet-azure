@@ -362,8 +362,8 @@ spec:
                         type: object
                     type: object
                   cdnFrontdoorOriginIds:
-                    description: One or more Front Door Origin resource IDs that this
-                      Front Door Route will link to.
+                    description: One or more Front Door Origin resource IDs for this
+                      Front Door Route.
                     items:
                       type: string
                     type: array
@@ -808,8 +808,8 @@ spec:
                         type: object
                     type: object
                   cdnFrontdoorOriginIds:
-                    description: One or more Front Door Origin resource IDs that this
-                      Front Door Route will link to.
+                    description: One or more Front Door Origin resource IDs for this
+                      Front Door Route.
                     items:
                       type: string
                     type: array
@@ -1151,8 +1151,8 @@ spec:
                       this Front Door Route should be created.
                     type: string
                   cdnFrontdoorOriginIds:
-                    description: One or more Front Door Origin resource IDs that this
-                      Front Door Route will link to.
+                    description: One or more Front Door Origin resource IDs for this
+                      Front Door Route.
                     items:
                       type: string
                     type: array

@@ -70,3 +70,26 @@ func SetupGated_security(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_security registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_security(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		advancedthreatprotection.SetupWebhookWithManager,
+		iotsecuritydevicegroup.SetupWebhookWithManager,
+		iotsecuritysolution.SetupWebhookWithManager,
+		securitycenterassessment.SetupWebhookWithManager,
+		securitycenterassessmentpolicy.SetupWebhookWithManager,
+		securitycenterautoprovisioning.SetupWebhookWithManager,
+		securitycentercontact.SetupWebhookWithManager,
+		securitycenterservervulnerabilityassessmentvirtualmachine.SetupWebhookWithManager,
+		securitycentersetting.SetupWebhookWithManager,
+		securitycentersubscriptionpricing.SetupWebhookWithManager,
+		securitycenterworkspace.SetupWebhookWithManager,
+		storagedefender.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

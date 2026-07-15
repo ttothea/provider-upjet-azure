@@ -67,7 +67,7 @@ type GrafanaInitParameters struct {
 	// Whether to enable the Grafana instance to use deterministic outbound IPs. Defaults to false.
 	DeterministicOutboundIPEnabled *bool `json:"deterministicOutboundIpEnabled,omitempty" tf:"deterministic_outbound_ip_enabled,omitempty"`
 
-	// Which major version of Grafana to deploy. Possible values are 10, 11.
+	// Which major version of Grafana to deploy. Possible values are 11, 12.
 	GrafanaMajorVersion *string `json:"grafanaMajorVersion,omitempty" tf:"grafana_major_version,omitempty"`
 
 	// An identity block as defined below. Changing this forces a new Dashboard Grafana to be created.
@@ -82,8 +82,11 @@ type GrafanaInitParameters struct {
 	// A smtp block as defined below.
 	SMTP *SMTPInitParameters `json:"smtp,omitempty" tf:"smtp,omitempty"`
 
-	// The name of the SKU used for the Grafana instance. Possible values are Standard and Essential. Defaults to Standard. Changing this forces a new Dashboard Grafana to be created.
+	// The name of the SKU used for the Grafana instance. The only possible value is Standard. Defaults to Standard. Changing this forces a new Dashboard Grafana to be created.
 	Sku *string `json:"sku,omitempty" tf:"sku,omitempty"`
+
+	// The size of the SKU used for the Grafana instance. Possible values are X1 and X2. Defaults to X1. Changing this forces a new Dashboard Grafana to be created.
+	SkuSize *string `json:"skuSize,omitempty" tf:"sku_size,omitempty"`
 
 	// A mapping of tags which should be assigned to the Dashboard Grafana.
 	// +mapType=granular
@@ -110,7 +113,7 @@ type GrafanaObservation struct {
 	// The endpoint of the Grafana instance.
 	Endpoint *string `json:"endpoint,omitempty" tf:"endpoint,omitempty"`
 
-	// Which major version of Grafana to deploy. Possible values are 10, 11.
+	// Which major version of Grafana to deploy. Possible values are 11, 12.
 	GrafanaMajorVersion *string `json:"grafanaMajorVersion,omitempty" tf:"grafana_major_version,omitempty"`
 
 	// The full Grafana software semantic version deployed.
@@ -137,8 +140,11 @@ type GrafanaObservation struct {
 	// A smtp block as defined below.
 	SMTP *SMTPObservation `json:"smtp,omitempty" tf:"smtp,omitempty"`
 
-	// The name of the SKU used for the Grafana instance. Possible values are Standard and Essential. Defaults to Standard. Changing this forces a new Dashboard Grafana to be created.
+	// The name of the SKU used for the Grafana instance. The only possible value is Standard. Defaults to Standard. Changing this forces a new Dashboard Grafana to be created.
 	Sku *string `json:"sku,omitempty" tf:"sku,omitempty"`
+
+	// The size of the SKU used for the Grafana instance. Possible values are X1 and X2. Defaults to X1. Changing this forces a new Dashboard Grafana to be created.
+	SkuSize *string `json:"skuSize,omitempty" tf:"sku_size,omitempty"`
 
 	// A mapping of tags which should be assigned to the Dashboard Grafana.
 	// +mapType=granular
@@ -166,7 +172,7 @@ type GrafanaParameters struct {
 	// +kubebuilder:validation:Optional
 	DeterministicOutboundIPEnabled *bool `json:"deterministicOutboundIpEnabled,omitempty" tf:"deterministic_outbound_ip_enabled,omitempty"`
 
-	// Which major version of Grafana to deploy. Possible values are 10, 11.
+	// Which major version of Grafana to deploy. Possible values are 11, 12.
 	// +kubebuilder:validation:Optional
 	GrafanaMajorVersion *string `json:"grafanaMajorVersion,omitempty" tf:"grafana_major_version,omitempty"`
 
@@ -199,9 +205,13 @@ type GrafanaParameters struct {
 	// +kubebuilder:validation:Optional
 	SMTP *SMTPParameters `json:"smtp,omitempty" tf:"smtp,omitempty"`
 
-	// The name of the SKU used for the Grafana instance. Possible values are Standard and Essential. Defaults to Standard. Changing this forces a new Dashboard Grafana to be created.
+	// The name of the SKU used for the Grafana instance. The only possible value is Standard. Defaults to Standard. Changing this forces a new Dashboard Grafana to be created.
 	// +kubebuilder:validation:Optional
 	Sku *string `json:"sku,omitempty" tf:"sku,omitempty"`
+
+	// The size of the SKU used for the Grafana instance. Possible values are X1 and X2. Defaults to X1. Changing this forces a new Dashboard Grafana to be created.
+	// +kubebuilder:validation:Optional
+	SkuSize *string `json:"skuSize,omitempty" tf:"sku_size,omitempty"`
 
 	// A mapping of tags which should be assigned to the Dashboard Grafana.
 	// +kubebuilder:validation:Optional

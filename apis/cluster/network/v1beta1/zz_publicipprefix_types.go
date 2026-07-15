@@ -27,10 +27,10 @@ type PublicIPPrefixInitParameters struct {
 	// Specifies the number of bits of the prefix. The value can be set between 0 (4,294,967,296 addresses) and 31 (2 addresses). Defaults to 28(16 addresses). Changing this forces a new resource to be created.
 	PrefixLength *float64 `json:"prefixLength,omitempty" tf:"prefix_length,omitempty"`
 
-	// The SKU of the Public IP Prefix. Accepted values are Standard. Defaults to Standard. Changing this forces a new resource to be created.
+	// The SKU of the Public IP Prefix. Possible values are Standard and StandardV2. Defaults to Standard. Changing this forces a new resource to be created.
 	Sku *string `json:"sku,omitempty" tf:"sku,omitempty"`
 
-	// The SKU Tier that should be used for the Public IP. Possible values are Regional and Global. Defaults to Regional. Changing this forces a new resource to be created.
+	// The SKU Tier that should be used for the Public IP Prefix. Possible values are Regional and Global. Defaults to Regional. Changing this forces a new resource to be created.
 	SkuTier *string `json:"skuTier,omitempty" tf:"sku_tier,omitempty"`
 
 	// A mapping of tags to assign to the resource.
@@ -65,10 +65,10 @@ type PublicIPPrefixObservation struct {
 	// The name of the resource group in which to create the Public IP Prefix. Changing this forces a new resource to be created.
 	ResourceGroupName *string `json:"resourceGroupName,omitempty" tf:"resource_group_name,omitempty"`
 
-	// The SKU of the Public IP Prefix. Accepted values are Standard. Defaults to Standard. Changing this forces a new resource to be created.
+	// The SKU of the Public IP Prefix. Possible values are Standard and StandardV2. Defaults to Standard. Changing this forces a new resource to be created.
 	Sku *string `json:"sku,omitempty" tf:"sku,omitempty"`
 
-	// The SKU Tier that should be used for the Public IP. Possible values are Regional and Global. Defaults to Regional. Changing this forces a new resource to be created.
+	// The SKU Tier that should be used for the Public IP Prefix. Possible values are Regional and Global. Defaults to Regional. Changing this forces a new resource to be created.
 	SkuTier *string `json:"skuTier,omitempty" tf:"sku_tier,omitempty"`
 
 	// A mapping of tags to assign to the resource.
@@ -111,11 +111,11 @@ type PublicIPPrefixParameters struct {
 	// +kubebuilder:validation:Optional
 	ResourceGroupNameSelector *v1.Selector `json:"resourceGroupNameSelector,omitempty" tf:"-"`
 
-	// The SKU of the Public IP Prefix. Accepted values are Standard. Defaults to Standard. Changing this forces a new resource to be created.
+	// The SKU of the Public IP Prefix. Possible values are Standard and StandardV2. Defaults to Standard. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
 	Sku *string `json:"sku,omitempty" tf:"sku,omitempty"`
 
-	// The SKU Tier that should be used for the Public IP. Possible values are Regional and Global. Defaults to Regional. Changing this forces a new resource to be created.
+	// The SKU Tier that should be used for the Public IP Prefix. Possible values are Regional and Global. Defaults to Regional. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
 	SkuTier *string `json:"skuTier,omitempty" tf:"sku_tier,omitempty"`
 

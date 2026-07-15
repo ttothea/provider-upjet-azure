@@ -17,7 +17,7 @@ spec:
     location: West Europe
     machineLearningWorkspaceIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: example
+        testing.upbound.io/example-name: computeclusterworkspace
     scaleSettings:
     - maxNodeCount: 1
       minNodeCount: 0
@@ -68,8 +68,8 @@ metadata:
   annotations:
     meta.upbound.io/example-id: machinelearningservices/v1beta1/computecluster
   labels:
-    testing.upbound.io/example-name: example
-  name: example
+    testing.upbound.io/example-name: computeclusterworkspace
+  name: computeclusterworkspace
 spec:
   forProvider:
     applicationInsightsIdSelector:

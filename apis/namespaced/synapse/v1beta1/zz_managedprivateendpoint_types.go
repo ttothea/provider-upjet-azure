@@ -16,6 +16,9 @@ import (
 
 type ManagedPrivateEndpointInitParameters struct {
 
+	// A list of fully qualified domain names to assign to the Synapse Private Endpoint. Changing this forces a new resource to be created.
+	FullyQualifiedDomainNames []*string `json:"fullyQualifiedDomainNames,omitempty" tf:"fully_qualified_domain_names,omitempty"`
+
 	// Specifies the name which should be used for this Managed Private Endpoint. Changing this forces a new resource to be created.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
@@ -51,6 +54,9 @@ type ManagedPrivateEndpointInitParameters struct {
 
 type ManagedPrivateEndpointObservation struct {
 
+	// A list of fully qualified domain names to assign to the Synapse Private Endpoint. Changing this forces a new resource to be created.
+	FullyQualifiedDomainNames []*string `json:"fullyQualifiedDomainNames,omitempty" tf:"fully_qualified_domain_names,omitempty"`
+
 	// The Synapse Managed Private Endpoint ID.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -68,6 +74,10 @@ type ManagedPrivateEndpointObservation struct {
 }
 
 type ManagedPrivateEndpointParameters struct {
+
+	// A list of fully qualified domain names to assign to the Synapse Private Endpoint. Changing this forces a new resource to be created.
+	// +kubebuilder:validation:Optional
+	FullyQualifiedDomainNames []*string `json:"fullyQualifiedDomainNames,omitempty" tf:"fully_qualified_domain_names,omitempty"`
 
 	// Specifies the name which should be used for this Managed Private Endpoint. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional

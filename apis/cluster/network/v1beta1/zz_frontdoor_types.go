@@ -13,7 +13,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 )
 
-type BackendInitParameters struct {
+type BackendPoolBackendInitParameters struct {
 
 	// Location of the backend (IP address or FQDN)
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
@@ -37,7 +37,7 @@ type BackendInitParameters struct {
 	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
-type BackendObservation struct {
+type BackendPoolBackendObservation struct {
 
 	// Location of the backend (IP address or FQDN)
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
@@ -61,7 +61,7 @@ type BackendObservation struct {
 	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
-type BackendParameters struct {
+type BackendPoolBackendParameters struct {
 
 	// Location of the backend (IP address or FQDN)
 	// +kubebuilder:validation:Optional
@@ -167,7 +167,7 @@ type BackendPoolHealthProbeParameters struct {
 type BackendPoolInitParameters struct {
 
 	// A backend block as defined below.
-	Backend []BackendInitParameters `json:"backend,omitempty" tf:"backend,omitempty"`
+	Backend []BackendPoolBackendInitParameters `json:"backend,omitempty" tf:"backend,omitempty"`
 
 	// Specifies the name of the backend_pool_health_probe block within this resource to use for this Backend Pool.
 	HealthProbeName *string `json:"healthProbeName,omitempty" tf:"health_probe_name,omitempty"`
@@ -234,7 +234,7 @@ type BackendPoolLoadBalancingParameters struct {
 type BackendPoolObservation struct {
 
 	// A backend block as defined below.
-	Backend []BackendObservation `json:"backend,omitempty" tf:"backend,omitempty"`
+	Backend []BackendPoolBackendObservation `json:"backend,omitempty" tf:"backend,omitempty"`
 
 	// Specifies the name of the backend_pool_health_probe block within this resource to use for this Backend Pool.
 	HealthProbeName *string `json:"healthProbeName,omitempty" tf:"health_probe_name,omitempty"`
@@ -253,7 +253,7 @@ type BackendPoolParameters struct {
 
 	// A backend block as defined below.
 	// +kubebuilder:validation:Optional
-	Backend []BackendParameters `json:"backend" tf:"backend,omitempty"`
+	Backend []BackendPoolBackendParameters `json:"backend" tf:"backend,omitempty"`
 
 	// Specifies the name of the backend_pool_health_probe block within this resource to use for this Backend Pool.
 	// +kubebuilder:validation:Optional
@@ -428,7 +428,7 @@ type FrontDoorInitParameters struct {
 	LoadBalancerEnabled *bool `json:"loadBalancerEnabled,omitempty" tf:"load_balancer_enabled,omitempty"`
 
 	// A routing_rule block as defined below.
-	RoutingRule []RoutingRuleInitParameters `json:"routingRule,omitempty" tf:"routing_rule,omitempty"`
+	RoutingRule []FrontDoorRoutingRuleInitParameters `json:"routingRule,omitempty" tf:"routing_rule,omitempty"`
 
 	// A mapping of tags to assign to the resource.
 	// +mapType=granular
@@ -489,7 +489,7 @@ type FrontDoorObservation struct {
 	ResourceGroupName *string `json:"resourceGroupName,omitempty" tf:"resource_group_name,omitempty"`
 
 	// A routing_rule block as defined below.
-	RoutingRule []RoutingRuleObservation `json:"routingRule,omitempty" tf:"routing_rule,omitempty"`
+	RoutingRule []FrontDoorRoutingRuleObservation `json:"routingRule,omitempty" tf:"routing_rule,omitempty"`
 
 	// A map/dictionary of Routing Rule Names (key) to the Routing Rule ID (value)
 	// +mapType=granular
@@ -545,7 +545,7 @@ type FrontDoorParameters struct {
 
 	// A routing_rule block as defined below.
 	// +kubebuilder:validation:Optional
-	RoutingRule []RoutingRuleParameters `json:"routingRule,omitempty" tf:"routing_rule,omitempty"`
+	RoutingRule []FrontDoorRoutingRuleParameters `json:"routingRule,omitempty" tf:"routing_rule,omitempty"`
 
 	// A mapping of tags to assign to the resource.
 	// +kubebuilder:validation:Optional
@@ -615,7 +615,7 @@ type FrontendEndpointParameters struct {
 	WebApplicationFirewallPolicyLinkID *string `json:"webApplicationFirewallPolicyLinkId,omitempty" tf:"web_application_firewall_policy_link_id,omitempty"`
 }
 
-type RoutingRuleInitParameters struct {
+type FrontDoorRoutingRuleInitParameters struct {
 
 	// Protocol schemes to match for the Backend Routing Rule. Possible values are Http and Https.
 	AcceptedProtocols []*string `json:"acceptedProtocols,omitempty" tf:"accepted_protocols,omitempty"`
@@ -639,7 +639,7 @@ type RoutingRuleInitParameters struct {
 	RedirectConfiguration []RoutingRuleRedirectConfigurationInitParameters `json:"redirectConfiguration,omitempty" tf:"redirect_configuration,omitempty"`
 }
 
-type RoutingRuleObservation struct {
+type FrontDoorRoutingRuleObservation struct {
 
 	// Protocol schemes to match for the Backend Routing Rule. Possible values are Http and Https.
 	AcceptedProtocols []*string `json:"acceptedProtocols,omitempty" tf:"accepted_protocols,omitempty"`
@@ -666,7 +666,7 @@ type RoutingRuleObservation struct {
 	RedirectConfiguration []RoutingRuleRedirectConfigurationObservation `json:"redirectConfiguration,omitempty" tf:"redirect_configuration,omitempty"`
 }
 
-type RoutingRuleParameters struct {
+type FrontDoorRoutingRuleParameters struct {
 
 	// Protocol schemes to match for the Backend Routing Rule. Possible values are Http and Https.
 	// +kubebuilder:validation:Optional

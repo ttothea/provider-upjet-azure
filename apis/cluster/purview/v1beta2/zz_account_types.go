@@ -143,7 +143,7 @@ type IdentityInitParameters struct {
 	// +listType=set
 	IdentityIds []*string `json:"identityIds,omitempty" tf:"identity_ids,omitempty"`
 
-	// Specifies the type of Managed Service Identity that should be configured on this Purview Account. Possible values are UserAssigned and SystemAssigned.
+	// Specifies the type of Managed Service Identity that should be configured on this Purview Account. Possible values are SystemAssigned and SystemAssigned, UserAssigned.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
@@ -159,7 +159,7 @@ type IdentityObservation struct {
 	// The Tenant ID associated with this Managed Service Identity.
 	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 
-	// Specifies the type of Managed Service Identity that should be configured on this Purview Account. Possible values are UserAssigned and SystemAssigned.
+	// Specifies the type of Managed Service Identity that should be configured on this Purview Account. Possible values are SystemAssigned and SystemAssigned, UserAssigned.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
@@ -170,7 +170,7 @@ type IdentityParameters struct {
 	// +listType=set
 	IdentityIds []*string `json:"identityIds,omitempty" tf:"identity_ids,omitempty"`
 
-	// Specifies the type of Managed Service Identity that should be configured on this Purview Account. Possible values are UserAssigned and SystemAssigned.
+	// Specifies the type of Managed Service Identity that should be configured on this Purview Account. Possible values are SystemAssigned and SystemAssigned, UserAssigned.
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type" tf:"type,omitempty"`
 }

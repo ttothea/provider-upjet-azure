@@ -97,3 +97,35 @@ func SetupGated_cosmosdb(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_cosmosdb registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_cosmosdb(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		account.SetupWebhookWithManager,
+		cassandracluster.SetupWebhookWithManager,
+		cassandradatacenter.SetupWebhookWithManager,
+		cassandrakeyspace.SetupWebhookWithManager,
+		cassandratable.SetupWebhookWithManager,
+		gremlindatabase.SetupWebhookWithManager,
+		gremlingraph.SetupWebhookWithManager,
+		mongocluster.SetupWebhookWithManager,
+		mongocollection.SetupWebhookWithManager,
+		mongodatabase.SetupWebhookWithManager,
+		mongoroledefinition.SetupWebhookWithManager,
+		mongouserdefinition.SetupWebhookWithManager,
+		sqlcontainer.SetupWebhookWithManager,
+		sqldatabase.SetupWebhookWithManager,
+		sqldedicatedgateway.SetupWebhookWithManager,
+		sqlfunction.SetupWebhookWithManager,
+		sqlroleassignment.SetupWebhookWithManager,
+		sqlroledefinition.SetupWebhookWithManager,
+		sqlstoredprocedure.SetupWebhookWithManager,
+		sqltrigger.SetupWebhookWithManager,
+		table.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

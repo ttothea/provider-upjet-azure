@@ -40,3 +40,16 @@ func SetupGated_datamigration(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_datamigration registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_datamigration(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		databasemigrationproject.SetupWebhookWithManager,
+		databasemigrationservice.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

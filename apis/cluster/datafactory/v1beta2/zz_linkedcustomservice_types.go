@@ -67,7 +67,8 @@ type LinkedCustomServiceInitParameters struct {
 	// The type of data stores that will be connected to Data Factory. For full list of supported data stores, please refer to Azure Data Factory connector. Please refer to Microsoft.DataFactory factories/linkedservices for the type values syntax. Changing this forces a new resource to be created.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
-	// A JSON object that contains the properties of the Data Factory Linked Service.
+	// A JSON object that contains the properties of the Data Factory Linked Service. Refer to
+	// datafactory/models.go for the shape of the expected JSON. For example, the JSON object for AzureBlobStorage-typed Linked Service will be unmarshaled into AzureBlobStorageLinkedServiceTypeProperties struct.
 	TypePropertiesJSON *string `json:"typePropertiesJson,omitempty" tf:"type_properties_json,omitempty"`
 }
 
@@ -99,7 +100,8 @@ type LinkedCustomServiceObservation struct {
 	// The type of data stores that will be connected to Data Factory. For full list of supported data stores, please refer to Azure Data Factory connector. Please refer to Microsoft.DataFactory factories/linkedservices for the type values syntax. Changing this forces a new resource to be created.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
-	// A JSON object that contains the properties of the Data Factory Linked Service.
+	// A JSON object that contains the properties of the Data Factory Linked Service. Refer to
+	// datafactory/models.go for the shape of the expected JSON. For example, the JSON object for AzureBlobStorage-typed Linked Service will be unmarshaled into AzureBlobStorageLinkedServiceTypeProperties struct.
 	TypePropertiesJSON *string `json:"typePropertiesJson,omitempty" tf:"type_properties_json,omitempty"`
 }
 
@@ -145,7 +147,8 @@ type LinkedCustomServiceParameters struct {
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
-	// A JSON object that contains the properties of the Data Factory Linked Service.
+	// A JSON object that contains the properties of the Data Factory Linked Service. Refer to
+	// datafactory/models.go for the shape of the expected JSON. For example, the JSON object for AzureBlobStorage-typed Linked Service will be unmarshaled into AzureBlobStorageLinkedServiceTypeProperties struct.
 	// +kubebuilder:validation:Optional
 	TypePropertiesJSON *string `json:"typePropertiesJson,omitempty" tf:"type_properties_json,omitempty"`
 }

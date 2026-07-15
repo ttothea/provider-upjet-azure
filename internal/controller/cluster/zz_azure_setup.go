@@ -43,3 +43,17 @@ func SetupGated_azure(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_azure registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_azure(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		resourcegroup.SetupWebhookWithManager,
+		resourceproviderregistration.SetupWebhookWithManager,
+		subscription.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

@@ -322,7 +322,7 @@ type WorkloadProfileInitParameters struct {
 	// The name of the workload profile.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// Workload profile type for the workloads to run on. Possible values include Consumption, D4, D8, D16, D32, E4, E8, E16 and E32.
+	// Workload profile type for the workloads to run on. Possible values include Consumption, Consumption-GPU-NC24-A100, Consumption-GPU-NC8as-T4, D4, D8, D16, D32, E4, E8, E16, E32, NC24-A100, NC48-A100 and NC96-A100.
 	WorkloadProfileType *string `json:"workloadProfileType,omitempty" tf:"workload_profile_type,omitempty"`
 }
 
@@ -337,7 +337,7 @@ type WorkloadProfileObservation struct {
 	// The name of the workload profile.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// Workload profile type for the workloads to run on. Possible values include Consumption, D4, D8, D16, D32, E4, E8, E16 and E32.
+	// Workload profile type for the workloads to run on. Possible values include Consumption, Consumption-GPU-NC24-A100, Consumption-GPU-NC8as-T4, D4, D8, D16, D32, E4, E8, E16, E32, NC24-A100, NC48-A100 and NC96-A100.
 	WorkloadProfileType *string `json:"workloadProfileType,omitempty" tf:"workload_profile_type,omitempty"`
 }
 
@@ -355,7 +355,7 @@ type WorkloadProfileParameters struct {
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name" tf:"name,omitempty"`
 
-	// Workload profile type for the workloads to run on. Possible values include Consumption, D4, D8, D16, D32, E4, E8, E16 and E32.
+	// Workload profile type for the workloads to run on. Possible values include Consumption, Consumption-GPU-NC24-A100, Consumption-GPU-NC8as-T4, D4, D8, D16, D32, E4, E8, E16, E32, NC24-A100, NC48-A100 and NC96-A100.
 	// +kubebuilder:validation:Optional
 	WorkloadProfileType *string `json:"workloadProfileType" tf:"workload_profile_type,omitempty"`
 }

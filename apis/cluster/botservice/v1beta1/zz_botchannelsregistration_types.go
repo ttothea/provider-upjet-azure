@@ -45,6 +45,15 @@ type BotChannelsRegistrationInitParameters struct {
 	// The Microsoft Application ID for the Bot Channels Registration. Changing this forces a new resource to be created.
 	MicrosoftAppID *string `json:"microsoftAppId,omitempty" tf:"microsoft_app_id,omitempty"`
 
+	// The Microsoft Application Tenant ID for the Bot Channels Registration. Changing this forces a new resource to be created.
+	MicrosoftAppTenantID *string `json:"microsoftAppTenantId,omitempty" tf:"microsoft_app_tenant_id,omitempty"`
+
+	// The Microsoft Application Type for the Bot Channels Registration. Possible values are MultiTenant, SingleTenant and UserAssignedMSI. Changing this forces a new resource to be created.
+	MicrosoftAppType *string `json:"microsoftAppType,omitempty" tf:"microsoft_app_type,omitempty"`
+
+	// The ID of Microsoft Application User Assigned Identity for the Bot Channels Registration. Changing this forces a new resource to be created.
+	MicrosoftAppUserAssignedIdentityID *string `json:"microsoftAppUserAssignedIdentityId,omitempty" tf:"microsoft_app_user_assigned_identity_id,omitempty"`
+
 	// Specifies the name of the Bot Channels Registration. Changing this forces a new resource to be created. Must be globally unique.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
@@ -105,6 +114,15 @@ type BotChannelsRegistrationObservation struct {
 
 	// The Microsoft Application ID for the Bot Channels Registration. Changing this forces a new resource to be created.
 	MicrosoftAppID *string `json:"microsoftAppId,omitempty" tf:"microsoft_app_id,omitempty"`
+
+	// The Microsoft Application Tenant ID for the Bot Channels Registration. Changing this forces a new resource to be created.
+	MicrosoftAppTenantID *string `json:"microsoftAppTenantId,omitempty" tf:"microsoft_app_tenant_id,omitempty"`
+
+	// The Microsoft Application Type for the Bot Channels Registration. Possible values are MultiTenant, SingleTenant and UserAssignedMSI. Changing this forces a new resource to be created.
+	MicrosoftAppType *string `json:"microsoftAppType,omitempty" tf:"microsoft_app_type,omitempty"`
+
+	// The ID of Microsoft Application User Assigned Identity for the Bot Channels Registration. Changing this forces a new resource to be created.
+	MicrosoftAppUserAssignedIdentityID *string `json:"microsoftAppUserAssignedIdentityId,omitempty" tf:"microsoft_app_user_assigned_identity_id,omitempty"`
 
 	// Specifies the name of the Bot Channels Registration. Changing this forces a new resource to be created. Must be globally unique.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
@@ -167,6 +185,18 @@ type BotChannelsRegistrationParameters struct {
 	// The Microsoft Application ID for the Bot Channels Registration. Changing this forces a new resource to be created.
 	// +kubebuilder:validation:Optional
 	MicrosoftAppID *string `json:"microsoftAppId,omitempty" tf:"microsoft_app_id,omitempty"`
+
+	// The Microsoft Application Tenant ID for the Bot Channels Registration. Changing this forces a new resource to be created.
+	// +kubebuilder:validation:Optional
+	MicrosoftAppTenantID *string `json:"microsoftAppTenantId,omitempty" tf:"microsoft_app_tenant_id,omitempty"`
+
+	// The Microsoft Application Type for the Bot Channels Registration. Possible values are MultiTenant, SingleTenant and UserAssignedMSI. Changing this forces a new resource to be created.
+	// +kubebuilder:validation:Optional
+	MicrosoftAppType *string `json:"microsoftAppType,omitempty" tf:"microsoft_app_type,omitempty"`
+
+	// The ID of Microsoft Application User Assigned Identity for the Bot Channels Registration. Changing this forces a new resource to be created.
+	// +kubebuilder:validation:Optional
+	MicrosoftAppUserAssignedIdentityID *string `json:"microsoftAppUserAssignedIdentityId,omitempty" tf:"microsoft_app_user_assigned_identity_id,omitempty"`
 
 	// Specifies the name of the Bot Channels Registration. Changing this forces a new resource to be created. Must be globally unique.
 	// +kubebuilder:validation:Optional

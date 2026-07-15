@@ -76,3 +76,28 @@ func SetupGated_automation(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_automation registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_automation(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		account.SetupWebhookWithManager,
+		connection.SetupWebhookWithManager,
+		connectionclassiccertificate.SetupWebhookWithManager,
+		connectiontype.SetupWebhookWithManager,
+		credential.SetupWebhookWithManager,
+		hybridrunbookworkergroup.SetupWebhookWithManager,
+		module.SetupWebhookWithManager,
+		runbook.SetupWebhookWithManager,
+		schedule.SetupWebhookWithManager,
+		variablebool.SetupWebhookWithManager,
+		variabledatetime.SetupWebhookWithManager,
+		variableint.SetupWebhookWithManager,
+		variablestring.SetupWebhookWithManager,
+		webhook.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

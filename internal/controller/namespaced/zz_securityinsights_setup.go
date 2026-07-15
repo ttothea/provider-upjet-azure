@@ -55,3 +55,21 @@ func SetupGated_securityinsights(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_securityinsights registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_securityinsights(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		sentinelalertrulefusion.SetupWebhookWithManager,
+		sentinelalertrulemachinelearningbehavioranalytics.SetupWebhookWithManager,
+		sentinelalertrulemssecurityincident.SetupWebhookWithManager,
+		sentinelautomationrule.SetupWebhookWithManager,
+		sentineldataconnectoriot.SetupWebhookWithManager,
+		sentinelloganalyticsworkspaceonboarding.SetupWebhookWithManager,
+		sentinelwatchlist.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

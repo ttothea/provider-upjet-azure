@@ -18,6 +18,9 @@ type MSSQLElasticPoolInitParameters struct {
 	// Specifies the type of enclave to be used by the elastic pool. When enclave_type is not specified (e.g., the default) enclaves are not enabled on the elastic pool. Once enabled (e.g., by specifying Default or VBS) removing the enclave_type field from the configuration file will force the creation of a new resource. Possible values are Default or VBS.
 	EnclaveType *string `json:"enclaveType,omitempty" tf:"enclave_type,omitempty"`
 
+	// Specifies the number of high availability replicas for the elastic pool. Defaults to 1. Possible values are between 0 and 4.
+	HighAvailabilityReplicaCount *float64 `json:"highAvailabilityReplicaCount,omitempty" tf:"high_availability_replica_count,omitempty"`
+
 	// Specifies the license type applied to this database. Possible values are LicenseIncluded and BasePrice.
 	LicenseType *string `json:"licenseType,omitempty" tf:"license_type,omitempty"`
 
@@ -51,6 +54,9 @@ type MSSQLElasticPoolObservation struct {
 
 	// Specifies the type of enclave to be used by the elastic pool. When enclave_type is not specified (e.g., the default) enclaves are not enabled on the elastic pool. Once enabled (e.g., by specifying Default or VBS) removing the enclave_type field from the configuration file will force the creation of a new resource. Possible values are Default or VBS.
 	EnclaveType *string `json:"enclaveType,omitempty" tf:"enclave_type,omitempty"`
+
+	// Specifies the number of high availability replicas for the elastic pool. Defaults to 1. Possible values are between 0 and 4.
+	HighAvailabilityReplicaCount *float64 `json:"highAvailabilityReplicaCount,omitempty" tf:"high_availability_replica_count,omitempty"`
 
 	// The ID of the MS SQL Elastic Pool.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -95,6 +101,10 @@ type MSSQLElasticPoolParameters struct {
 	// Specifies the type of enclave to be used by the elastic pool. When enclave_type is not specified (e.g., the default) enclaves are not enabled on the elastic pool. Once enabled (e.g., by specifying Default or VBS) removing the enclave_type field from the configuration file will force the creation of a new resource. Possible values are Default or VBS.
 	// +kubebuilder:validation:Optional
 	EnclaveType *string `json:"enclaveType,omitempty" tf:"enclave_type,omitempty"`
+
+	// Specifies the number of high availability replicas for the elastic pool. Defaults to 1. Possible values are between 0 and 4.
+	// +kubebuilder:validation:Optional
+	HighAvailabilityReplicaCount *float64 `json:"highAvailabilityReplicaCount,omitempty" tf:"high_availability_replica_count,omitempty"`
 
 	// Specifies the license type applied to this database. Possible values are LicenseIncluded and BasePrice.
 	// +kubebuilder:validation:Optional
@@ -200,7 +210,7 @@ type SkuInitParameters struct {
 	// Specifies the SKU Name for this Elasticpool. The name of the SKU, will be either vCore based or DTU based. Possible DTU based values are BasicPool, StandardPool, PremiumPool while possible vCore based values are GP_Gen4, GP_Gen5, GP_Fsv2, GP_DC, BC_Gen4, BC_Gen5, BC_DC, HS_PRMS, HS_MOPRMS, or HS_Gen5.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// The tier of the particular SKU. Possible values are GeneralPurpose, BusinessCritical, Basic, Standard, Premium, or HyperScale. For more information see the documentation for your Elasticpool configuration: vCore-based or DTU-based.
+	// The tier of the particular SKU. Possible values are GeneralPurpose, BusinessCritical, Basic, Standard, Premium, or Hyperscale. For more information see the documentation for your Elasticpool configuration: vCore-based or DTU-based.
 	Tier *string `json:"tier,omitempty" tf:"tier,omitempty"`
 }
 
@@ -215,7 +225,7 @@ type SkuObservation struct {
 	// Specifies the SKU Name for this Elasticpool. The name of the SKU, will be either vCore based or DTU based. Possible DTU based values are BasicPool, StandardPool, PremiumPool while possible vCore based values are GP_Gen4, GP_Gen5, GP_Fsv2, GP_DC, BC_Gen4, BC_Gen5, BC_DC, HS_PRMS, HS_MOPRMS, or HS_Gen5.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// The tier of the particular SKU. Possible values are GeneralPurpose, BusinessCritical, Basic, Standard, Premium, or HyperScale. For more information see the documentation for your Elasticpool configuration: vCore-based or DTU-based.
+	// The tier of the particular SKU. Possible values are GeneralPurpose, BusinessCritical, Basic, Standard, Premium, or Hyperscale. For more information see the documentation for your Elasticpool configuration: vCore-based or DTU-based.
 	Tier *string `json:"tier,omitempty" tf:"tier,omitempty"`
 }
 
@@ -233,7 +243,7 @@ type SkuParameters struct {
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name" tf:"name,omitempty"`
 
-	// The tier of the particular SKU. Possible values are GeneralPurpose, BusinessCritical, Basic, Standard, Premium, or HyperScale. For more information see the documentation for your Elasticpool configuration: vCore-based or DTU-based.
+	// The tier of the particular SKU. Possible values are GeneralPurpose, BusinessCritical, Basic, Standard, Premium, or Hyperscale. For more information see the documentation for your Elasticpool configuration: vCore-based or DTU-based.
 	// +kubebuilder:validation:Optional
 	Tier *string `json:"tier" tf:"tier,omitempty"`
 }

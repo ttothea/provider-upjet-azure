@@ -165,6 +165,9 @@ type BastionHostObservation struct {
 	// Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created. Review Azure Bastion Host FAQ for supported locations.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
+	// Whether Private-Only deployment is enabled for the Bastion Host.
+	PrivateOnlyEnabled *bool `json:"privateOnlyEnabled,omitempty" tf:"private_only_enabled,omitempty"`
+
 	// The name of the resource group in which to create the Bastion Host. Changing this forces a new resource to be created.
 	ResourceGroupName *string `json:"resourceGroupName,omitempty" tf:"resource_group_name,omitempty"`
 

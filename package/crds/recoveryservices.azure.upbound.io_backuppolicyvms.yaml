@@ -109,6 +109,10 @@ spec:
                           x-kubernetes-list-type: set
                       type: object
                     type: array
+                  consistencyType:
+                    description: The consistency type for the backup policy. The only
+                      possible value is OnlyCrashConsistent.
+                    type: string
                   instantRestoreResourceGroup:
                     description: Specifies the instant restore resource group name
                       as documented in the instant_restore_resource_group block below.
@@ -485,6 +489,10 @@ spec:
                           x-kubernetes-list-type: set
                       type: object
                     type: array
+                  consistencyType:
+                    description: The consistency type for the backup policy. The only
+                      possible value is OnlyCrashConsistent.
+                    type: string
                   instantRestoreResourceGroup:
                     description: Specifies the instant restore resource group name
                       as documented in the instant_restore_resource_group block below.
@@ -784,6 +792,10 @@ spec:
                           x-kubernetes-list-type: set
                       type: object
                     type: array
+                  consistencyType:
+                    description: The consistency type for the backup policy. The only
+                      possible value is OnlyCrashConsistent.
+                    type: string
                   id:
                     description: The ID of the VM Backup Policy.
                     type: string
@@ -1112,6 +1124,10 @@ spec:
                         type: array
                         x-kubernetes-list-type: set
                     type: object
+                  consistencyType:
+                    description: The consistency type for the backup policy. The only
+                      possible value is OnlyCrashConsistent.
+                    type: string
                   instantRestoreResourceGroup:
                     description: Specifies the instant restore resource group name
                       as documented in the instant_restore_resource_group block below.
@@ -1471,6 +1487,10 @@ spec:
                         type: array
                         x-kubernetes-list-type: set
                     type: object
+                  consistencyType:
+                    description: The consistency type for the backup policy. The only
+                      possible value is OnlyCrashConsistent.
+                    type: string
                   instantRestoreResourceGroup:
                     description: Specifies the instant restore resource group name
                       as documented in the instant_restore_resource_group block below.
@@ -1753,6 +1773,10 @@ spec:
                         type: array
                         x-kubernetes-list-type: set
                     type: object
+                  consistencyType:
+                    description: The consistency type for the backup policy. The only
+                      possible value is OnlyCrashConsistent.
+                    type: string
                   id:
                     description: The ID of the VM Backup Policy.
                     type: string

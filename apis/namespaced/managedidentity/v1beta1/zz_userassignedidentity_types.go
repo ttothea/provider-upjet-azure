@@ -16,6 +16,9 @@ import (
 
 type UserAssignedIdentityInitParameters struct {
 
+	// The isolation scope for the User Assigned Identity. The only possible value is Regional.
+	IsolationScope *string `json:"isolationScope,omitempty" tf:"isolation_scope,omitempty"`
+
 	// The Azure Region where the User Assigned Identity should exist. Changing this forces a new User Assigned Identity to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
@@ -47,6 +50,9 @@ type UserAssignedIdentityObservation struct {
 	// The ID of the User Assigned Identity.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The isolation scope for the User Assigned Identity. The only possible value is Regional.
+	IsolationScope *string `json:"isolationScope,omitempty" tf:"isolation_scope,omitempty"`
+
 	// The Azure Region where the User Assigned Identity should exist. Changing this forces a new User Assigned Identity to be created.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
@@ -68,6 +74,10 @@ type UserAssignedIdentityObservation struct {
 }
 
 type UserAssignedIdentityParameters struct {
+
+	// The isolation scope for the User Assigned Identity. The only possible value is Regional.
+	// +kubebuilder:validation:Optional
+	IsolationScope *string `json:"isolationScope,omitempty" tf:"isolation_scope,omitempty"`
 
 	// The Azure Region where the User Assigned Identity should exist. Changing this forces a new User Assigned Identity to be created.
 	// +kubebuilder:validation:Optional

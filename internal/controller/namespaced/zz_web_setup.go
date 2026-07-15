@@ -103,3 +103,37 @@ func SetupGated_web(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_web registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_web(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		appactiveslot.SetupWebhookWithManager,
+		apphybridconnection.SetupWebhookWithManager,
+		appservicecertificatebinding.SetupWebhookWithManager,
+		appservicecustomhostnamebinding.SetupWebhookWithManager,
+		appservicemanagedcertificate.SetupWebhookWithManager,
+		appserviceplan.SetupWebhookWithManager,
+		functionapp.SetupWebhookWithManager,
+		functionappactiveslot.SetupWebhookWithManager,
+		functionappflexconsumption.SetupWebhookWithManager,
+		functionappfunction.SetupWebhookWithManager,
+		functionapphybridconnection.SetupWebhookWithManager,
+		functionappslot.SetupWebhookWithManager,
+		linuxfunctionapp.SetupWebhookWithManager,
+		linuxfunctionappslot.SetupWebhookWithManager,
+		linuxwebapp.SetupWebhookWithManager,
+		linuxwebappslot.SetupWebhookWithManager,
+		serviceplan.SetupWebhookWithManager,
+		sourcecontroltoken.SetupWebhookWithManager,
+		staticsite.SetupWebhookWithManager,
+		windowsfunctionapp.SetupWebhookWithManager,
+		windowsfunctionappslot.SetupWebhookWithManager,
+		windowswebapp.SetupWebhookWithManager,
+		windowswebappslot.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

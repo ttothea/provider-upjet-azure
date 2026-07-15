@@ -11,7 +11,7 @@ PROJECT_NAME := provider-$(PROVIDER_NAME)
 PROJECT_REPO := github.com/upbound/$(PROJECT_NAME)/v2
 
 export TERRAFORM_VERSION ?= 1.5.5
-export TERRAFORM_PROVIDER_VERSION ?= 4.54.0
+export TERRAFORM_PROVIDER_VERSION ?= 4.80.0
 export TERRAFORM_PROVIDER_SOURCE ?= hashicorp/azurerm
 export TERRAFORM_PROVIDER_REPO ?= https://github.com/hashicorp/terraform-provider-azurerm
 export TERRAFORM_DOCS_PATH ?= website/docs/r
@@ -51,7 +51,7 @@ export GOPRIVATE = github.com/upbound/*
 GO_REQUIRED_VERSION ?= $(shell grep -E '^go ' go.mod | awk '{print $2}')
 # GOLANGCILINT_VERSION is inherited from build submodule by default.
 # Uncomment below if you need to override the version.
-GOLANGCILINT_VERSION ?= 2.6.2
+GOLANGCILINT_VERSION ?= 2.11.4
 
 RUN_BUILDTAGGER ?= true
 # if RUN_BUILDTAGGER is set to "true", we will use build constraints

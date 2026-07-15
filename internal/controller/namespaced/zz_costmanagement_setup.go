@@ -43,3 +43,17 @@ func SetupGated_costmanagement(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_costmanagement registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_costmanagement(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		costanomalyalert.SetupWebhookWithManager,
+		resourcegroupcostmanagementexport.SetupWebhookWithManager,
+		subscriptioncostmanagementexport.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

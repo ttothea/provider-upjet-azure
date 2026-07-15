@@ -175,6 +175,11 @@ func (in *GrafanaInitParameters) DeepCopyInto(out *GrafanaInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.SkuSize != nil {
+		in, out := &in.SkuSize, &out.SkuSize
+		*out = new(string)
+		**out = **in
+	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
 		*out = make(map[string]*string, len(*in))
@@ -686,6 +691,11 @@ func (in *GrafanaObservation) DeepCopyInto(out *GrafanaObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.SkuSize != nil {
+		in, out := &in.SkuSize, &out.SkuSize
+		*out = new(string)
+		**out = **in
+	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
 		*out = make(map[string]*string, len(*in))
@@ -786,6 +796,11 @@ func (in *GrafanaParameters) DeepCopyInto(out *GrafanaParameters) {
 	}
 	if in.Sku != nil {
 		in, out := &in.Sku, &out.Sku
+		*out = new(string)
+		**out = **in
+	}
+	if in.SkuSize != nil {
+		in, out := &in.SkuSize, &out.SkuSize
 		*out = new(string)
 		**out = **in
 	}

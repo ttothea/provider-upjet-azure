@@ -16,7 +16,7 @@ import (
 
 type ConnectionConfigurationInitParameters struct {
 
-	// Should Internet Security be enabled to secure internet traffic? Changing this forces a new resource to be created. Defaults to false.
+	// Should Internet Security be enabled to secure internet traffic? Defaults to false.
 	InternetSecurityEnabled *bool `json:"internetSecurityEnabled,omitempty" tf:"internet_security_enabled,omitempty"`
 
 	// The Name which should be used for this Connection Configuration.
@@ -31,7 +31,7 @@ type ConnectionConfigurationInitParameters struct {
 
 type ConnectionConfigurationObservation struct {
 
-	// Should Internet Security be enabled to secure internet traffic? Changing this forces a new resource to be created. Defaults to false.
+	// Should Internet Security be enabled to secure internet traffic? Defaults to false.
 	InternetSecurityEnabled *bool `json:"internetSecurityEnabled,omitempty" tf:"internet_security_enabled,omitempty"`
 
 	// The Name which should be used for this Connection Configuration.
@@ -46,7 +46,7 @@ type ConnectionConfigurationObservation struct {
 
 type ConnectionConfigurationParameters struct {
 
-	// Should Internet Security be enabled to secure internet traffic? Changing this forces a new resource to be created. Defaults to false.
+	// Should Internet Security be enabled to secure internet traffic? Defaults to false.
 	// +kubebuilder:validation:Optional
 	InternetSecurityEnabled *bool `json:"internetSecurityEnabled,omitempty" tf:"internet_security_enabled,omitempty"`
 

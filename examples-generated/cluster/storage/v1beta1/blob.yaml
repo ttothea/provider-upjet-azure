@@ -13,10 +13,7 @@ metadata:
 spec:
   forProvider:
     source: some-local-file.zip
-    storageAccountNameSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example
-    storageContainerNameSelector:
+    storageContainerIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example
     type: Block

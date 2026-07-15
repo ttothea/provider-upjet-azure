@@ -17,7 +17,17 @@ import (
 type AttachedDatabaseConfigurationInitParameters struct {
 
 	// The resource id of the cluster where the databases you would like to attach reside.
+	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/kusto/v1beta1.Cluster
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
+
+	// Reference to a Cluster in kusto to populate clusterId.
+	// +kubebuilder:validation:Optional
+	ClusterIDRef *v1.NamespacedReference `json:"clusterIdRef,omitempty" tf:"-"`
+
+	// Selector for a Cluster in kusto to populate clusterId.
+	// +kubebuilder:validation:Optional
+	ClusterIDSelector *v1.NamespacedSelector `json:"clusterIdSelector,omitempty" tf:"-"`
 
 	// Specifies the name of the Kusto Cluster for which the configuration will be created. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/kusto/v1beta1.Cluster
@@ -33,7 +43,7 @@ type AttachedDatabaseConfigurationInitParameters struct {
 
 	// The Kusto Attached Database Configuration ID.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/kusto/v1beta1.Cluster
-	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/provider-azure/v2/apis/namespaced/rconfig.ExtractResourceID()
 	ClusterResourceID *string `json:"clusterResourceId,omitempty" tf:"cluster_resource_id,omitempty"`
 
 	// Reference to a Cluster in kusto to populate clusterResourceId.
@@ -47,6 +57,12 @@ type AttachedDatabaseConfigurationInitParameters struct {
 	// The name of the database which you would like to attach, use * if you want to follow all current and future databases. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/kusto/v1beta1.Database
 	DatabaseName *string `json:"databaseName,omitempty" tf:"database_name,omitempty"`
+
+	// The database name to use for the attached database instead of using the original database name. Relevant only when attaching to a specific database.
+	DatabaseNameOverride *string `json:"databaseNameOverride,omitempty" tf:"database_name_override,omitempty"`
+
+	// Adds a prefix to the attached databases name. When following an entire cluster, that prefix would be added to all of the databases original names from leader cluster.
+	DatabaseNamePrefix *string `json:"databaseNamePrefix,omitempty" tf:"database_name_prefix,omitempty"`
 
 	// Reference to a Database in kusto to populate databaseName.
 	// +kubebuilder:validation:Optional
@@ -98,6 +114,12 @@ type AttachedDatabaseConfigurationObservation struct {
 	// The name of the database which you would like to attach, use * if you want to follow all current and future databases. Changing this forces a new resource to be created.
 	DatabaseName *string `json:"databaseName,omitempty" tf:"database_name,omitempty"`
 
+	// The database name to use for the attached database instead of using the original database name. Relevant only when attaching to a specific database.
+	DatabaseNameOverride *string `json:"databaseNameOverride,omitempty" tf:"database_name_override,omitempty"`
+
+	// Adds a prefix to the attached databases name. When following an entire cluster, that prefix would be added to all of the databases original names from leader cluster.
+	DatabaseNamePrefix *string `json:"databaseNamePrefix,omitempty" tf:"database_name_prefix,omitempty"`
+
 	// The default principals modification kind. Valid values are: None (default), Replace and Union. Defaults to None.
 	DefaultPrincipalModificationKind *string `json:"defaultPrincipalModificationKind,omitempty" tf:"default_principal_modification_kind,omitempty"`
 
@@ -120,8 +142,18 @@ type AttachedDatabaseConfigurationObservation struct {
 type AttachedDatabaseConfigurationParameters struct {
 
 	// The resource id of the cluster where the databases you would like to attach reside.
+	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/kusto/v1beta1.Cluster
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
+
+	// Reference to a Cluster in kusto to populate clusterId.
+	// +kubebuilder:validation:Optional
+	ClusterIDRef *v1.NamespacedReference `json:"clusterIdRef,omitempty" tf:"-"`
+
+	// Selector for a Cluster in kusto to populate clusterId.
+	// +kubebuilder:validation:Optional
+	ClusterIDSelector *v1.NamespacedSelector `json:"clusterIdSelector,omitempty" tf:"-"`
 
 	// Specifies the name of the Kusto Cluster for which the configuration will be created. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/kusto/v1beta1.Cluster
@@ -138,7 +170,7 @@ type AttachedDatabaseConfigurationParameters struct {
 
 	// The Kusto Attached Database Configuration ID.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/kusto/v1beta1.Cluster
-	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
+	// +crossplane:generate:reference:extractor=github.com/upbound/provider-azure/v2/apis/namespaced/rconfig.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ClusterResourceID *string `json:"clusterResourceId,omitempty" tf:"cluster_resource_id,omitempty"`
 
@@ -154,6 +186,14 @@ type AttachedDatabaseConfigurationParameters struct {
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/kusto/v1beta1.Database
 	// +kubebuilder:validation:Optional
 	DatabaseName *string `json:"databaseName,omitempty" tf:"database_name,omitempty"`
+
+	// The database name to use for the attached database instead of using the original database name. Relevant only when attaching to a specific database.
+	// +kubebuilder:validation:Optional
+	DatabaseNameOverride *string `json:"databaseNameOverride,omitempty" tf:"database_name_override,omitempty"`
+
+	// Adds a prefix to the attached databases name. When following an entire cluster, that prefix would be added to all of the databases original names from leader cluster.
+	// +kubebuilder:validation:Optional
+	DatabaseNamePrefix *string `json:"databaseNamePrefix,omitempty" tf:"database_name_prefix,omitempty"`
 
 	// Reference to a Database in kusto to populate databaseName.
 	// +kubebuilder:validation:Optional
@@ -203,6 +243,14 @@ type SharingInitParameters struct {
 	// +listType=set
 	ExternalTablesToInclude []*string `json:"externalTablesToInclude,omitempty" tf:"external_tables_to_include,omitempty"`
 
+	// List of functions to exclude from the follower database.
+	// +listType=set
+	FunctionsToExclude []*string `json:"functionsToExclude,omitempty" tf:"functions_to_exclude,omitempty"`
+
+	// List of functions to include in the follower database.
+	// +listType=set
+	FunctionsToInclude []*string `json:"functionsToInclude,omitempty" tf:"functions_to_include,omitempty"`
+
 	// List of materialized views exclude from the follower database.
 	// +listType=set
 	MaterializedViewsToExclude []*string `json:"materializedViewsToExclude,omitempty" tf:"materialized_views_to_exclude,omitempty"`
@@ -229,6 +277,14 @@ type SharingObservation struct {
 	// List of external tables to include in the follower database.
 	// +listType=set
 	ExternalTablesToInclude []*string `json:"externalTablesToInclude,omitempty" tf:"external_tables_to_include,omitempty"`
+
+	// List of functions to exclude from the follower database.
+	// +listType=set
+	FunctionsToExclude []*string `json:"functionsToExclude,omitempty" tf:"functions_to_exclude,omitempty"`
+
+	// List of functions to include in the follower database.
+	// +listType=set
+	FunctionsToInclude []*string `json:"functionsToInclude,omitempty" tf:"functions_to_include,omitempty"`
 
 	// List of materialized views exclude from the follower database.
 	// +listType=set
@@ -258,6 +314,16 @@ type SharingParameters struct {
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	ExternalTablesToInclude []*string `json:"externalTablesToInclude,omitempty" tf:"external_tables_to_include,omitempty"`
+
+	// List of functions to exclude from the follower database.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	FunctionsToExclude []*string `json:"functionsToExclude,omitempty" tf:"functions_to_exclude,omitempty"`
+
+	// List of functions to include in the follower database.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	FunctionsToInclude []*string `json:"functionsToInclude,omitempty" tf:"functions_to_include,omitempty"`
 
 	// List of materialized views exclude from the follower database.
 	// +kubebuilder:validation:Optional

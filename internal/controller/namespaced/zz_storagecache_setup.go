@@ -49,3 +49,19 @@ func SetupGated_storagecache(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_storagecache registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_storagecache(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		hpccache.SetupWebhookWithManager,
+		hpccacheaccesspolicy.SetupWebhookWithManager,
+		hpccacheblobnfstarget.SetupWebhookWithManager,
+		hpccacheblobtarget.SetupWebhookWithManager,
+		hpccachenfstarget.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

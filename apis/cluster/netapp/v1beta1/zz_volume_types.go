@@ -52,6 +52,28 @@ type CoolAccessParameters struct {
 	TieringPolicy *string `json:"tieringPolicy" tf:"tiering_policy,omitempty"`
 }
 
+type DataProtectionAdvancedRansomwareInitParameters struct {
+
+	// Enable or disable the Advanced Ransomware Protection feature.
+	// Enable or disable the Advanced Ransomware Protection feature.
+	ProtectionEnabled *bool `json:"protectionEnabled,omitempty" tf:"protection_enabled,omitempty"`
+}
+
+type DataProtectionAdvancedRansomwareObservation struct {
+
+	// Enable or disable the Advanced Ransomware Protection feature.
+	// Enable or disable the Advanced Ransomware Protection feature.
+	ProtectionEnabled *bool `json:"protectionEnabled,omitempty" tf:"protection_enabled,omitempty"`
+}
+
+type DataProtectionAdvancedRansomwareParameters struct {
+
+	// Enable or disable the Advanced Ransomware Protection feature.
+	// Enable or disable the Advanced Ransomware Protection feature.
+	// +kubebuilder:validation:Optional
+	ProtectionEnabled *bool `json:"protectionEnabled" tf:"protection_enabled,omitempty"`
+}
+
 type DataProtectionBackupPolicyInitParameters struct {
 
 	// Resource ID of the backup policy to apply to the volume.
@@ -372,6 +394,9 @@ type VolumeInitParameters struct {
 	// +kubebuilder:validation:Optional
 	CreateFromSnapshotResourceIDSelector *v1.Selector `json:"createFromSnapshotResourceIdSelector,omitempty" tf:"-"`
 
+	// A data_protection_advanced_ransomware block as defined below.
+	DataProtectionAdvancedRansomware []DataProtectionAdvancedRansomwareInitParameters `json:"dataProtectionAdvancedRansomware,omitempty" tf:"data_protection_advanced_ransomware,omitempty"`
+
 	// A data_protection_backup_policy block as defined below.
 	DataProtectionBackupPolicy []DataProtectionBackupPolicyInitParameters `json:"dataProtectionBackupPolicy,omitempty" tf:"data_protection_backup_policy,omitempty"`
 
@@ -480,6 +505,9 @@ type VolumeObservation struct {
 
 	// Creates volume from snapshot. Following properties must be the same as the original volume where the snapshot was taken from: protocols, subnet_id, location, service_level, resource_group_name and account_name. Changing this forces a new resource to be created.
 	CreateFromSnapshotResourceID *string `json:"createFromSnapshotResourceId,omitempty" tf:"create_from_snapshot_resource_id,omitempty"`
+
+	// A data_protection_advanced_ransomware block as defined below.
+	DataProtectionAdvancedRansomware []DataProtectionAdvancedRansomwareObservation `json:"dataProtectionAdvancedRansomware,omitempty" tf:"data_protection_advanced_ransomware,omitempty"`
 
 	// A data_protection_backup_policy block as defined below.
 	DataProtectionBackupPolicy []DataProtectionBackupPolicyObservation `json:"dataProtectionBackupPolicy,omitempty" tf:"data_protection_backup_policy,omitempty"`
@@ -615,6 +643,10 @@ type VolumeParameters struct {
 	// Selector for a Snapshot in netapp to populate createFromSnapshotResourceId.
 	// +kubebuilder:validation:Optional
 	CreateFromSnapshotResourceIDSelector *v1.Selector `json:"createFromSnapshotResourceIdSelector,omitempty" tf:"-"`
+
+	// A data_protection_advanced_ransomware block as defined below.
+	// +kubebuilder:validation:Optional
+	DataProtectionAdvancedRansomware []DataProtectionAdvancedRansomwareParameters `json:"dataProtectionAdvancedRansomware,omitempty" tf:"data_protection_advanced_ransomware,omitempty"`
 
 	// A data_protection_backup_policy block as defined below.
 	// +kubebuilder:validation:Optional

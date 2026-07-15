@@ -109,3 +109,39 @@ func SetupGated_compute(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_compute registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_compute(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		availabilityset.SetupWebhookWithManager,
+		capacityreservation.SetupWebhookWithManager,
+		capacityreservationgroup.SetupWebhookWithManager,
+		dedicatedhost.SetupWebhookWithManager,
+		diskaccess.SetupWebhookWithManager,
+		diskencryptionset.SetupWebhookWithManager,
+		galleryapplication.SetupWebhookWithManager,
+		galleryapplicationversion.SetupWebhookWithManager,
+		image.SetupWebhookWithManager,
+		linuxvirtualmachine.SetupWebhookWithManager,
+		linuxvirtualmachinescaleset.SetupWebhookWithManager,
+		manageddisk.SetupWebhookWithManager,
+		manageddisksastoken.SetupWebhookWithManager,
+		orchestratedvirtualmachinescaleset.SetupWebhookWithManager,
+		proximityplacementgroup.SetupWebhookWithManager,
+		sharedimage.SetupWebhookWithManager,
+		sharedimagegallery.SetupWebhookWithManager,
+		snapshot.SetupWebhookWithManager,
+		sshpublickey.SetupWebhookWithManager,
+		virtualmachinedatadiskattachment.SetupWebhookWithManager,
+		virtualmachineextension.SetupWebhookWithManager,
+		virtualmachineruncommand.SetupWebhookWithManager,
+		virtualmachinescalesetstandbypool.SetupWebhookWithManager,
+		windowsvirtualmachine.SetupWebhookWithManager,
+		windowsvirtualmachinescaleset.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

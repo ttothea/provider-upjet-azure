@@ -49,3 +49,19 @@ func SetupGated_netapp(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_netapp registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_netapp(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		account.SetupWebhookWithManager,
+		pool.SetupWebhookWithManager,
+		snapshot.SetupWebhookWithManager,
+		snapshotpolicy.SetupWebhookWithManager,
+		volume.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

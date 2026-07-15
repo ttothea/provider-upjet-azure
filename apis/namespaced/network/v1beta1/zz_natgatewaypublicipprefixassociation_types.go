@@ -29,7 +29,7 @@ type NATGatewayPublicIPPrefixAssociationInitParameters struct {
 	// +kubebuilder:validation:Optional
 	NATGatewayIDSelector *v1.NamespacedSelector `json:"natGatewayIdSelector,omitempty" tf:"-"`
 
-	// The ID of the Public IP Prefix which this NAT Gateway which should be connected to. Changing this forces a new resource to be created.
+	// The ID of the Public IP Prefix which this NAT Gateway should be connected to. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/network/v1beta1.PublicIPPrefix
 	// +crossplane:generate:reference:extractor=github.com/upbound/provider-azure/v2/apis/namespaced/rconfig.ExtractResourceID()
 	PublicIPPrefixID *string `json:"publicIpPrefixId,omitempty" tf:"public_ip_prefix_id,omitempty"`
@@ -49,7 +49,7 @@ type NATGatewayPublicIPPrefixAssociationObservation struct {
 	// The ID of the NAT Gateway. Changing this forces a new resource to be created.
 	NATGatewayID *string `json:"natGatewayId,omitempty" tf:"nat_gateway_id,omitempty"`
 
-	// The ID of the Public IP Prefix which this NAT Gateway which should be connected to. Changing this forces a new resource to be created.
+	// The ID of the Public IP Prefix which this NAT Gateway should be connected to. Changing this forces a new resource to be created.
 	PublicIPPrefixID *string `json:"publicIpPrefixId,omitempty" tf:"public_ip_prefix_id,omitempty"`
 }
 
@@ -69,7 +69,7 @@ type NATGatewayPublicIPPrefixAssociationParameters struct {
 	// +kubebuilder:validation:Optional
 	NATGatewayIDSelector *v1.NamespacedSelector `json:"natGatewayIdSelector,omitempty" tf:"-"`
 
-	// The ID of the Public IP Prefix which this NAT Gateway which should be connected to. Changing this forces a new resource to be created.
+	// The ID of the Public IP Prefix which this NAT Gateway should be connected to. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/network/v1beta1.PublicIPPrefix
 	// +crossplane:generate:reference:extractor=github.com/upbound/provider-azure/v2/apis/namespaced/rconfig.ExtractResourceID()
 	// +kubebuilder:validation:Optional
@@ -111,7 +111,7 @@ type NATGatewayPublicIPPrefixAssociationStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// NATGatewayPublicIPPrefixAssociation is the Schema for the NATGatewayPublicIPPrefixAssociations API. Manages the association between a NAT Gateway and a Public IP Prefix.
+// NATGatewayPublicIPPrefixAssociation is the Schema for the NATGatewayPublicIPPrefixAssociations API. Manages a NAT Gateway Public IP Prefix association.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -67,3 +67,25 @@ func SetupGated_logic(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_logic registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_logic(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		appactioncustom.SetupWebhookWithManager,
+		appactionhttp.SetupWebhookWithManager,
+		appintegrationaccount.SetupWebhookWithManager,
+		appintegrationaccountbatchconfiguration.SetupWebhookWithManager,
+		appintegrationaccountpartner.SetupWebhookWithManager,
+		appintegrationaccountschema.SetupWebhookWithManager,
+		appintegrationaccountsession.SetupWebhookWithManager,
+		apptriggercustom.SetupWebhookWithManager,
+		apptriggerhttprequest.SetupWebhookWithManager,
+		apptriggerrecurrence.SetupWebhookWithManager,
+		appworkflow.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

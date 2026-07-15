@@ -52,9 +52,38 @@ type AuthenticationParameters struct {
 	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 }
 
+type ClusterInitParameters struct {
+
+	// The default database name to be created. Changing this forces a new PostgreSQL Flexible Server to be created.
+	DefaultDatabaseName *string `json:"defaultDatabaseName,omitempty" tf:"default_database_name,omitempty"`
+
+	// The number of nodes in the cluster. Must be at least 1 and no greater than 32.
+	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+}
+
+type ClusterObservation struct {
+
+	// The default database name to be created. Changing this forces a new PostgreSQL Flexible Server to be created.
+	DefaultDatabaseName *string `json:"defaultDatabaseName,omitempty" tf:"default_database_name,omitempty"`
+
+	// The number of nodes in the cluster. Must be at least 1 and no greater than 32.
+	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+}
+
+type ClusterParameters struct {
+
+	// The default database name to be created. Changing this forces a new PostgreSQL Flexible Server to be created.
+	// +kubebuilder:validation:Optional
+	DefaultDatabaseName *string `json:"defaultDatabaseName,omitempty" tf:"default_database_name,omitempty"`
+
+	// The number of nodes in the cluster. Must be at least 1 and no greater than 32.
+	// +kubebuilder:validation:Optional
+	Size *float64 `json:"size" tf:"size,omitempty"`
+}
+
 type CustomerManagedKeyInitParameters struct {
 
-	// The versioned ID of the geo backup Key Vault Key.
+	// The versioned/versionless ID of the geo backup Key Vault Key.
 	GeoBackupKeyVaultKeyID *string `json:"geoBackupKeyVaultKeyId,omitempty" tf:"geo_backup_key_vault_key_id,omitempty"`
 
 	// The geo backup user managed identity id for a Customer Managed Key. Must be added to identity.identity_ids.
@@ -69,7 +98,7 @@ type CustomerManagedKeyInitParameters struct {
 
 type CustomerManagedKeyObservation struct {
 
-	// The versioned ID of the geo backup Key Vault Key.
+	// The versioned/versionless ID of the geo backup Key Vault Key.
 	GeoBackupKeyVaultKeyID *string `json:"geoBackupKeyVaultKeyId,omitempty" tf:"geo_backup_key_vault_key_id,omitempty"`
 
 	// The geo backup user managed identity id for a Customer Managed Key. Must be added to identity.identity_ids.
@@ -84,7 +113,7 @@ type CustomerManagedKeyObservation struct {
 
 type CustomerManagedKeyParameters struct {
 
-	// The versioned ID of the geo backup Key Vault Key.
+	// The versioned/versionless ID of the geo backup Key Vault Key.
 	// +kubebuilder:validation:Optional
 	GeoBackupKeyVaultKeyID *string `json:"geoBackupKeyVaultKeyId,omitempty" tf:"geo_backup_key_vault_key_id,omitempty"`
 
@@ -124,6 +153,9 @@ type FlexibleServerInitParameters struct {
 
 	// The backup retention days for the PostgreSQL Flexible Server. Possible values are between 7 and 35 days.
 	BackupRetentionDays *float64 `json:"backupRetentionDays,omitempty" tf:"backup_retention_days,omitempty"`
+
+	// A cluster block as defined below.
+	Cluster []ClusterInitParameters `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
 	// The creation mode which can be used to restore or replicate existing servers. Possible values are Default, GeoRestore, PointInTimeRestore, Replica, ReviveDropped and Update.
 	CreateMode *string `json:"createMode,omitempty" tf:"create_mode,omitempty"`
@@ -200,14 +232,14 @@ type FlexibleServerInitParameters struct {
 	// The max storage allowed for the PostgreSQL Flexible Server. Possible values are 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4193280, 4194304, 8388608, 16777216 and 33553408.
 	StorageMb *float64 `json:"storageMb,omitempty" tf:"storage_mb,omitempty"`
 
-	// The name of storage performance tier for IOPS of the PostgreSQL Flexible Server. Possible values are P4, P6, P10, P15,P20, P30,P40, P50,P60, P70 or P80. Default value is dependant on the storage_mb value. Please see the storage_tier defaults based on storage_mb table below.
+	// The name of storage performance tier for IOPS of the PostgreSQL Flexible Server. Possible values are P4, P6, P10, P15,P20, P30,P40, P50,P60, P70 or P80. Default value is dependent on the storage_mb value. Please see the storage_tier defaults based on storage_mb table below.
 	StorageTier *string `json:"storageTier,omitempty" tf:"storage_tier,omitempty"`
 
 	// A mapping of tags which should be assigned to the PostgreSQL Flexible Server.
 	// +mapType=granular
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// The version of PostgreSQL Flexible Server to use. Possible values are 11,12, 13, 14, 15 and 16. Required when create_mode is Default.
+	// The version of PostgreSQL Flexible Server to use. Possible values are 11,12, 13, 14, 15, 16, 17, and 18. Required when create_mode is Default.
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
 
 	// Specifies the Availability Zone in which the PostgreSQL Flexible Server should be located.
@@ -233,6 +265,9 @@ type FlexibleServerObservation struct {
 
 	// The backup retention days for the PostgreSQL Flexible Server. Possible values are between 7 and 35 days.
 	BackupRetentionDays *float64 `json:"backupRetentionDays,omitempty" tf:"backup_retention_days,omitempty"`
+
+	// A cluster block as defined below.
+	Cluster []ClusterObservation `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
 	// The creation mode which can be used to restore or replicate existing servers. Possible values are Default, GeoRestore, PointInTimeRestore, Replica, ReviveDropped and Update.
 	CreateMode *string `json:"createMode,omitempty" tf:"create_mode,omitempty"`
@@ -288,14 +323,14 @@ type FlexibleServerObservation struct {
 	// The max storage allowed for the PostgreSQL Flexible Server. Possible values are 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4193280, 4194304, 8388608, 16777216 and 33553408.
 	StorageMb *float64 `json:"storageMb,omitempty" tf:"storage_mb,omitempty"`
 
-	// The name of storage performance tier for IOPS of the PostgreSQL Flexible Server. Possible values are P4, P6, P10, P15,P20, P30,P40, P50,P60, P70 or P80. Default value is dependant on the storage_mb value. Please see the storage_tier defaults based on storage_mb table below.
+	// The name of storage performance tier for IOPS of the PostgreSQL Flexible Server. Possible values are P4, P6, P10, P15,P20, P30,P40, P50,P60, P70 or P80. Default value is dependent on the storage_mb value. Please see the storage_tier defaults based on storage_mb table below.
 	StorageTier *string `json:"storageTier,omitempty" tf:"storage_tier,omitempty"`
 
 	// A mapping of tags which should be assigned to the PostgreSQL Flexible Server.
 	// +mapType=granular
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// The version of PostgreSQL Flexible Server to use. Possible values are 11,12, 13, 14, 15 and 16. Required when create_mode is Default.
+	// The version of PostgreSQL Flexible Server to use. Possible values are 11,12, 13, 14, 15, 16, 17, and 18. Required when create_mode is Default.
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
 
 	// Specifies the Availability Zone in which the PostgreSQL Flexible Server should be located.
@@ -337,6 +372,10 @@ type FlexibleServerParameters struct {
 	// The backup retention days for the PostgreSQL Flexible Server. Possible values are between 7 and 35 days.
 	// +kubebuilder:validation:Optional
 	BackupRetentionDays *float64 `json:"backupRetentionDays,omitempty" tf:"backup_retention_days,omitempty"`
+
+	// A cluster block as defined below.
+	// +kubebuilder:validation:Optional
+	Cluster []ClusterParameters `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
 	// The creation mode which can be used to restore or replicate existing servers. Possible values are Default, GeoRestore, PointInTimeRestore, Replica, ReviveDropped and Update.
 	// +kubebuilder:validation:Optional
@@ -441,7 +480,7 @@ type FlexibleServerParameters struct {
 	// +kubebuilder:validation:Optional
 	StorageMb *float64 `json:"storageMb,omitempty" tf:"storage_mb,omitempty"`
 
-	// The name of storage performance tier for IOPS of the PostgreSQL Flexible Server. Possible values are P4, P6, P10, P15,P20, P30,P40, P50,P60, P70 or P80. Default value is dependant on the storage_mb value. Please see the storage_tier defaults based on storage_mb table below.
+	// The name of storage performance tier for IOPS of the PostgreSQL Flexible Server. Possible values are P4, P6, P10, P15,P20, P30,P40, P50,P60, P70 or P80. Default value is dependent on the storage_mb value. Please see the storage_tier defaults based on storage_mb table below.
 	// +kubebuilder:validation:Optional
 	StorageTier *string `json:"storageTier,omitempty" tf:"storage_tier,omitempty"`
 
@@ -450,7 +489,7 @@ type FlexibleServerParameters struct {
 	// +mapType=granular
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// The version of PostgreSQL Flexible Server to use. Possible values are 11,12, 13, 14, 15 and 16. Required when create_mode is Default.
+	// The version of PostgreSQL Flexible Server to use. Possible values are 11,12, 13, 14, 15, 16, 17, and 18. Required when create_mode is Default.
 	// +kubebuilder:validation:Optional
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
 

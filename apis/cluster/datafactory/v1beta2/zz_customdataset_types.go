@@ -41,7 +41,8 @@ type CustomDataSetInitParameters struct {
 	// The type of dataset that will be associated with Data Factory. Changing this forces a new resource to be created.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
-	// A JSON object that contains the properties of the Data Factory Dataset.
+	// A JSON object that contains the properties of the Data Factory Dataset. Refer to
+	// datafactory/models.go for the shape of the expected JSON. For example, the JSON object for AzureBlob-typed Dataset will be unmarshaled into AzureBlobDatasetTypeProperties struct.
 	TypePropertiesJSON *string `json:"typePropertiesJson,omitempty" tf:"type_properties_json,omitempty"`
 }
 
@@ -79,7 +80,8 @@ type CustomDataSetObservation struct {
 	// The type of dataset that will be associated with Data Factory. Changing this forces a new resource to be created.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
-	// A JSON object that contains the properties of the Data Factory Dataset.
+	// A JSON object that contains the properties of the Data Factory Dataset. Refer to
+	// datafactory/models.go for the shape of the expected JSON. For example, the JSON object for AzureBlob-typed Dataset will be unmarshaled into AzureBlobDatasetTypeProperties struct.
 	TypePropertiesJSON *string `json:"typePropertiesJson,omitempty" tf:"type_properties_json,omitempty"`
 }
 
@@ -133,7 +135,8 @@ type CustomDataSetParameters struct {
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
-	// A JSON object that contains the properties of the Data Factory Dataset.
+	// A JSON object that contains the properties of the Data Factory Dataset. Refer to
+	// datafactory/models.go for the shape of the expected JSON. For example, the JSON object for AzureBlob-typed Dataset will be unmarshaled into AzureBlobDatasetTypeProperties struct.
 	// +kubebuilder:validation:Optional
 	TypePropertiesJSON *string `json:"typePropertiesJson,omitempty" tf:"type_properties_json,omitempty"`
 }

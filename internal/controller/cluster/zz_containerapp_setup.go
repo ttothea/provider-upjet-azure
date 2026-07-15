@@ -58,3 +58,22 @@ func SetupGated_containerapp(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_containerapp registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_containerapp(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		containerapp.SetupWebhookWithManager,
+		containerjob.SetupWebhookWithManager,
+		customdomain.SetupWebhookWithManager,
+		environment.SetupWebhookWithManager,
+		environmentcertificate.SetupWebhookWithManager,
+		environmentcustomdomain.SetupWebhookWithManager,
+		environmentdaprcomponent.SetupWebhookWithManager,
+		environmentstorage.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

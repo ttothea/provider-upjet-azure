@@ -474,8 +474,8 @@ spec:
                     type: object
                   size:
                     description: The Machine Size to use for this Virtual Machine,
-                      such as Standard_F2. Changing this forces a new resource to
-                      be created.
+                      such as Standard_D4_v5. Changing this forces a new resource
+                      to be created.
                     type: string
                   sshKey:
                     description: The SSH Key associated with the username used to
@@ -927,8 +927,8 @@ spec:
                     type: object
                   size:
                     description: The Machine Size to use for this Virtual Machine,
-                      such as Standard_F2. Changing this forces a new resource to
-                      be created.
+                      such as Standard_D4_v5. Changing this forces a new resource
+                      to be created.
                     type: string
                   sshKey:
                     description: The SSH Key associated with the username used to
@@ -1127,8 +1127,8 @@ spec:
                     type: string
                   size:
                     description: The Machine Size to use for this Virtual Machine,
-                      such as Standard_F2. Changing this forces a new resource to
-                      be created.
+                      such as Standard_D4_v5. Changing this forces a new resource
+                      to be created.
                     type: string
                   sshKey:
                     description: The SSH Key associated with the username used to

@@ -2337,13 +2337,13 @@ type LinuxWebAppSlotSiteConfigApplicationStackInitParameters struct {
 	// The Version of Java to use. Possible values are 8, 11, 17 and 21.
 	JavaVersion *string `json:"javaVersion,omitempty" tf:"java_version,omitempty"`
 
-	// The version of Node to run. Possible values are 12-lts, 14-lts, 16-lts, 18-lts, 20-lts and 22-lts. This property conflicts with java_version.
+	// The version of Node to run. Possible values are 12-lts, 14-lts, 16-lts, 18-lts, 20-lts, 22-lts and 24-lts. This property conflicts with java_version.
 	NodeVersion *string `json:"nodeVersion,omitempty" tf:"node_version,omitempty"`
 
 	// The version of PHP to run. Possible values are 7.4, 8.0, 8.1, 8.2, 8.3 and 8.4.
 	PHPVersion *string `json:"phpVersion,omitempty" tf:"php_version,omitempty"`
 
-	// The version of Python to run. Possible values include 3.13, 3.12, 3.11, 3.10, 3.9, 3.8 and 3.7.
+	// The version of Python to run. Possible values include 3.14, 3.13, 3.12, 3.11, 3.10, 3.9, 3.8 and 3.7.
 	PythonVersion *string `json:"pythonVersion,omitempty" tf:"python_version,omitempty"`
 
 	// The version of Ruby to run. Possible values include 2.6 and 2.7.
@@ -2376,13 +2376,13 @@ type LinuxWebAppSlotSiteConfigApplicationStackObservation struct {
 	// The Version of Java to use. Possible values are 8, 11, 17 and 21.
 	JavaVersion *string `json:"javaVersion,omitempty" tf:"java_version,omitempty"`
 
-	// The version of Node to run. Possible values are 12-lts, 14-lts, 16-lts, 18-lts, 20-lts and 22-lts. This property conflicts with java_version.
+	// The version of Node to run. Possible values are 12-lts, 14-lts, 16-lts, 18-lts, 20-lts, 22-lts and 24-lts. This property conflicts with java_version.
 	NodeVersion *string `json:"nodeVersion,omitempty" tf:"node_version,omitempty"`
 
 	// The version of PHP to run. Possible values are 7.4, 8.0, 8.1, 8.2, 8.3 and 8.4.
 	PHPVersion *string `json:"phpVersion,omitempty" tf:"php_version,omitempty"`
 
-	// The version of Python to run. Possible values include 3.13, 3.12, 3.11, 3.10, 3.9, 3.8 and 3.7.
+	// The version of Python to run. Possible values include 3.14, 3.13, 3.12, 3.11, 3.10, 3.9, 3.8 and 3.7.
 	PythonVersion *string `json:"pythonVersion,omitempty" tf:"python_version,omitempty"`
 
 	// The version of Ruby to run. Possible values include 2.6 and 2.7.
@@ -2427,7 +2427,7 @@ type LinuxWebAppSlotSiteConfigApplicationStackParameters struct {
 	// +kubebuilder:validation:Optional
 	JavaVersion *string `json:"javaVersion,omitempty" tf:"java_version,omitempty"`
 
-	// The version of Node to run. Possible values are 12-lts, 14-lts, 16-lts, 18-lts, 20-lts and 22-lts. This property conflicts with java_version.
+	// The version of Node to run. Possible values are 12-lts, 14-lts, 16-lts, 18-lts, 20-lts, 22-lts and 24-lts. This property conflicts with java_version.
 	// +kubebuilder:validation:Optional
 	NodeVersion *string `json:"nodeVersion,omitempty" tf:"node_version,omitempty"`
 
@@ -2435,7 +2435,7 @@ type LinuxWebAppSlotSiteConfigApplicationStackParameters struct {
 	// +kubebuilder:validation:Optional
 	PHPVersion *string `json:"phpVersion,omitempty" tf:"php_version,omitempty"`
 
-	// The version of Python to run. Possible values include 3.13, 3.12, 3.11, 3.10, 3.9, 3.8 and 3.7.
+	// The version of Python to run. Possible values include 3.14, 3.13, 3.12, 3.11, 3.10, 3.9, 3.8 and 3.7.
 	// +kubebuilder:validation:Optional
 	PythonVersion *string `json:"pythonVersion,omitempty" tf:"python_version,omitempty"`
 
@@ -2724,6 +2724,10 @@ type LinuxWebAppSlotSiteConfigInitParameters struct {
 	// Managed pipeline mode. Possible values include: Integrated, Classic. Defaults to Integrated.
 	ManagedPipelineMode *string `json:"managedPipelineMode,omitempty" tf:"managed_pipeline_mode,omitempty"`
 
+	// The configures the minimum cipher suite of TLS required for SSL requests. Possible values include: TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384",TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384",TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", TLS_RSA_WITH_AES_128_CBC_SHA",TLS_RSA_WITH_AES_128_CBC_SHA256",TLS_RSA_WITH_AES_128_GCM_SHA256",TLS_RSA_WITH_AES_256_CBC_SHA",TLS_RSA_WITH_AES_256_CBC_SHA256",TLS_RSA_WITH_AES_256_GCM_SHA384".
+	// Configures the minimum TLS cipher suite for the incoming requests to the Site.
+	MinimumTLSCipherSuite *string `json:"minimumTlsCipherSuite,omitempty" tf:"minimum_tls_cipher_suite,omitempty"`
+
 	// The configures the minimum version of TLS required for SSL requests. Possible values are 1.0, 1.1, 1.2 and 1.3. Defaults to 1.2.
 	MinimumTLSVersion *string `json:"minimumTlsVersion,omitempty" tf:"minimum_tls_version,omitempty"`
 
@@ -2826,6 +2830,10 @@ type LinuxWebAppSlotSiteConfigObservation struct {
 
 	// Managed pipeline mode. Possible values include: Integrated, Classic. Defaults to Integrated.
 	ManagedPipelineMode *string `json:"managedPipelineMode,omitempty" tf:"managed_pipeline_mode,omitempty"`
+
+	// The configures the minimum cipher suite of TLS required for SSL requests. Possible values include: TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384",TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384",TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", TLS_RSA_WITH_AES_128_CBC_SHA",TLS_RSA_WITH_AES_128_CBC_SHA256",TLS_RSA_WITH_AES_128_GCM_SHA256",TLS_RSA_WITH_AES_256_CBC_SHA",TLS_RSA_WITH_AES_256_CBC_SHA256",TLS_RSA_WITH_AES_256_GCM_SHA384".
+	// Configures the minimum TLS cipher suite for the incoming requests to the Site.
+	MinimumTLSCipherSuite *string `json:"minimumTlsCipherSuite,omitempty" tf:"minimum_tls_cipher_suite,omitempty"`
 
 	// The configures the minimum version of TLS required for SSL requests. Possible values are 1.0, 1.1, 1.2 and 1.3. Defaults to 1.2.
 	MinimumTLSVersion *string `json:"minimumTlsVersion,omitempty" tf:"minimum_tls_version,omitempty"`
@@ -2946,6 +2954,11 @@ type LinuxWebAppSlotSiteConfigParameters struct {
 	// Managed pipeline mode. Possible values include: Integrated, Classic. Defaults to Integrated.
 	// +kubebuilder:validation:Optional
 	ManagedPipelineMode *string `json:"managedPipelineMode,omitempty" tf:"managed_pipeline_mode,omitempty"`
+
+	// The configures the minimum cipher suite of TLS required for SSL requests. Possible values include: TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384",TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384",TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", TLS_RSA_WITH_AES_128_CBC_SHA",TLS_RSA_WITH_AES_128_CBC_SHA256",TLS_RSA_WITH_AES_128_GCM_SHA256",TLS_RSA_WITH_AES_256_CBC_SHA",TLS_RSA_WITH_AES_256_CBC_SHA256",TLS_RSA_WITH_AES_256_GCM_SHA384".
+	// Configures the minimum TLS cipher suite for the incoming requests to the Site.
+	// +kubebuilder:validation:Optional
+	MinimumTLSCipherSuite *string `json:"minimumTlsCipherSuite,omitempty" tf:"minimum_tls_cipher_suite,omitempty"`
 
 	// The configures the minimum version of TLS required for SSL requests. Possible values are 1.0, 1.1, 1.2 and 1.3. Defaults to 1.2.
 	// +kubebuilder:validation:Optional

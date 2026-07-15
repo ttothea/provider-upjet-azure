@@ -9581,6 +9581,11 @@ func (in *IntegrationRuntimeAzureInitParameters) DeepCopyInto(out *IntegrationRu
 		*out = new(string)
 		**out = **in
 	}
+	if in.InteractiveAuthoringTimeToLiveInMinutes != nil {
+		in, out := &in.InteractiveAuthoringTimeToLiveInMinutes, &out.InteractiveAuthoringTimeToLiveInMinutes
+		*out = new(float64)
+		**out = **in
+	}
 	if in.Location != nil {
 		in, out := &in.Location, &out.Location
 		*out = new(string)
@@ -9673,6 +9678,11 @@ func (in *IntegrationRuntimeAzureObservation) DeepCopyInto(out *IntegrationRunti
 		*out = new(string)
 		**out = **in
 	}
+	if in.InteractiveAuthoringTimeToLiveInMinutes != nil {
+		in, out := &in.InteractiveAuthoringTimeToLiveInMinutes, &out.InteractiveAuthoringTimeToLiveInMinutes
+		*out = new(float64)
+		**out = **in
+	}
 	if in.Location != nil {
 		in, out := &in.Location, &out.Location
 		*out = new(string)
@@ -9736,6 +9746,11 @@ func (in *IntegrationRuntimeAzureParameters) DeepCopyInto(out *IntegrationRuntim
 	if in.Description != nil {
 		in, out := &in.Description, &out.Description
 		*out = new(string)
+		**out = **in
+	}
+	if in.InteractiveAuthoringTimeToLiveInMinutes != nil {
+		in, out := &in.InteractiveAuthoringTimeToLiveInMinutes, &out.InteractiveAuthoringTimeToLiveInMinutes
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Location != nil {
@@ -11736,6 +11751,13 @@ func (in *LinkedServiceAzureBlobStorageInitParameters) DeepCopyInto(out *LinkedS
 			(*out)[key] = outVal
 		}
 	}
+	if in.SASTokenLinkedKeyVaultKey != nil {
+		in, out := &in.SASTokenLinkedKeyVaultKey, &out.SASTokenLinkedKeyVaultKey
+		*out = make([]SASTokenLinkedKeyVaultKeyInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.ServicePrincipalID != nil {
 		in, out := &in.ServicePrincipalID, &out.ServicePrincipalID
 		*out = new(string)
@@ -11900,6 +11922,13 @@ func (in *LinkedServiceAzureBlobStorageObservation) DeepCopyInto(out *LinkedServ
 			(*out)[key] = outVal
 		}
 	}
+	if in.SASTokenLinkedKeyVaultKey != nil {
+		in, out := &in.SASTokenLinkedKeyVaultKey, &out.SASTokenLinkedKeyVaultKey
+		*out = make([]SASTokenLinkedKeyVaultKeyObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.ServicePrincipalID != nil {
 		in, out := &in.ServicePrincipalID, &out.ServicePrincipalID
 		*out = new(string)
@@ -12030,6 +12059,13 @@ func (in *LinkedServiceAzureBlobStorageParameters) DeepCopyInto(out *LinkedServi
 				**out = **in
 			}
 			(*out)[key] = outVal
+		}
+	}
+	if in.SASTokenLinkedKeyVaultKey != nil {
+		in, out := &in.SASTokenLinkedKeyVaultKey, &out.SASTokenLinkedKeyVaultKey
+		*out = make([]SASTokenLinkedKeyVaultKeyParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
 	if in.SASURISecretRef != nil {
@@ -12229,6 +12265,21 @@ func (in *LinkedServiceAzureDatabricksInitParameters) DeepCopyInto(out *LinkedSe
 	}
 	if in.MsiWorkSpaceResourceIDSelector != nil {
 		in, out := &in.MsiWorkSpaceResourceIDSelector, &out.MsiWorkSpaceResourceIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.MsiWorkspaceID != nil {
+		in, out := &in.MsiWorkspaceID, &out.MsiWorkspaceID
+		*out = new(string)
+		**out = **in
+	}
+	if in.MsiWorkspaceIDRef != nil {
+		in, out := &in.MsiWorkspaceIDRef, &out.MsiWorkspaceIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.MsiWorkspaceIDSelector != nil {
+		in, out := &in.MsiWorkspaceIDSelector, &out.MsiWorkspaceIDSelector
 		*out = new(v1.Selector)
 		(*in).DeepCopyInto(*out)
 	}
@@ -12453,6 +12504,11 @@ func (in *LinkedServiceAzureDatabricksObservation) DeepCopyInto(out *LinkedServi
 		*out = new(string)
 		**out = **in
 	}
+	if in.MsiWorkspaceID != nil {
+		in, out := &in.MsiWorkspaceID, &out.MsiWorkspaceID
+		*out = new(string)
+		**out = **in
+	}
 	if in.NewClusterConfig != nil {
 		in, out := &in.NewClusterConfig, &out.NewClusterConfig
 		*out = make([]NewClusterConfigObservation, len(*in))
@@ -12584,6 +12640,21 @@ func (in *LinkedServiceAzureDatabricksParameters) DeepCopyInto(out *LinkedServic
 	}
 	if in.MsiWorkSpaceResourceIDSelector != nil {
 		in, out := &in.MsiWorkSpaceResourceIDSelector, &out.MsiWorkSpaceResourceIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.MsiWorkspaceID != nil {
+		in, out := &in.MsiWorkspaceID, &out.MsiWorkspaceID
+		*out = new(string)
+		**out = **in
+	}
+	if in.MsiWorkspaceIDRef != nil {
+		in, out := &in.MsiWorkspaceIDRef, &out.MsiWorkspaceIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.MsiWorkspaceIDSelector != nil {
+		in, out := &in.MsiWorkspaceIDSelector, &out.MsiWorkspaceIDSelector
 		*out = new(v1.Selector)
 		(*in).DeepCopyInto(*out)
 	}
@@ -15559,14 +15630,14 @@ func (in *LinkedServiceDataLakeStorageGen2InitParameters) DeepCopyInto(out *Link
 		*out = new(string)
 		**out = **in
 	}
-	if in.ServicePrincipalKey != nil {
-		in, out := &in.ServicePrincipalKey, &out.ServicePrincipalKey
-		*out = new(string)
+	if in.ServicePrincipalKeySecretRef != nil {
+		in, out := &in.ServicePrincipalKeySecretRef, &out.ServicePrincipalKeySecretRef
+		*out = new(v1.SecretKeySelector)
 		**out = **in
 	}
-	if in.StorageAccountKey != nil {
-		in, out := &in.StorageAccountKey, &out.StorageAccountKey
-		*out = new(string)
+	if in.StorageAccountKeySecretRef != nil {
+		in, out := &in.StorageAccountKeySecretRef, &out.StorageAccountKeySecretRef
+		*out = new(v1.SecretKeySelector)
 		**out = **in
 	}
 	if in.Tenant != nil {
@@ -15699,16 +15770,6 @@ func (in *LinkedServiceDataLakeStorageGen2Observation) DeepCopyInto(out *LinkedS
 		*out = new(string)
 		**out = **in
 	}
-	if in.ServicePrincipalKey != nil {
-		in, out := &in.ServicePrincipalKey, &out.ServicePrincipalKey
-		*out = new(string)
-		**out = **in
-	}
-	if in.StorageAccountKey != nil {
-		in, out := &in.StorageAccountKey, &out.StorageAccountKey
-		*out = new(string)
-		**out = **in
-	}
 	if in.Tenant != nil {
 		in, out := &in.Tenant, &out.Tenant
 		*out = new(string)
@@ -15812,14 +15873,14 @@ func (in *LinkedServiceDataLakeStorageGen2Parameters) DeepCopyInto(out *LinkedSe
 		*out = new(string)
 		**out = **in
 	}
-	if in.ServicePrincipalKey != nil {
-		in, out := &in.ServicePrincipalKey, &out.ServicePrincipalKey
-		*out = new(string)
+	if in.ServicePrincipalKeySecretRef != nil {
+		in, out := &in.ServicePrincipalKeySecretRef, &out.ServicePrincipalKeySecretRef
+		*out = new(v1.SecretKeySelector)
 		**out = **in
 	}
-	if in.StorageAccountKey != nil {
-		in, out := &in.StorageAccountKey, &out.StorageAccountKey
-		*out = new(string)
+	if in.StorageAccountKeySecretRef != nil {
+		in, out := &in.StorageAccountKeySecretRef, &out.StorageAccountKeySecretRef
+		*out = new(v1.SecretKeySelector)
 		**out = **in
 	}
 	if in.Tenant != nil {
@@ -16803,6 +16864,11 @@ func (in *LinkedServiceMySQLInitParameters) DeepCopyInto(out *LinkedServiceMySQL
 		*out = new(string)
 		**out = **in
 	}
+	if in.DriverVersion != nil {
+		in, out := &in.DriverVersion, &out.DriverVersion
+		*out = new(string)
+		**out = **in
+	}
 	if in.IntegrationRuntimeName != nil {
 		in, out := &in.IntegrationRuntimeName, &out.IntegrationRuntimeName
 		*out = new(string)
@@ -16913,6 +16979,11 @@ func (in *LinkedServiceMySQLObservation) DeepCopyInto(out *LinkedServiceMySQLObs
 		*out = new(string)
 		**out = **in
 	}
+	if in.DriverVersion != nil {
+		in, out := &in.DriverVersion, &out.DriverVersion
+		*out = new(string)
+		**out = **in
+	}
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
 		*out = new(string)
@@ -17003,6 +17074,11 @@ func (in *LinkedServiceMySQLParameters) DeepCopyInto(out *LinkedServiceMySQLPara
 	}
 	if in.Description != nil {
 		in, out := &in.Description, &out.Description
+		*out = new(string)
+		**out = **in
+	}
+	if in.DriverVersion != nil {
+		in, out := &in.DriverVersion, &out.DriverVersion
 		*out = new(string)
 		**out = **in
 	}
@@ -22160,6 +22236,81 @@ func (in *RejectedLinkedServiceParameters) DeepCopy() *RejectedLinkedServicePara
 		return nil
 	}
 	out := new(RejectedLinkedServiceParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SASTokenLinkedKeyVaultKeyInitParameters) DeepCopyInto(out *SASTokenLinkedKeyVaultKeyInitParameters) {
+	*out = *in
+	if in.LinkedServiceName != nil {
+		in, out := &in.LinkedServiceName, &out.LinkedServiceName
+		*out = new(string)
+		**out = **in
+	}
+	if in.SecretName != nil {
+		in, out := &in.SecretName, &out.SecretName
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SASTokenLinkedKeyVaultKeyInitParameters.
+func (in *SASTokenLinkedKeyVaultKeyInitParameters) DeepCopy() *SASTokenLinkedKeyVaultKeyInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SASTokenLinkedKeyVaultKeyInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SASTokenLinkedKeyVaultKeyObservation) DeepCopyInto(out *SASTokenLinkedKeyVaultKeyObservation) {
+	*out = *in
+	if in.LinkedServiceName != nil {
+		in, out := &in.LinkedServiceName, &out.LinkedServiceName
+		*out = new(string)
+		**out = **in
+	}
+	if in.SecretName != nil {
+		in, out := &in.SecretName, &out.SecretName
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SASTokenLinkedKeyVaultKeyObservation.
+func (in *SASTokenLinkedKeyVaultKeyObservation) DeepCopy() *SASTokenLinkedKeyVaultKeyObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SASTokenLinkedKeyVaultKeyObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SASTokenLinkedKeyVaultKeyParameters) DeepCopyInto(out *SASTokenLinkedKeyVaultKeyParameters) {
+	*out = *in
+	if in.LinkedServiceName != nil {
+		in, out := &in.LinkedServiceName, &out.LinkedServiceName
+		*out = new(string)
+		**out = **in
+	}
+	if in.SecretName != nil {
+		in, out := &in.SecretName, &out.SecretName
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SASTokenLinkedKeyVaultKeyParameters.
+func (in *SASTokenLinkedKeyVaultKeyParameters) DeepCopy() *SASTokenLinkedKeyVaultKeyParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SASTokenLinkedKeyVaultKeyParameters)
 	in.DeepCopyInto(out)
 	return out
 }

@@ -18,7 +18,6 @@ type ExpressRouteConnectionInitParameters struct {
 	// The authorization key to establish the Express Route Connection.
 	AuthorizationKey *string `json:"authorizationKey,omitempty" tf:"authorization_key,omitempty"`
 
-	// Is Internet security enabled for this Express Route Connection?
 	EnableInternetSecurity *bool `json:"enableInternetSecurity,omitempty" tf:"enable_internet_security,omitempty"`
 
 	// The ID of the Express Route Circuit Peering that this Express Route Connection connects with. Changing this forces a new resource to be created.
@@ -37,6 +36,9 @@ type ExpressRouteConnectionInitParameters struct {
 	// Specified whether Fast Path is enabled for Virtual Wan Firewall Hub. Defaults to false.
 	ExpressRouteGatewayBypassEnabled *bool `json:"expressRouteGatewayBypassEnabled,omitempty" tf:"express_route_gateway_bypass_enabled,omitempty"`
 
+	// Is Internet security enabled for this Express Route Connection? Defaults to false.
+	InternetSecurityEnabled *bool `json:"internetSecurityEnabled,omitempty" tf:"internet_security_enabled,omitempty"`
+
 	PrivateLinkFastPathEnabled *bool `json:"privateLinkFastPathEnabled,omitempty" tf:"private_link_fast_path_enabled,omitempty"`
 
 	// A routing block as defined below.
@@ -51,7 +53,6 @@ type ExpressRouteConnectionObservation struct {
 	// The authorization key to establish the Express Route Connection.
 	AuthorizationKey *string `json:"authorizationKey,omitempty" tf:"authorization_key,omitempty"`
 
-	// Is Internet security enabled for this Express Route Connection?
 	EnableInternetSecurity *bool `json:"enableInternetSecurity,omitempty" tf:"enable_internet_security,omitempty"`
 
 	// The ID of the Express Route Circuit Peering that this Express Route Connection connects with. Changing this forces a new resource to be created.
@@ -65,6 +66,9 @@ type ExpressRouteConnectionObservation struct {
 
 	// The ID of the Express Route Connection.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Is Internet security enabled for this Express Route Connection? Defaults to false.
+	InternetSecurityEnabled *bool `json:"internetSecurityEnabled,omitempty" tf:"internet_security_enabled,omitempty"`
 
 	PrivateLinkFastPathEnabled *bool `json:"privateLinkFastPathEnabled,omitempty" tf:"private_link_fast_path_enabled,omitempty"`
 
@@ -81,7 +85,6 @@ type ExpressRouteConnectionParameters struct {
 	// +kubebuilder:validation:Optional
 	AuthorizationKey *string `json:"authorizationKey,omitempty" tf:"authorization_key,omitempty"`
 
-	// Is Internet security enabled for this Express Route Connection?
 	// +kubebuilder:validation:Optional
 	EnableInternetSecurity *bool `json:"enableInternetSecurity,omitempty" tf:"enable_internet_security,omitempty"`
 
@@ -116,6 +119,10 @@ type ExpressRouteConnectionParameters struct {
 	// Selector for a ExpressRouteGateway in network to populate expressRouteGatewayId.
 	// +kubebuilder:validation:Optional
 	ExpressRouteGatewayIDSelector *v1.Selector `json:"expressRouteGatewayIdSelector,omitempty" tf:"-"`
+
+	// Is Internet security enabled for this Express Route Connection? Defaults to false.
+	// +kubebuilder:validation:Optional
+	InternetSecurityEnabled *bool `json:"internetSecurityEnabled,omitempty" tf:"internet_security_enabled,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	PrivateLinkFastPathEnabled *bool `json:"privateLinkFastPathEnabled,omitempty" tf:"private_link_fast_path_enabled,omitempty"`

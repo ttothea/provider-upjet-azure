@@ -361,6 +361,11 @@ func (in *ServiceObservation) DeepCopyInto(out *ServiceObservation) {
 		*out = new(bool)
 		**out = **in
 	}
+	if in.Endpoint != nil {
+		in, out := &in.Endpoint, &out.Endpoint
+		*out = new(string)
+		**out = **in
+	}
 	if in.HostingMode != nil {
 		in, out := &in.HostingMode, &out.HostingMode
 		*out = new(string)

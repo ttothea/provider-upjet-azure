@@ -37,6 +37,7 @@ import (
 	"github.com/upbound/provider-azure/v2/config/namespaced/keyvault"
 	"github.com/upbound/provider-azure/v2/config/namespaced/kusto"
 	"github.com/upbound/provider-azure/v2/config/namespaced/machinelearningservices"
+	"github.com/upbound/provider-azure/v2/config/namespaced/managedidentity"
 	"github.com/upbound/provider-azure/v2/config/namespaced/management"
 	"github.com/upbound/provider-azure/v2/config/namespaced/netapp"
 	"github.com/upbound/provider-azure/v2/config/namespaced/network"
@@ -107,6 +108,7 @@ func init() {
 	ProviderConfiguration.AddConfig(appplatform.Configure)
 	ProviderConfiguration.AddConfig(cognitiveservices.Configure)
 	ProviderConfiguration.AddConfig(machinelearningservices.Configure)
+	ProviderConfiguration.AddConfig(managedidentity.Configure)
 	ProviderConfiguration.AddConfig(eventgrid.Configure)
 	ProviderConfiguration.AddConfig(dashboard.Configure)
 	ProviderConfiguration.AddConfig(desktopvirtualization.Configure)

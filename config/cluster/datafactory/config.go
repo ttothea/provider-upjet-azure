@@ -6,6 +6,8 @@ package datafactory
 
 import (
 	"github.com/crossplane/upjet/v2/pkg/config"
+
+	"github.com/upbound/provider-azure/v2/apis/cluster/rconfig"
 )
 
 // Configure configures datafactory group
@@ -22,5 +24,12 @@ func Configure(p *config.Provider) {
 
 	p.AddResourceConfigurator("azurerm_data_factory_integration_runtime_azure_ssis", func(r *config.Resource) {
 		r.Path = "integrationruntimeazuressis"
+	})
+
+	p.AddResourceConfigurator("azurerm_data_factory_linked_service_azure_databricks", func(r *config.Resource) {
+		r.References["msi_work_space_resource_id"] = config.Reference{
+			TerraformName: "azurerm_databricks_workspace",
+			Extractor:     rconfig.ExtractResourceIDFuncPath,
+		}
 	})
 }

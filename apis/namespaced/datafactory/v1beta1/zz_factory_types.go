@@ -19,7 +19,7 @@ type FactoryInitParameters struct {
 	// Specifies the Azure Key Vault Key ID to be used as the Customer Managed Key (CMK) for double encryption. Required with user assigned identity.
 	CustomerManagedKeyID *string `json:"customerManagedKeyId,omitempty" tf:"customer_managed_key_id,omitempty"`
 
-	// Specifies the ID of the user assigned identity associated with the Customer Managed Key. Must be supplied if customer_managed_key_id is set.
+	// Specifies the ID of the user assigned identity associated with the Customer Managed Key. Must be supplied at factory creation if customer_managed_key_id is set. Can be left empty once factory is created to use the system assigned identity. See the Microsoft documentation for more information.
 	CustomerManagedKeyIdentityID *string `json:"customerManagedKeyIdentityId,omitempty" tf:"customer_managed_key_identity_id,omitempty"`
 
 	// A github_configuration block as defined below.
@@ -56,7 +56,7 @@ type FactoryObservation struct {
 	// Specifies the Azure Key Vault Key ID to be used as the Customer Managed Key (CMK) for double encryption. Required with user assigned identity.
 	CustomerManagedKeyID *string `json:"customerManagedKeyId,omitempty" tf:"customer_managed_key_id,omitempty"`
 
-	// Specifies the ID of the user assigned identity associated with the Customer Managed Key. Must be supplied if customer_managed_key_id is set.
+	// Specifies the ID of the user assigned identity associated with the Customer Managed Key. Must be supplied at factory creation if customer_managed_key_id is set. Can be left empty once factory is created to use the system assigned identity. See the Microsoft documentation for more information.
 	CustomerManagedKeyIdentityID *string `json:"customerManagedKeyIdentityId,omitempty" tf:"customer_managed_key_identity_id,omitempty"`
 
 	// A github_configuration block as defined below.
@@ -100,7 +100,7 @@ type FactoryParameters struct {
 	// +kubebuilder:validation:Optional
 	CustomerManagedKeyID *string `json:"customerManagedKeyId,omitempty" tf:"customer_managed_key_id,omitempty"`
 
-	// Specifies the ID of the user assigned identity associated with the Customer Managed Key. Must be supplied if customer_managed_key_id is set.
+	// Specifies the ID of the user assigned identity associated with the Customer Managed Key. Must be supplied at factory creation if customer_managed_key_id is set. Can be left empty once factory is created to use the system assigned identity. See the Microsoft documentation for more information.
 	// +kubebuilder:validation:Optional
 	CustomerManagedKeyIdentityID *string `json:"customerManagedKeyIdentityId,omitempty" tf:"customer_managed_key_identity_id,omitempty"`
 

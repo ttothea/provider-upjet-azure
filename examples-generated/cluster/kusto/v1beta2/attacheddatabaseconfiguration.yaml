@@ -12,12 +12,12 @@ metadata:
   name: example
 spec:
   forProvider:
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: followed_cluster
     clusterNameSelector:
       matchLabels:
         testing.upbound.io/example-name: follower_cluster
-    clusterResourceIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: followed_cluster
     databaseNameSelector:
       matchLabels:
         testing.upbound.io/example-name: example
@@ -31,6 +31,10 @@ spec:
       - ExternalTable2
       externalTablesToInclude:
       - ExternalTable1
+      functionsToExclude:
+      - Function2
+      functionsToInclude:
+      - Function1
       materializedViewsToExclude:
       - MaterializedViewTable2
       materializedViewsToInclude:

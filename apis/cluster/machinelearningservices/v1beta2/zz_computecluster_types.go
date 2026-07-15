@@ -249,7 +249,7 @@ type IdentityParameters struct {
 type SSHInitParameters struct {
 
 	// Password of the administrator user account. Changing this forces a new Machine Learning Compute Cluster to be created.
-	AdminPassword *string `json:"adminPassword,omitempty" tf:"admin_password,omitempty"`
+	AdminPasswordSecretRef *v1.SecretKeySelector `json:"adminPasswordSecretRef,omitempty" tf:"-"`
 
 	// Name of the administrator user account which can be used to SSH to nodes. Changing this forces a new Machine Learning Compute Cluster to be created.
 	AdminUsername *string `json:"adminUsername,omitempty" tf:"admin_username,omitempty"`
@@ -259,9 +259,6 @@ type SSHInitParameters struct {
 }
 
 type SSHObservation struct {
-
-	// Password of the administrator user account. Changing this forces a new Machine Learning Compute Cluster to be created.
-	AdminPassword *string `json:"adminPassword,omitempty" tf:"admin_password,omitempty"`
 
 	// Name of the administrator user account which can be used to SSH to nodes. Changing this forces a new Machine Learning Compute Cluster to be created.
 	AdminUsername *string `json:"adminUsername,omitempty" tf:"admin_username,omitempty"`
@@ -274,7 +271,7 @@ type SSHParameters struct {
 
 	// Password of the administrator user account. Changing this forces a new Machine Learning Compute Cluster to be created.
 	// +kubebuilder:validation:Optional
-	AdminPassword *string `json:"adminPassword,omitempty" tf:"admin_password,omitempty"`
+	AdminPasswordSecretRef *v1.SecretKeySelector `json:"adminPasswordSecretRef,omitempty" tf:"-"`
 
 	// Name of the administrator user account which can be used to SSH to nodes. Changing this forces a new Machine Learning Compute Cluster to be created.
 	// +kubebuilder:validation:Optional

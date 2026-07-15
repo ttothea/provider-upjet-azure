@@ -61,3 +61,23 @@ func SetupGated_kusto(mgr ctrl.Manager, o controller.Options) error {
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_kusto registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_kusto(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		attacheddatabaseconfiguration.SetupWebhookWithManager,
+		cluster.SetupWebhookWithManager,
+		clustermanagedprivateendpoint.SetupWebhookWithManager,
+		clusterprincipalassignment.SetupWebhookWithManager,
+		database.SetupWebhookWithManager,
+		databaseprincipalassignment.SetupWebhookWithManager,
+		eventgriddataconnection.SetupWebhookWithManager,
+		eventhubdataconnection.SetupWebhookWithManager,
+		iothubdataconnection.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

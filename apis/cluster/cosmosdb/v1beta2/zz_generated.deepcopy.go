@@ -153,6 +153,11 @@ func (in *AccountInitParameters) DeepCopyInto(out *AccountInitParameters) {
 		*out = new(bool)
 		**out = **in
 	}
+	if in.LocalAuthenticationEnabled != nil {
+		in, out := &in.LocalAuthenticationEnabled, &out.LocalAuthenticationEnabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Location != nil {
 		in, out := &in.Location, &out.Location
 		*out = new(string)
@@ -404,6 +409,11 @@ func (in *AccountObservation) DeepCopyInto(out *AccountObservation) {
 		*out = new(bool)
 		**out = **in
 	}
+	if in.LocalAuthenticationEnabled != nil {
+		in, out := &in.LocalAuthenticationEnabled, &out.LocalAuthenticationEnabled
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Location != nil {
 		in, out := &in.Location, &out.Location
 		*out = new(string)
@@ -637,6 +647,11 @@ func (in *AccountParameters) DeepCopyInto(out *AccountParameters) {
 	}
 	if in.LocalAuthenticationDisabled != nil {
 		in, out := &in.LocalAuthenticationDisabled, &out.LocalAuthenticationDisabled
+		*out = new(bool)
+		**out = **in
+	}
+	if in.LocalAuthenticationEnabled != nil {
+		in, out := &in.LocalAuthenticationEnabled, &out.LocalAuthenticationEnabled
 		*out = new(bool)
 		**out = **in
 	}

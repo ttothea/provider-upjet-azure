@@ -236,7 +236,7 @@ type AIFoundryProjectStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// AIFoundryProject is the Schema for the AIFoundryProjects API. Manages an AI Foundry Project.
+// AIFoundryProject is the Schema for the AIFoundryProjects API. Manages a Microsoft Foundry Hub (classic) Project resource.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

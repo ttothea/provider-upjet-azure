@@ -155,8 +155,8 @@ spec:
                     type: object
                   targetVirtualNetworkId:
                     description: Specifies the Resource ID of the Virtual Network
-                      using as the Static Member. Changing this forces a new Network
-                      Manager Static Member to be created.
+                      or Subnet used as the Static Member. Changing this forces a
+                      new Network Manager Static Member to be created.
                     type: string
                   targetVirtualNetworkIdRef:
                     description: Reference to a VirtualNetwork in network to populate
@@ -250,8 +250,8 @@ spec:
                 properties:
                   targetVirtualNetworkId:
                     description: Specifies the Resource ID of the Virtual Network
-                      using as the Static Member. Changing this forces a new Network
-                      Manager Static Member to be created.
+                      or Subnet used as the Static Member. Changing this forces a
+                      new Network Manager Static Member to be created.
                     type: string
                   targetVirtualNetworkIdRef:
                     description: Reference to a VirtualNetwork in network to populate
@@ -433,8 +433,8 @@ spec:
                     type: string
                   targetVirtualNetworkId:
                     description: Specifies the Resource ID of the Virtual Network
-                      using as the Static Member. Changing this forces a new Network
-                      Manager Static Member to be created.
+                      or Subnet used as the Static Member. Changing this forces a
+                      new Network Manager Static Member to be created.
                     type: string
                 type: object
               conditions:

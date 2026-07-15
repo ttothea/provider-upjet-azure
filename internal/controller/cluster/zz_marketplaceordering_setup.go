@@ -37,3 +37,15 @@ func SetupGated_marketplaceordering(mgr ctrl.Manager, o controller.Options) erro
 	}
 	return nil
 }
+
+// SetupWebhookWithManager_marketplaceordering registers conversion webhooks for all resource kinds in the group.
+func SetupWebhookWithManager_marketplaceordering(mgr ctrl.Manager) error {
+	for _, setup := range []func(ctrl.Manager) error{
+		marketplaceagreement.SetupWebhookWithManager,
+	} {
+		if err := setup(mgr); err != nil {
+			return err
+		}
+	}
+	return nil
+}

@@ -83,6 +83,17 @@ spec:
                             description: The ID of the Blob Storage Account where
                               messages should be archived.
                             type: string
+                          storageAuthenticationId:
+                            description: The id of the User Assigned Identity that
+                              is used to authenticate the Blob Storage Account where
+                              messages should be archived.
+                            type: string
+                          storageAuthenticationType:
+                            description: The identity used to authenticate the Blob
+                              Storage Account where messages should be archived. Possible
+                              values are StorageSAS, SystemAssigned or UserAssigned.
+                              Defaults to StorageSAS.
+                            type: string
                         type: object
                       enabled:
                         description: Specifies if the Capture Description is Enabled.
@@ -434,6 +445,17 @@ spec:
                             description: The ID of the Blob Storage Account where
                               messages should be archived.
                             type: string
+                          storageAuthenticationId:
+                            description: The id of the User Assigned Identity that
+                              is used to authenticate the Blob Storage Account where
+                              messages should be archived.
+                            type: string
+                          storageAuthenticationType:
+                            description: The identity used to authenticate the Blob
+                              Storage Account where messages should be archived. Possible
+                              values are StorageSAS, SystemAssigned or UserAssigned.
+                              Defaults to StorageSAS.
+                            type: string
                         type: object
                       enabled:
                         description: Specifies if the Capture Description is Enabled.
@@ -667,6 +689,17 @@ spec:
                           storageAccountId:
                             description: The ID of the Blob Storage Account where
                               messages should be archived.
+                            type: string
+                          storageAuthenticationId:
+                            description: The id of the User Assigned Identity that
+                              is used to authenticate the Blob Storage Account where
+                              messages should be archived.
+                            type: string
+                          storageAuthenticationType:
+                            description: The identity used to authenticate the Blob
+                              Storage Account where messages should be archived. Possible
+                              values are StorageSAS, SystemAssigned or UserAssigned.
+                              Defaults to StorageSAS.
                             type: string
                         type: object
                       enabled:

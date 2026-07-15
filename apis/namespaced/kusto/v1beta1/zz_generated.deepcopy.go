@@ -48,6 +48,16 @@ func (in *AttachedDatabaseConfigurationInitParameters) DeepCopyInto(out *Attache
 		*out = new(string)
 		**out = **in
 	}
+	if in.ClusterIDRef != nil {
+		in, out := &in.ClusterIDRef, &out.ClusterIDRef
+		*out = new(v1.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ClusterIDSelector != nil {
+		in, out := &in.ClusterIDSelector, &out.ClusterIDSelector
+		*out = new(v1.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.ClusterName != nil {
 		in, out := &in.ClusterName, &out.ClusterName
 		*out = new(string)
@@ -80,6 +90,16 @@ func (in *AttachedDatabaseConfigurationInitParameters) DeepCopyInto(out *Attache
 	}
 	if in.DatabaseName != nil {
 		in, out := &in.DatabaseName, &out.DatabaseName
+		*out = new(string)
+		**out = **in
+	}
+	if in.DatabaseNameOverride != nil {
+		in, out := &in.DatabaseNameOverride, &out.DatabaseNameOverride
+		*out = new(string)
+		**out = **in
+	}
+	if in.DatabaseNamePrefix != nil {
+		in, out := &in.DatabaseNamePrefix, &out.DatabaseNamePrefix
 		*out = new(string)
 		**out = **in
 	}
@@ -206,6 +226,16 @@ func (in *AttachedDatabaseConfigurationObservation) DeepCopyInto(out *AttachedDa
 		*out = new(string)
 		**out = **in
 	}
+	if in.DatabaseNameOverride != nil {
+		in, out := &in.DatabaseNameOverride, &out.DatabaseNameOverride
+		*out = new(string)
+		**out = **in
+	}
+	if in.DatabaseNamePrefix != nil {
+		in, out := &in.DatabaseNamePrefix, &out.DatabaseNamePrefix
+		*out = new(string)
+		**out = **in
+	}
 	if in.DefaultPrincipalModificationKind != nil {
 		in, out := &in.DefaultPrincipalModificationKind, &out.DefaultPrincipalModificationKind
 		*out = new(string)
@@ -256,6 +286,16 @@ func (in *AttachedDatabaseConfigurationParameters) DeepCopyInto(out *AttachedDat
 		*out = new(string)
 		**out = **in
 	}
+	if in.ClusterIDRef != nil {
+		in, out := &in.ClusterIDRef, &out.ClusterIDRef
+		*out = new(v1.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ClusterIDSelector != nil {
+		in, out := &in.ClusterIDSelector, &out.ClusterIDSelector
+		*out = new(v1.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.ClusterName != nil {
 		in, out := &in.ClusterName, &out.ClusterName
 		*out = new(string)
@@ -288,6 +328,16 @@ func (in *AttachedDatabaseConfigurationParameters) DeepCopyInto(out *AttachedDat
 	}
 	if in.DatabaseName != nil {
 		in, out := &in.DatabaseName, &out.DatabaseName
+		*out = new(string)
+		**out = **in
+	}
+	if in.DatabaseNameOverride != nil {
+		in, out := &in.DatabaseNameOverride, &out.DatabaseNameOverride
+		*out = new(string)
+		**out = **in
+	}
+	if in.DatabaseNamePrefix != nil {
+		in, out := &in.DatabaseNamePrefix, &out.DatabaseNamePrefix
 		*out = new(string)
 		**out = **in
 	}
@@ -2595,6 +2645,11 @@ func (in *EventHubDataConnectionInitParameters) DeepCopyInto(out *EventHubDataCo
 		*out = new(string)
 		**out = **in
 	}
+	if in.RetrievalStartDate != nil {
+		in, out := &in.RetrievalStartDate, &out.RetrievalStartDate
+		*out = new(string)
+		**out = **in
+	}
 	if in.TableName != nil {
 		in, out := &in.TableName, &out.TableName
 		*out = new(string)
@@ -2715,6 +2770,11 @@ func (in *EventHubDataConnectionObservation) DeepCopyInto(out *EventHubDataConne
 	}
 	if in.ResourceGroupName != nil {
 		in, out := &in.ResourceGroupName, &out.ResourceGroupName
+		*out = new(string)
+		**out = **in
+	}
+	if in.RetrievalStartDate != nil {
+		in, out := &in.RetrievalStartDate, &out.RetrievalStartDate
 		*out = new(string)
 		**out = **in
 	}
@@ -2853,6 +2913,11 @@ func (in *EventHubDataConnectionParameters) DeepCopyInto(out *EventHubDataConnec
 		in, out := &in.ResourceGroupNameSelector, &out.ResourceGroupNameSelector
 		*out = new(v1.NamespacedSelector)
 		(*in).DeepCopyInto(*out)
+	}
+	if in.RetrievalStartDate != nil {
+		in, out := &in.RetrievalStartDate, &out.RetrievalStartDate
+		*out = new(string)
+		**out = **in
 	}
 	if in.TableName != nil {
 		in, out := &in.TableName, &out.TableName
@@ -3047,6 +3112,11 @@ func (in *IOTHubDataConnectionInitParameters) DeepCopyInto(out *IOTHubDataConnec
 		*out = new(v1.NamespacedSelector)
 		(*in).DeepCopyInto(*out)
 	}
+	if in.RetrievalStartDate != nil {
+		in, out := &in.RetrievalStartDate, &out.RetrievalStartDate
+		*out = new(string)
+		**out = **in
+	}
 	if in.SharedAccessPolicyName != nil {
 		in, out := &in.SharedAccessPolicyName, &out.SharedAccessPolicyName
 		*out = new(string)
@@ -3177,6 +3247,11 @@ func (in *IOTHubDataConnectionObservation) DeepCopyInto(out *IOTHubDataConnectio
 	}
 	if in.ResourceGroupName != nil {
 		in, out := &in.ResourceGroupName, &out.ResourceGroupName
+		*out = new(string)
+		**out = **in
+	}
+	if in.RetrievalStartDate != nil {
+		in, out := &in.RetrievalStartDate, &out.RetrievalStartDate
 		*out = new(string)
 		**out = **in
 	}
@@ -3315,6 +3390,11 @@ func (in *IOTHubDataConnectionParameters) DeepCopyInto(out *IOTHubDataConnection
 		in, out := &in.ResourceGroupNameSelector, &out.ResourceGroupNameSelector
 		*out = new(v1.NamespacedSelector)
 		(*in).DeepCopyInto(*out)
+	}
+	if in.RetrievalStartDate != nil {
+		in, out := &in.RetrievalStartDate, &out.RetrievalStartDate
+		*out = new(string)
+		**out = **in
 	}
 	if in.SharedAccessPolicyName != nil {
 		in, out := &in.SharedAccessPolicyName, &out.SharedAccessPolicyName
@@ -3736,6 +3816,28 @@ func (in *SharingInitParameters) DeepCopyInto(out *SharingInitParameters) {
 			}
 		}
 	}
+	if in.FunctionsToExclude != nil {
+		in, out := &in.FunctionsToExclude, &out.FunctionsToExclude
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+	if in.FunctionsToInclude != nil {
+		in, out := &in.FunctionsToInclude, &out.FunctionsToInclude
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
 	if in.MaterializedViewsToExclude != nil {
 		in, out := &in.MaterializedViewsToExclude, &out.MaterializedViewsToExclude
 		*out = make([]*string, len(*in))
@@ -3817,6 +3919,28 @@ func (in *SharingObservation) DeepCopyInto(out *SharingObservation) {
 			}
 		}
 	}
+	if in.FunctionsToExclude != nil {
+		in, out := &in.FunctionsToExclude, &out.FunctionsToExclude
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+	if in.FunctionsToInclude != nil {
+		in, out := &in.FunctionsToInclude, &out.FunctionsToInclude
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
 	if in.MaterializedViewsToExclude != nil {
 		in, out := &in.MaterializedViewsToExclude, &out.MaterializedViewsToExclude
 		*out = make([]*string, len(*in))
@@ -3889,6 +4013,28 @@ func (in *SharingParameters) DeepCopyInto(out *SharingParameters) {
 	}
 	if in.ExternalTablesToInclude != nil {
 		in, out := &in.ExternalTablesToInclude, &out.ExternalTablesToInclude
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+	if in.FunctionsToExclude != nil {
+		in, out := &in.FunctionsToExclude, &out.FunctionsToExclude
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+	if in.FunctionsToInclude != nil {
+		in, out := &in.FunctionsToInclude, &out.FunctionsToInclude
 		*out = make([]*string, len(*in))
 		for i := range *in {
 			if (*in)[i] != nil {

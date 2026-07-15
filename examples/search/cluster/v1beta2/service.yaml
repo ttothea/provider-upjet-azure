@@ -8,14 +8,14 @@ metadata:
   annotations:
     meta.upbound.io/example-id: search/v1beta2/service
   labels:
-    testing.upbound.io/example-name: search-example
-  name: search-example
+    testing.upbound.io/example-name: servicesearchv1beta2
+  name: servicesearchv1beta2
 spec:
   forProvider:
     location: West Europe
     resourceGroupNameSelector:
       matchLabels:
-        testing.upbound.io/example-name: search-rg
+        testing.upbound.io/example-name: servicesearchv1beta2
     sku: standard
 
 ---
@@ -26,8 +26,8 @@ metadata:
   annotations:
     meta.upbound.io/example-id: search/v1beta1/service
   labels:
-    testing.upbound.io/example-name: search-rg
-  name: search-rg
+    testing.upbound.io/example-name: servicesearchv1beta2
+  name: servicesearchv1beta2
 spec:
   forProvider:
     location: West Europe

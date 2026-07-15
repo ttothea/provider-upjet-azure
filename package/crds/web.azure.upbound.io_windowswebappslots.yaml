@@ -943,8 +943,8 @@ spec:
                   clientCertificateMode:
                     description: The Client Certificate mode. Possible values are
                       Required, Optional, and OptionalInteractiveUser. This property
-                      has no effect when client_cert_enabled is false. Defaults to
-                      Required.
+                      has no effect when client_certificate_enabled is false. Defaults
+                      to Required.
                     type: string
                   connectionString:
                     description: One or more connection_string blocks as defined below.
@@ -1607,6 +1607,11 @@ spec:
                         managedPipelineMode:
                           description: 'Managed pipeline mode. Possible values include:
                             Integrated, Classic. Defaults to Integrated.'
+                          type: string
+                        minimumTlsCipherSuite:
+                          description: |-
+                            The configures the minimum cipher suite of TLS required for SSL requests. Possible values include: TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384",TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384",TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", TLS_RSA_WITH_AES_128_CBC_SHA",TLS_RSA_WITH_AES_128_CBC_SHA256",TLS_RSA_WITH_AES_128_GCM_SHA256",TLS_RSA_WITH_AES_256_CBC_SHA",TLS_RSA_WITH_AES_256_CBC_SHA256",TLS_RSA_WITH_AES_256_GCM_SHA384".
+                            Configures the minimum TLS cipher suite for the incoming requests to the Site.
                           type: string
                         minimumTlsVersion:
                           description: The configures the minimum version of TLS required
@@ -2783,8 +2788,8 @@ spec:
                   clientCertificateMode:
                     description: The Client Certificate mode. Possible values are
                       Required, Optional, and OptionalInteractiveUser. This property
-                      has no effect when client_cert_enabled is false. Defaults to
-                      Required.
+                      has no effect when client_certificate_enabled is false. Defaults
+                      to Required.
                     type: string
                   connectionString:
                     description: One or more connection_string blocks as defined below.
@@ -3451,6 +3456,11 @@ spec:
                         managedPipelineMode:
                           description: 'Managed pipeline mode. Possible values include:
                             Integrated, Classic. Defaults to Integrated.'
+                          type: string
+                        minimumTlsCipherSuite:
+                          description: |-
+                            The configures the minimum cipher suite of TLS required for SSL requests. Possible values include: TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384",TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384",TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", TLS_RSA_WITH_AES_128_CBC_SHA",TLS_RSA_WITH_AES_128_CBC_SHA256",TLS_RSA_WITH_AES_128_GCM_SHA256",TLS_RSA_WITH_AES_256_CBC_SHA",TLS_RSA_WITH_AES_256_CBC_SHA256",TLS_RSA_WITH_AES_256_GCM_SHA384".
+                            Configures the minimum TLS cipher suite for the incoming requests to the Site.
                           type: string
                         minimumTlsVersion:
                           description: The configures the minimum version of TLS required
@@ -4621,8 +4631,8 @@ spec:
                   clientCertificateMode:
                     description: The Client Certificate mode. Possible values are
                       Required, Optional, and OptionalInteractiveUser. This property
-                      has no effect when client_cert_enabled is false. Defaults to
-                      Required.
+                      has no effect when client_certificate_enabled is false. Defaults
+                      to Required.
                     type: string
                   connectionString:
                     description: One or more connection_string blocks as defined below.
@@ -5199,6 +5209,11 @@ spec:
                         managedPipelineMode:
                           description: 'Managed pipeline mode. Possible values include:
                             Integrated, Classic. Defaults to Integrated.'
+                          type: string
+                        minimumTlsCipherSuite:
+                          description: |-
+                            The configures the minimum cipher suite of TLS required for SSL requests. Possible values include: TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384",TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384",TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", TLS_RSA_WITH_AES_128_CBC_SHA",TLS_RSA_WITH_AES_128_CBC_SHA256",TLS_RSA_WITH_AES_128_GCM_SHA256",TLS_RSA_WITH_AES_256_CBC_SHA",TLS_RSA_WITH_AES_256_CBC_SHA256",TLS_RSA_WITH_AES_256_GCM_SHA384".
+                            Configures the minimum TLS cipher suite for the incoming requests to the Site.
                           type: string
                         minimumTlsVersion:
                           description: The configures the minimum version of TLS required
@@ -6353,8 +6368,8 @@ spec:
                   clientCertificateMode:
                     description: The Client Certificate mode. Possible values are
                       Required, Optional, and OptionalInteractiveUser. This property
-                      has no effect when client_cert_enabled is false. Defaults to
-                      Required.
+                      has no effect when client_certificate_enabled is false. Defaults
+                      to Required.
                     type: string
                   connectionString:
                     description: One or more connection_string blocks as defined below.
@@ -6971,6 +6986,11 @@ spec:
                       managedPipelineMode:
                         description: 'Managed pipeline mode. Possible values include:
                           Integrated, Classic. Defaults to Integrated.'
+                        type: string
+                      minimumTlsCipherSuite:
+                        description: |-
+                          The configures the minimum cipher suite of TLS required for SSL requests. Possible values include: TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384",TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384",TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", TLS_RSA_WITH_AES_128_CBC_SHA",TLS_RSA_WITH_AES_128_CBC_SHA256",TLS_RSA_WITH_AES_128_GCM_SHA256",TLS_RSA_WITH_AES_256_CBC_SHA",TLS_RSA_WITH_AES_256_CBC_SHA256",TLS_RSA_WITH_AES_256_GCM_SHA384".
+                          Configures the minimum TLS cipher suite for the incoming requests to the Site.
                         type: string
                       minimumTlsVersion:
                         description: The configures the minimum version of TLS required
@@ -8104,8 +8124,8 @@ spec:
                   clientCertificateMode:
                     description: The Client Certificate mode. Possible values are
                       Required, Optional, and OptionalInteractiveUser. This property
-                      has no effect when client_cert_enabled is false. Defaults to
-                      Required.
+                      has no effect when client_certificate_enabled is false. Defaults
+                      to Required.
                     type: string
                   connectionString:
                     description: One or more connection_string blocks as defined below.
@@ -8726,6 +8746,11 @@ spec:
                       managedPipelineMode:
                         description: 'Managed pipeline mode. Possible values include:
                           Integrated, Classic. Defaults to Integrated.'
+                        type: string
+                      minimumTlsCipherSuite:
+                        description: |-
+                          The configures the minimum cipher suite of TLS required for SSL requests. Possible values include: TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384",TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384",TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", TLS_RSA_WITH_AES_128_CBC_SHA",TLS_RSA_WITH_AES_128_CBC_SHA256",TLS_RSA_WITH_AES_128_GCM_SHA256",TLS_RSA_WITH_AES_256_CBC_SHA",TLS_RSA_WITH_AES_256_CBC_SHA256",TLS_RSA_WITH_AES_256_GCM_SHA384".
+                          Configures the minimum TLS cipher suite for the incoming requests to the Site.
                         type: string
                       minimumTlsVersion:
                         description: The configures the minimum version of TLS required
@@ -9853,8 +9878,8 @@ spec:
                   clientCertificateMode:
                     description: The Client Certificate mode. Possible values are
                       Required, Optional, and OptionalInteractiveUser. This property
-                      has no effect when client_cert_enabled is false. Defaults to
-                      Required.
+                      has no effect when client_certificate_enabled is false. Defaults
+                      to Required.
                     type: string
                   connectionString:
                     description: One or more connection_string blocks as defined below.
@@ -10385,6 +10410,11 @@ spec:
                       managedPipelineMode:
                         description: 'Managed pipeline mode. Possible values include:
                           Integrated, Classic. Defaults to Integrated.'
+                        type: string
+                      minimumTlsCipherSuite:
+                        description: |-
+                          The configures the minimum cipher suite of TLS required for SSL requests. Possible values include: TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384",TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA",TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384",TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", TLS_RSA_WITH_AES_128_CBC_SHA",TLS_RSA_WITH_AES_128_CBC_SHA256",TLS_RSA_WITH_AES_128_GCM_SHA256",TLS_RSA_WITH_AES_256_CBC_SHA",TLS_RSA_WITH_AES_256_CBC_SHA256",TLS_RSA_WITH_AES_256_GCM_SHA384".
+                          Configures the minimum TLS cipher suite for the incoming requests to the Site.
                         type: string
                       minimumTlsVersion:
                         description: The configures the minimum version of TLS required

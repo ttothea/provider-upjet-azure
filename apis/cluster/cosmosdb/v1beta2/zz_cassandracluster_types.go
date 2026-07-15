@@ -84,7 +84,7 @@ type CassandraClusterInitParameters struct {
 	// +mapType=granular
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// The version of Cassandra what the Cluster converges to run. Possible values are 3.11 and 4.0. Defaults to 3.11. Changing this forces a new Cassandra Cluster to be created.
+	// The version of Cassandra what the Cluster converges to run. Possible values are 3.11, 4.0, 4.1 and 5.0. Defaults to 3.11. Changing this forces a new Cassandra Cluster to be created.
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
 }
 
@@ -127,7 +127,7 @@ type CassandraClusterObservation struct {
 	// +mapType=granular
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// The version of Cassandra what the Cluster converges to run. Possible values are 3.11 and 4.0. Defaults to 3.11. Changing this forces a new Cassandra Cluster to be created.
+	// The version of Cassandra what the Cluster converges to run. Possible values are 3.11, 4.0, 4.1 and 5.0. Defaults to 3.11. Changing this forces a new Cassandra Cluster to be created.
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
 }
 
@@ -201,7 +201,7 @@ type CassandraClusterParameters struct {
 	// +mapType=granular
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// The version of Cassandra what the Cluster converges to run. Possible values are 3.11 and 4.0. Defaults to 3.11. Changing this forces a new Cassandra Cluster to be created.
+	// The version of Cassandra what the Cluster converges to run. Possible values are 3.11, 4.0, 4.1 and 5.0. Defaults to 3.11. Changing this forces a new Cassandra Cluster to be created.
 	// +kubebuilder:validation:Optional
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
 }

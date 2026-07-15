@@ -40,7 +40,7 @@ type PrivateDNSZoneConfigsObservation struct {
 	// The name of the Private DNS Zone that the config belongs to.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// A list of IP Addresses
+	// The ID of the Private DNS Zone that the config belongs to.
 	PrivateDNSZoneID *string `json:"privateDnsZoneId,omitempty" tf:"private_dns_zone_id,omitempty"`
 
 	// A record_sets block as defined below.
@@ -331,7 +331,7 @@ type PrivateServiceConnectionObservation struct {
 	// The ID of the Private Link Enabled Remote Resource which this Private Endpoint should be connected to. One of private_connection_resource_id or private_connection_resource_alias must be specified. Changing this forces a new resource to be created. For a web app or function app slot, the parent web app should be used in this field instead of a reference to the slot itself.
 	PrivateConnectionResourceID *string `json:"privateConnectionResourceId,omitempty" tf:"private_connection_resource_id,omitempty"`
 
-	// (Computed) The private IP address associated with the private endpoint, note that you will have a private IP address assigned to the private endpoint even if the connection request was Rejected.
+	// The private IP address associated with the private endpoint, note that you will have a private IP address assigned to the private endpoint even if the connection request was Rejected.
 	PrivateIPAddress *string `json:"privateIpAddress,omitempty" tf:"private_ip_address,omitempty"`
 
 	// A message passed to the owner of the remote resource when the private endpoint attempts to establish the connection to the remote resource. The provider allows a maximum request message length of 140 characters, however the request message maximum length is dependent on the service the private endpoint is connected to. Only valid if is_manual_connection is set to true.

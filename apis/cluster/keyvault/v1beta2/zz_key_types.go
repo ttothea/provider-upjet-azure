@@ -50,7 +50,7 @@ type KeyInitParameters struct {
 	// Expiration UTC datetime (Y-m-d'T'H:M:S'Z').
 	ExpirationDate *string `json:"expirationDate,omitempty" tf:"expiration_date,omitempty"`
 
-	// A list of JSON web key operations. Possible values include: decrypt, encrypt, sign, unwrapKey, verify and wrapKey. Please note these values are case sensitive.
+	// A list of JSON web key operations. Possible values include: decrypt, encrypt, sign, unwrapKey, verify and wrapKey. Please note these values are case-sensitive.
 	KeyOpts []*string `json:"keyOpts,omitempty" tf:"key_opts,omitempty"`
 
 	// Specifies the Size of the RSA key to create in bytes. For example, 1024 or 2048. Note: This field is required if key_type is RSA or RSA-HSM. Changing this forces a new resource to be created.
@@ -78,6 +78,9 @@ type KeyInitParameters struct {
 	// Key not usable before the provided UTC datetime (Y-m-d'T'H:M:S'Z').
 	NotBeforeDate *string `json:"notBeforeDate,omitempty" tf:"not_before_date,omitempty"`
 
+	// A release_policy block as defined below. Changing this forces a new resource to be created.
+	ReleasePolicy *ReleasePolicyInitParameters `json:"releasePolicy,omitempty" tf:"release_policy,omitempty"`
+
 	// A rotation_policy block as defined below.
 	RotationPolicy *RotationPolicyInitParameters `json:"rotationPolicy,omitempty" tf:"rotation_policy,omitempty"`
 
@@ -100,7 +103,7 @@ type KeyObservation struct {
 	// The Key Vault Key ID.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// A list of JSON web key operations. Possible values include: decrypt, encrypt, sign, unwrapKey, verify and wrapKey. Please note these values are case sensitive.
+	// A list of JSON web key operations. Possible values include: decrypt, encrypt, sign, unwrapKey, verify and wrapKey. Please note these values are case-sensitive.
 	KeyOpts []*string `json:"keyOpts,omitempty" tf:"key_opts,omitempty"`
 
 	// Specifies the Size of the RSA key to create in bytes. For example, 1024 or 2048. Note: This field is required if key_type is RSA or RSA-HSM. Changing this forces a new resource to be created.
@@ -126,6 +129,9 @@ type KeyObservation struct {
 
 	// The PEM encoded public key of this Key Vault Key.
 	PublicKeyPem *string `json:"publicKeyPem,omitempty" tf:"public_key_pem,omitempty"`
+
+	// A release_policy block as defined below. Changing this forces a new resource to be created.
+	ReleasePolicy *ReleasePolicyObservation `json:"releasePolicy,omitempty" tf:"release_policy,omitempty"`
 
 	// The (Versioned) ID for this Key Vault Key. This property points to a specific version of a Key Vault Key, as such using this won't auto-rotate values if used in other Azure Services.
 	ResourceID *string `json:"resourceId,omitempty" tf:"resource_id,omitempty"`
@@ -163,7 +169,7 @@ type KeyParameters struct {
 	// +kubebuilder:validation:Optional
 	ExpirationDate *string `json:"expirationDate,omitempty" tf:"expiration_date,omitempty"`
 
-	// A list of JSON web key operations. Possible values include: decrypt, encrypt, sign, unwrapKey, verify and wrapKey. Please note these values are case sensitive.
+	// A list of JSON web key operations. Possible values include: decrypt, encrypt, sign, unwrapKey, verify and wrapKey. Please note these values are case-sensitive.
 	// +kubebuilder:validation:Optional
 	KeyOpts []*string `json:"keyOpts,omitempty" tf:"key_opts,omitempty"`
 
@@ -197,6 +203,10 @@ type KeyParameters struct {
 	// +kubebuilder:validation:Optional
 	NotBeforeDate *string `json:"notBeforeDate,omitempty" tf:"not_before_date,omitempty"`
 
+	// A release_policy block as defined below. Changing this forces a new resource to be created.
+	// +kubebuilder:validation:Optional
+	ReleasePolicy *ReleasePolicyParameters `json:"releasePolicy,omitempty" tf:"release_policy,omitempty"`
+
 	// A rotation_policy block as defined below.
 	// +kubebuilder:validation:Optional
 	RotationPolicy *RotationPolicyParameters `json:"rotationPolicy,omitempty" tf:"rotation_policy,omitempty"`
@@ -205,6 +215,35 @@ type KeyParameters struct {
 	// +kubebuilder:validation:Optional
 	// +mapType=granular
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
+}
+
+type ReleasePolicyInitParameters struct {
+
+	// Whether this policy is immutable. Defaults to false.
+	Immutable *bool `json:"immutable,omitempty" tf:"immutable,omitempty"`
+
+	// The policy contents in JSON format.
+	JSON *string `json:"json,omitempty" tf:"json,omitempty"`
+}
+
+type ReleasePolicyObservation struct {
+
+	// Whether this policy is immutable. Defaults to false.
+	Immutable *bool `json:"immutable,omitempty" tf:"immutable,omitempty"`
+
+	// The policy contents in JSON format.
+	JSON *string `json:"json,omitempty" tf:"json,omitempty"`
+}
+
+type ReleasePolicyParameters struct {
+
+	// Whether this policy is immutable. Defaults to false.
+	// +kubebuilder:validation:Optional
+	Immutable *bool `json:"immutable,omitempty" tf:"immutable,omitempty"`
+
+	// The policy contents in JSON format.
+	// +kubebuilder:validation:Optional
+	JSON *string `json:"json" tf:"json,omitempty"`
 }
 
 type RotationPolicyInitParameters struct {

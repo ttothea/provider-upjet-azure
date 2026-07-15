@@ -37,6 +37,9 @@ type ExpressRouteConnectionInitParameters struct {
 	// Specified whether Fast Path is enabled for Virtual Wan Firewall Hub. Defaults to false.
 	ExpressRouteGatewayBypassEnabled *bool `json:"expressRouteGatewayBypassEnabled,omitempty" tf:"express_route_gateway_bypass_enabled,omitempty"`
 
+	// Is Internet security enabled for this Express Route Connection? Defaults to false.
+	InternetSecurityEnabled *bool `json:"internetSecurityEnabled,omitempty" tf:"internet_security_enabled,omitempty"`
+
 	// Bypass the Express Route gateway when accessing private-links. When enabled express_route_gateway_bypass_enabled must be set to true. Defaults to false.
 	PrivateLinkFastPathEnabled *bool `json:"privateLinkFastPathEnabled,omitempty" tf:"private_link_fast_path_enabled,omitempty"`
 
@@ -66,6 +69,9 @@ type ExpressRouteConnectionObservation struct {
 
 	// The ID of the Express Route Connection.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Is Internet security enabled for this Express Route Connection? Defaults to false.
+	InternetSecurityEnabled *bool `json:"internetSecurityEnabled,omitempty" tf:"internet_security_enabled,omitempty"`
 
 	// Bypass the Express Route gateway when accessing private-links. When enabled express_route_gateway_bypass_enabled must be set to true. Defaults to false.
 	PrivateLinkFastPathEnabled *bool `json:"privateLinkFastPathEnabled,omitempty" tf:"private_link_fast_path_enabled,omitempty"`
@@ -118,6 +124,10 @@ type ExpressRouteConnectionParameters struct {
 	// Selector for a ExpressRouteGateway in network to populate expressRouteGatewayId.
 	// +kubebuilder:validation:Optional
 	ExpressRouteGatewayIDSelector *v1.Selector `json:"expressRouteGatewayIdSelector,omitempty" tf:"-"`
+
+	// Is Internet security enabled for this Express Route Connection? Defaults to false.
+	// +kubebuilder:validation:Optional
+	InternetSecurityEnabled *bool `json:"internetSecurityEnabled,omitempty" tf:"internet_security_enabled,omitempty"`
 
 	// Bypass the Express Route gateway when accessing private-links. When enabled express_route_gateway_bypass_enabled must be set to true. Defaults to false.
 	// +kubebuilder:validation:Optional

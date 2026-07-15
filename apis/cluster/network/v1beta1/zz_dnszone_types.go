@@ -15,7 +15,7 @@ import (
 
 type DNSZoneInitParameters struct {
 
-	// An soa_record block as defined below.
+	// A soa_record block as defined below.
 	SoaRecord []SoaRecordInitParameters `json:"soaRecord,omitempty" tf:"soa_record,omitempty"`
 
 	// A mapping of tags to assign to the resource.
@@ -28,7 +28,7 @@ type DNSZoneObservation struct {
 	// The DNS Zone ID.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Maximum number of Records in the zone. Defaults to 1000.
+	// Maximum number of Records in the zone.
 	MaxNumberOfRecordSets *float64 `json:"maxNumberOfRecordSets,omitempty" tf:"max_number_of_record_sets,omitempty"`
 
 	// A list of values that make up the NS record for the zone.
@@ -41,7 +41,7 @@ type DNSZoneObservation struct {
 	// Specifies the resource group where the resource exists. Changing this forces a new resource to be created.
 	ResourceGroupName *string `json:"resourceGroupName,omitempty" tf:"resource_group_name,omitempty"`
 
-	// An soa_record block as defined below.
+	// A soa_record block as defined below.
 	SoaRecord []SoaRecordObservation `json:"soaRecord,omitempty" tf:"soa_record,omitempty"`
 
 	// A mapping of tags to assign to the resource.
@@ -64,7 +64,7 @@ type DNSZoneParameters struct {
 	// +kubebuilder:validation:Optional
 	ResourceGroupNameSelector *v1.Selector `json:"resourceGroupNameSelector,omitempty" tf:"-"`
 
-	// An soa_record block as defined below.
+	// A soa_record block as defined below.
 	// +kubebuilder:validation:Optional
 	SoaRecord []SoaRecordParameters `json:"soaRecord,omitempty" tf:"soa_record,omitempty"`
 
@@ -110,9 +110,10 @@ type SoaRecordObservation struct {
 	// The expire time for the SOA record. Defaults to 2419200.
 	ExpireTime *float64 `json:"expireTime,omitempty" tf:"expire_time,omitempty"`
 
+	// The fully qualified domain name.
 	Fqdn *string `json:"fqdn,omitempty" tf:"fqdn,omitempty"`
 
-	// The domain name of the authoritative name server for the SOA record. If not set, computed value from Azure will be used.
+	// The domain name of the authoritative name server for the SOA record.
 	HostName *string `json:"hostName,omitempty" tf:"host_name,omitempty"`
 
 	// The minimum Time To Live for the SOA record. By convention, it is used to determine the negative caching duration. Defaults to 300.
