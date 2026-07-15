@@ -183,6 +183,38 @@ func (mg *ManagedRedis) ResolveReferences( // ResolveReferences of this ManagedR
 	return nil
 }
 
+// ResolveReferences of this ManagedRedisAccessPolicyAssignment.
+func (mg *ManagedRedisAccessPolicyAssignment) ResolveReferences(ctx context.Context, c client.Reader) error {
+	var m xpresource.Managed
+	var l xpresource.ManagedList
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+	{
+		m, l, err = apisresolver.GetManagedResource("cache.azure.upbound.io", "v1beta1", "ManagedRedis", "ManagedRedisList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ManagedRedisID),
+			Extract:      rconfig.ExtractResourceID(),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.ForProvider.ManagedRedisIDRef,
+			Selector:     mg.Spec.ForProvider.ManagedRedisIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.ManagedRedisID")
+	}
+	mg.Spec.ForProvider.ManagedRedisID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.ManagedRedisIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
 // ResolveReferences of this RedisCache.
 func (mg *RedisCache) ResolveReferences(ctx context.Context, c client.Reader) error {
 	var m xpresource.Managed

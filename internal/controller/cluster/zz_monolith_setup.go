@@ -128,6 +128,7 @@ import (
 	botconnection "github.com/upbound/provider-azure/v2/internal/controller/cluster/botservice/botconnection"
 	botwebapp "github.com/upbound/provider-azure/v2/internal/controller/cluster/botservice/botwebapp"
 	managedredis "github.com/upbound/provider-azure/v2/internal/controller/cluster/cache/managedredis"
+	managedredisaccesspolicyassignment "github.com/upbound/provider-azure/v2/internal/controller/cluster/cache/managedredisaccesspolicyassignment"
 	rediscachecache "github.com/upbound/provider-azure/v2/internal/controller/cluster/cache/rediscache"
 	rediscacheaccesspolicy "github.com/upbound/provider-azure/v2/internal/controller/cluster/cache/rediscacheaccesspolicy"
 	rediscacheaccesspolicyassignment "github.com/upbound/provider-azure/v2/internal/controller/cluster/cache/rediscacheaccesspolicyassignment"
@@ -900,6 +901,7 @@ func Setup_monolith(mgr ctrl.Manager, o controller.Options) error {
 		botconnection.Setup,
 		botwebapp.Setup,
 		managedredis.Setup,
+		managedredisaccesspolicyassignment.Setup,
 		rediscachecache.Setup,
 		rediscacheaccesspolicy.Setup,
 		rediscacheaccesspolicyassignment.Setup,
@@ -1678,6 +1680,7 @@ func SetupGated_monolith(mgr ctrl.Manager, o controller.Options) error {
 		botconnection.SetupGated,
 		botwebapp.SetupGated,
 		managedredis.SetupGated,
+		managedredisaccesspolicyassignment.SetupGated,
 		rediscachecache.SetupGated,
 		rediscacheaccesspolicy.SetupGated,
 		rediscacheaccesspolicyassignment.SetupGated,
@@ -2455,6 +2458,7 @@ func SetupWebhookWithManager_monolith(mgr ctrl.Manager) error {
 		botconnection.SetupWebhookWithManager,
 		botwebapp.SetupWebhookWithManager,
 		managedredis.SetupWebhookWithManager,
+		managedredisaccesspolicyassignment.SetupWebhookWithManager,
 		rediscachecache.SetupWebhookWithManager,
 		rediscacheaccesspolicy.SetupWebhookWithManager,
 		rediscacheaccesspolicyassignment.SetupWebhookWithManager,

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 The Crossplane Authors <https://crossplane.io>
+// SPDX-FileCopyrightText: 2026 The Crossplane Authors <https://crossplane.io>
 //
 // SPDX-License-Identifier: CC0-1.0
 
@@ -25,5 +25,12 @@ func Configure(p *config.Provider) {
 
 	p.AddResourceConfigurator("azurerm_redis_cache", func(r *config.Resource) {
 		r.MarkAsRequired("redis_version")
+	})
+
+	p.AddResourceConfigurator("azurerm_managed_redis_access_policy_assignment", func(r *config.Resource) {
+		r.References["managed_redis_id"] = config.Reference{
+			TerraformName: "azurerm_managed_redis",
+			Extractor:     rconfig.ExtractResourceIDFuncPath,
+		}
 	})
 }

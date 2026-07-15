@@ -10,6 +10,7 @@ import (
 	"github.com/crossplane/upjet/v2/pkg/controller"
 
 	managedredis "github.com/upbound/provider-azure/v2/internal/controller/cluster/cache/managedredis"
+	managedredisaccesspolicyassignment "github.com/upbound/provider-azure/v2/internal/controller/cluster/cache/managedredisaccesspolicyassignment"
 	rediscache "github.com/upbound/provider-azure/v2/internal/controller/cluster/cache/rediscache"
 	rediscacheaccesspolicy "github.com/upbound/provider-azure/v2/internal/controller/cluster/cache/rediscacheaccesspolicy"
 	rediscacheaccesspolicyassignment "github.com/upbound/provider-azure/v2/internal/controller/cluster/cache/rediscacheaccesspolicyassignment"
@@ -24,6 +25,7 @@ import (
 func Setup_cache(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		managedredis.Setup,
+		managedredisaccesspolicyassignment.Setup,
 		rediscache.Setup,
 		rediscacheaccesspolicy.Setup,
 		rediscacheaccesspolicyassignment.Setup,
@@ -44,6 +46,7 @@ func Setup_cache(mgr ctrl.Manager, o controller.Options) error {
 func SetupGated_cache(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		managedredis.SetupGated,
+		managedredisaccesspolicyassignment.SetupGated,
 		rediscache.SetupGated,
 		rediscacheaccesspolicy.SetupGated,
 		rediscacheaccesspolicyassignment.SetupGated,
@@ -63,6 +66,7 @@ func SetupGated_cache(mgr ctrl.Manager, o controller.Options) error {
 func SetupWebhookWithManager_cache(mgr ctrl.Manager) error {
 	for _, setup := range []func(ctrl.Manager) error{
 		managedredis.SetupWebhookWithManager,
+		managedredisaccesspolicyassignment.SetupWebhookWithManager,
 		rediscache.SetupWebhookWithManager,
 		rediscacheaccesspolicy.SetupWebhookWithManager,
 		rediscacheaccesspolicyassignment.SetupWebhookWithManager,
