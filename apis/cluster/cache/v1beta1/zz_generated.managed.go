@@ -57,6 +57,56 @@ func (mg *ManagedRedis) SetWriteConnectionSecretToReference(r *xpv1.SecretRefere
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
+// GetCondition of this ManagedRedisAccessPolicyAssignment.
+func (mg *ManagedRedisAccessPolicyAssignment) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetDeletionPolicy of this ManagedRedisAccessPolicyAssignment.
+func (mg *ManagedRedisAccessPolicyAssignment) GetDeletionPolicy() xpv1.DeletionPolicy {
+	return mg.Spec.DeletionPolicy
+}
+
+// GetManagementPolicies of this ManagedRedisAccessPolicyAssignment.
+func (mg *ManagedRedisAccessPolicyAssignment) GetManagementPolicies() xpv1.ManagementPolicies {
+	return mg.Spec.ManagementPolicies
+}
+
+// GetProviderConfigReference of this ManagedRedisAccessPolicyAssignment.
+func (mg *ManagedRedisAccessPolicyAssignment) GetProviderConfigReference() *xpv1.Reference {
+	return mg.Spec.ProviderConfigReference
+}
+
+// GetWriteConnectionSecretToReference of this ManagedRedisAccessPolicyAssignment.
+func (mg *ManagedRedisAccessPolicyAssignment) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this ManagedRedisAccessPolicyAssignment.
+func (mg *ManagedRedisAccessPolicyAssignment) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetDeletionPolicy of this ManagedRedisAccessPolicyAssignment.
+func (mg *ManagedRedisAccessPolicyAssignment) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+	mg.Spec.DeletionPolicy = r
+}
+
+// SetManagementPolicies of this ManagedRedisAccessPolicyAssignment.
+func (mg *ManagedRedisAccessPolicyAssignment) SetManagementPolicies(r xpv1.ManagementPolicies) {
+	mg.Spec.ManagementPolicies = r
+}
+
+// SetProviderConfigReference of this ManagedRedisAccessPolicyAssignment.
+func (mg *ManagedRedisAccessPolicyAssignment) SetProviderConfigReference(r *xpv1.Reference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+// SetWriteConnectionSecretToReference of this ManagedRedisAccessPolicyAssignment.
+func (mg *ManagedRedisAccessPolicyAssignment) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}
+
 // GetCondition of this RedisCache.
 func (mg *RedisCache) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
