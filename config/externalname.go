@@ -810,7 +810,7 @@ var TerraformPluginSDKExternalNameConfigs = map[string]config.ExternalName{
 	"azurerm_mssql_managed_instance_transparent_data_encryption":    config.TemplatedStringAsIdentifier("", "{{ .parameters.managed_instance_id }}/encryptionProtector/current"),
 	"azurerm_mssql_managed_database":                                config.TemplatedStringAsIdentifier("name", "{{ .parameters.managed_instance_id }}/databases/{{ .external_name }}"),
 	"azurerm_mssql_managed_instance_active_directory_administrator": config.TemplatedStringAsIdentifier("", "{{ .parameters.managed_instance_id }}/administrators/activeDirectory"),
-	"azurerm_mssql_managed_instance_failover_group":                 config.TemplatedStringAsIdentifier("name", "/subscriptions/{{ .setup.configuration.subscription_id }}/resourceGroups/{{ .parameters.resource_group_name }}/providers/Microsoft.Sql/locations/{{ .parameters.location }}/instanceFailoverGroups/{{ .external_name }}"),
+	"azurerm_mssql_managed_instance_failover_group":                 mssqlManagedInstanceFailoverGroupExternalName(),
 	"azurerm_mssql_managed_instance_vulnerability_assessment":       config.TemplatedStringAsIdentifier("", "{{ .parameters.managed_instance_id }}/vulnerabilityAssessments/Default"),
 	"azurerm_mssql_outbound_firewall_rule":                          config.TemplatedStringAsIdentifier("name", "{{ .parameters.server_id }}/outboundFirewallRules/{{ .external_name }}"),
 	"azurerm_mssql_server_dns_alias":                                config.TemplatedStringAsIdentifier("name", "{{ .parameters.mssql_server_id }}/dnsAliases/{{ .external_name }}"),
@@ -2461,6 +2461,44 @@ func apiManagementSubscription() config.ExternalName {
 		return templatedGetIDFn(ctx, externalName, parameters, terraformProviderConfig)
 	}
 	e.DisableNameInitializer = true
+	return e
+}
+
+// mssqlManagedInstanceFailoverGroupExternalName returns the ExternalName
+// configuration for azurerm_mssql_managed_instance_failover_group. The
+// resource has no resource_group_name argument, so the subscription and the
+// resource group must be parsed from managed_instance_id to construct the
+// Terraform resource ID, mirroring how the Terraform provider builds it:
+// /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Sql/locations/{location}/instanceFailoverGroups/{name}
+func mssqlManagedInstanceFailoverGroupExternalName() config.ExternalName {
+	e := config.NameAsIdentifier
+	e.GetExternalNameFn = func(tfstate map[string]any) (string, error) {
+		id, ok := tfstate["id"].(string)
+		if !ok || id == "" {
+			return "", errors.New("id does not exist in tfstate")
+		}
+		parts := strings.Split(id, "/")
+		return parts[len(parts)-1], nil
+	}
+	e.GetIDFn = func(_ context.Context, externalName string, parameters map[string]any, _ map[string]any) (string, error) {
+		miID, ok := parameters["managed_instance_id"].(string)
+		if !ok || miID == "" {
+			return "", errors.New("managed_instance_id is required to construct the resource ID")
+		}
+		parts := strings.Split(miID, "/")
+		if len(parts) < 5 {
+			return "", fmt.Errorf("invalid managed_instance_id format: %s", miID)
+		}
+		location, ok := parameters["location"].(string)
+		if !ok || location == "" {
+			return "", errors.New("location is required to construct the resource ID")
+		}
+		// The Terraform provider normalizes the location when building the
+		// ID, e.g. "West Europe" becomes "westeurope".
+		location = strings.ReplaceAll(strings.ToLower(location), " ", "")
+		return fmt.Sprintf("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Sql/locations/%s/instanceFailoverGroups/%s",
+			parts[2], parts[4], location, externalName), nil
+	}
 	return e
 }
 

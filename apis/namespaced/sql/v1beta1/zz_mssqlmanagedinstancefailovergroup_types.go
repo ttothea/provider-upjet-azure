@@ -16,6 +16,9 @@ import (
 
 type MSSQLManagedInstanceFailoverGroupInitParameters struct {
 
+	// The Azure Region where the Managed Instance Failover Group should exist. Changing this forces a new resource to be created.
+	Location *string `json:"location,omitempty" tf:"location,omitempty"`
+
 	// The ID of the Azure SQL Managed Instance which will be replicated using a Managed Instance Failover Group. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/sql/v1beta1.MSSQLManagedInstance
 	// +crossplane:generate:reference:extractor=github.com/upbound/provider-azure/v2/apis/namespaced/rconfig.ExtractResourceID()
@@ -85,8 +88,8 @@ type MSSQLManagedInstanceFailoverGroupObservation struct {
 type MSSQLManagedInstanceFailoverGroupParameters struct {
 
 	// The Azure Region where the Managed Instance Failover Group should exist. Changing this forces a new resource to be created.
-	// +kubebuilder:validation:Required
-	Location *string `json:"location" tf:"location,omitempty"`
+	// +kubebuilder:validation:Optional
+	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// The ID of the Azure SQL Managed Instance which will be replicated using a Managed Instance Failover Group. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-azure/v2/apis/namespaced/sql/v1beta1.MSSQLManagedInstance
@@ -209,6 +212,7 @@ type MSSQLManagedInstanceFailoverGroupStatus struct {
 type MSSQLManagedInstanceFailoverGroup struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.location) || (has(self.initProvider) && has(self.initProvider.location))",message="spec.forProvider.location is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.readWriteEndpointFailoverPolicy) || (has(self.initProvider) && has(self.initProvider.readWriteEndpointFailoverPolicy))",message="spec.forProvider.readWriteEndpointFailoverPolicy is a required parameter"
 	Spec   MSSQLManagedInstanceFailoverGroupSpec   `json:"spec"`
 	Status MSSQLManagedInstanceFailoverGroupStatus `json:"status,omitempty"`
