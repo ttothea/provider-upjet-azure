@@ -7,6 +7,7 @@ kind: ManagedDevopsPool
 metadata:
   annotations:
     meta.upbound.io/example-id: devopsinfrastructure/v1beta1/manageddevopspool
+    upjet.upbound.io/manual-intervention: "Replace 'https://dev.azure.com/example' with a real Azure DevOps organization URL where the authenticated principal is a Project Collection Admin."
   labels:
     testing.upbound.io/example-name: example
   name: example
@@ -28,7 +29,7 @@ spec:
     statelessAgent: {}
     virtualMachineScaleSetFabric:
       image:
-      - wellKnownImageName: ubuntu-24.04/buffer
+      - wellKnownImageName: ubuntu-24.04
       skuName: Standard_D2ads_v5
 
 ---
